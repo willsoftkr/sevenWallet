@@ -1,0 +1,10 @@
+p.line0 {font-weight: bold;color:#cf1c53;font-size: 30px;margin: 30px 0 0 0;}
+p.line1 {font-weight: bold;margin: 20px 0 0 0;}
+p.line2 {margin: 20px 0 0 0;}
+p.line2 span.red{color:#cf1c53;}
+p.line3 {font-weight: bold;margin: 20px 0 0 0;}
+p.line4 {font-weight: bold;margin: 20px 0 0 0;color: #fe9d1e;}
+p.line6 {margin: 20px 0 0 0;}
+.container_btn {text-align: center;}
+.container_btn a.btn {background-color: #3b9caf;color: #fff; width:200px; line-height: 60px;border-radius: 10px;margin:20px;}
+

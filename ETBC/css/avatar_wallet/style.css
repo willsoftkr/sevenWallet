@@ -1,0 +1,501 @@
+* {
+	box-sizing: border-box;
+	font-family: 'Montserrat', sans-serif;
+}
+
+body, html {
+	height: 100%;
+	width: 100%;
+	background-color: rgb(242, 242, 242);
+}
+
+a, a:link, a:visited, a:hover, a:active {
+	text-decoration: none;
+}
+
+ul {
+	list-style: none;
+}
+
+.blue {
+	color: rgb(0, 121, 211);
+}
+
+.gray {
+	color: rgb(124, 124, 124);
+}
+
+.purple {
+	color: #53407A;
+}
+
+.red {
+	color: #ff6c6c;
+}
+
+.nav-two-big {
+	font-size: 25px;
+}
+
+.nav-two-line-height {
+	line-height: 1.1;
+}
+
+/* ==================== BONUS EARNINGS ===================== */
+
+.bonus-calendar {
+	width: 504px;
+	text-align: center;
+	border: 1px solid #e5e5e5;
+	line-height: 65px;
+}
+
+.bonus-calendar i {
+	border: 1px solid #e5e5e5;
+	color: #e5e5e5;
+	font-size: 23px;
+	padding: 10px 15px;
+}
+
+.bonus-calendar i:hover {
+	background-color: rgb(0, 121, 211);
+	border-color: rgb(0, 121, 211);
+	color: white;
+	cursor: pointer;
+}
+
+.bonus-calendar td {
+	border: 1px solid #e5e5e5;
+	height: 65px;
+	width: 72px;
+}
+
+.bonus-date {
+	background-color: rgb(0, 121, 211);
+	color: white;
+}
+
+.bonus-history-stat-card {
+	border: 1px solid #e5e5e5;
+	display: inline-block;
+	margin-left: 25px;
+	margin-right: 25px;
+	padding: 13px;
+}
+
+.bonus-history-container {
+	background-color: white;
+	border-radius: 4px;
+	margin-bottom: 75px;
+	padding: 30px;
+	position: relative;
+}
+
+.bonus-history-stats-container {
+	margin-bottom: 15px;
+	overflow-x: auto;
+	padding: 15px;
+	white-space: nowrap;
+	border-top: 2px solid #ccc;
+}
+
+.bonus-history-table-container {
+	display: none;
+	font-size: 18px;
+}
+
+.bonus-history-table-container.active {
+	display: block;
+}
+
+.bonus-history-table-container th {
+	background-color: rgb(124, 124, 124);
+	color: white;
+	word-break: keep-all;
+}
+
+.bonus-history-title {
+	display: inline-block;
+	margin-top: 50px;
+	margin-right: 10px;
+}
+
+.total {
+	display: inline-block;
+}
+
+.bonus-info-card {
+	background-color: white;
+	border: 1px solid #e5e5e5;
+	margin: 0 auto;
+	margin-bottom: 25px;
+	padding: 20px;
+	width: 90%;
+}
+
+.bonus-info-card p {
+	font-size: 19px;
+	margin-bottom: 0;
+}
+
+.bonus-info-container {
+	max-height: 456px;
+	margin-left: 5px;
+	width: 525px;
+	overflow: auto;
+}
+
+.bonus-earnings-calendar {
+	float: left;
+	width: 505px;
+}
+
+.bonus-info-container {
+	float: right;
+	width: 505px;
+}
+
+.card-date {
+	color: rgb(124, 124, 124);
+	font-size: 18px;
+	text-align: right;
+	font-weight: bold;
+}
+
+.choose-crypto-container {
+	position: relative;
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+.crypto-choice {
+	font-size: 20px;
+}
+
+.crypto-choice-container {
+	border-bottom: 2px solid white;
+	color: rgb(124, 124, 124);
+	display: inline-block;
+	padding: 15px;
+	transition: all 0.2s linear;
+}
+
+.crypto-choice-container.active {
+	border-color: rgb(0, 121, 211);
+	color: rgb(0, 121, 211);
+}
+
+.crypto-choice-container:hover {
+	border-color: rgb(0, 121, 211);
+	color: rgb(0, 121, 211);
+	cursor: pointer;
+}
+
+.crypto-choice-container img {
+	margin-right: 5px;
+}
+
+.days-of-week {
+	font-weight: 700;
+}
+
+.days-of-week li {
+	background-color: #e5e5e5;
+}
+
+.day_list li.other {
+	background-color: #eee;
+	color: #ccc;
+}
+
+.filter-choices-container {
+	margin-bottom: 15px;
+	text-align: center;
+}
+
+.filter-choices-container label {
+	margin-right: 15px;
+}
+
+.filter-choices-container span {
+	color: rgb(124, 124, 124);
+}
+
+.filter-choices-container span:hover, .filter-choices-container label:hover {
+	color: rgb(0, 121, 211);
+	cursor: pointer;
+}
+
+.filter-header {
+	font-size: 25px;
+	text-align: center;
+}
+
+.filter_btn {
+	cursor: pointer;
+}
+
+.main-container {
+	background-color: rgb(242, 242, 242);
+	height: 100%;
+	width: 100%;
+	z-index: 0;
+}
+
+.month-year {
+	font-size: 25px;
+	font-weight: 700;
+	width: 375px;
+	display: inline-block;
+}
+
+.big-container-wrapper {
+	margin: 0 auto;
+	position: relative;
+	top: 150px;
+	width: 1100px;
+}
+
+.bonus-earnings-container {
+	background-color: white;
+	border-radius: 4px;
+	padding: 30px;
+	*margin: 40px 0;
+	position: relative;
+	overflow: hidden;
+}
+
+.pagination-container {
+	margin-top: 50px;
+	margin: 0 auto;
+	overflow-x: auto;
+	width: 980px;
+}
+
+.pagination-container a {
+	color: rgb(0, 121, 211);
+}
+
+.selection-container {
+	display: inline-block;
+}
+
+.stat-bottom {
+	font-size: 25px;
+}
+
+@media only screen and (max-width: 480px) {
+	.bonus-calendar td {
+		height: 55px;
+	}
+}
+
+@media only screen and (max-width: 540px) {
+	.filter-choices-container {
+		text-align: left;
+	}
+	.filter-choices-container label {
+		display: block;
+		text-align: left;
+	}
+	.month-year {
+		margin-left: 25px;
+		margin-right: 25px;
+	}
+}
+
+@media only screen and (max-width: 600px) {
+	.filter-container {
+		margin-top: 20px;
+	}
+	.selection-container {
+		display: block;
+		text-align: center;
+	}
+	.selected-crypto {
+		display: block;
+		position: relative;
+		text-align: center;
+	}
+}
+
+@media only screen and (max-width: 1140px) {
+	.big-container-wrapper {
+		width: 100%;
+	}
+	.big-container-wrapper h2 {
+		text-align: center;
+	}
+	.bonus-earnings-container {
+		text-align: center;
+	}
+	.bonus-earnings-calendar {
+		float: initial;
+		margin: 0 auto 25px;
+	}
+	.bonus-history-title-container {
+		text-align: center;
+	}
+	.bonus-info-card {
+		width: 100%;
+	}
+	.bonus-info-container {
+		display: block;
+		margin: 0 auto;
+		width: 100%;
+	}
+	.pagination-container {
+		width: 100%;
+	}
+}
+
+ul.day_list {
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+
+ul.day_list li {
+	float: left;
+	margin: 0;
+	border-color: #e5e5e5;
+	border-style: solid;
+	border-width: 0px 0 1px 1px;
+	height: 65px;
+	line-height: 65px;
+	width: 72px;
+	text-align: center;
+}
+
+ul.day_list li:nth-child(7n) {
+	border-width: 0px 1px 1px 1px;
+}
+
+ul.day_list li.bonus-date {
+	background-color: rgb(0, 121, 211);
+	color: white;
+}
+
+.bonus-history-table-container table tbody td {
+	white-space: nowrap;
+}
+
+.search-container {
+	text-align: center;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+.search-container input {
+	width: 150px;
+}
+
+.filter_btn {
+	cursor: pointer;
+}
+
+.hash-total .blue {
+	font-size: 20px;
+}
+
+.total-hashpower {
+	display: flex;
+	justify-content: space-around;
+}
+
+.packages {
+	padding-left: 0;
+	text-align: center;
+}
+
+.packages li {
+	border: 1px solid rgb(0, 121, 211);
+	border-radius: 4px;
+	color: rgb(0, 121, 211);
+	cursor: pointer;
+	display: inline-block;
+	list-style-type: none;
+	margin-left: 5px;
+	margin-right: 5px;
+	padding: 15px;
+	transition: all 0.2s ease-in-out;
+	width: 175px;
+}
+
+.packages li.active {
+	background-color: rgb(0, 121, 211);
+	color: white;
+}
+
+.packages li:hover {
+	background-color: rgb(0, 121, 211);
+	color: white;
+}
+
+.package {
+	font-size: 18px;
+	text-align: center;
+	margin: 0 0 10px 0;
+}
+
+.package span {
+	font-weight: 600;
+}
+
+.remaining-days {
+	font-size: 13px;
+}
+
+.package-container {
+	margin-bottom: 20px;
+	white-space: nowrap;
+}
+
+.save-button {
+	border: 1px solid rgb(0, 121, 211);
+	border-radius: 4px;
+	color: rgb(0, 121, 211);
+	cursor: pointer;
+	display: block;
+	margin: 0 auto;
+	margin-bottom: 30px;
+	padding: 10px;
+	transition: all 0.2s linear;
+}
+
+.save-button:hover {
+	background-color: rgb(0, 121, 211);
+	color: white;
+}
+
+.adjust-repurchase-rate .custom-select {
+	margin: 0 0 10px 0;
+}
+.adjust-repurchase-rate p {
+	margin: 0;
+}
+.avatar .txt{
+	float: right;
+	width: 190px;
+}
+.avatar p{
+	margin: 0px;
+}
+.avatar .txt p .username, 
+.avatar .txt p .created, 
+.avatar .txt p .spent {
+	font-size: 20px;
+	/* border-bottom: 2px solid rgb(0, 121, 211);  */
+	color: rgb(0, 121, 211);
+}
+.avatar .img{
+	width: 110px;
+	margin: 17px 0 0 0;
+}
+
+#saveSuc {
+	display: none;
+	text-align: center;
+	font-weight: bold;
+	color: green;
+}

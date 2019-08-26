@@ -1,0 +1,219 @@
+* {
+	box-sizing: border-box;
+	font-family: 'Montserrat', sans-serif;
+}
+
+body, html {
+  height: 100%;
+  width: 100%;
+  background-color: rgb(242, 242, 242);
+}
+
+a, a:link, a:visited, a:hover, a:active {
+	text-decoration: none;
+}
+
+ul {
+	list-style: none;
+}
+
+.blue {
+	color: rgb(0, 121, 211);
+}
+
+.gray {
+	color: rgb(124, 124, 124);
+}
+
+.purple {
+	color: #53407A;
+}
+
+.red {
+	color: #ff6c6c;
+}
+
+.nav-two-big {
+	font-size: 25px;
+}
+
+.nav-two-line-height {
+	line-height: 1.1;
+}
+
+
+/* ==================== PINNACLE NEWS ===================== */
+
+.answer {
+	background-color: #F2F2F2;	
+	border-bottom:1px solid #e5e5e5;
+	font-size: 16px;
+	max-height: 0;
+	overflow: hidden;
+	padding-left: 70px;
+	padding-right: 70px;
+	transition: all 0.3s ease;
+}
+.answer p {margin:20px;}
+.qa-container .answer .answer-list li {
+	border: none;
+	color: black;
+	cursor: text;
+	display: block;
+	font-size: 18px;
+	margin-left: 0;
+}
+
+.main-container {
+	background-color: rgb(242, 242, 242);
+	display: absolute;
+	height: 100%;
+	width: 100%;
+	z-index: 0;
+}
+
+.big-container-wrapper {
+	margin: 0 auto;
+	position: relative;
+		top: 80px;
+	width: 1100px;
+}
+
+.faq-container {
+	background-color: white;
+	border-radius: 4px;
+	margin-bottom: 75px;
+	/*padding: 30px;*/
+	position: relative;
+	width: 1100px;
+}
+
+.faq-panels ul li {
+	border-bottom: 1px solid white;
+	color: rgb(124, 124, 124);
+	cursor: pointer;
+	display: inline-block;
+	font-size: 25px;
+	list-style-type: none;
+	margin-left: 45px;
+	margin-right: 45px;
+	transition: all 0.2s linear;
+}
+
+.faq-panels ul li.active {
+	border-bottom: 1px solid rgb(0, 121, 211);
+	color: rgb(0, 121, 211);
+}
+
+.faq-panels .faq-panel {
+	display: none;
+	padding: 25px;
+}
+
+.faq-panels .faq-panel.active {
+	display: block;
+}
+
+.faq-tabs {
+	padding-left: 0;
+	text-align: center;
+}
+
+.qa-container {
+	*border: 1px solid #e5e5e5; /*2018-11-22*/
+	border-left: none;
+	border-right: none;
+	border-top: none;
+}
+
+.question.qa-open {
+	background-color: #F2F2F2;
+	color: black;
+}
+
+.question {
+	color:#113a56;
+	cursor: pointer;
+	font-size: 14px;
+	font-weight: 200;
+	padding: 15px 25px;
+	transition: all 0.2s linear;
+	text-align: right;
+	border-bottom:1px solid #e5e5e5;
+}
+.question:hover {
+	background-color:#F2F2F2;
+	color: black;
+}
+
+.title{
+	background-color:#113a56;
+	color:#fff;
+	cursor: pointer;
+	font-size: 14px;
+	font-weight: 600;
+	padding: 15px 25px;
+	transition: all 0.2s linear;
+	text-align: center;
+}
+.title:hover {
+	background-color: rgb(124, 124, 124);
+	color:#fff;
+}
+.date{float:left;margin-right:50px;}
+.views{float: right;}
+
+
+
+
+/* ==================== //PINNACLE NEWS ===================== */
+
+/* ==================== Media Query==================== */
+
+@media only screen and (max-width: 1100px) {
+	.big-container-wrapper {
+		width: 100%;
+	}
+
+	.faq-container, .big-container-wrapper h2 {
+		margin: 0 auto;
+		width: 95%;
+    }
+    .faq-container{
+        margin-top:20px;
+    }
+
+	.big-container-wrapper h2 {
+		margin-bottom: 8px;
+		text-align: center;
+	}
+}
+
+@media only screen and (max-width: 725px) {
+	.faq-panels .faq-tabs li {
+		display: block;
+		margin-bottom: 10px;
+	}
+
+	.faq-container {
+		padding-left: 0;
+		padding-right: 0;
+	}
+
+	#general, #account, #mining {
+		padding: 0;
+	}
+}
+
+@media only screen and (max-width: 600px) {
+	.answer {
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+}
+/* ############ Media Query ############## */
+.big-container-wrapper.nav-body-shift {
+	margin-left: 300px;
+}
+.answer p.images {text-align: center;}
+.answer p.images img {width: 100%;}

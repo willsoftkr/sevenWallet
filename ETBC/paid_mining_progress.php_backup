@@ -1,0 +1,257 @@
+<?php
+
+//1. 회원 리스트를 가져온다
+//2. 각 회원별 구매 상황을 가져 온다.
+//3. 구매한 풀별로 (Pool1~Pool8, GPU) 수당을 지급한다.
+//4. 같은 날에 구매한 풀이 존재 할 수 있으므로 순서를 정한다. 0,1,2,3...
+//5. 
+//ETH 
+include_once('/home/sdevftv/html/common.php');
+$item_price = array(1 => 4500, 13500, 22500, 54000, 112500, 80);
+
+/* BTC 시세구하기 www.Whattomine.com 사이트에서 24시간 시세를 구해서 활용 */BTC 시세구하기 www.Whattomine.com 사이트에서 24시간 시세를 구해서 활용 */
+	$ch = curl_init();
+	curl_setopt($ch,CURLOPT_URL,"http://whattomine.com/coins/1.json?utf8=%E2%9C%93&hr=1000&p=0&fee=0.0&cost=0&hcost=0.0&commit=Calculate");
+	curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1); 
+	$result = curl_exec ($ch);
+	curl_close ($ch);
+	$obj = json_decode($result);
+	$btc_rate =  str_replace("$", "", $obj->{'exchange_rate'}); //BTC 시세
+/*BTC 시세구하기 */
+
+$get_btc = "SELECT * FROM coin_cost";
+$now_btc_cost = sql_fetch($get_btc);
+$today = date("Y-m-d",time() - 3600*24); 
+$set_day_btc = "insert pinna_coin_rate set day = '".$today."', btc_rate=".$now_btc_cost[btc_cost].", eth_rate = ".$now_btc_cost[eth_cost].", btc_difficulty =".$btc_difficulty.", eth_difficulty ='".$eth_difficulty."'" ;
+echo $set_day_btc ;
+sql_query($set_day_btc);
+
+
+/* 회원 정보 가져오기 & 풀구매 개수 증가*/
+	$sql_mbid = "select mb_id from g5_member order by mb_no";
+	$ret_mbid = sql_query($sql_mbid);
+	while($row_mb=sql_fetch_array($ret_mbid)){
+		$mb_id = $row_mb['mb_id'];
+		update_purchased_pool($today, $mb_id);
+	}
+/* 회원 정보 가져오기 & 풀구매 개수 증가 완료 */
+
+/*수당 지급*/
+	calc_daily_payout($one_hash_rev, $onep_mhash, $etherate, $btc_rate, $today);
+/*수당 지급 완료*/
+
+/*수당 발생 전에 구매된 풀의 개수를 추가 해준다.*/
+function update_purchased_pool($targetd, $mb_id){
+
+	$pday = strtotime("$targetd -1 days"); //수당 계산일로 부터 1일 전 날 구매 내역이 있다면 hash파워에 더해 준다.
+
+	//POOL1 구매시 처리
+		$q1 = "SELECT ct.ct_qty as p1cnt FROM `g5_shop_order` AS od, g5_shop_cart AS ct WHERE 1 AND od.od_status in('입금','강제입금') AND od.od_id = ct.od_id and ct.it_id = '1527096045' 	AND substring( od.od_mining_stime, 1, 10 ) = '".date("Y-m-d", $pday)."' and od.mb_id='{$mb_id}'";
+		$r1  = sql_fetch($q1);
+		if($r1){
+			$p1=$r1['p1cnt'];
+			$hashUp = "update pinna_mining_member set it_pool1 = pool1_hashp + $p1 where mb_id='$mb_id'";
+			sql_query($hashUp);
+		}
+
+	//POOL2 구매시 처리
+		$q2 = "SELECT ct.ct_qty as p2cnt FROM `g5_shop_order` AS od, g5_shop_cart AS ct WHERE 1 AND od.od_status in('입금','강제입금') AND od.od_id = ct.od_id and ct.it_id = '1527096041' 	AND substring( od.od_mining_stime, 1, 10 ) = '".date("Y-m-d", $pday)."' and od.mb_id='{$mb_id}'";
+		$r2  = sql_fetch($q2);
+		if($r2){
+			$p2=$r2['p2cnt'];
+			$hashUp = "update pinna_mining_member set pool2_hashp = pool2_hashp + $p2 where mb_id='$mb_id'";
+			sql_query($hashUp);
+		}
+
+	//POOL3 구매시 처리
+		$q3 = "SELECT ct.ct_qty as p3cnt FROM `g5_shop_order` AS od, g5_shop_cart AS ct WHERE 1 AND od.od_status in('입금','강제입금') AND od.od_id = ct.od_id and ct.it_id = '1527096037' AND substring( od.od_mining_stime, 1, 10 ) = '".date("Y-m-d", $pday)."' AND od.mb_id='{$mb_id}'";
+		$r3  = sql_fetch($q3);
+		if($r3){
+			$p3=$r3['p3cnt'];
+			$hashUp = "update pinna_mining_member set pool3_hashp = pool3_hashp + $p3 where mb_id='$mb_id'";
+			sql_query($hashUp);
+		}
+
+	//POOL4 구매시 처리
+		$q4 = "SELECT ct.ct_qty as p4cnt FROM `g5_shop_order` AS od, g5_shop_cart AS ct WHERE 1 AND od.od_status in('입금','강제입금') AND od.od_id = ct.od_id and ct.it_id = '1527096030' AND substring( od.od_mining_stime, 1, 10 ) = '".date("Y-m-d", $pday)."' and od.mb_id='{$mb_id}'";
+		$r4  = sql_fetch($q4);
+		if($r4){
+			$p4=$r4['p4cnt'];
+			$hashUp = "update pinna_mining_member set pool4_hashp = pool4_hashp + $p4 where mb_id='$mb_id'";
+			sql_query($hashUp);
+		}
+
+	//POOL5 구매시 처리
+		$q5 = "SELECT ct.ct_qty as p5cnt FROM `g5_shop_order` AS od, g5_shop_cart AS ct WHERE 1 AND od.od_status in('입금','강제입금') AND od.od_id = ct.od_id and ct.it_id = '1526013457' AND substring( od.od_mining_stime, 1, 10 ) = '".date("Y-m-d", $pday)."' and od.mb_id='{$mb_id}'";
+		$r5  = sql_fetch($q5);
+		if($r5){
+			$p5=$r5['p5cnt'];
+			$hashUp = "update pinna_mining_member set it_pool5 = it_pool5 + $p5 where mb_id='$mb_id'";
+			sql_query($hashUp);
+		}
+		
+	//POOL6 구매시 처리
+		$q6 = "SELECT ct.ct_qty as p6cnt FROM `g5_shop_order` AS od, g5_shop_cart AS ct WHERE 1 AND od.od_status in('입금','강제입금') AND od.od_id = ct.od_id and ct.it_id = 'POOL6' AND substring( od.od_mining_stime, 1, 10 ) = '".date("Y-m-d", $pday)."' and od.mb_id='{$mb_id}'";
+		$r6  = sql_fetch($q6);
+		if($r6){
+			$p6=$r6['p6cnt'];
+			$hashUp = "update pinna_mining_member set it_pool6 = it_pool6 + $p6 where mb_id='$mb_id'";
+			sql_query($hashUp);
+		}
+
+	//POOL7 구매시 처리
+		$q7 = "SELECT ct.ct_qty as p7cnt FROM `g5_shop_order` AS od, g5_shop_cart AS ct WHERE 1 AND od.od_status in('입금','강제입금') AND od.od_id = ct.od_id and ct.it_id = 'POOL7' AND substring( od.od_mining_stime, 1, 10 ) = '".date("Y-m-d", $pday)."' and od.mb_id='{$mb_id}'";
+		$r7  = sql_fetch($q7);
+		if($r7){
+			$p7=$r7['p7cnt'];
+			$hashUp = "update pinna_mining_member set it_pool7 = it_pool7 + $p7 where mb_id='$mb_id'";
+			sql_query($hashUp);
+		}
+	
+	//POOL8 구매시 처리
+		$q8 = "SELECT ct.ct_qty as p7cnt FROM `g5_shop_order` AS od, g5_shop_cart AS ct WHERE 1 AND od.od_status in('입금','강제입금') AND od.od_id = ct.od_id and ct.it_id = 'POOL8' AND substring( od.od_mining_stime, 1, 10 ) = '".date("Y-m-d", $pday)."' and od.mb_id='{$mb_id}'";
+		$r8  = sql_fetch($q8);
+		if($r8){
+			$p8=$r8['p8cnt'];
+			$hashUp = "update pinna_mining_member set it_pool8 = it_pool8 + $p8 where mb_id='$mb_id'";
+			sql_query($hashUp);
+		}
+}
+/*수당 발생 한다 각 풀별로 저장한다.*/
+function calc_daily_payout($one_hash_rev, $onep_mhash, $etherate, $bitrate, $to_date){ //재구매 해서 해시 파워를 더하고 나머지는 수당으로 더하나.
+	$get_cond = "select * from pinna_mining_cond";
+	$list = sql_query($get_cond);
+	$payed_amt = array();
+	$manage_fee = array();
+	while($row = sql_fetch_array($list)){
+		$payed_amt[$row['pool_name']] = $row['payed_amt']; 
+		$manage_fee[$row['pool_name']] = $row['manage_fee'];
+	}
+	$mb = "select * from pinna_mining_member order by mb_no ;";
+	$mb_rst = sql_query($mb);
+	$cnt = 0;
+	while($mb_row = sql_fetch_array($mb_rst)){
+		//풀별 수당을 계산 하여 로그 테이블 및 history 테이블에 넣는다.
+		$id = $mb_row['mb_id'];
+		$pool1 = $mb_row['it_pool1'];
+		$pool2 = $mb_row['it_pool2'];
+		$pool3 = $mb_row['it_pool3'];
+		$pool4 = $mb_row['it_pool4'];
+		$pool5 = $mb_row['it_pool5'];
+		$pool6 = $mb_row['it_pool6'];
+		$pool7 = $mb_row['it_pool7'];
+		$pool8 = $mb_row['it_pool8'];
+
+		$p1_profit = $pool1 * $payed_amt['it_pool1'] - $manage_fee['it_pool1'];
+		$p2_profit = $pool2 * $payed_amt['it_pool2'] - $manage_fee['it_pool2'];
+		$p3_profit = $pool3 * $payed_amt['it_pool3'] - $manage_fee['it_pool3'];
+		$p4_profit = $pool4 * $payed_amt['it_pool4'] - $manage_fee['it_pool4'];
+		$p5_profit = $pool5 * $payed_amt['it_pool5'] - $manage_fee['it_pool5'];
+		$p6_profit = $pool6 * $payed_amt['it_pool6'] - $manage_fee['it_pool6'];
+		$p7_profit = $pool7 * $payed_amt['it_pool7'] - $manage_fee['it_pool7'];
+		$p8_profit = $pool8 * $payed_amt['it_pool8'] - $manage_fee['it_pool8'];
+
+		if($p1_profit>0){   //수당 로그 저장
+			save_mining_slog(1, $p1_profit, $id, $to_date, $cnt, $bitrate, $etherate);
+		}
+
+		if($p2_profit>0){
+			save_mining_slog(2, $p2_profit, $id, $to_date, $cnt, $bitrate, $etherate);
+		}
+
+		if($p3_profit>0){
+			save_mining_slog(3, $p3_profit, $id, $to_date, $cnt, $bitrate, $etherate);
+		}
+
+		if($p4_profit>0){
+			save_mining_slog(4, $p4_profit, $id, $to_date, $cnt, $bitrate, $etherate);
+		}
+
+		if($p5_profit>0){
+			save_mining_slog(5, $p5_profit, $id, $to_date, $cnt, $bitrate, $etherate);
+		}
+
+		if($p6_profit>0){
+			save_mining_slog(6, $p6_profit, $id, $to_date, $cnt, $bitrate, $etherate);
+		}
+
+		if($p7_profit>0){
+			save_mining_slog(7, $p7_profit, $id, $to_date, $cnt, $bitrate, $etherate);
+		}
+
+		if($p8_profit>0){
+			save_mining_slog(8, $p8_profit, $id, $to_date, $cnt, $bitrate, $etherate);
+		}
+
+		if($gpu_profit>0){
+			$cnt = $cnt+1;
+			save_mining_Glog(11, $gpu_profit, $p_gpu_repurchase, $id, $to_date, $cnt, $bitrate, $etherate);
+			$up_repurchase = "update pina_mb_hashpower set pool_gpu_hashp = round( (pool_gpu_hashp +  $p_gpu_repurchase), 4) where mb_id='$id'";
+			sql_query($up_repurchase);
+		}
+	}//while end 
+}//function end
+/*수당 로그를 저장 한다. */
+function save_mining_slog($pool_lev, $benefit_usd, $mb_id, $to_date, $cnt,$bitrate,$etherate){
+	$pv = 0; 
+	$benefit_usd=0;
+	$allowance = 'mining payout (BTC)';
+	$benefit= round($benefit_usd *$bitrate,8);
+
+	if($pool_lev==1){
+		$rec = 'BTC mining payout (Pool1)';
+		$od_settle_case='P1';
+	    $add_field = 'it_pool1_cyprofit';
+	}
+	else if($pool_lev==2){
+		$rec = 'BTC mining payout (Pool2)';
+		$od_settle_case='P2';
+		$add_field = 'it_pool2_cyprofit';
+	}
+	else if($pool_lev==3){
+		$rec = 'BTC mining payout (Pool3)';
+		$od_settle_case='P3';
+		$add_field = 'it_pool3_cyprofit';
+	}
+	else if($pool_lev==4){
+		$rec = 'BTC mining payout (Pool4)';
+		$od_settle_case='P4';
+		$add_field = 'it_pool4_cyprofit';
+	}
+	else if($pool_lev==5){
+		$rec = 'BTC mining payout (Pool5)';
+		$od_settle_case='P5';
+		$add_field = 'it_pool5_cyprofit';
+	}
+	else if($pool_lev==6){
+		$rec = 'BTC mining payout (Pool6)';
+		$od_settle_case='P6';
+		$add_field = 'it_pool6_cyprofit';
+	}
+	else if($pool_lev==7){
+		$rec = 'BTC mining payout (Pool7)';
+		$od_settle_case='P7';
+		$add_field = 'it_pool7_cyprofit';
+	}
+	else if($pool_lev==8){
+		$rec = 'BTC mining payout (Pool8)';
+		$od_settle_case='P8';
+		$add_field = 'it_pool8_cyprofit';
+	}
+	/*POOL별 수당 저장   Table : soodang_pay*/
+		$temp_sql1  = " insert soodang_pay set day='".$to_date."'";
+		$temp_sql1 .= " ,mb_id					= '".$mb_id."'";
+		$temp_sql1 .= " ,mb_name			= '".$mbname."'";
+		$temp_sql1 .= " ,mb_recommend	= '".$recom."'";
+		$temp_sql1 .= " ,allowance_name	= '".$allowance."'";
+		$temp_sql1 .= " ,benefit					=  ".$benefit;
+		$temp_sql1 .= " ,benefit_usd			=  ".$benefit_usd;
+		$temp_sql1 .= " ,rec						= '".$rec."'";
+		$temp_sql1 .= " ,rec_adm				= '".$rec."'";
+		sql_query($temp_sql1);
+
+	/*POOL별 발생 수당 지급   Table : pinna_mining_member*/
+		$add_benefit = "update pinna_mining_member set ".$add_field." = round((".$add_field." +  $benefit), 8) where mb_id='$mb_id'";
+		sql_query($add_benefit);
+}
+?>

@@ -1,0 +1,293 @@
+* {
+	box-sizing: border-box;
+	font-family: 'Montserrat', sans-serif;
+}
+
+body, html {
+  height: 100%;
+  width: 100%;
+  background-color: rgb(242, 242, 242);
+}
+
+a, a:link, a:visited, a:hover, a:active {
+	text-decoration: none;
+}
+
+ul {
+	list-style: none;
+}
+
+.blue {
+	color: rgb(0, 121, 211);
+}
+
+.gray {
+	color: rgb(124, 124, 124);
+}
+
+.purple {
+	color: #53407A;
+}
+
+.red {
+	color: #ff6c6c;
+}
+
+.nav-two-big {
+	font-size: 25px;
+}
+
+.nav-two-line-height {
+	line-height: 1.1;
+}
+
+
+
+/* ==================== HASH POWER ===================== */
+
+.remaining-days {
+	font-weight: 400;
+	font-size: 13px;
+}
+
+.main-container {
+	background-color: rgb(242, 242, 242);
+	display: absolute;
+	height: 100%;
+	width: 100%;
+	z-index: 0;
+}
+
+.big-container-wrapper {
+	position: relative;
+		top: 150px;
+}
+
+.big-container-wrapper h2 {
+	margin: 0 auto;
+	margin-bottom: 8px;
+	width: 1100px;
+}
+
+.date-filter {
+	margin-top: 15px;
+	margin-bottom: 10px;
+	text-align: center;
+}
+
+.date-filter input {
+	margin-left: 5px;
+	margin-right: 5px;
+	padding: 5px 10px;
+	width: 160px;
+}
+
+.date-filter button {
+	background-color: rgb(0, 121, 211);
+	border-color: rgb(0, 121, 211);
+	color: white;
+	cursor: pointer;
+	padding: 5px 10px;
+}
+
+.hash-power-container {
+	background-color: white;
+	border-radius: 4px;
+	margin: 0 auto;
+	margin-bottom: 75px;
+	padding: 30px;
+	position: relative;
+	width: 1100px;
+}
+
+.adjust-repurchase-rate select {
+	border: 1px solid rgb(0, 121, 211);
+	margin-bottom: 5px;
+	margin-top: 10px;
+}
+
+.adjust-repurchase-rate p {
+	margin-bottom: 0;
+}
+
+.package {
+	font-size: 18px;
+	text-align: center;
+}
+
+.package span {
+	font-weight: 600;
+}
+
+.total-hashpower {
+	display: flex;
+	justify-content: space-around;
+}
+
+.hash-total .blue {
+	font-size: 20px;
+}
+
+.packages {
+	margin-bottom: 25px;
+	margin-top: 40px;
+	text-align: center;
+}
+
+.package-container {
+	margin-bottom: 20px;
+	overflow-x: scroll;
+	white-space: nowrap;
+}
+
+.package-panels .package-panel {
+	transition: opacity 1s ease-out;
+	opacity: 0; 
+	height: 0;
+	overflow: hidden;
+}
+
+.package-panels .package-panel h4{
+	text-align: center;
+}
+
+.package-panels .package-panel.active {
+	opacity: 1;
+	height: auto;
+}
+
+.modal-body {
+	text-align: center;
+}
+
+.modal-body i {
+	font-size: 100px;
+	margin-bottom: 10px;
+}
+
+.save-button {
+	border: 1px solid rgb(0, 121, 211);
+	border-radius: 4px;
+	color: rgb(0, 121, 211);
+	cursor: pointer;
+	display: block;
+	margin: 0 auto;
+	margin-bottom: 30px;
+	padding: 10px;
+	transition: all 0.2s linear;
+}
+
+.save-button:hover {
+	background-color: rgb(0, 121, 211);
+	color: white;
+}
+
+.package-panel table {
+	font-size: 19px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.package-panel table thead tr th {
+	background-color: rgb(124, 124, 124);
+	color: white;
+}
+
+.packages {
+	padding-left: 0;
+	width: 1040px;
+}
+
+.packages li {
+	border: 1px solid rgb(0, 121, 211);
+  border-radius: 4px;
+  color: rgb(0, 121, 211);
+  cursor: pointer;
+  display: inline-block;
+  list-style-type: none;
+  margin-left: 5px;
+  margin-right: 5px;
+  padding: 15px;
+  transition: all 0.2s ease-in-out;
+  width: 175px;
+}
+
+.packages li.active {
+	background-color: rgb(0, 121, 211);
+	color: white;
+}
+
+.packages li:hover {
+	background-color: rgb(0, 121, 211);
+	color: white;
+}
+
+.pagination-container {
+	margin-top: 25px;
+	overflow-x: auto;
+  width: 100%;
+}
+
+.page-search-container {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	text-align: center;
+}
+
+.page-search-container input {
+	border: 1px solid #dee2e6;
+	padding: 5px 10px;
+	width: 80px;
+}
+
+.page-search-container button {
+	background-color: rgb(0, 121, 211);
+	border-color: rgb(0, 121, 211);
+	color: white;
+	cursor: pointer;
+	padding: 5px 10px;
+}
+
+table span {
+	border-bottom: 2px solid rgb(0, 121, 211);
+}
+
+@media only screen and (max-width: 1130px) {
+	.big-container-wrapper {
+		width: 100%;
+	}
+
+	.hash-power-container, .big-container-wrapper h2 {
+		width: 95%;
+	}
+}
+
+@media only screen and (max-width: 845px) {
+	.package-panel .table {
+		width: 100%;
+	}
+}
+
+@media only screen and (max-width: 646px) {
+	.pagination {
+		justify-content: left !important;
+	}
+}
+
+@media only screen and (max-width: 525px) {
+	.date-filter input {
+		margin-bottom: 5px;
+	}
+}
+
+@media only screen and (max-width: 440px) {
+	.date-filter input {
+		display: block;
+		margin: 0 auto;
+		margin-bottom: 5px;
+	}
+}
+
+.big-container-wrapper.nav-body-shift {
+	*margin-left: 300px;
+}

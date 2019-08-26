@@ -1,0 +1,32 @@
+
+
+토탈잔고 -인 회원 조회
+select mb_no,mb_id,mb_save_point,mb_balance,mb_shift_amt,mb_deposit_point,mb_deposit_acc,mb_deposit_calc,A.total  from (select *, mb_save_point + mb_balance + mb_shift_amt + mb_deposit_calc as total from g5_member ) A where A.total > 0
+
+
+
+한명의 토탈잔고 조회
+select mb_no,mb_id,mb_save_point,mb_balance,mb_shift_amt,mb_deposit_point,mb_deposit_acc,mb_deposit_calc,A.total  from (select *, mb_save_point + mb_balance + mb_shift_amt + mb_deposit_calc as total from g5_member where mb_no = '')
+
+
+
+
+수당내역 팀수당내역으로 데일리수당 JOIN
+
+select A.allowance_name,A.day,A.mb_id,A.mb_no,A.od_id,A.benefit,C.allowance_name, C.190708,C.190709,C.190710,C.190711,C.190712,C.190714,C.total_daily_benefit from soodang_pay A, 
+
+(select B.mb_id,B.allowance_name,
+
+  GROUP_CONCAT(if(day = '2019-07-08', benefit, NULL)) AS '190708'
+  ,GROUP_CONCAT(if(day = '2019-07-09', benefit, NULL)) AS '190709'
+  ,GROUP_CONCAT(if(day = '2019-07-10', benefit, NULL)) AS '190710'
+  ,GROUP_CONCAT(if(day = '2019-07-11', benefit, NULL)) AS '190711'
+  ,GROUP_CONCAT(if(day = '2019-07-12', benefit, NULL)) AS '190712'
+  ,GROUP_CONCAT(if(day = '2019-07-14', benefit, NULL)) AS '190714'
+  ,sum(benefit) as total_daily_benefit
+
+from soodang_pay B
+where B.allowance_name = 'daily payout' AND day > '2019-07-07' 
+group BY mb_id) C
+
+where day = '2019-07-14' AND  A.allowance_name = 'Team benefit' AND A.mb_id = C.mb_id

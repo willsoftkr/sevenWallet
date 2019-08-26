@@ -1,0 +1,478 @@
+<!doctype html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8" />
+	<title>FIJI MINING</title>
+	
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="FIJI" />
+	<meta property="og:url" content="" />
+	<meta property="og:description" content="." />
+	<meta property="og:site_name" content="" />
+	<meta property="og:image" content="FIJI Mining Have" />
+	<meta property="og:image:width" content="800" />
+	<meta property="og:image:height" content="400" />
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- css연결 -->
+	<link rel="stylesheet" href="css/all.css">
+	<link rel="stylesheet" href="css/adm.css">
+	
+	<!-- jQuery 연결 -->
+	<script src="js/jquery-1.9.1.min.js"></script>
+	<script src="js/adm.js"></script>
+
+</head>
+<body>
+	<header>
+		<div class="inner after">
+			<div class="logo_section flot-left">
+				<a !href=""><img src="img/adm/header_logo.png" alt="" /></a>
+			</div>
+			<div class="menu flot-right">
+				<b class="phra">
+					Welcom <span>Audrey</span>
+				</b>
+				<span class="select_section">
+					<select name="languege" id="languege">
+						<option value="Languege" style="display:none;">Select Languege</option>
+						<option value="korean">korean</option>
+						<option value="English">English</option>
+					</select>
+					<img src="img/adm/N-flag.png" alt="" class="N-flog">
+				</span>
+				<span class="ENroll">Enroll Member
+					<img src="img/adm/exit.png" alt="" class="exit">	
+				</span>
+			</div>
+		</div><!-- inner -->
+		
+		<div class="inner counter after">
+			<div class="flot-left p-counter">
+					<b>Payout Counter : <span class="clock" data-timezone="America/New_York" style="width: 120px;text-align: right;">18 : 29 : 31</span></b>
+			</div>
+			<div class="flot-right mw">
+				<span class="ms-box">Message : <img src="img/adm/message_icon.png" alt="" /> <b>0</b></span>
+				<ul>
+					<li class="pinnacle">FIJI Wallet : <span>o BTC (o USD)</span></li>
+					<li>mining Wallet : <span>o BTC (o USD)</span></li>
+				</ul>
+			</div>
+		</div><!-- inner -->
+	</header>
+	
+	<div class="side-bar">
+		<div class="Rank star01">
+			<img src="img/adm/star_one.png" alt="" />
+			Your Rank is <span>1 Star</span>
+		</div>
+		<ul class="drop_menu">
+			<li class="menu01">
+				<a href="dashboard.html"><img src="img/adm/icon01.png" alt="" /> Dashboard</a>
+			</li>
+			
+			<li class="menu02 hovering">
+				<a !href=""><img src="img/adm/icon02.png" alt="" /> Membership</a>
+				<i class="plus"></i>
+				<i class="minus"></i>
+			</li>
+			<ul class="sub_menu">
+				<li><a href="manage_profile.html">Manage Profile</a></li>
+			</ul>
+			
+			<li class="menu03">
+				<a !href=""><img src="img/adm/icon03.png" alt="" /> Bonus</a>
+			</li>
+			
+			<li class="menu04 hovering active">
+				<a !href=""><img src="img/adm/icon04.png" alt="" /> Team Informaion</a>
+				<i class="plus"></i>
+				<i class="minus"></i>
+			</li>
+			<ul class="sub_menu" style="display: block;">
+				<li ><a href="level_structure.html">Level Structure View</a></li>
+				<li><a href="">Holding Tank</a></li>
+				<li class="hover"><a href="binary_tree.html">Binary Tree View</a></li>
+			</ul>
+			
+			<li class="menu05 hovering">
+				<a !href=""><img src="img/adm/icon05.png" alt="" /> crypto Wallets</a>
+				<i class="plus"></i>
+				<i class="minus"></i>
+			</li>
+			<ul class="sub_menu">
+				<li><a href="">Bitcoin Wallet</a></li>
+				<li><a href="">Ethereum Wallet</a></li>
+				<li><a href="">Bitcon Cash Wallet</a></li>
+				<li><a href="">Monero Wallet</a></li>
+			</ul>
+			
+			<li class="menu06 hovering">
+				<a !href=""><img src="img/adm/icon06.png" alt="" /> Purchase Hash</a>
+				<i class="plus"></i>
+				<i class="minus"></i>
+			</li>
+			<ul class="sub_menu">
+				<li><a href="buy_full.html">Buy Full Hash</a></li>
+				<li><a href="">Buy Partial Hash</a></li>
+			</ul>
+			
+			<li class="menu07 hovering">
+				<a !href=""><img src="img/adm/icon07.png" alt="" /> FIJI News</a>
+				<i class="plus"></i>
+				<i class="minus"></i>
+			</li>
+			<ul class="sub_menu">
+				<li><a href="">2020 Announcement</a></li>
+				<li><a href="">2019 Announcement</a></li>
+				<li><a href="">2018 Announcement</a></li>
+			</ul>
+			
+			<li class="menu08">
+				<a href=""><img src="img/adm/icon08.png" alt="" /> Support Center</a>
+				
+			</li>
+			<li class="menu09">
+				<a href=""><img src="img/adm/icon09.png" alt="" /> FAQ's</a>
+				
+			</li>
+			<li class="menu10">
+				<a !href=""><img src="img/adm/icon10.png" alt="" /> Referrer's URL</a>
+				<span>Copy</span>
+			</li>
+		</ul>
+	</div>
+	<div id="content">
+		<div class="Grp">
+
+			<style type="text/css">
+			/* ## 게시판 타이틀 죽이기 */
+			h2#container_title {display:none;}
+			</style>
+			<p class="blk" style="height:60px;"></p>
+			<div class="pk_page">
+			<style type="text/css">
+			.pk_page {font-size:14px;}
+			span.btn,
+			a.btn {display:inline-block;*display:inline;*zoom:1;height:33px;line-height:33px;padding:0 15px;border-radius:3px;background-color:#1DC2BB;color:#fff;}
+			.infoBx {border:solid 2px rgba(39,48,62,0.4);border-radius:8px;margin-bottom:30px;}
+			.infoBx h3 {line-height:40px;font-size:15px;padding-left:20px;border-bottom:solid 1px rgba(0,0,0,0.1);background-color:rgba(39,48,62,0.05);}
+			.infoBx ul {margin:15px;}
+			.infoBx ul li {display:inline-block;*display:inline;*zoom:1;width:33%;line-height:40px;font-size:14px;color:#777;border-bottom:solid 1px #fff;}
+			.infoBx ul li.prc {color:rgba(59,105,178,1);}
+			.infoBx ul li span {display:inline-block;*display:inline;*zoom:1;color:#000;padding-left:20px;width:100px;background-color:rgba(39,48,62,0.05);margin-right:20px;}
+			</style>
+			
+			<style type="text/css">
+				#div_right table { border:0px }
+				.btn_menu {padding:5px;border:1px solid #ced9de;background:rgb(246,249,250);cursor:pointer}
+			</style>
+			<div style="padding:0px 0px 0px 10px;">
+				<a name="org_start"></a>
+				<div style="float:left">
+				<input type="button" class="btn_menu" value="검색메뉴닫기" onclick="btn_menu()">
+				<input type="button" class="btn_menu" value="전체 조직도보기" onclick="location.href='mypage_org.php?go=Y'">
+			<!--	<input type="button" class="btn_menu" style="background:#fadfca" value="조직도 인쇄" onclick="btn_print()"> -->
+				</div>
+				<div style="float:right;padding-right:10px">
+				<input type="button" class="btn_menu" value="조직도 재구성" onclick="btn_org()">
+				</div>
+			</div>
+			<div style="padding-top:10px;clear:both"></div>
+			<div id="div_left" style="width:15%;float:left;min-height:710px;border:">
+				<div style="margin-left:10px;padding:5px 5px 5px 5px;border:1px solid #d9d9d9;height:723px">
+					<form name="sForm2" id="sForm2" method="get" action="mypage_org.php">
+					<table width="100%">
+						<tbody><tr>
+							<td bgcolor="#f2f5f9" height="30" style="padding-left:10px">
+							<div style="float:left">
+							<b>표시인원</b>
+							</div>
+							<div style="float:right">
+							<input type="text" id="mb_org_num" name="mb_org_num" value="200" class="frm_input" style="width:40px;text-align:center" size="3" maxlength="3"> 명 &nbsp;
+							</div>
+							</td>
+						</tr>
+						<tr>
+							<td bgcolor="#f2f5f9" height="30" style="padding-left:10px"><b>주문기간</b></td>
+						</tr>
+						<tr>
+							<td bgcolor="#f2f5f9" height="30" style="padding:10px 10px 10px 10px" align="center">
+							<input type="text" id="fr_date" name="fr_date" value="2017-05-26" class="frm_input hasDatepicker" style="width:100%" size="10" maxlength="10"> ~
+							<input type="text" id="to_date" name="to_date" value="2018-05-26" class="frm_input hasDatepicker" style="width:100%" size="10" maxlength="10">
+			
+							</td>
+						</tr>
+						<tr>
+							<td bgcolor="#f2f5f9" height="30" align="center">
+							<input type="submit" class="btn_submit" style="padding:5px" value=" 적 용 ">
+							</td>
+						</tr>
+					</tbody></table>
+					</form>
+			
+					<form name="sForm" id="sForm" method="post" style="padding-top:10px" onsubmit="return false;">
+					<table width="100%">
+						<tbody><tr>
+							<td bgcolor="#f2f5f9" height="30" style="padding-left:10px"><b>회원검색</b></td>
+						</tr>
+						<tr>
+							<td bgcolor="#f2f5f9" height="30" style="padding:10px 10px 10px 10px">
+							
+							<select name="sfl" id="sfl">
+								<option value="mb_name">이름</option>
+								<option value="mb_id">회원아이디</option>
+							</select>
+							<div style="padding-top:5px">
+							<label for="stx" class="sound_only">검색어<strong class="sound_only"> 필수</strong></label>
+							<input type="text" name="stx" value="" id="stx" class="required frm_input" style="width:100%;" onkeypress="event.keyCode==13?btn_search():''">
+							</div>
+							</td>
+						</tr>
+						<tr>
+							<td bgcolor="#f2f5f9" height="30" align="center">
+							<input type="button" onclick="btn_search();" class="btn_submit" style="padding:5px" value=" 검 색 ">
+							</td>
+						</tr>
+					</tbody></table>
+					</form>
+			
+					<div id="div_result" style="margin-top:5px;overflow-y: auto;height:418px">
+			
+					</div>
+				</div>
+			</div>
+				<link type="text/css" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.4/themes/base/jquery-ui.css" rel="stylesheet">
+				<link rel="stylesheet" href="/adm/css/font-awesome.min.css">
+				<link rel="stylesheet" href="/adm/jquery.orgchart.css">
+				<script type="text/javascript" src="/adm/jquery.orgchart.js"></script>
+				<script type="text/javascript" src="/adm/js/bluebird.min.js"></script>
+				<script type="text/javascript" src="/adm/js/html2canvas.min.js"></script>
+				<script type="text/javascript" src="/adm/js/jspdf.min.js"></script>
+				<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.4/jquery-ui.min.js"></script>
+			<script>
+				$.datepicker.regional["ko"] = {
+					closeText: "close",
+					prevText: "이전달",
+					nextText: "다음달",
+					currentText: "오늘",
+					monthNames: ["1월(JAN)","2월(FEB)","3월(MAR)","4월(APR)","5월(MAY)","6월(JUN)", "7월(JUL)","8월(AUG)","9월(SEP)","10월(OCT)","11월(NOV)","12월(DEC)"],
+					monthNamesShort: ["1월","2월","3월","4월","5월","6월", "7월","8월","9월","10월","11월","12월"],
+					dayNames: ["일","월","화","수","목","금","토"],
+					dayNamesShort: ["일","월","화","수","목","금","토"],
+					dayNamesMin: ["일","월","화","수","목","금","토"],
+					weekHeader: "Wk",
+					dateFormat: "yymmdd",
+					firstDay: 0,
+					isRTL: false,
+					showMonthAfterYear: true,
+					yearSuffix: ""
+				};
+				$.datepicker.setDefaults($.datepicker.regional["ko"]);
+			
+			</script>
+			<style type="text/css">
+			
+			.orgChart{
+			
+			}
+			
+			#chart-container {
+			margin:0px 10px 0px 10px;
+			min-height:573px;
+			border:1px solid #d9d9d9;
+			text-align:center !important;
+				position: relative;
+				display: inline-block;
+				width: calc(100% - 24px);
+				overflow: auto;
+				text-align: center;
+			}
+			
+			.orgchart .node {
+				box-sizing: border-box;
+				display: inline-block;
+				position: relative;
+				margin: 0;
+				padding: 3px;
+				height:142px;
+				text-align: center;
+				width: 100px;
+			}
+			
+			.orgchart .node .title {
+				background:#fff;
+				border:2px solid #e17572;
+				color:#000;
+				height:122px;
+				font-weight:normal;
+				line-height:15px;
+				padding-top:5px;
+				cursor:pointer;
+			}
+			.orgchart .node .title .symbol{
+				display:none;
+			}
+			
+			</style>
+			<div id="div_right" style="width:85%;float:left;min-height:500px">
+			<!--  -->
+			
+					<ul id="org" style="display:none">
+						<li>
+							[0-0-0]|최고관리자|admin|FIJI MINING|0|0			</li>
+				</ul>
+			
+				<div id="chart-container" class="orgChart" style="overflow: hidden;"><button class="oc-export-btn">조직도인쇄</button></div>
+				<script>
+				$(function() {
+					$('#chart-container').orgchart({
+					'data' : $('#org'),
+						'zoom': true
+					});
+			
+				});
+				</script>
+			
+			
+			</div>
+			
+			<script type="text/javascript">
+			<!--
+			
+			$(document).ready(function(){
+				$("#fr_date, #to_date").datepicker({ changeMonth: true, changeYear: true, dateFormat: "yy-mm-dd", showButtonPanel: true, yearRange: "c-99:c+99", maxDate: "+0d" });
+				});
+			function go_member(go_id){
+				$.get("ajax_get_org_load.php?fr_date=2017-05-26&to_date=2018-05-26&go_id="+go_id, function (data) {
+					$('#div_right').html(data);
+				});
+			}
+			function btn_print(){
+			
+				var html = $('#chart-container');
+			
+				var strHtml = '<!doctype html><html lang="ko"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta http-equiv="imagetoolbar" content="no" /><title></title><link rel="stylesheet" type="text/css" media="all" href="jquery.orgchart.css"><link rel="stylesheet" type="text/css" media="all" href="chart.css"></';
+				strHtml += 'head><body style="padding:0px;margin:0px;"><div id="chart-container" class="orgChart"><!--body--></div></body></html>';
+				var strContent = html.html();
+				var objWindow = window.open('', 'print', 'width=640, height=800, resizable=yes, scrollbars=yes, left=0, top=0');
+				if(objWindow)
+				{
+						var strSource = strHtml;
+						strSource  = strSource.replace(/\<\!\-\-body\-\-\>/gi, strContent);
+			
+						objWindow.document.open();
+						objWindow.document.write(strSource);
+						objWindow.document.close();
+			
+						setTimeout(function(){ objWindow.print(); }, 500);
+				}
+			
+			}
+			function btn_menu(){
+				if($("#div_left").css("display") == "none"){ 
+					$("#div_left").show();
+					$("#div_right").css("width","85%");
+				} else { 
+					$("#div_left").hide(); 
+					$("#div_right").css("width","100%");
+				} 
+			}
+			function btn_search(){
+				if($("#stx").val() == ""){ 
+					//alert("검색어를 입력해주세요.");
+					$("#stx").focus();
+				}else{
+					$.post("ajax_get_tree_member.php", $("#sForm").serialize(),function(data){
+						$("#div_result").html(data);
+					});
+				}
+			}
+			
+			function btn_org(){
+				if (confirm("조직도를 재구성 하시겠습니까?")){
+					location.href="mypage_org.php?reset=1&sfl=&stx=";
+				}
+			}
+			//-->
+			</script>
+			
+			
+			
+			
+			
+			
+			</div><!-- // pk_page -->
+
+			<script>
+			$(function() {
+				$(".win_coupon").click(function() {
+					var new_win = window.open($(this).attr("href"), "win_coupon", "left=100,top=100,width=700, height=600, scrollbars=1");
+					new_win.focus();
+					return false;
+				});
+			});
+			
+			function member_leave()
+			{
+				return confirm('정말 회원에서 탈퇴 하시겠습니까?')
+			}
+			</script>
+			<!-- } 마이페이지 끝 -->
+			
+		</div>
+	</div>
+	
+	<footer>
+		<div class="inner after">
+			<p class="phra flot-left">FIJI Mining is here to bring crytocurrent mining accessible to everyone.</p>
+			<ul class="flot-left">
+				<li><a href="">Home</a></li>
+				<li><a href="">About us</a></li>
+				<li><a href="">Features</a></li>
+				<li><a href="">How it works</a></li>
+				<li><a href="">Contect</a></li>
+			</ul>
+			<p class="copy flot-right">
+				copyright 2018｜All Right Reserved.
+			</p>
+		</div>
+		
+	</footer>
+</body>
+</html>
+<script>
+	var clocks = document.getElementsByClassName("clock");
+
+	var dt= new Date();
+	
+	if(dt.getHours() > 15 ){dt.setDate(dt.getDate() + 1)	}
+	dt.setHours(16,0,0,0);
+	var countDownDate = dt.getTime();
+
+	function updateClocks() {
+		  // Get todays date and time
+		var now = new Date().getTime();
+
+		// Find the distance between now an the count down date
+		var distance = countDownDate - now;
+		//console.log(countDownDate);
+		// Time calculations for days, hours, minutes and seconds
+		//var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+		var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+		var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+		var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+		clocks[0].textContent = hours + " : "+ minutes + " : " + seconds;
+		if (distance < 0) {
+			clearInterval(x);
+			//document.getElementById("demo").innerHTML = "EXPIRED";
+			clocks[0].textContent = "EXPIRED";
+		}
+	}
+
+	// Update every minute:
+	var x = setInterval(updateClocks, 1000);
+	updateClocks();
+</script>

@@ -1,0 +1,711 @@
+* {
+	box-sizing: border-box;
+	font-family: 'Montserrat', sans-serif;
+}
+
+body, html {
+  height: 100%;
+  width: 100%;
+  background-color: rgb(242, 242, 242);
+}
+
+a, a:link, a:visited, a:hover, a:active {
+	text-decoration: none;
+}
+
+ul {
+	list-style: none;
+}
+
+.blue {
+	color: rgb(0, 121, 211);
+}
+
+.gray {
+	color: rgb(124, 124, 124);
+}
+
+.purple {
+	color: #53407A;
+}
+
+.red {
+	color: #ff6c6c;
+}
+
+.nav-two-big {
+	font-size: 25px;
+}
+
+.nav-two-line-height {
+	line-height: 1.1;
+}
+
+/* ==================== TOP NAV ONE ===================== */
+
+.dropdown-item.active, .dropdown-item:active {
+	background-color: rgb(0, 121, 211);
+}
+
+.btn.dropdown-toggle::after {
+	display: none;
+}
+
+.dropdown-menu .username {
+	padding: 4px 24px;
+}
+
+
+.btn.dropdown-toggle .fa-bell {
+	color: rgb(0, 121, 211);
+	font-size: 20px;
+	margin-top: 5px;
+}
+
+.dashboard-wrapper {
+	margin: 0 auto;
+	position: relative;
+		top: 175px;
+	text-align: center;
+	width: 1134px;
+}
+
+.dashboard-wrapper h2 {
+	text-align: left;
+}
+
+.lang-sel, .notification-bell, .dropdown {
+	display: inline-block;
+}
+
+.logo-container {
+	display: inline-block;
+	height: 100%;
+	margin-left: 25px;
+	padding-top: 13px
+}
+
+.overview-container {
+	margin-bottom: 50px;
+}
+
+.top-logo-icon {
+	width: 20px;
+}
+
+.top-logo-text {
+	color: #212121;
+	font-size: 20px;
+	margin-left: 5px;
+	position: relative;
+		top: 3px;
+}
+
+.top-nav-one {
+	background-color: white;
+	border-bottom: 1px solid #e5e5e5;
+	height: 60px;
+	position: fixed;
+	width: 100%;
+	z-index: 9999;
+}
+
+.user-dropdown-rank {
+	width: 35px;
+}
+
+.user-drop-down-section {
+	display: inline-block;
+	margin-top: 5px;
+	position: absolute;
+		right: 30px;
+}
+
+/* ==================== TOP NAV TWO ===================== */
+
+.btc-price {
+	display: inline-block;
+}
+
+.mining-wallet {
+	display: inline-block;
+	margin-left: 30px;
+}
+
+.nav-two-btc-logo {
+	margin-bottom: 10px;
+	width: 25px;
+}
+
+.nav-two-eth-logo {
+	margin-bottom: 10px;
+	width: 16px;
+}
+
+.payout-countdown {
+	display: inline-block;
+  margin: 5px 0 0 30px;
+	text-align: center;
+}
+
+.pinnacle-wallet {
+	display: inline-block;
+	margin-left: 30px;
+}
+
+.price-and-wallets {
+	display: inline-block;
+	position: absolute;
+		right: 40px;
+}
+
+.promotion {
+	display: inline-block;
+	margin-left: 70px;
+	text-align: center;
+}
+
+.top-nav-two {
+	background-color: white;
+	border-bottom: 1px solid #e5e5e5;
+	height: 55px;
+	position: fixed;
+		top: 60px;
+		left: 0;
+	width: 100%;
+	z-index: 8888;
+}
+
+/* ==================== SIDE NAV ===================== */
+
+.fa-bars {
+	color: #212121;
+	cursor: pointer;
+	margin-left: 30px;
+}
+
+.fa-bolt {
+	margin-right: 20px;
+	position: relative;
+		left: 5px;
+}
+
+.fa-home, .fa-address-card, .fa-handshake, .fa-user-friends, .fa-bullhorn {
+	margin-right: 10px;
+}
+
+.fa-hand-holding-usd {
+	margin-right: 11px;
+}
+
+.fa-clock, .fa-dollar-sign {
+	color: #9f9f9f;
+	font-size: 25px;
+}
+
+.fa-coins, .fa-pen-alt {
+	margin-right: 12px;
+}
+
+.fa-handshake, .fa-shopping-cart, .fa-user-friends {
+	margin-left: 27px !important;
+}
+
+.fa-question {
+	margin-left: 33px !important;
+	margin-right: 16px;
+}
+
+.fa-wallet, .fa-shopping-cart, .fa-life-ring {
+	margin-right: 13px;
+}
+
+.fa-history {
+	margin-left: 54px !important;
+	margin-right: 10px;
+}
+
+.fa-sort-amount-up {
+	margin-left: 55px !important;
+	margin-right: 10px;
+}
+
+.fa-star, .fa-star-half-alt {
+	margin-left: 55px !important;
+	margin-right: 12px;
+}
+
+.fa-exclamation-circle {
+	margin-left: 55px !important;
+	margin-right: 15px;
+}
+
+.fa-user, .fa-sitemap {
+	margin-left: 56px !important;
+	margin-right: 11px;
+}
+
+.fa-file-invoice-dollar {
+	margin-left: 57px !important;
+	margin-right: 12px;
+}
+
+.fa-tree {
+	margin-left: 61.5px !important;
+	margin-right: 17px;
+}
+
+.link_list, .sub-link-list {
+	margin: 0;
+	padding: 0;
+}
+
+.menu-dropdown {
+	cursor: pointer;
+}
+
+.menu-dropdown::after {
+	font-family: "Font Awesome\ 5 Free";
+  content: "\f107";
+  margin-top: 4px;
+  position: absolute;
+  	right: 20px;
+}
+
+.mw-880 {
+	display: none;
+}
+
+.link_list a li i, .link_list li i {
+	margin-top: 4px;
+}
+
+.is_open::after {
+	font-family: "Font Awesome\ 5 Free";
+	content: "\f106";
+}
+
+.is-inactive {
+	overflow-x: hidden;
+}
+
+.sales-volume-chart img {
+	width: 95%;
+}
+
+.side-icon-left {
+	left: 30px;
+}
+
+.side-nav {
+	background-color: white;
+	border-right: 1px solid #e5e5e5;
+	height: 100%;
+	overflow-x: hidden;
+	position: fixed;
+		top: 115px;
+		left: -260px;
+	transition: all 0.1s linear;
+	width: 260px;
+	z-index: 7777;
+}
+
+.side-nav.side-menu-open {
+	left: 0px;
+}
+
+.side-nav-close {
+	color: rgb(102,102,102);
+	margin-left: 150px;
+}
+
+.side-nav-close:hover {
+	color: black;
+}
+
+.side-nav i {
+	font-size: 18px;
+	margin-left: 30px;
+}
+
+.side-nav ul {
+	height: 135%;
+}
+
+.side-nav-link, .side-nav-sub-link {
+	color: rgb(102,102,102);
+	font-size: 15px;
+	height: 52px;
+	padding-top: 12px;
+	padding-bottom: 12px;
+	position: relative;
+	transition: all 0.2s linear;
+}
+
+.side-nav-link:hover, .side-nav-sub-link:hover, 
+.is_open {
+	background-color: rgb(242, 242, 242);
+	color: black;
+}
+
+.sub-link-list {
+	max-height: 0;
+	overflow: hidden;
+	transition: max-height 0.3s ease-in-out;
+}
+
+/* ==================== NAVIGATION MEDIA QUERY ===================== */
+
+@media only screen and (max-width: 575px) {
+	.top-logo-text {
+		display: none;
+	}
+
+	.top-logo-icon {
+		margin-top: 4px;
+	}
+
+	.fa-bars {
+		position: relative;
+			top: 2px;
+	}
+}
+
+@media only screen and (max-width: 972px) {
+	.btc-price, .pinnacle-wallet, .mining-wallet, .payout-countdown {
+		display: none;
+	}
+
+	.dropdown, .dropdown-toggle {
+		background-color: white;
+	}
+
+	.dropdown-info {
+		font-size: 20px;
+	}
+
+	.countdown-dropdown button img {
+		width: 32px;
+	}
+
+	.btc-usd-dropdown button img {
+		width: 40px;
+	}
+
+	.pinnacle-wallet-dropdown button img {
+		width: 37px;
+	}
+
+	.mining-wallet-dropdown button img {
+		width: 35px;
+	}
+
+	.mw-880 {
+		display: inline-block;
+		margin-top: 3px;
+		margin-left: 5px;
+		margin-right: 5px;
+	}
+
+	.next-payout {
+		color: rgb(124, 124, 124);
+	}
+
+	.payout-countdown-dropdown {
+		text-align: center;
+	}
+
+	.top-nav-two {
+		text-align: center;
+	}
+
+	.wallet-resize {
+		width: 225px;
+	}
+}
+
+/* ==================== PURCHASE PARTIAL HASH ===================== */
+
+.main-container {
+	background-color: rgb(242, 242, 242);
+	display: absolute;
+	height: 100%;
+	width: 100%;
+	z-index: 0;
+}
+
+.big-container-wrapper {
+	margin: 0 auto;
+	position: relative;
+		top: 175px;
+	width: 1100px;
+}
+
+.caption {
+	font-size: 25px;
+	margin-bottom: 5px;
+	text-align: center;
+}
+
+.crypto-select {
+	position: absolute;
+		right: 0px;
+	width: 175px;
+}
+
+.current-hash-power, .selected-hash-power, .total-hash-power {
+	border: 1px solid #e5e5e5;
+	display: inline-block;
+	padding: 25px;
+	position: relative;
+	text-align: center;
+	width: 250px;
+}
+
+.current-hash-power img, .selected-hash-power img {
+	position: absolute;
+		top: -20px;
+		right: -17px;
+	width: 60px;
+}
+
+.total-hash-power img {
+	position: absolute;
+		top: -15px;
+		right: -15px;
+	width: 35px;
+}
+
+.exchange-rate {
+	margin-bottom: 10px;
+}
+
+.exchange-rate .fa-exchange-alt {
+	margin-left: 15px;
+	margin-right: 15px;
+}
+
+.hash-number {
+	font-size: 35px;
+}
+
+.hash-stats {
+	margin-top: 50px;
+	margin-bottom: 50px;
+	text-align: center;
+}
+
+.fa-plus, .fa-equals {
+	bottom: 15px;
+	font-size: 40px;
+	margin-left: 30px;
+	margin-right: 30px;
+	position: relative;
+}
+
+.partial-hash-calc-container {
+	margin-top: 20px;
+	margin-bottom: 60px;
+	text-align: center;
+}
+
+.partial-hash-checkout-container {
+	text-align: center;
+}
+
+.partial-hash-checkout-container button {
+	background-color: rgb(0, 121, 211);
+	border-color: rgb(0, 121, 211);
+}
+
+.purchase-partial-hash-container {
+	background-color: white;
+	border-radius: 4px;
+	margin-bottom: 70px;
+	padding: 30px;
+	position: relative;
+	width: 1100px;
+}
+
+.purchase-partial-hash-title {
+	display: inline-block;
+}
+
+.slidecontainer {
+	width: 100%;
+}
+
+.slider {
+  background: #d3d3d3;
+  border-radius: 5px;
+  cursor: pointer;
+  height: 7px;
+  margin-bottom: 11px;
+  outline: none;
+  transition: opacity .2s;
+  -webkit-transition: .2s;
+  -webkit-appearance: none;
+  width: 100%;
+}
+
+.slider::-webkit-slider-thumb {
+	border-radius: 50%;
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: rgb(0, 121, 211);
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+	border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  background: rgb(0, 121, 211);
+  cursor: pointer;
+}
+
+.stat-container {
+	display: inline-block;
+	line-height: 1.1;
+	margin-left: 15px;
+	margin-right: 15px;
+	text-align: center;
+	width: 270px;
+}
+
+.stat-container-big {
+	font-size: 30px;
+}
+
+.stat-container img {
+	margin-bottom: 10px;
+	width: 55px;
+}
+
+.thsmall {
+	font-size: 20px;
+}
+
+.tick {
+	color: #7777;
+	font-size: 14px
+}
+
+.tick-10 {
+	margin-left: 3px;
+}
+
+.tick-20 {
+	margin-left: 55px;
+}
+
+.tick-30 {
+	margin-left: 87px;
+}
+
+.tick-50, .tick-70, .tick-90, .tick-40 {
+	margin-left: 86px;
+}
+
+.tick-60 {
+	margin-left: 85px;
+}
+
+.tick-110, .tick-80, .tick-100 {
+	margin-left: 84px;
+}
+
+.tick-120 {
+	margin-left: 79px;
+}
+
+.tick-130 {
+	margin-left: 83px;
+}
+
+.tick-150, .tick-160 {
+	margin-left: 81px;
+}
+
+.tick-170, .tick-140, .tick-180 {
+	margin-left: 80px;
+}
+
+.tick-190 {
+	margin-left: 81px;
+}
+
+.tick-200 {
+	margin-left: 74px;
+	position: relative;
+		left: 4px;
+}
+
+@media only screen and (max-width: 1150px) {
+	.big-container-wrapper {
+		width: 95%;
+	}
+
+	.purchase-partial-hash-container {
+		width: 100%;
+	}
+
+	.top-ticks, .bot-ticks {
+		display: none;
+	}
+}
+
+@media only screen and (max-width: 1070px) {
+	.current-hash-power, 
+	.selected-hash-power, 
+	.total-hash-power {
+		display: block;
+		margin: 0 auto;
+		width: 100%;
+	}
+
+	.fa-plus, .fa-equals {
+		margin-top: 10px;
+		margin-bottom: 10px;
+		position: static;
+	}
+
+	.partial-hash-calc-container {
+		margin-bottom: 30px;
+	}
+}
+
+@media only screen and (max-width: 714px) {
+	.stat-container {
+		display: block;
+		margin: 0 auto;
+		margin-bottom: 20px;
+	}
+}
+
+@media only screen and (max-width: 585px) {
+	.big-container-wrapper {
+		text-align: center;
+	}
+
+	.crypto-select {
+		position: static;
+		display: block;
+		margin: 0 auto;
+		margin-bottom: 10px;
+	}
+}
+
+@media only screen and (max-width: 350px) {
+	.dollar-exchange, .exchange-rate i, .btc-exchange {
+		display: block;
+	}
+
+	.exchange-rate i {
+		margin-top: 10px;
+		margin-bottom: 10px;
+		transform: rotate(90deg)
+	}
+}

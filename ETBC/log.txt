@@ -1,0 +1,1462 @@
+
+select a.*, ifnull(d.cnt, 0) as cnt from (
+	select  mb_no,
+			mb_id,
+			ifnull(mb_recommend_no, 0) as mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    g5_member c where mb_no = '1'
+	union all
+	select  mb_no,
+			mb_id,
+			mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    (select * from g5_member
+			 order by mb_recommend_no, mb_no) products_sorted,
+			(select @pv := '1') initialisation
+	where   find_in_set(mb_recommend_no, @pv) > 0
+	and     @pv := concat(@pv, ',', mb_no)
+) a 
+left outer join (
+	select mb_recommend, count(*) as cnt from g5_member  group by mb_recommend
+) d on a.mb_id = d.mb_recommend and d.cnt > 0
+where a.depth < (select  depth + 10 from g5_member c where mb_no = '1')
+
+select a.*, ifnull(d.cnt, 0) as cnt from (
+	select  mb_no,
+			mb_id,
+			ifnull(mb_recommend_no, 0) as mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    g5_member c where mb_no = '9'
+	union all
+	select  mb_no,
+			mb_id,
+			mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    (select * from g5_member
+			 order by mb_recommend_no, mb_no) products_sorted,
+			(select @pv := '9') initialisation
+	where   find_in_set(mb_recommend_no, @pv) > 0
+	and     @pv := concat(@pv, ',', mb_no)
+) a 
+left outer join (
+	select mb_recommend, count(*) as cnt from g5_member  group by mb_recommend
+) d on a.mb_id = d.mb_recommend and d.cnt > 0
+where a.depth < (select  depth + 10 from g5_member c where mb_no = '9')
+
+select a.*, ifnull(d.cnt, 0) as cnt from (
+	select  mb_no,
+			mb_id,
+			ifnull(mb_recommend_no, 0) as mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    g5_member c where mb_no = '9'
+	union all
+	select  mb_no,
+			mb_id,
+			mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    (select * from g5_member
+			 order by mb_recommend_no, mb_no) products_sorted,
+			(select @pv := '9') initialisation
+	where   find_in_set(mb_recommend_no, @pv) > 0
+	and     @pv := concat(@pv, ',', mb_no)
+) a 
+left outer join (
+	select mb_recommend, count(*) as cnt from g5_member  group by mb_recommend
+) d on a.mb_id = d.mb_recommend and d.cnt > 0
+where a.depth < (select  depth + 10 from g5_member c where mb_no = '9')
+
+select a.*, ifnull(d.cnt, 0) as cnt from (
+	select  mb_no,
+			mb_id,
+			ifnull(mb_recommend_no, 0) as mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    g5_member c where mb_no = '9'
+	union all
+	select  mb_no,
+			mb_id,
+			mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    (select * from g5_member
+			 order by mb_recommend_no, mb_no) products_sorted,
+			(select @pv := '9') initialisation
+	where   find_in_set(mb_recommend_no, @pv) > 0
+	and     @pv := concat(@pv, ',', mb_no)
+) a 
+left outer join (
+	select mb_recommend, count(*) as cnt from g5_member  group by mb_recommend
+) d on a.mb_id = d.mb_recommend and d.cnt > 0
+where a.depth < (select  depth + 10 from g5_member c where mb_no = '9')
+
+select a.*, ifnull(d.cnt, 0) as cnt from (
+	select  mb_no,
+			mb_id,
+			ifnull(mb_recommend_no, 0) as mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    g5_member c where mb_no = '9'
+	union all
+	select  mb_no,
+			mb_id,
+			mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    (select * from g5_member
+			 order by mb_recommend_no, mb_no) products_sorted,
+			(select @pv := '9') initialisation
+	where   find_in_set(mb_recommend_no, @pv) > 0
+	and     @pv := concat(@pv, ',', mb_no)
+) a 
+left outer join (
+	select mb_recommend, count(*) as cnt from g5_member  group by mb_recommend
+) d on a.mb_id = d.mb_recommend and d.cnt > 0
+where a.depth < (select  depth + 10 from g5_member c where mb_no = '9')
+
+select a.*, ifnull(d.cnt, 0) as cnt from (
+	select  mb_no,
+			mb_id,
+			ifnull(mb_recommend_no, 0) as mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    g5_member c where mb_no = '1'
+	union all
+	select  mb_no,
+			mb_id,
+			mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    (select * from g5_member
+			 order by mb_recommend_no, mb_no) products_sorted,
+			(select @pv := '1') initialisation
+	where   find_in_set(mb_recommend_no, @pv) > 0
+	and     @pv := concat(@pv, ',', mb_no)
+) a 
+left outer join (
+	select mb_recommend, count(*) as cnt from g5_member  group by mb_recommend
+) d on a.mb_id = d.mb_recommend and d.cnt > 0
+where a.depth < (select  depth + 10 from g5_member c where mb_no = '1')
+
+select a.*, ifnull(d.cnt, 0) as cnt from (
+	select  mb_no,
+			mb_id,
+			ifnull(mb_recommend_no, 0) as mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    g5_member c where mb_no = '9'
+	union all
+	select  mb_no,
+			mb_id,
+			mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    (select * from g5_member
+			 order by mb_recommend_no, mb_no) products_sorted,
+			(select @pv := '9') initialisation
+	where   find_in_set(mb_recommend_no, @pv) > 0
+	and     @pv := concat(@pv, ',', mb_no)
+) a 
+left outer join (
+	select mb_recommend, count(*) as cnt from g5_member  group by mb_recommend
+) d on a.mb_id = d.mb_recommend and d.cnt > 0
+where a.depth < (select  depth + 10 from g5_member c where mb_no = '9')
+
+select a.*, ifnull(d.cnt, 0) as cnt from (
+	select  mb_no,
+			mb_id,
+			ifnull(mb_recommend_no, 0) as mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    g5_member c where mb_no = '9'
+	union all
+	select  mb_no,
+			mb_id,
+			mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    (select * from g5_member
+			 order by mb_recommend_no, mb_no) products_sorted,
+			(select @pv := '9') initialisation
+	where   find_in_set(mb_recommend_no, @pv) > 0
+	and     @pv := concat(@pv, ',', mb_no)
+) a 
+left outer join (
+	select mb_recommend, count(*) as cnt from g5_member  group by mb_recommend
+) d on a.mb_id = d.mb_recommend and d.cnt > 0
+where a.depth < (select  depth + 10 from g5_member c where mb_no = '9')
+
+select a.*, ifnull(d.cnt, 0) as cnt from (
+	select  mb_no,
+			mb_id,
+			ifnull(mb_recommend_no, 0) as mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    g5_member c where mb_no = '10'
+	union all
+	select  mb_no,
+			mb_id,
+			mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    (select * from g5_member
+			 order by mb_recommend_no, mb_no) products_sorted,
+			(select @pv := '10') initialisation
+	where   find_in_set(mb_recommend_no, @pv) > 0
+	and     @pv := concat(@pv, ',', mb_no)
+) a 
+left outer join (
+	select mb_recommend, count(*) as cnt from g5_member  group by mb_recommend
+) d on a.mb_id = d.mb_recommend and d.cnt > 0
+where a.depth < (select  depth + 10 from g5_member c where mb_no = '10')
+
+select a.*, ifnull(d.cnt, 0) as cnt from (
+	select  mb_no,
+			mb_id,
+			ifnull(mb_recommend_no, 0) as mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    g5_member c where mb_no = '9'
+	union all
+	select  mb_no,
+			mb_id,
+			mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    (select * from g5_member
+			 order by mb_recommend_no, mb_no) products_sorted,
+			(select @pv := '9') initialisation
+	where   find_in_set(mb_recommend_no, @pv) > 0
+	and     @pv := concat(@pv, ',', mb_no)
+) a 
+left outer join (
+	select mb_recommend, count(*) as cnt from g5_member  group by mb_recommend
+) d on a.mb_id = d.mb_recommend and d.cnt > 0
+where a.depth < (select  depth + 10 from g5_member c where mb_no = '9')
+
+select a.*, ifnull(d.cnt, 0) as cnt from (
+	select  mb_no,
+			mb_id,
+			ifnull(mb_recommend_no, 0) as mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    g5_member c where mb_no = '9'
+	union all
+	select  mb_no,
+			mb_id,
+			mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    (select * from g5_member
+			 order by mb_recommend_no, mb_no) products_sorted,
+			(select @pv := '9') initialisation
+	where   find_in_set(mb_recommend_no, @pv) > 0
+	and     @pv := concat(@pv, ',', mb_no)
+) a 
+left outer join (
+	select mb_recommend, count(*) as cnt from g5_member  group by mb_recommend
+) d on a.mb_id = d.mb_recommend and d.cnt > 0
+where a.depth < (select  depth + 10 from g5_member c where mb_no = '9')
+
+select a.*, ifnull(d.cnt, 0) as cnt from (
+	select  mb_no,
+			mb_id,
+			ifnull(mb_recommend_no, 0) as mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    g5_member c where mb_no = '9'
+	union all
+	select  mb_no,
+			mb_id,
+			mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    (select * from g5_member
+			 order by mb_recommend_no, mb_no) products_sorted,
+			(select @pv := '9') initialisation
+	where   find_in_set(mb_recommend_no, @pv) > 0
+	and     @pv := concat(@pv, ',', mb_no)
+) a 
+left outer join (
+	select mb_recommend, count(*) as cnt from g5_member  group by mb_recommend
+) d on a.mb_id = d.mb_recommend and d.cnt > 0
+where a.depth < (select  depth + 10 from g5_member c where mb_no = '9')
+
+select a.*, ifnull(d.cnt, 0) as cnt from (
+	select  mb_no,
+			mb_id,
+			ifnull(mb_recommend_no, 0) as mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    g5_member c where mb_no = '9'
+	union all
+	select  mb_no,
+			mb_id,
+			mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    (select * from g5_member
+			 order by mb_recommend_no, mb_no) products_sorted,
+			(select @pv := '9') initialisation
+	where   find_in_set(mb_recommend_no, @pv) > 0
+	and     @pv := concat(@pv, ',', mb_no)
+) a 
+left outer join (
+	select mb_recommend, count(*) as cnt from g5_member  group by mb_recommend
+) d on a.mb_id = d.mb_recommend and d.cnt > 0
+where a.depth < (select  depth + 10 from g5_member c where mb_no = '9')
+
+select a.*, ifnull(d.cnt, 0) as cnt from (
+	select  mb_no,
+			mb_id,
+			ifnull(mb_recommend_no, 0) as mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    g5_member c where mb_no = '9'
+	union all
+	select  mb_no,
+			mb_id,
+			mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    (select * from g5_member
+			 order by mb_recommend_no, mb_no) products_sorted,
+			(select @pv := '9') initialisation
+	where   find_in_set(mb_recommend_no, @pv) > 0
+	and     @pv := concat(@pv, ',', mb_no)
+) a 
+left outer join (
+	select mb_recommend, count(*) as cnt from g5_member  group by mb_recommend
+) d on a.mb_id = d.mb_recommend and d.cnt > 0
+where a.depth < (select  depth + 10 from g5_member c where mb_no = '9')
+
+select a.*, ifnull(d.cnt, 0) as cnt from (
+	select  mb_no,
+			mb_id,
+			ifnull(mb_recommend_no, 0) as mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    g5_member c where mb_no = '9'
+	union all
+	select  mb_no,
+			mb_id,
+			mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    (select * from g5_member
+			 order by mb_recommend_no, mb_no) products_sorted,
+			(select @pv := '9') initialisation
+	where   find_in_set(mb_recommend_no, @pv) > 0
+	and     @pv := concat(@pv, ',', mb_no)
+) a 
+left outer join (
+	select mb_recommend, count(*) as cnt from g5_member  group by mb_recommend
+) d on a.mb_id = d.mb_recommend and d.cnt > 0
+where a.depth < (select  depth + 10 from g5_member c where mb_no = '9')
+
+select a.*, ifnull(d.cnt, 0) as cnt from (
+	select  mb_no,
+			mb_id,
+			ifnull(mb_recommend_no, 0) as mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    g5_member c where mb_no = '9'
+	union all
+	select  mb_no,
+			mb_id,
+			mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    (select * from g5_member
+			 order by mb_recommend_no, mb_no) products_sorted,
+			(select @pv := '9') initialisation
+	where   find_in_set(mb_recommend_no, @pv) > 0
+	and     @pv := concat(@pv, ',', mb_no)
+) a 
+left outer join (
+	select mb_recommend, count(*) as cnt from g5_member  group by mb_recommend
+) d on a.mb_id = d.mb_recommend and d.cnt > 0
+where a.depth < (select  depth + 10 from g5_member c where mb_no = '9')
+
+select a.*, ifnull(d.cnt, 0) as cnt from (
+	select  mb_no,
+			mb_id,
+			ifnull(mb_recommend_no, 0) as mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    g5_member c where mb_no = '9'
+	union all
+	select  mb_no,
+			mb_id,
+			mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    (select * from g5_member
+			 order by mb_recommend_no, mb_no) products_sorted,
+			(select @pv := '9') initialisation
+	where   find_in_set(mb_recommend_no, @pv) > 0
+	and     @pv := concat(@pv, ',', mb_no)
+) a 
+left outer join (
+	select mb_recommend, count(*) as cnt from g5_member  group by mb_recommend
+) d on a.mb_id = d.mb_recommend and d.cnt > 0
+where a.depth < (select  depth + 10 from g5_member c where mb_no = '9')
+
+select a.*, ifnull(d.cnt, 0) as cnt from (
+	select  mb_no,
+			mb_id,
+			ifnull(mb_recommend_no, 0) as mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    g5_member c where mb_no = '9'
+	union all
+	select  mb_no,
+			mb_id,
+			mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    (select * from g5_member
+			 order by mb_recommend_no, mb_no) products_sorted,
+			(select @pv := '9') initialisation
+	where   find_in_set(mb_recommend_no, @pv) > 0
+	and     @pv := concat(@pv, ',', mb_no)
+) a 
+left outer join (
+	select mb_recommend, count(*) as cnt from g5_member  group by mb_recommend
+) d on a.mb_id = d.mb_recommend and d.cnt > 0
+where a.depth < (select  depth + 10 from g5_member c where mb_no = '9')
+
+select a.*, ifnull(d.cnt, 0) as cnt from (
+	select  mb_no,
+			mb_id,
+			ifnull(mb_recommend_no, 0) as mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    g5_member c where mb_no = '9'
+	union all
+	select  mb_no,
+			mb_id,
+			mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    (select * from g5_member
+			 order by mb_recommend_no, mb_no) products_sorted,
+			(select @pv := '9') initialisation
+	where   find_in_set(mb_recommend_no, @pv) > 0
+	and     @pv := concat(@pv, ',', mb_no)
+) a 
+left outer join (
+	select mb_recommend, count(*) as cnt from g5_member  group by mb_recommend
+) d on a.mb_id = d.mb_recommend and d.cnt > 0
+where a.depth < (select  depth + 10 from g5_member c where mb_no = '9')
+
+select a.*, ifnull(d.cnt, 0) as cnt from (
+	select  mb_no,
+			mb_id,
+			ifnull(mb_recommend_no, 0) as mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    g5_member c where mb_no = '9'
+	union all
+	select  mb_no,
+			mb_id,
+			mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    (select * from g5_member
+			 order by mb_recommend_no, mb_no) products_sorted,
+			(select @pv := '9') initialisation
+	where   find_in_set(mb_recommend_no, @pv) > 0
+	and     @pv := concat(@pv, ',', mb_no)
+) a 
+left outer join (
+	select mb_recommend, count(*) as cnt from g5_member  group by mb_recommend
+) d on a.mb_id = d.mb_recommend and d.cnt > 0
+where a.depth < (select  depth + 10 from g5_member c where mb_no = '9')
+
+select a.*, ifnull(d.cnt, 0) as cnt from (
+	select  mb_no,
+			mb_id,
+			ifnull(mb_recommend_no, 0) as mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    g5_member c where mb_no = '9'
+	union all
+	select  mb_no,
+			mb_id,
+			mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    (select * from g5_member
+			 order by mb_recommend_no, mb_no) products_sorted,
+			(select @pv := '9') initialisation
+	where   find_in_set(mb_recommend_no, @pv) > 0
+	and     @pv := concat(@pv, ',', mb_no)
+) a 
+left outer join (
+	select mb_recommend, count(*) as cnt from g5_member  group by mb_recommend
+) d on a.mb_id = d.mb_recommend and d.cnt > 0
+where a.depth < (select  depth + 10 from g5_member c where mb_no = '9')
+
+select a.*, ifnull(d.cnt, 0) as cnt from (
+	select  mb_no,
+			mb_id,
+			ifnull(mb_recommend_no, 0) as mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    g5_member c where mb_no = '9'
+	union all
+	select  mb_no,
+			mb_id,
+			mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    (select * from g5_member
+			 order by mb_recommend_no, mb_no) products_sorted,
+			(select @pv := '9') initialisation
+	where   find_in_set(mb_recommend_no, @pv) > 0
+	and     @pv := concat(@pv, ',', mb_no)
+) a 
+left outer join (
+	select mb_recommend, count(*) as cnt from g5_member  group by mb_recommend
+) d on a.mb_id = d.mb_recommend and d.cnt > 0
+where a.depth < (select  depth + 10 from g5_member c where mb_no = '9')
+
+select a.*, ifnull(d.cnt, 0) as cnt from (
+	select  mb_no,
+			mb_id,
+			ifnull(mb_recommend_no, 0) as mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    g5_member c where mb_no = '9'
+	union all
+	select  mb_no,
+			mb_id,
+			mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    (select * from g5_member
+			 order by mb_recommend_no, mb_no) products_sorted,
+			(select @pv := '9') initialisation
+	where   find_in_set(mb_recommend_no, @pv) > 0
+	and     @pv := concat(@pv, ',', mb_no)
+) a 
+left outer join (
+	select mb_recommend, count(*) as cnt from g5_member  group by mb_recommend
+) d on a.mb_id = d.mb_recommend and d.cnt > 0
+where a.depth < (select  depth + 10 from g5_member c where mb_no = '9')
+
+select a.*, ifnull(d.cnt, 0) as cnt from (
+	select  mb_no,
+			mb_id,
+			ifnull(mb_recommend_no, 0) as mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    g5_member c where mb_no = '9'
+	union all
+	select  mb_no,
+			mb_id,
+			mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    (select * from g5_member
+			 order by mb_recommend_no, mb_no) products_sorted,
+			(select @pv := '9') initialisation
+	where   find_in_set(mb_recommend_no, @pv) > 0
+	and     @pv := concat(@pv, ',', mb_no)
+) a 
+left outer join (
+	select mb_recommend, count(*) as cnt from g5_member  group by mb_recommend
+) d on a.mb_id = d.mb_recommend and d.cnt > 0
+where a.depth < (select  depth + 10 from g5_member c where mb_no = '9')
+
+select a.*, ifnull(d.cnt, 0) as cnt from (
+	select  mb_no,
+			mb_id,
+			ifnull(mb_recommend_no, 0) as mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    g5_member c where mb_no = '9'
+	union all
+	select  mb_no,
+			mb_id,
+			mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    (select * from g5_member
+			 order by mb_recommend_no, mb_no) products_sorted,
+			(select @pv := '9') initialisation
+	where   find_in_set(mb_recommend_no, @pv) > 0
+	and     @pv := concat(@pv, ',', mb_no)
+) a 
+left outer join (
+	select mb_recommend, count(*) as cnt from g5_member  group by mb_recommend
+) d on a.mb_id = d.mb_recommend and d.cnt > 0
+where a.depth < (select  depth + 10 from g5_member c where mb_no = '9')
+
+select a.*, ifnull(d.cnt, 0) as cnt from (
+	select  mb_no,
+			mb_id,
+			ifnull(mb_recommend_no, 0) as mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    g5_member c where mb_no = '9'
+	union all
+	select  mb_no,
+			mb_id,
+			mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    (select * from g5_member
+			 order by mb_recommend_no, mb_no) products_sorted,
+			(select @pv := '9') initialisation
+	where   find_in_set(mb_recommend_no, @pv) > 0
+	and     @pv := concat(@pv, ',', mb_no)
+) a 
+left outer join (
+	select mb_recommend, count(*) as cnt from g5_member  group by mb_recommend
+) d on a.mb_id = d.mb_recommend and d.cnt > 0
+where a.depth < (select  depth + 10 from g5_member c where mb_no = '9')
+
+select a.*, ifnull(d.cnt, 0) as cnt from (
+	select  mb_no,
+			mb_id,
+			ifnull(mb_recommend_no, 0) as mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    g5_member c where mb_no = '9'
+	union all
+	select  mb_no,
+			mb_id,
+			mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    (select * from g5_member
+			 order by mb_recommend_no, mb_no) products_sorted,
+			(select @pv := '9') initialisation
+	where   find_in_set(mb_recommend_no, @pv) > 0
+	and     @pv := concat(@pv, ',', mb_no)
+) a 
+left outer join (
+	select mb_recommend, count(*) as cnt from g5_member  group by mb_recommend
+) d on a.mb_id = d.mb_recommend and d.cnt > 0
+where a.depth < (select  depth + 10 from g5_member c where mb_no = '9')
+
+select a.*, ifnull(d.cnt, 0) as cnt from (
+	select  mb_no,
+			mb_id,
+			ifnull(mb_recommend_no, 0) as mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    g5_member c where mb_no = '11'
+	union all
+	select  mb_no,
+			mb_id,
+			mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    (select * from g5_member
+			 order by mb_recommend_no, mb_no) products_sorted,
+			(select @pv := '11') initialisation
+	where   find_in_set(mb_recommend_no, @pv) > 0
+	and     @pv := concat(@pv, ',', mb_no)
+) a 
+left outer join (
+	select mb_recommend, count(*) as cnt from g5_member  group by mb_recommend
+) d on a.mb_id = d.mb_recommend and d.cnt > 0
+where a.depth < (select  depth + 10 from g5_member c where mb_no = '11')
+
+select a.*, ifnull(d.cnt, 0) as cnt from (
+	select  mb_no,
+			mb_id,
+			ifnull(mb_recommend_no, 0) as mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    g5_member c where mb_no = '9'
+	union all
+	select  mb_no,
+			mb_id,
+			mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    (select * from g5_member
+			 order by mb_recommend_no, mb_no) products_sorted,
+			(select @pv := '9') initialisation
+	where   find_in_set(mb_recommend_no, @pv) > 0
+	and     @pv := concat(@pv, ',', mb_no)
+) a 
+left outer join (
+	select mb_recommend, count(*) as cnt from g5_member  group by mb_recommend
+) d on a.mb_id = d.mb_recommend and d.cnt > 0
+where a.depth < (select  depth + 10 from g5_member c where mb_no = '9')
+
+select a.*, ifnull(d.cnt, 0) as cnt from (
+	select  mb_no,
+			mb_id,
+			ifnull(mb_recommend_no, 0) as mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    g5_member c where mb_no = '9'
+	union all
+	select  mb_no,
+			mb_id,
+			mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    (select * from g5_member
+			 order by mb_recommend_no, mb_no) products_sorted,
+			(select @pv := '9') initialisation
+	where   find_in_set(mb_recommend_no, @pv) > 0
+	and     @pv := concat(@pv, ',', mb_no)
+) a 
+left outer join (
+	select mb_recommend, count(*) as cnt from g5_member  group by mb_recommend
+) d on a.mb_id = d.mb_recommend and d.cnt > 0
+where a.depth < (select  depth + 10 from g5_member c where mb_no = '9')
+
+select a.*, ifnull(d.cnt, 0) as cnt from (
+	select  mb_no,
+			mb_id,
+			ifnull(mb_recommend_no, 0) as mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    g5_member c where mb_no = '9'
+	union all
+	select  mb_no,
+			mb_id,
+			mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    (select * from g5_member
+			 order by mb_recommend_no, mb_no) products_sorted,
+			(select @pv := '9') initialisation
+	where   find_in_set(mb_recommend_no, @pv) > 0
+	and     @pv := concat(@pv, ',', mb_no)
+) a 
+left outer join (
+	select mb_recommend, count(*) as cnt from g5_member  group by mb_recommend
+) d on a.mb_id = d.mb_recommend and d.cnt > 0
+where a.depth < (select  depth + 10 from g5_member c where mb_no = '9')
+
+select a.*, ifnull(d.cnt, 0) as cnt from (
+	select  mb_no,
+			mb_id,
+			ifnull(mb_recommend_no, 0) as mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    g5_member c where mb_no = '9'
+	union all
+	select  mb_no,
+			mb_id,
+			mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    (select * from g5_member
+			 order by mb_recommend_no, mb_no) products_sorted,
+			(select @pv := '9') initialisation
+	where   find_in_set(mb_recommend_no, @pv) > 0
+	and     @pv := concat(@pv, ',', mb_no)
+) a 
+left outer join (
+	select mb_recommend, count(*) as cnt from g5_member  group by mb_recommend
+) d on a.mb_id = d.mb_recommend and d.cnt > 0
+where a.depth < (select  depth + 10 from g5_member c where mb_no = '9')
+
+select a.*, ifnull(d.cnt, 0) as cnt from (
+	select  mb_no,
+			mb_id,
+			ifnull(mb_recommend_no, 0) as mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    g5_member c where mb_no = '743'
+	union all
+	select  mb_no,
+			mb_id,
+			mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    (select * from g5_member
+			 order by mb_recommend_no, mb_no) products_sorted,
+			(select @pv := '743') initialisation
+	where   find_in_set(mb_recommend_no, @pv) > 0
+	and     @pv := concat(@pv, ',', mb_no)
+) a 
+left outer join (
+	select mb_recommend, count(*) as cnt from g5_member  group by mb_recommend
+) d on a.mb_id = d.mb_recommend and d.cnt > 0
+where a.depth < (select  depth + 10 from g5_member c where mb_no = '743')
+
+select a.*, ifnull(d.cnt, 0) as cnt from (
+	select  mb_no,
+			mb_id,
+			ifnull(mb_recommend_no, 0) as mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    g5_member c where mb_no = '743'
+	union all
+	select  mb_no,
+			mb_id,
+			mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    (select * from g5_member
+			 order by mb_recommend_no, mb_no) products_sorted,
+			(select @pv := '743') initialisation
+	where   find_in_set(mb_recommend_no, @pv) > 0
+	and     @pv := concat(@pv, ',', mb_no)
+) a 
+left outer join (
+	select mb_recommend, count(*) as cnt from g5_member  group by mb_recommend
+) d on a.mb_id = d.mb_recommend and d.cnt > 0
+where a.depth < (select  depth + 10 from g5_member c where mb_no = '743')
+
+select a.*, ifnull(d.cnt, 0) as cnt from (
+	select  mb_no,
+			mb_id,
+			ifnull(mb_recommend_no, 0) as mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    g5_member c where mb_no = '8171'
+	union all
+	select  mb_no,
+			mb_id,
+			mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    (select * from g5_member
+			 order by mb_recommend_no, mb_no) products_sorted,
+			(select @pv := '8171') initialisation
+	where   find_in_set(mb_recommend_no, @pv) > 0
+	and     @pv := concat(@pv, ',', mb_no)
+) a 
+left outer join (
+	select mb_recommend, count(*) as cnt from g5_member  group by mb_recommend
+) d on a.mb_id = d.mb_recommend and d.cnt > 0
+where a.depth < (select  depth + 10 from g5_member c where mb_no = '8171')
+
+select a.*, ifnull(d.cnt, 0) as cnt from (
+	select  mb_no,
+			mb_id,
+			ifnull(mb_recommend_no, 0) as mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    g5_member c where mb_no = '8171'
+	union all
+	select  mb_no,
+			mb_id,
+			mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    (select * from g5_member
+			 order by mb_recommend_no, mb_no) products_sorted,
+			(select @pv := '8171') initialisation
+	where   find_in_set(mb_recommend_no, @pv) > 0
+	and     @pv := concat(@pv, ',', mb_no)
+) a 
+left outer join (
+	select mb_recommend, count(*) as cnt from g5_member  group by mb_recommend
+) d on a.mb_id = d.mb_recommend and d.cnt > 0
+where a.depth < (select  depth + 10 from g5_member c where mb_no = '8171')
+
+select a.*, ifnull(d.cnt, 0) as cnt from (
+	select  mb_no,
+			mb_id,
+			ifnull(mb_recommend_no, 0) as mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    g5_member c where mb_no = '9'
+	union all
+	select  mb_no,
+			mb_id,
+			mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    (select * from g5_member
+			 order by mb_recommend_no, mb_no) products_sorted,
+			(select @pv := '9') initialisation
+	where   find_in_set(mb_recommend_no, @pv) > 0
+	and     @pv := concat(@pv, ',', mb_no)
+) a 
+left outer join (
+	select mb_recommend, count(*) as cnt from g5_member  group by mb_recommend
+) d on a.mb_id = d.mb_recommend and d.cnt > 0
+where a.depth < (select  depth + 10 from g5_member c where mb_no = '9')
+
+select a.*, ifnull(d.cnt, 0) as cnt from (
+	select  mb_no,
+			mb_id,
+			ifnull(mb_recommend_no, 0) as mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    g5_member c where mb_no = '9'
+	union all
+	select  mb_no,
+			mb_id,
+			mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    (select * from g5_member
+			 order by mb_recommend_no, mb_no) products_sorted,
+			(select @pv := '9') initialisation
+	where   find_in_set(mb_recommend_no, @pv) > 0
+	and     @pv := concat(@pv, ',', mb_no)
+) a 
+left outer join (
+	select mb_recommend, count(*) as cnt from g5_member  group by mb_recommend
+) d on a.mb_id = d.mb_recommend and d.cnt > 0
+where a.depth < (select  depth + 10 from g5_member c where mb_no = '9')
+
+select a.*, ifnull(d.cnt, 0) as cnt from (
+	select  mb_no,
+			mb_id,
+			ifnull(mb_recommend_no, 0) as mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    g5_member c where mb_no = '9'
+	union all
+	select  mb_no,
+			mb_id,
+			mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    (select * from g5_member
+			 order by mb_recommend_no, mb_no) products_sorted,
+			(select @pv := '9') initialisation
+	where   find_in_set(mb_recommend_no, @pv) > 0
+	and     @pv := concat(@pv, ',', mb_no)
+) a 
+left outer join (
+	select mb_recommend, count(*) as cnt from g5_member  group by mb_recommend
+) d on a.mb_id = d.mb_recommend and d.cnt > 0
+where a.depth < (select  depth + 10 from g5_member c where mb_no = '9')
+
+select a.*, ifnull(d.cnt, 0) as cnt from (
+	select  mb_no,
+			mb_id,
+			ifnull(mb_recommend_no, 0) as mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    g5_member c where mb_no = '9'
+	union all
+	select  mb_no,
+			mb_id,
+			mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    (select * from g5_member
+			 order by mb_recommend_no, mb_no) products_sorted,
+			(select @pv := '9') initialisation
+	where   find_in_set(mb_recommend_no, @pv) > 0
+	and     @pv := concat(@pv, ',', mb_no)
+) a 
+left outer join (
+	select mb_recommend, count(*) as cnt from g5_member  group by mb_recommend
+) d on a.mb_id = d.mb_recommend and d.cnt > 0
+where a.depth < (select  depth + 10 from g5_member c where mb_no = '9')
+
+select a.*, ifnull(d.cnt, 0) as cnt from (
+	select  mb_no,
+			mb_id,
+			ifnull(mb_recommend_no, 0) as mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    g5_member c where mb_no = '9'
+	union all
+	select  mb_no,
+			mb_id,
+			mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    (select * from g5_member
+			 order by mb_recommend_no, mb_no) products_sorted,
+			(select @pv := '9') initialisation
+	where   find_in_set(mb_recommend_no, @pv) > 0
+	and     @pv := concat(@pv, ',', mb_no)
+) a 
+left outer join (
+	select mb_recommend, count(*) as cnt from g5_member  group by mb_recommend
+) d on a.mb_id = d.mb_recommend and d.cnt > 0
+where a.depth < (select  depth + 10 from g5_member c where mb_no = '9')
+
+select a.*, ifnull(d.cnt, 0) as cnt from (
+	select  mb_no,
+			mb_id,
+			ifnull(mb_recommend_no, 0) as mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    g5_member c where mb_no = '9'
+	union all
+	select  mb_no,
+			mb_id,
+			mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    (select * from g5_member
+			 order by mb_recommend_no, mb_no) products_sorted,
+			(select @pv := '9') initialisation
+	where   find_in_set(mb_recommend_no, @pv) > 0
+	and     @pv := concat(@pv, ',', mb_no)
+) a 
+left outer join (
+	select mb_recommend, count(*) as cnt from g5_member  group by mb_recommend
+) d on a.mb_id = d.mb_recommend and d.cnt > 0
+where a.depth < (select  depth + 10 from g5_member c where mb_no = '9')
+
+select a.*, ifnull(d.cnt, 0) as cnt from (
+	select  mb_no,
+			mb_id,
+			ifnull(mb_recommend_no, 0) as mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    g5_member c where mb_no = '9'
+	union all
+	select  mb_no,
+			mb_id,
+			mb_recommend_no,
+			mb_recommend,
+			depth,
+			mb_open_date as enrolled,
+			mb_recommend as sponsor,
+			mb_brecommend as placement,
+			substring(mb_bre_time,1,10) as placed_binary,
+			mb_level
+	from    (select * from g5_member
+			 order by mb_recommend_no, mb_no) products_sorted,
+			(select @pv := '9') initialisation
+	where   find_in_set(mb_recommend_no, @pv) > 0
+	and     @pv := concat(@pv, ',', mb_no)
+) a 
+left outer join (
+	select mb_recommend, count(*) as cnt from g5_member  group by mb_recommend
+) d on a.mb_id = d.mb_recommend and d.cnt > 0
+where a.depth < (select  depth + 10 from g5_member c where mb_no = '9')

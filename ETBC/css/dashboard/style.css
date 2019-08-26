@@ -1,0 +1,469 @@
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap');
+* {
+	box-sizing: border-box;
+	font-family: 'Montserrat', sans-serif;
+}
+
+body, html {
+  height: 100%;
+  width: 100%;
+  *background-color: rgb(64, 67, 83);
+  font-size: 16px;
+}
+
+a, a:link, a:visited, a:hover, a:active {
+	text-decoration: none;
+}
+
+ul {
+	list-style: none;
+}
+
+.blue {
+	color: rgb(0, 121, 211);
+}
+
+.gray {
+	color: rgb(124, 124, 124);
+}
+
+.nav-two-big {
+	font-size: 25px;
+}
+
+.nav-two-line-height {
+	line-height: 1.1;
+}
+
+
+/* ==================== DASHBOARD ===================== */
+
+.overview-row {
+	display: flex;
+	justify-content: space-around;
+}
+
+/* //BALANCE */
+.wallet{
+    background-color: #113a56;
+	border-radius: 10px;
+	padding: 2em 1em;
+    text-align: left;
+	margin: 0 auto;
+		margin-bottom: 15px;
+		width: 88%;
+}
+.balance_tit{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size:2em;
+  font-weight: normal;
+  color:#fff;
+  line-height:2em;
+  text-align: center;
+}
+.greeting{
+    font-size: 1em;
+   
+    color:#fff !important;
+    text-align: center;
+}
+.balance{
+    font-size: 1em;
+    line-height:1.5rem;
+    margin-bottom:1.5rem;
+	color:#fff;
+	text-align: center;
+}
+.coin_list{
+    margin:0 auto;
+    border-radius: 10px;
+    margin:10px auto 20px auto;
+    background-color: #fff;
+	overflow: hidden;
+	color:#333;
+	border: 1px solid #fff;
+}
+
+.coin_img{
+	float:left;
+	width:30%;
+    padding:10px 0 10px 10px;text-align: center;
+}
+.coin_name{
+    color:#333;
+    font-family: "Montserrat";
+    font-size: 0.8em;
+    line-height: 1.5em;
+    margin:0;
+    padding:10px 0 0 0; 
+    text-align: center;
+}
+.eos_balance, .eos_up_balance{
+    float: right;
+    margin:0 20px 0 0 ;
+    color: #333;
+    text-align: right;
+    font-size: 1em;
+}
+.eos_balance p{
+  margin:0;
+  line-height: 90px;
+}
+.eos_up_balance p{
+  margin:0;
+  line-height: 50px;
+}
+.coin_img img{
+    width:40px;
+}
+.eos_up_name{
+  float:left;
+	width:30%;
+line-height: 50px;
+text-align: center;
+margin:0;
+padding-left:10px;}
+
+/* //BALANCE */
+
+
+/* MY INFO */
+.my_info table{
+	margin: 0 auto;
+width: 96%;
+color:#fff;
+}
+.my_info table th{
+font-weight: normal;
+
+}
+.my_info table td{
+	text-align: right;
+	border-bottom:1px solid #ccc;
+	padding:0 10px;
+}
+
+
+
+
+.my_info {
+	background-color: #113a56;
+	border-radius: 10px;
+	padding: 1em 1em;
+    text-align: left;
+    margin-right:25px;
+	width: 88%;
+}
+.my_info h5{font-size: 1.5em;
+    font-weight: normal;}
+    .my_info img {
+        float: right;
+        margin-top: 0.5em;
+	}
+	
+/* //MY INFO */
+
+.dashboard-wrapper {
+	margin: 0 auto;
+	position: relative;
+		top: 80px;
+	text-align: center;
+	width: 1134px;
+}
+
+.dashboard-wrapper h2 {
+	color:white;
+	text-align: left;
+}
+
+.business-status-card {
+	display: inline-block;
+	margin-bottom: 25px;
+	margin-right: 25px;
+	text-align: center;
+	width: 350px;
+}
+
+.package-img-container {
+	*margin-bottom: 5px;
+}
+
+.my-business-status-container {
+	margin-bottom: 25px;
+}
+
+.card-info {
+	font-size: 25px
+}
+
+.congrats-container {
+	background-color: white;
+	border-radius: 4px;
+	display: inline-block;
+	padding: 20px;
+	width: 593px;
+}
+
+.congrats-rank, .congrats-rank span {
+	position: relative;
+		top: 3px;
+	text-align: center;
+	width: 100px;
+}
+
+.congrats-text {
+	position: relative;
+		bottom: 20px;
+	text-align: left;
+	width: 80%;
+}
+
+.congrats-text, .congrats-rank {
+	display: inline-block;
+}
+
+.enrollment-chart img {
+	margin-top: 20px;
+	margin-bottom: 15px;
+}
+
+.enrollment-number {
+	color: rgb(0, 121, 211);
+	font-size: 50px;
+	position: relative;
+		top: 18px;
+}
+
+.enrollment-summary-container {
+    margin-bottom: 50px;
+    clear:both;
+}
+
+.enrollment-stat {
+	border: none;
+	display: inline-block;
+	text-align: center;
+	width: 163px;
+}
+
+.enrollment-stat-info {
+	font-size: 25px;
+}
+
+.enrollment-stat .card-body {
+	padding: 10px;
+}
+
+.enrollment-summary-card {
+	display: inline-block;
+	height: 344px;
+	margin-right: 23px;
+	width: 540px;
+}
+
+.main-container {
+	height: 100%;
+	width: 100%;
+	z-index: 0;
+}
+
+.my-balances-container {
+	margin-right: 36px;
+}
+
+.my-balances-container, .price-chart-container {
+	background-color: white;
+	border-radius: 4px;
+	display: inline-block;
+	padding: 20px;
+  margin-top: 25px;
+  width: 535px;
+  height: 450px;
+}
+
+.my-balances-container h3 {
+	text-align: center;
+}
+
+.my-balances-container img, .price-chart-container img {
+	margin-top: 10px;
+	height: 75%;
+	width: 75%;
+}
+
+.overview-container {
+	margin-bottom: 50px;
+}
+
+.personal-enrollment-circle {
+	border: 2px solid rgb(0, 121, 211);
+	border-radius: 50%;
+	height: 115px;
+	margin: 0 auto;
+	margin-bottom: 15px;
+	margin-top: 20px;
+	width: 115px;
+}
+
+.personal-enrollment-container {
+	border-bottom: 1px solid #e5e5e5;
+	padding-bottom: 10px;
+	text-align: center;
+}
+
+.sales-volume-chart {
+	background-color: white;
+	margin: 0 auto;
+	width: 1110px;
+}
+
+.sales-volume-summary-container {
+	margin-bottom: 50px;
+}
+
+.section-title {
+	margin-left: 10px;
+}
+
+.total-sales-volume-container {
+	background-color: white;
+	border-radius: 4px;
+	display: inline-block;
+	line-height: 1.2;
+  margin-left: 25px;
+  padding: 19px;
+  text-align: center;
+  width: 230px;
+}
+
+.total-sales-volume {
+	position: relative;
+		top: 10px;
+	font-size: 30px;
+}
+
+.total-sales-volume-pct {
+	color: #3CC480;
+	font-size: 20px;
+	position: relative;
+		top: 5px;
+}
+
+.total-sales-volume-container h5 {
+	position: relative;
+		top: 10px;
+}
+
+.total-sales-volume-container i {
+	color: #3CC480;
+	font-size: 35px;
+	margin-bottom: 20px;
+	position: relative;
+		top: 10px;
+}
+
+.last-in-row {
+	margin-right: 0;
+}
+
+.sales-volume-chart .card-body img {
+	max-width: 100%;
+}
+.avatar{
+    float:left;
+    margin-left:13px;    
+}
+
+@media only screen and (max-width: 1140px) {
+	.congrats-container {
+		display: block;
+		margin: 0 auto;
+		margin-bottom: 25px;
+		width: 95%;
+	}
+
+	.dashboard-wrapper {
+		width: 100%;
+	}
+
+	.total-sales-volume-container {
+		margin: 0 auto;
+	}
+}
+
+@media only screen and (max-width: 1125px) {
+	h2 {
+		margin-left: 0 !important;
+		text-align: center !important;
+		width: 95%;
+	}
+
+	.enrollment-summary-card {
+		display: block;
+		height: auto;
+		margin: 0 auto;
+		margin-bottom: 25px;
+		width: 95%;
+	}
+
+	.my-balances-container, .price-chart-container {
+		display: block;
+		margin: 0 auto;
+		margin-top: 50px;
+		width: 95%;
+	}
+}
+
+@media only screen and (max-width: 1108px) {
+	.card {
+		display: block;
+		margin: 0 auto;
+		margin-bottom: 10px;
+		width: 95%;
+	}
+
+	.overview-row {
+		flex-direction: column;
+	}
+
+	.overview-card {
+		margin: 0 auto;
+		width: 88%;
+	}
+}
+
+@media only screen and (max-width: 638px) {
+	.congrats-rank {
+		position: relative;
+			top: 0;
+			bottom: 0;
+	}
+
+	.congrats-text {
+		position: relative;
+			bottom: 0;
+		text-align: center;
+	}
+
+	.congrats-text h2 {
+		text-align: center;
+	}
+
+	.congrats-text br {
+		display: none;
+	}
+}
+
+@media only screen and (max-width: 479px) {
+	.total-sales-volume-container {
+		display: block;
+		margin-bottom: 15px;
+		width: 95%;
+	}
+}
+
+.dashboard-wrapper.nav-body-shift {
+	margin-left: 300px !important;
+}
+#sod_frm{width:1100px !important;}
+.tbl_wrap{width:1100px !important;}

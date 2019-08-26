@@ -1,0 +1,321 @@
+* {
+	box-sizing: border-box;
+	font-family: 'Montserrat', sans-serif;
+}
+
+body, html {
+  height: 100%;
+  width: 100%;
+  background-color: rgb(242, 242, 242);
+}
+
+a, a:link, a:visited, a:hover, a:active {
+	text-decoration: none;
+}
+
+ul {
+	list-style: none;
+}
+
+.blue {
+	color: rgb(0, 121, 211);
+}
+
+.gray {
+	color: rgb(124, 124, 124);
+}
+
+.purple {
+	color: #53407A;
+}
+
+.red {
+	color: #ff6c6c;
+}
+
+.nav-two-big {
+	font-size: 25px;
+}
+
+.nav-two-line-height {
+	line-height: 1.1;
+}
+
+
+/* ==================== BONUS PLAN ===================== */
+
+.main-container {
+	background-color: rgb(242, 242, 242);
+	display: absolute;
+	height: 100%;
+	width: 100%;
+	z-index: 0;
+}
+
+.big-container-wrapper {
+	position: relative;
+		top: 150px;
+}
+
+.binary-chart {
+	max-width: 100%;
+}
+
+.binary-match-bonus table {
+	font-size: 19px;
+	margin: 0 auto;
+}
+
+.binary-match-bonus table thead, .daily-mining-payout table thead,
+.indirect-sponsor-bonus table thead, .infinity-bonus table thead,
+.star-share-bonus table thead, .ranking-system table thead {
+	background: rgb(0,121,211);
+	background: linear-gradient(90deg, rgba(0,121,211,1) 0%, rgba(110,107,157,1) 100%);
+}
+
+.bonus-plan-container {
+	background-color: white;
+	border-radius: 4px;
+	margin: 0 auto;
+	margin-bottom: 50px;
+	padding: 50px;
+	position: relative;
+	width: 1100px;
+}
+
+.bonus-plan-container h2, .bonus-plan-container h5 {
+	text-align: center;
+}
+
+.bonus-plan-container p {
+	font-size: 19px;
+}
+
+.comp-text img {
+	float: right;
+	margin-top: 35px;
+	width: 25%;
+}
+
+.credit-table, .cycle-table {
+	display: inline-block;
+	margin-left: 25px;
+	margin-right: 25px;
+	width: 40%;
+}
+
+.credit-table table, .cycle-table table, 
+.infinity-bonus table, .star-share-bonus table {
+	font-size: 19px;
+}
+
+.credit-table table thead {
+	background-color: rgb(0,121,211);
+}
+
+.cycle-table table thead {
+	background-color: rgb(110,107,157);
+}
+
+.credit-table table thead tr th, 
+.cycle-table table thead tr th,
+.binary-match-bonus table thead tr th,
+.infinity-bonus table thead tr th,
+.star-share-bonus table thead tr th,
+.ranking-system table thead tr th {
+	color: white;
+}
+
+.daily-mining-payout {
+	margin-top: 75px;
+	/*margin-bottom: 50px;*/
+}
+
+.daily-mining-payout p {
+	text-align: right;
+}
+
+.daily-mining-payout img {
+	float: left;
+	margin-top: 35px;
+	margin-right: 11px;
+	width: 25%;
+}
+
+.daily-mining-payout table {
+	font-size: 19px;
+	margin: 0 auto;
+	margin-top: 45px;
+}
+
+.daily-mining-payout table thead tr th, 
+.indirect-sponsor-bonus table thead tr th {
+	border-top: none;
+	color: white;
+}
+
+.infinity-bonus table {
+	margin: 0 auto;
+	margin-top: 25px;
+}
+
+hr {
+	border-color: rgb(0, 121, 211);
+	margin-bottom: 30px;
+	width: 150px;
+}
+
+.indirect-sponsor-bonus table {
+	font-size: 19px;
+	margin: 0 auto;
+	margin-top: 40px;
+	width: 100%;
+}
+
+.rank-column {
+	width: 105px;
+}
+
+.ranking-system {
+	border-top: 1px solid #e5e5e5;
+	padding-top: 50px;
+}
+
+.ranking-system .table tbody tr td ul {
+	padding-left: 20px;
+}
+
+.ranking-system .table tbody tr td ul li {
+	list-style-type: circle;
+}
+
+.rewards-program {
+	border-top: 1px solid #e5e5e5;
+	margin-top: 50px;
+	padding-top: 50px;
+}
+
+.rewards-program h3 {
+	font-weight: 600;
+}
+
+.rewards-program p {
+	font-size: 19px;
+}
+
+.sponsor-bonus, .indirect-sponsor-bonus,
+.binary-cycle-bonus, .comp-text,
+.binary-match-bonus, .infinity-bonus, .star-share-bonus {
+	margin-bottom: 75px;
+}
+
+.sponsor-bonus img {
+	margin-top: 25px;
+	max-width: 100%;
+}
+
+.sponsor-bonus img.sponsor-bonus-icon,
+.indirect-sponsor-bonus img.indirect-sponsor-bonus-icon,
+.binary-cycle-bonus img.binary-cycle-bonus-icon,
+.binary-match-bonus img.binary-match-bonus-icon,
+.infinity-bonus img.infinity-bonus-icon,
+.star-share-bonus img.star-share-bonus-icon {
+	float: left;
+	margin-top: 5px;
+	margin-right: 25px;
+	width: 100px;
+}
+
+.star-share-bonus table {
+	margin: 0 auto;
+	margin-top: 30px;
+}
+
+.table-container {
+	margin-top: 30px;
+	margin-bottom: 45px;
+	text-align: center;
+}
+
+@media only screen and (max-width: 1140px) {
+	.big-container-wrapper {
+		width: 100%;
+	}
+
+	.bonus-plan-container {
+		width: 95%;
+	}
+}
+
+@media only screen and (max-width: 1080px) {
+	.daily-mining-payout table {
+		width: 100%;
+	}
+
+	.star-share-bonus table {
+		width: 100%;
+	}
+}
+
+@media only screen and (max-width: 855px) {
+	.credit-table, .cycle-table {
+		display: block;
+		margin: 0 auto;
+	}
+
+	.credit-table {
+		margin-bottom: 30px;
+		text-align: left;
+		width: 100%;
+	}
+
+	.cycle-table {
+		text-align: left;
+		width: 100%;	
+	}
+}
+
+@media only screen and (max-width: 680px) {
+	.binary-match-bonus table {
+		width: 100%;
+	}
+}
+
+@media only screen and (max-width: 600px) {
+	.bonus-plan-container {
+		padding: 20px;
+	}
+}
+
+@media only screen and (max-width: 580px) {
+	.infinity-bonus table {
+		width: 100%;
+	}
+}
+
+@media only screen and (max-width: 490px) {
+	.indirect-sponsor-bonus table {
+		width: 100%;
+	}
+}
+
+@media only screen and (max-width: 450px) {
+	.sponsor-bonus img.sponsor-bonus-icon,
+	.indirect-sponsor-bonus img.indirect-sponsor-bonus-icon,
+	.binary-cycle-bonus img.binary-cycle-bonus-icon,
+	.binary-match-bonus img.binary-match-bonus-icon,
+	.infinity-bonus img.infinity-bonus-icon,
+	.star-share-bonus img.star-share-bonus-icon {
+		width: 73px;
+	}
+}
+
+@media only screen and (max-width: 400px) {
+	.infinity-bonus h3 {
+		font-size: 24px;
+	}
+}
+
+.big-container-wrapper.nav-body-shift {
+	margin-left: 300px;
+}

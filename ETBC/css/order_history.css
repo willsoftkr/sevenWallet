@@ -1,0 +1,20 @@
+
+table.regTb {width:100%;table-layout:fixed;border-collapse:collapse;}
+table.regTb {border-top:solid 1px #777;}
+table.regTb th,
+table.regTb td {padding:4px 0 4px 10px;border-bottom:solid 1px #ddd;line-height:28px;font-size:12px;}
+table.regTb td.mid {text-align: center;}
+table.regTb th {font-weight:normal;font-family:"nngdb";font-size:12px;color:#444;background-color:#f5f5f5;}
+
+
+/* 페이징 */
+.pg_wrap {clear:both;text-align:center}
+.pg_wrap a {padding:0;margin:0;display:inline-block;*display:inline;*zoom:1;margin-right:-4px;*margin-right:0;width:33px;height:33px;line-height:33px;color:#000;font-size:14px;border:solid 1px #ddd;margin-right:3px;background-color:#fff;}
+.pg_page, .pg_current {padding:0;margin:0;display:inline-block;*display:inline;*zoom:1;margin-right:-4px;*margin-right:0;width:33px;height:33px;line-height:33px;color:#000;font-size:16px;margin-right:3px;background-color:#555;border:solid 1px #555;}
+.pg a:focus, .pg a:hover {background-color:#bbb;}
+.pg_page {background:#e4eaec;text-decoration:none}
+.pg_start, .pg_prev {/* 이전 */}
+.pg_end, .pg_next {/* 다음 */}
+.pg_current {display:inline-block;margin:0 4px 0 0;background:#333;color:#fff;font-weight:normal}
+
+.msg_sound_only, .sound_only {display:inline-block !important;position:absolute;top:0;left:0;margin:0 !important;padding:0 !important;width:1px !important;height:1px !important;font-size:0;line-height:0;border:0 !important;overflow:hidden !important}

@@ -1,0 +1,74 @@
+
+body{
+  background-color: #fff;
+ }
+
+.btn_menu{float:left;height:60px;width:60px;transition:0.2s;cursor:pointer;}
+.btn_menu:hover{background-color:#ccc;}
+.btn:active{background-color:#ffc26a;}
+
+.sound_only {
+	display: inline-block !important;
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin: 0 !important;
+	padding: 0 !important;
+	width: 1px !important;
+	height: 1px !important;
+	font-size: 0;
+	line-height: 0;
+	border: 0 !important;
+	overflow: hidden !important;
+}
+
+.referral-enroll {
+	display: inline-block;
+	*display:none;
+	line-height: 60px;
+	position: absolute;
+	right: 280px;
+	color:#333;
+	font-size:16px;
+	font-weight:bold;
+	cursor:pointer;
+}
+.welcome_username{
+	display: inline-block;
+	top:22px;
+	position: absolute;
+	left: 300px;
+	color:rgb(0, 121, 211);
+	font-size:16px;
+	font-weight:bold;
+	text-transform:  uppercase
+}
+.welcome{
+	color:#333;
+	margin-right:4px;
+	text-transform: none;
+}
+@media only screen and (max-width: 900px){
+	.referral-enroll{display:none;}
+	.welcome_username{display:none;}
+}
+.main-container {
+	height: 100%;
+	width: 100%;
+	z-index: 0;
+	background-color:#fff;
+}
+
+#framewrp {position:fixed;width:100%;height:100%;background:rgba(0,0,0,0.6);z-index:99999;display:none;}
+#framer {position:absolute;left:50%;margin-left:-300px;top:50%;margin-top:-250px;width:600px;height:500px;background-color:#fff;border:0;}
+@media screen and (max-width:480px) {
+	#framer {position:absolute;left:0;margin-left:0;top:10%;margin-top:0;width:100%;height:80%;}
+}
+
+
+/* placeholder focus */
+input:focus::-webkit-input-placeholder, textarea:focus::-webkit-input-placeholder { /* WebKit browsers */ color:transparent; } input:focus:-moz-placeholder, textarea:focus:-moz-placeholder { /* Mozilla Firefox 4 to 18 */ color:transparent; } input:focus::-moz-placeholder, textarea:focus::-moz-placeholder { /* Mozilla Firefox 19+ */ color:transparent; } input:focus:-ms-input-placeholder, textarea:focus:-ms-input-placeholder { /* Internet Explorer 10+ */ color:transparent; }
+/* //placeholder focus */
+
+
+/*.main-container h2{color:white;}*/

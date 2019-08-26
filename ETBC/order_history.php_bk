@@ -1,0 +1,352 @@
+<?php
+include_once('./_common.php');
+?>
+<!doctype html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8" />
+	<title>PINNACLE MINING</title>
+	
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="Pinnacle" />
+	<meta property="og:url" content="" />
+	<meta property="og:description" content="." />
+	<meta property="og:site_name" content="" />
+	<meta property="og:image" content="Pinnacle Mining Have" />
+	<meta property="og:image:width" content="800" />
+	<meta property="og:image:height" content="400" />
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<!-- css연결 -->
+	<link rel="stylesheet" href="css/all.css">
+	<link rel="stylesheet" href="css/adm.css">
+	
+	<!-- jQuery 연결 -->
+	<script src="js/jquery-1.9.1.min.js"></script>
+	<script src="js/adm.js"></script>
+
+</head>
+<body>
+<?php
+	include_once('./mypage_head.php');
+	include_once('./mypage_left.php');
+?>
+	<div id="content">
+	<div class="infoBx">
+		<h3>최근수당내역</h3>
+
+		<div style="padding:15px;">
+			<?php
+				$limit = " limit 0, 5 ";
+			?>
+				<!-- 주문 내역 목록 시작 { -->
+				<?php if (!$limit) { ?>총 <?php echo $cnt; ?> 건<?php } ?>
+				<style type="text/css">
+					.infoBx {margin-top:20px;}
+					table.lst {width:100%;table-layout:fixed;border-collapse:collapse;}
+					table.lst {border-top:solid 1px #ddd;}
+					table.lst th,
+					table.lst td {padding:12px 0;border-bottom:solid 1px #ddd;line-height:28px;}
+					table.lst th {font-weight:normal;color:#222;}
+					table.lst td {text-align:center;color:#777;}
+					table.lst input[type="text"],
+					table.lst input[type="password"] {padding:0;padding-left:8px;height:23px;line-height:23px;border:solid 1px #ccc;background-color:#f9f9f9;}
+					table.lst textarea {padding:0;padding-left:8px;line-height:23px;border:solid 1px #ccc;background-color:#f9f9f9;}
+					table.lst label {cursor:pointer;}
+					table.lst input[type="radio"] {}
+					table.lst input[type="radio"] + label{color:#999;}
+					table.lst input[type="radio"]:checked + label {color:#e50000;font-weight:bold;}
+					span.help {font-size:11px;font-weight:normal;color:rgba(38,103,184,1);}
+				</style>
+				<div>
+					<table cellspacing="0" cellpadding="0" border="0" class="lst">
+					<colgroup>
+						<col style="width:100px;"/>
+						<col style="width:100px;"/>
+						<col style="width:100px;"/>
+						<col style="width:auto;"/>
+					</colgroup>
+					<thead>
+					<tr>
+						<th>수당지급일</th>
+						<th>수당구분</th>
+						<th>지급액</th>
+						<th>수당근거</th>
+					</tr>
+					</thead>
+					<tbody>
+					<?php
+					$sql = " select date_format(day, '%Y-%m-%d') as day, allowance_name, mb_recommend, benefit, rec from soodang_pay
+							where mb_id = '{$member['mb_id']}'
+							order by day desc
+							$limit ";
+
+					$result = sql_query($sql);
+					for ($i=0; $row=sql_fetch_array($result); $i++)
+					{
+				
+					?>
+
+					<tr>
+						
+						<td><?php echo ($row['day']); ?></td>
+						<td><?php echo ($row['allowance_name']); ?></td>
+						<td><?php echo display_price($row['benefit']); ?></td>
+						<td><?php echo $row['rec']; ?></td>
+
+					</tr>
+
+					<?php
+					}
+
+					if ($i == 0)
+						echo '<tr><td colspan="4" class="empty_table">수당 내역이 없습니다.</td></tr>';
+					?>
+					</tbody>
+					</table>
+				</div>
+				<!-- } 주문 내역 목록 끝 -->
+			</div>
+		</div><!-- // infoBx -->
+
+		<div class="infoBx">
+			<h3>나의 수당정보</h3>
+
+			<div style="padding:15px;">
+				<?php $limit = " limit 0, 5 "; ?>
+				<?php if (!$limit) { ?>총 <?php echo $cnt; ?> 건<?php } ?>
+				<div>
+					<table cellspacing="0" cellpadding="0" border="0" class="lst">
+					<colgroup>
+						<col style="width:100px;"/>
+						<col style="width:100px;"/>
+						<col style="width:100px;"/>
+						<col style="width:auto;"/>
+					</colgroup>
+					<thead>
+				<?
+					$benefit = "SELECT allowance_name FROM soodang_pay GROUP BY allowance_name ORDER BY DAY DESC";
+
+					$rrr = sql_query($benefit);
+
+					$html= "&nbsp;&nbsp;&nbsp;&nbsp;";
+					$allowcnt=0;
+					for ($i=0; $allowance_name=sql_fetch_array($rrr); $i++) {   
+						$nnn="allowance_chk".$i;
+						$html.= "<input type='checkbox' name='".$nnn."' id='".$nnn."' value='".$allowance_name['allowance_name']."'>".$allowance_name['allowance_name']."&nbsp;&nbsp;&nbsp;&nbsp;";
+
+						if(${"allowance_chk".$i}!=''){
+							if($allowcnt==0){
+								$sql_search = " and ( (allowance_name='".${"allowance_chk".$i}."')";
+							}else{
+								$sql_search .= "  or ( allowance_name='".${"allowance_chk".$i}."' )";
+							}
+
+							$allowcnt++;
+						}
+
+					}
+
+					if ($allowcnt>0) $sql_search .= ")";
+				?>
+						<tr>
+							<th colspan="4">
+								<form name="fsearch" id="fsearch" action="order_history.php" method="get">
+									<? echo $html;?>
+									<input type="hidden" name="sql_search" value="<?=$sql_search?>">
+									<input type="submit" class="btn_submit" value="검색">
+								</form>
+							</th>
+						</tr>
+						<tr>
+							<th>수당지급일</th>
+							<th>수당구분</th>
+							<th>지급액</th>
+							<th>수당근거</th>
+						</tr>
+					</thead>
+					<tbody>
+					<?php
+					$sql = " select date_format(day, '%Y-%m-%d') as day, allowance_name, mb_recommend, benefit, rec 
+						from soodang_pay where mb_id = '{$member['mb_id']}' $sql_search
+							order by day desc";
+
+					$result = sql_query($sql);
+
+					for ($i=0; $row=sql_fetch_array($result); $i++)
+					{
+				
+					?>
+
+					<tr>
+						
+						<td class="td_num"><?php echo ($row['day']); ?></td>
+						<td class="td_num"><?php echo ($row['allowance_name']); ?></td>
+						<td class="td_numbig"><?php echo display_price($row['benefit']); ?></td>
+						<td width='500'><?php echo $row['rec']; ?></td>
+
+					</tr>
+
+					<?php
+					}
+
+					if ($i == 0)
+						echo '<tr><td colspan="4" class="empty_table">수당 내역이 없습니다.</td></tr>';
+					?>
+					</tbody>
+					</table>
+				</div>
+			</div>
+		</div><!-- // infoBx -->
+		<div class="infoBx">
+			<h3>최근주문내역</h3>
+
+			<div style="padding:15px;">
+				<!-- 주문 내역 목록 시작 { -->
+				<?php if (!$limit) { ?>총 <?php echo $cnt; ?> 건<?php } ?>
+				<style type="text/css">
+					table.lst {width:100%;table-layout:fixed;border-collapse:collapse;}
+					table.lst {border-top:solid 1px #ddd;}
+					table.lst th,
+					table.lst td {padding:12px 0;border-bottom:solid 1px #ddd;line-height:28px;}
+					table.lst th {font-weight:normal;color:#222;}
+					table.lst td {text-align:center;color:#777;}
+					table.lst input[type="text"],
+					table.lst input[type="password"] {padding:0;padding-left:8px;height:23px;line-height:23px;border:solid 1px #ccc;background-color:#f9f9f9;}
+					table.lst textarea {padding:0;padding-left:8px;line-height:23px;border:solid 1px #ccc;background-color:#f9f9f9;}
+					table.lst label {cursor:pointer;}
+					table.lst input[type="radio"] {}
+					table.lst input[type="radio"] + label{color:#999;}
+					table.lst input[type="radio"]:checked + label {color:#e50000;font-weight:bold;}
+					span.help {font-size:11px;font-weight:normal;color:rgba(38,103,184,1);}
+				</style>
+				<div>
+					<table cellspacing="0" cellpadding="0" border="0" class="lst">
+					<colgroup>
+						<col style="width:180px;"/>
+						<col style="width:180px;"/>
+						<col style="width:240px;"/>
+						<col style="width:80px;"/>
+						<col style="width:80px;"/>
+						<col style="width:auto;"/>
+					</colgroup>
+					<thead>
+						<tr>
+							<th>주문서번호</th>
+							<th>주문일시</th>
+							<th>상품</th>
+							<th>주문금액</th>
+							<th>입금액</th>
+							<th>상태</th>
+						</tr>
+					</thead>
+					<tbody>
+					<?php
+					$sql = " select *
+							from {$g5['g5_shop_order_table']}
+							where mb_id = '{$member['mb_id']}'
+							order by od_id desc
+							$limit ";
+					$result = sql_query($sql);
+					for ($i=0; $row=sql_fetch_array($result); $i++)
+					{
+						$uid = md5($row['od_id'].$row['od_time'].$row['od_ip']);
+
+						switch($row['od_status']) {
+							case '주문':
+								$od_status = '입금확인중';
+								break;
+							case '입금':
+								$od_status = '입금완료';
+								break;
+							case '준비':
+								$od_status = '상품준비중';
+								break;
+							case '배송':
+								$od_status = '상품배송';
+								break;
+							case '완료':
+								$od_status = '배송완료';
+								break;
+							default:
+								$od_status = '주문취소';
+								break;
+						}
+					?>
+
+					<tr>
+						<td>
+							<input type="hidden" name="ct_id[<?php echo $i; ?>]" value="<?php echo $row['ct_id']; ?>">
+							<a href="<?php echo G5_SHOP_URL; ?>/orderinquiryview.php?od_id=<?php echo $row['od_id']; ?>&amp;uid=<?php echo $uid; ?>"><?php echo $row['od_id']; ?></a>
+						</td>
+						<td><?php echo substr($row['od_time'],2,14); ?> (<?php echo get_yoil($row['od_time']); ?>)</td>
+						<td class="td_num">
+						<?
+							$comma = "";
+							$qry = sql_query(" select * from g5_shop_cart where od_id = '{$row[od_id]}' ");
+							while ($res = sql_fetch_array($qry)) {
+						?>
+							<?=$comma?> <?=$res['it_name']?>(<?=$res['ct_qty']?>)
+						<?
+							$comma = ",";
+							}
+						?>
+						<?//php echo $row['od_cart_count']; ?>
+						</td>
+						<td class="td_numbig"><?php echo display_price($row['od_cart_price'] + $row['od_send_cost'] + $row['od_send_cost2']); ?></td>
+						<td class="td_numbig"><?php echo display_price($row['od_receipt_price']); ?></td>
+						<td><?php echo $od_status; ?></td>
+					</tr>
+
+					<?php
+					}
+
+					if ($i == 0) echo '<tr><td colspan="6" class="empty_table">주문 내역이 없습니다.</td></tr>';
+					?>
+					</tbody>
+					</table>
+				</div>
+				<!-- } 주문 내역 목록 끝 -->
+			</div>
+		</div>
+	</div>
+<?php
+	include_once('./mypage_footer.php')
+?>
+</html>
+<script>
+	var clocks = document.getElementsByClassName("clock");
+
+	var dt= new Date();
+	
+	if(dt.getHours() > 15 ){dt.setDate(dt.getDate() + 1)	}
+	dt.setHours(16,0,0,0);
+	var countDownDate = dt.getTime();
+
+	function updateClocks() {
+		  // Get todays date and time
+		var now = new Date().getTime();
+
+		// Find the distance between now an the count down date
+		var distance = countDownDate - now;
+		//console.log(countDownDate);
+		// Time calculations for days, hours, minutes and seconds
+		//var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+		var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+		var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+		var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+		clocks[0].textContent = hours + " : "+ minutes + " : " + seconds;
+		if (distance < 0) {
+			clearInterval(x);
+			//document.getElementById("demo").innerHTML = "EXPIRED";
+			clocks[0].textContent = "EXPIRED";
+		}
+	}
+
+	// Update every minute:
+	var x = setInterval(updateClocks, 1000);
+	updateClocks();
+</script>

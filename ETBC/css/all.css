@@ -1,0 +1,52 @@
+@charset "UTF-8";
+
+/* font-face */
+@font-face{
+font-family:candara;
+src:local(※), 
+	url('/img/font/candara.woff') format('woff');
+}
+
+* {padding: 0; margin: 0; box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;}
+ul,ol {list-style: none;}
+a     {text-decoration: none;}
+img   {border:0;}
+
+body, html {height: 100%;}
+body, html, a {letter-spacing:-0.5px; color:#222;}
+input, textarea {padding: 5px;}
+input[type=file] {padding: 0;}
+input[type=button], button {
+ -webkit-appearance: none;
+-moz-appearance: none;
+appearance: none;
+}
+
+.after:after,
+dl:after,
+ul:after {content:""; clear:both; display:block;}
+.table {display:table;}
+.table-cell {display:table-cell; vertical-align:middle;}
+
+dt, .flot-left {float:left;}
+dd, .flot-right {float:right;}
+
+span, a, label {display:inline-block;}
+
+input::-webkit-input-placeholder {font-size:12px;}
+
+input:focus::-webkit-input-placeholder{
+    color: transparent!important;
+}
+input:focus::-moz-placeholder{
+    color: transparent!important;
+}
+input:focus:-moz-placeholder{
+    color: transparent!important;
+}
+
+textarea {width: 100%; resize:none;}
+

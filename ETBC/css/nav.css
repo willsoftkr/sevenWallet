@@ -1,0 +1,512 @@
+* {
+	box-sizing: border-box;
+	font-family: 'Montserrat', sans-serif;
+}
+
+body, html {
+  height: 100%;
+  width: 100%;
+}
+
+a, a:link, a:visited, a:hover, a:active {
+	text-decoration: none;
+}
+
+ul {
+	list-style: none;
+}
+
+.blue {
+	color: rgb(0, 121, 211);
+}
+
+.gray {
+	color: rgb(124, 124, 124);
+}
+
+.purple {
+	color: #53407A;
+}
+
+.red {
+	color: #ff6c6c;
+}
+
+.nav-two-big {
+	font-size: 25px;
+}
+
+.nav-two-line-height {
+	line-height: 1.1;
+}
+
+/* ==================== TOP NAV ONE ===================== */
+
+.dropdown-item.active, .dropdown-item:active {
+	background-color: rgb(0, 121, 211);
+}
+
+.btn.dropdown-toggle::after {
+	display: none;
+}
+
+.dropdown-menu .username {
+	padding: 4px 24px;
+}
+
+
+.btn.dropdown-toggle .fa-bell {
+	color: rgb(0, 121, 211);
+	font-size: 20px;
+	margin-top: 5px;
+}
+
+/*
+.dashboard-wrapper {
+	margin: 0 auto;
+	position: relative;
+		top: 175px;
+	text-align: center;
+	width: 1134px;
+}
+
+.dashboard-wrapper h2 {
+	text-align: left;
+}
+*/
+
+.lang-sel, .notification-bell, .dropdown {
+	display: inline-block;
+}
+
+.logo-container {
+    display: inline-block;
+    position:absolute;
+	min-width:190px;
+	height:60px;
+	line-height: 60px;
+    text-align: center;
+    left: 50px;
+}
+.logo-container a{
+	width:100%;
+	height:100%;
+	display:block;
+}
+.logo-container img{
+	padding:7px 0 ;
+}
+
+.overview-container {
+	margin-bottom: 50px;
+}
+
+.top-logo-icon {
+}
+
+.top-logo-text {
+	color: #212121;
+	font-size: 20px;
+	margin-left: 5px;
+	position: relative;
+		top: 3px;
+}
+
+.top-nav-one {
+    top:0;
+	background-color: white;
+	border-bottom: 1px solid #e5e5e5;
+	height: 60px;
+	position: fixed;
+	width: 100%;
+	z-index: 9 !important;
+}
+
+.user-dropdown-rank {
+	width: 35px;
+}
+
+.user-drop-down-section {
+	display: inline-block;
+	margin-top: 10px;
+	position: absolute;
+		right: 10px;
+}
+
+/* ==================== TOP NAV TWO ===================== */
+
+.btc-price {
+	display: inline-block;
+}
+
+.mining-wallet {
+	display: inline-block;
+	margin-left: 30px;
+}
+
+.nav-two-btc-logo {
+	margin-bottom: 10px;
+	width: 25px;
+}
+
+.nav-two-eth-logo {
+	margin-bottom: 10px;
+	width: 16px;
+}
+
+.payout-countdown {
+	display: inline-block;
+  margin: 5px 0 0 30px;
+	text-align: center;
+}
+
+.fiji-wallet {
+	display: inline-block;
+	margin-left: 30px;
+}
+
+.price-and-wallets {
+	display: inline-block;
+	position: absolute;
+		right: 40px;
+}
+
+.promotion {
+	display: inline-block;
+	margin-left: 70px;
+	text-align: center;
+}
+
+.top-nav-two {
+	background-color: white;
+	border-bottom: 1px solid #e5e5e5;
+	height: 55px;
+	position: fixed;
+	top: 60px;
+	left: 0;
+	width: 100%;
+	z-index: 8 !important;
+}
+
+/* ==================== SIDE NAV ===================== */
+
+.link_list, .sub-link-list {
+	margin: 0;
+	padding: 0;
+}
+
+.menu-dropdown {
+	cursor: pointer;
+}
+
+.menu-dropdown a::after {
+	font-family: "Font Awesome 5 Free";
+	content: "\f107";
+	margin-top: 4px;
+	position: absolute;
+	right: 20px;
+}
+
+.mw-880 {
+	display: none;
+}
+
+.link_list a li i, .link_list li i {
+	margin-top: 4px;
+	width: 20px;
+	text-align: center;
+}
+
+.is_open a::after {
+	font-family: "Font Awesome 5 Free";
+	content: "\f106";
+}
+
+.is-inactive {
+	overflow-x: hidden;
+}
+
+.sales-volume-chart img {
+	width: 95%;
+}
+
+.side-icon-left {
+	left: 30px;
+}
+
+.side-nav {
+	background-color: white;
+	border-right: 1px solid #e5e5e5;
+	height: 100%;
+	overflow-x: hidden;
+	position: fixed;
+	top: 60px;
+	left: -260px;
+	transition: all 0.1s linear;
+	width: 260px;
+	z-index: 7 !important;
+}
+
+.side-nav.side-menu-open {
+	left: 0px;
+}
+
+.side-nav-close {
+	color: rgb(102,102,102);
+	margin-left: 150px;
+}
+
+.side-nav-close:hover {
+	color: black;
+}
+
+.side-nav ul {
+	height: 100%;
+}
+
+.side-nav-link, .side-nav-sub-link {
+	color: rgb(102,102,102);
+	font-size: 15px;
+	height: 52px;
+	padding-top: 0px !important;
+	padding-bottom: 0px !important;
+	position: relative;
+	transition: all 0.2s linear;
+	font-weight:bold;
+}
+
+.side-nav-link:hover, .side-nav-sub-link:hover, 
+.is_open {
+	background-color: rgb(242, 242, 242);
+	color: black;
+}
+
+.sub-link-list {
+	max-height: 0;
+	overflow: hidden;
+	transition: max-height 0.3s ease-in-out;
+}
+
+/* ==================== NAVIGATION MEDIA QUERY ===================== */
+
+@media only screen and (max-width: 575px) {
+	.top-logo-text {
+		display: none;
+	}
+
+	.top-logo-icon {
+		margin-top: 4px;
+	}
+
+	.fa-bars {
+		position: relative;
+			top: 2px;
+	}
+}
+
+@media only screen and (max-width: 972px) {
+	.btc-price, .fiji-wallet, .mining-wallet, .payout-countdown, .recent-notice {
+		display: none !important;
+	}
+
+	.dropdown, .dropdown-toggle {
+		background-color: white;
+	}
+
+	.dropdown-info {
+		font-size: 20px;
+	}
+
+	.countdown-dropdown button img {
+		width: 32px;
+	}
+
+	.btc-usd-dropdown button img {
+		width: 40px;
+	}
+
+	.fiji-wallet-dropdown button img {
+		width: 37px;
+	}
+
+	.mining-wallet-dropdown button img {
+		width: 35px;
+	}
+
+	.mw-880 {
+		display: inline-block;
+		margin-top: 3px;
+		margin-left: 5px;
+		margin-right: 5px;
+	}
+
+	.next-payout {
+		color: rgb(124, 124, 124);
+	}
+
+	.payout-countdown-dropdown {
+		text-align: center;
+	}
+
+	.top-nav-two {
+		text-align: center;
+	}
+
+	.wallet-resize {
+		width: 225px;
+	}
+}
+
+@media only screen and (max-width: 1100px) {
+	.recent-notice {
+		display: none !important;
+	}
+}
+
+.big-container-wrapper.nav-body-shift {
+	margin-left: 300px;
+}
+
+.modal .user {
+	border: 1px solid rgb(242, 242, 242);
+	cursor: pointer;
+	margin-bottom: 5px;
+	padding: 10px;
+}
+
+.modal .user:hover {
+	border-color: rgb(0, 121, 211);
+}
+.modal .modal-body {
+	/*height: 500px;*/
+	overflow: auto;
+}
+.modal .user.selected {
+	font-weight: bold;
+	border-width: 1px;
+	border-color: #ccc;
+}
+
+.pace {
+	-webkit-pointer-events: none;
+	pointer-events: none;
+  
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+  
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+  
+	-webkit-transform: translate3d(0, -50px, 0);
+	-ms-transform: translate3d(0, -50px, 0);
+	transform: translate3d(0, -50px, 0);
+  
+	-webkit-transition: -webkit-transform .5s ease-out;
+	-ms-transition: -webkit-transform .5s ease-out;
+	transition: transform .5s ease-out;
+}
+  
+.pace.pace-active {
+	-webkit-transform: translate3d(0, 0, 0);
+	-ms-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
+}
+  
+.pace .pace-progress {
+	display: block;
+	position: fixed;
+	z-index: 2000;
+	top: 0;
+	right: 100%;
+	width: 100%;
+	height: 2px;
+	background: #faa731;
+  
+	pointer-events: none;
+}
+
+.side-nav-link a, .side-nav-sub-link a {
+	color: rgb(102,102,102);
+	width: 100%;
+	display: block;
+	padding: 12px 0;
+}
+.side-nav-link a:hover, .side-nav-sub-link a:hover {
+	color: black;
+}
+
+.dropdown button {
+	background-color: #fff;
+}
+
+#commonModal .modal-body{
+	height: auto;
+	text-align:center;
+}
+#commonModal .modal-body i{
+	font-size: 100px;
+	margin-bottom: 15px;
+}
+
+.download-link {
+	cursor: pointer;
+}
+
+.is-inactive {
+	overflow-x: hidden;
+}
+
+.sub-link-list {
+	max-height: 0;
+	overflow: hidden;
+	transition: max-height 0.3s ease-in-out;
+}
+
+.top-nav-one .recent-notice {
+	font-size: 22px;
+	vertical-align: middle;
+	position: absolute;
+	top: 14px;
+	left: 550px;
+	font-weight: bold;
+}
+
+.top-nav-one .recent-notice a{
+	color: orange;
+}
+.con_link #url {
+	margin: 0 0 0 10px;
+}
+.con_link i {
+	cursor: pointer;
+}
+.menu-dropdown::after {
+	content: none !important;
+}
+
+.side-nav-sub-link i {
+	margin-left: 54px !important;
+	margin-right: 10px;
+}
+
+.side-nav-link i {
+	font-size: 18px;
+	margin-left: 24px;
+	margin-right: 10px;
+}
+
+.top-nav-one > i {
+	padding: 20px;
+	cursor: pointer;
+}
+
+.fiji-wallet {
+	cursor: pointer;
+}
+
+.mining-wallet {
+	cursor: pointer;
+}

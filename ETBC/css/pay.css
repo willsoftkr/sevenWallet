@@ -1,0 +1,23 @@
+p.line0 {font-weight: bold;line-height: 33px;}
+p.line1 {font-weight: bold;line-height: 33px;color:red;}
+div.block0 {text-align: center;width: 400px;margin: 0 auto 10px;background-color: #dfe0e1;padding: 30px 0 30px 0;}
+div.block0 p{font-weight: bold;line-height: 33px;}
+div.block0 a.bit{margin-right: 10px;}
+
+div.block1 {text-align: center;width: 400px;margin: 0  auto 10px ;background-color: #dfe0e1;overflow: hidden;padding: 15px 0 30px 0;}
+div.block1 p{font-weight: bold;line-height: 33px;}
+div.block1 .circle{float:left;width:50%;}
+input.expire {width:100%;line-height: 30px;font-weight: bold; background-color: red; color: #fff; text-align: center;}
+
+div.key {float: left;width: 48%; text-align: left;background-color: #ffd395;margin-top: 15px; text-align: center; height: 350px;margin-bottom: 50px;}
+div.key p:nth-child(1){margin: 30px auto 0px;font-size: 18px;}
+div.key p:nth-child(1) span{color:#ff9600;}
+div.key p:nth-child(2) a{color: #ff9600;font-size: 20px;font-weight: bold;margin: 10px 0 0 0;text-decoration: underline;}
+div.key p:nth-child(3) {margin:30px 0 0 0;}
+div.key p:nth-child(4) {margin:10px 0 0 0;}
+div.key p:nth-child(5) {margin:30px 0 0 0;}
+div.key p:nth-child(6) {margin:10px 0 0 0;}
+
+div.qr {float: right;width: 48%; text-align: right;background-color: #ffd395;margin-top: 15px; text-align: center;height: 350px;margin-bottom: 50px;}
+div.qr p:nth-child(1){margin: 30px auto 0px;font-size: 18px;}
+div.qr img{margin: 30px auto 0px;}

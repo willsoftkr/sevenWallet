@@ -1,0 +1,157 @@
+/* ==================== FAQ ===================== */
+
+.answer {
+	background-color: #F2F2F2;
+	font-size: 19px;
+	max-height: 0;
+	overflow: hidden;
+	padding-left: 70px;
+	padding-right: 70px;
+	transition: all 0.3s ease;
+}
+
+.qa-container .answer .answer-list li {
+	border: none;
+	color: black;
+	cursor: text;
+	display: block;
+	font-size: 18px;
+	margin-left: 0;
+}
+
+.main-container {
+	background-color: rgb(242, 242, 242);
+	display: absolute;
+	height: 100%;
+	width: 100%;
+	z-index: 0;
+}
+
+.big-container-wrapper {
+	margin: 0 auto;
+	position: relative;
+		top: 175px;
+	width: 1100px;
+}
+
+.faq-container {
+	background-color: white;
+	border-radius: 4px;
+	margin-bottom: 75px;
+	padding: 30px;
+	position: relative;
+	width: 1100px;
+}
+
+.faq-panels ul li {
+	border-bottom: 1px solid white;
+	color: rgb(124, 124, 124);
+	cursor: pointer;
+	display: inline-block;
+	font-size: 25px;
+	list-style-type: none;
+	margin-left: 45px;
+	margin-right: 45px;
+	transition: all 0.2s linear;
+}
+
+.faq-panels ul li.active {
+	border-bottom: 1px solid rgb(0, 121, 211);
+	color: rgb(0, 121, 211);
+}
+
+.faq-panels .faq-panel {
+	display: none;
+	padding: 25px;
+}
+
+.faq-panels .faq-panel.active {
+	display: block;
+}
+
+.faq-tabs {
+	padding-left: 0;
+	text-align: center;
+}
+
+.qa-container {
+	border: 1px solid #e5e5e5;
+	border-left: none;
+	border-right: none;
+	border-top: none;
+}
+
+.question.qa-open {
+	background-color: #F2F2F2;
+	color: black;
+}
+
+.question {
+	color: rgb(124, 124, 124);
+	cursor: pointer;
+	font-size: 22px;
+	font-weight: 600;
+	padding: 15px 25px;
+	transition: all 0.2s linear;
+}
+
+.question:hover {
+	background-color: #F2F2F2;
+	color: black;
+}
+
+.question::before {
+	content: '\f054';
+	font-family: "Font Awesome 5 Free";
+	margin-right: 25px;
+	position: relative;
+		top: 1px;
+}
+
+.question.qa-open::before {
+	content: '\f078';
+	margin-right: 19px;
+}
+
+@media only screen and (max-width: 1100px) {
+	.big-container-wrapper {
+		width: 100%;
+	}
+
+	.faq-container, .big-container-wrapper h2 {
+		margin: 0 auto;
+		width: 95%;
+	}
+
+	.big-container-wrapper h2 {
+		margin-bottom: 8px;
+		text-align: center;
+	}
+}
+
+@media only screen and (max-width: 725px) {
+	.faq-panels .faq-tabs li {
+		display: block;
+		margin-bottom: 10px;
+	}
+
+	.faq-container {
+		padding-left: 0;
+		padding-right: 0;
+	}
+
+	#general, #account, #mining {
+		padding: 0;
+	}
+}
+
+@media only screen and (max-width: 600px) {
+	.answer {
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+}
+
+.big-container-wrapper.nav-body-shift {
+	margin-left: 300px;
+}

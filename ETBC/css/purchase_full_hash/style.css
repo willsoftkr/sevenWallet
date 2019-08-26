@@ -1,0 +1,752 @@
+* {
+	box-sizing: border-box;
+	font-family: 'Montserrat', sans-serif;
+}
+
+body, html {
+  height: 100%;
+  width: 100%;
+  background-color: rgb(242, 242, 242);
+}
+
+a, a:link, a:visited, a:hover, a:active {
+	text-decoration: none;
+}
+
+ul {
+	list-style: none;
+}
+
+.blue {
+	color: rgb(0, 121, 211);
+}
+
+.light-blue {
+	color: rgb(123, 199, 255);
+}
+
+.gray {
+	color: rgb(124, 124, 124);
+}
+
+.purple {
+	color: #53407A;
+}
+
+.red {
+	color: #ff6c6c;
+}
+
+.nav-two-big {
+	font-size: 25px;
+}
+
+.nav-two-line-height {
+	line-height: 1.1;
+}
+
+
+
+/* ==================== PURCHASE FULL HASH ===================== */
+
+.main-container {
+	background-color: rgb(242, 242, 242);
+	display: absolute;
+	height: 100%;
+	width: 100%;
+	z-index: 0;
+}
+
+.big-container-wrapper {
+	position: relative;
+		top: 175px;
+}
+
+.big-container-wrapper h2 {
+	margin: 0 auto;
+	margin-bottom: 8px;
+	width: 1100px;
+}
+
+.big-package-icon {
+	position: relative;
+		bottom: 50px;
+}
+
+.btc-logo-container, .package-description, .btc-logo-container-2 {
+	display: inline-block;
+}
+
+
+.btc-logo-container {
+	margin-right: 5px;
+	position: relative;
+	bottom: 12px;
+}
+
+.btc-logo-container-2 {
+	padding:20px;
+}
+
+.checkout-container {
+	margin-top: 25px;
+	padding: 30px;
+}
+
+.checkout-container .checkout-button {
+	background-color: rgb(0, 121, 211);
+	border-color: rgb(0, 121, 211);
+	margin-top: 5px;
+	margin-bottom: 10px;
+}
+
+.checkout-container i {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.current-hash-power-container, .selected-hash-power-container, .total-hash-power-container {
+	position: relative;
+	overflow: hidden;
+}
+
+.current-hash-power-container {
+	margin-bottom: 10px;
+}
+
+.selected-hash-power-container {
+	border-bottom: 1px solid #e5e5e5;
+	margin-bottom: 10px;
+	padding-bottom: 10px;
+}
+
+.eth-logo-container {
+	display: inline-block;
+	margin-right: 5px;
+	position: relative;
+		bottom: 12px;
+		right: 10px;
+}
+
+.eth-logo-container .eth-logo {
+	width: 32px;
+}
+
+.eth-pack-des {
+	position: relative;
+		right: 3px;
+}
+
+.exchange-rate {
+	position: relative;
+	top: 10px;
+}
+
+.hash-desc {
+	float: left;
+	width: 125px;
+	height: 30px;
+	line-height: 30px;
+}
+
+.hash-amount {
+	float: right;
+	width: 165px;
+	height: 30px;
+	line-height: 30px;
+	text-align: right;
+}
+
+.hash-number {
+	font-size: 22px;
+}
+
+.hash-power-calc-container {
+	background-color: rgb(124, 124, 124);
+	color: white;
+	display: inline-block;
+	/* margin-left: 50px; */
+	padding: 25px 10px 25px;
+	width: 345px;
+}
+/*
+.package-description {
+    margin-top: 10px;
+	text-align: left;
+}
+*/
+
+.price {
+	position: relative;
+	
+}
+
+.product-name {
+	font-size: 20px;
+}
+
+.purchase-full-hash-container {
+	background-color: white;
+	border-radius: 4px;
+	margin: 0 auto;
+	margin-bottom: 75px;
+	padding: 30px;
+	position: relative;
+	width: 1100px;
+}
+
+.purchase-full-hash-container .fa-times {
+	cursor: pointer;
+	font-size: 20px;
+	/* margin-top: 25px; */
+}
+
+.purchase-full-hash-container img {
+	/* width: 45px; */
+	height: 50px;
+}
+
+.purchase-full-hash-container td {
+	line-height: 1.3;
+}
+
+.purchase-full-hash-container th {
+	background-color: rgb(124, 124, 124);
+	border-top: none;
+	color: white;
+	font-size: 18px;
+}
+
+.purchase-full-hash-table {
+	margin-bottom: 50px;
+	text-align: center;
+}
+
+.subtotal {
+	font-size: 25px;
+	margin-left: 10px;
+}
+
+td input {
+	font-size: 18px;
+	margin-top: 16px;
+	padding-left: 12px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	text-align: center;
+	width: 55px;
+}
+
+@media only screen and (max-width: 1150px) {
+	.big-container-wrapper {
+		width: 100%;
+	}
+
+	.purchase-full-hash-container, .big-container-wrapper h2 {
+		width: 95%;
+	}
+}
+
+@media only screen and (max-width: 960px) {
+	.hash-power-calc-container {
+		margin-left: 0;
+	}
+}
+
+@media only screen and (max-width: 1190px) {
+	.checkout-container {
+		position: static;
+		display: block;
+		margin: 0 auto;
+		text-align: center;
+	}
+}
+
+@media only screen and (max-width: 845px) {
+	.hash-power-calc-container {
+		display: block;
+		margin: 0 auto;
+	}
+}
+
+@media only screen and (max-width: 795px) {
+	table img {
+		display: none;
+	}
+}
+
+@media only screen and (max-width: 550px) {
+	.hash-power-calc-container {
+		width: auto;
+	}
+}
+
+@media only screen and (max-width: 500px) {
+	.checkout-container {
+		width: auto;
+	}
+
+	.hash-desc, .hash-amount {
+		display: block;
+		position: static;
+		text-align: center;
+		
+	}
+}
+
+@media only screen and (max-width: 410px) {
+	.checkout-container i {
+		display: block;
+		margin-top: 5px;
+		margin-bottom: 5px;
+		transform: rotate(90deg);
+	}
+
+	.btc-exchange {
+		display: block;
+	}
+}
+
+@media only screen and (max-width: 340px) {
+	.subtotal {
+		margin: 0;
+	}
+}
+
+input.ct_qty,input.ct_qty1 {
+	width: 24px;
+}
+
+
+.hash0 {
+	margin-left: 55px;
+}
+
+.hash1 {
+	margin-left: 192px;
+}
+
+.hash2 {
+	margin-left: 170px;
+}
+
+.hash3 {
+	margin-left: 165px;
+}
+
+.hash4 {
+	margin-left: 163px;
+}
+
+.partial-container {
+	border: 1px solid rgb(124, 124, 124);
+	margin-bottom: 50px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.partial-container h4, .partial-container h5 {
+	text-align: center;
+}
+
+.slider {
+	display: block;
+	margin: 0 auto;
+	margin-top: 3px;
+	margin-bottom: 3px;
+	width: 90%;
+}
+
+.price0 {
+	margin-left: 55px;
+}
+
+.price1 {
+	margin-left: 186px;
+}
+
+.price2 {
+	margin-left: 163px;
+}
+
+.price3 {
+	margin-left: 161px;
+}
+
+.price4 {
+	margin-left: 163px;
+}
+
+.hash-stats {
+	display: flex;
+	justify-content: space-around;
+	margin-top: 40px;
+}
+
+.stat-container {
+	text-align: center;
+}
+
+.stat-container-big {
+	font-size: 25px;
+}
+
+.hash-stats .stat-container img {
+	margin-bottom: 5px;
+	width: 55px;
+}
+
+.member-search {
+	margin: 0 auto;
+	margin-bottom: 25px !important;
+	width: 70%;
+}
+
+.search-result {
+	text-align: center;
+}
+
+.main-container {
+	background-color: rgb(242, 242, 242);
+	display: absolute;
+	height: 100%;
+	width: 100%;
+	z-index: 0;
+}
+
+.big-container-wrapper {
+	position: relative;
+		top: 150px;
+}
+
+.big-container-wrapper h2 {
+	margin: 0 auto;
+	margin-bottom: 8px;
+	width: 1100px;
+}
+
+.big-package-icon {
+	position: relative;
+		bottom: 50px;
+}
+
+.btc-logo-container, .package-description {
+	display: inline-block;
+}
+
+.btc-logo-container {
+	margin-right: 5px;
+	position: relative;
+		bottom: 12px;
+}
+
+.checkout-container {
+	margin-top: 25px;
+	padding: 30px;
+}
+
+.checkout-container .checkout-button {
+	background-color: rgb(0, 121, 211);
+	border-color: rgb(0, 121, 211);
+	margin-top: 5px;
+	margin-bottom: 10px;
+}
+
+.checkout-container i {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.checkout-left, .checkout-right {
+	display: inline-block;
+}
+
+.checkout-left {
+	padding: 15px;
+	text-align: center;
+}
+
+.checkout-right {
+	position: absolute;
+		right: 70px;
+	text-align: right;
+}
+
+.current-hash-power-container, .selected-hash-power-container, .total-hash-power-container {
+	position: relative;
+}
+
+.current-hash-power-container {
+	margin-bottom: 10px;
+}
+
+.selected-hash-power-container {
+	border-bottom: 1px solid #e5e5e5;
+	margin-bottom: 10px;
+	padding-bottom: 10px;
+}
+
+.eth-logo-container {
+	display: inline-block;
+	margin-right: 5px;
+	position: relative;
+		bottom: 12px;
+		right: 10px;
+}
+
+.eth-logo-container .eth-logo {
+	width: 32px;
+}
+
+.eth-pack-des {
+	position: relative;
+		right: 3px;
+}
+
+.hash-number {
+	font-size: 21px;
+}
+
+.total-hash-container {
+	text-align: center;
+}
+
+.total-hash-power-container {
+	align-items: center;
+	display: flex;
+	justify-content: space-between;
+}
+
+.hash-power-calc-container {
+	background-color: rgb(124, 124, 124);
+	color: white;
+	display: inline-block;
+	margin-left: 15px;
+	margin-right: 15px;
+	padding: 25px;
+	text-align: left;
+	width: 450px;
+}
+
+.package-description {
+    /* margin-top: 10px; */
+    padding:20px;
+    text-align: left;
+    vertical-align:middle;
+}
+
+.price {
+	position: relative;
+}
+
+.product-name {
+	font-size: 20px;
+}
+
+.purchase-full-hash-container {
+	background-color: white;
+	border-radius: 4px;
+	margin: 0 auto;
+	margin-bottom: 75px;
+	padding: 30px;
+	position: relative;
+	width: 1100px;
+}
+
+.purchase-full-hash-container .fa-times {
+	cursor: pointer;
+	font-size: 20px;
+	margin-top: 25px;
+}
+
+.purchase-full-hash-container img {
+	/* width: 45px; */
+}
+
+.purchase-full-hash-container td {
+	line-height: 1.3;
+}
+
+.purchase-full-hash-container th {
+	background-color: rgb(124, 124, 124);
+	border-top: none;
+	color: white;
+	font-size: 18px;
+}
+
+.membership-desc {
+	margin-right: 107px;
+}
+
+.membership-container {
+	right: 8px;
+}
+
+.membership-img {
+	width: 32px !important;
+}
+
+.purchase-full-hash-table {
+	margin-bottom: 25px;
+	text-align: center;
+}
+
+.subtotal {
+	font-size: 25px;
+	margin-left: 10px;
+}
+
+.modal-header {
+	text-align: left;
+}
+
+.modal-body {
+	text-align: center;
+}
+
+.payment-method {
+	border: 1px solid #e9ecef;
+	border-radius: 4px;
+	cursor: pointer;
+	display: inline-block;
+	margin-left: 5px;
+	margin-right: 5px;
+	margin-bottom: 15px;
+	padding: 15px;
+	transition: all 0.1s linear;
+	width: 126px;
+}
+
+.payment-method:hover {
+	border-color: rgb(0, 121, 211);
+}
+
+.selected-payment {
+	border-color: rgb(0, 121, 211);
+}
+
+.payment-method img {
+	height: 45px;
+	width: auto;
+	margin-bottom: 5px;
+}
+
+td input {
+	font-size: 18px;
+	margin-top: 16px;
+	padding-left: 12px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	text-align: center;
+	width: 55px;
+}
+
+.input-group-prepend, .member-search input {
+	display: inline-block;
+}
+
+@media only screen and (max-width: 1150px) {
+	.big-container-wrapper {
+		width: 100%;
+	}
+
+	.purchase-full-hash-container, .big-container-wrapper h2 {
+		width: 95%;
+	}
+
+	.hash-numbers, .partial-price {
+		display: none;
+	}
+}
+
+@media only screen and (max-width: 1093px) {
+	.hash-power-calc-container {
+		margin-bottom: 10px;
+	}
+}
+
+@media only screen and (max-width: 900px) {
+	.checkout-left, .checkout-right {
+		display: block;
+		position: static;
+	}
+
+	.checkout-right {
+		text-align: center;
+	}
+}
+
+@media only screen and (max-width: 795px) {
+	table img {
+		display: none;
+	}
+}
+
+@media only screen and (max-width: 700px) {
+	.member-search {
+		width: 100%;
+	}
+}
+
+@media only screen and (max-width: 570px) {
+	.hash-stats {
+		flex-direction: column;
+	}
+
+	.stat-container {
+		margin-bottom: 15px;
+	}
+}
+
+@media only screen and (max-width: 550px) {
+	.hash-power-calc-container {
+		width: auto;
+	}
+
+	.checkout-container {
+		width: auto;
+	}
+
+	.hash-desc, .hash-amount {
+		display: block;
+		position: static;
+		text-align: center;
+	}
+}
+
+@media only screen and (max-width: 463px) {
+	.payment-method {
+		margin-left: 0;
+		margin-right: 0;
+	}
+}
+
+@media only screen and (max-width: 410px) {
+	.checkout-container i {
+		display: block;
+		margin-top: 5px;
+		margin-bottom: 5px;
+		transform: rotate(90deg);
+	}
+
+	.btc-exchange {
+		display: block;
+	}
+}
+
+@media only screen and (max-width: 340px) {
+	.subtotal {
+		margin: 0;
+	}
+}
+
+@media only screen and (max-width: 795px) {
+	.big-container-wrapper {
+		width: 100%;
+	}
+
+	.purchase-full-hash-container, .big-container-wrapper h2 {
+		width: 95%;
+	}
+}
+

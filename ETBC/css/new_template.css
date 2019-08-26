@@ -1,0 +1,454 @@
+* {
+	font-family: 'Montserrat', sans-serif;
+}
+
+.blue {
+	color: rgb(0, 121, 211);
+}
+
+.gray {
+	color: rgb(124, 124, 124);
+}
+
+.nav-two-big {
+	font-size: 25px;
+}
+
+.nav-two-line-height {
+	line-height: 1.1;
+}
+
+/* ==================== TOP NAV ONE ===================== */
+
+.custom-select {
+	border: none;
+}
+
+.dropdown-item.active, .dropdown-item:active {
+	background-color: rgb(0, 121, 211);
+}
+
+
+.fa-bell {
+	color: rgb(124, 124, 124);
+	font-size: 20px;
+}
+
+.lang-sel, .notification-bell, .dropdown {
+	display: inline-block;
+}
+
+.lang-sel {
+	margin-right: 40px;
+}
+
+.logo-container {
+	display: inline-block;
+	height: 100%;
+	margin-left: 30px;
+	padding-top: 5px
+}
+
+.notification-bell {
+	margin-right: 35px;
+	position: relative;
+		top: 3px;
+}
+
+.top-logo-icon {
+	width: 37px;
+}
+
+.top-logo-text {
+	color: #212121;
+	font-size: 30px;
+	margin-left: 5px;
+	position: relative;
+		top: 5px;
+}
+
+.top-nav-one {
+	background-color: white;
+	border-bottom: 1px solid #e5e5e5;
+	height: 69px;
+	position: fixed;
+	width: 100%;
+	z-index: 9999;
+}
+
+.user-dropdown-rank {
+	margin-right: 15px;
+	width: 35px;
+}
+
+.user-drop-down-section {
+	display: inline-block;
+	margin-top: 10px;
+	position: absolute;
+		right: 30px;
+}
+
+/* ==================== TOP NAV TWO ===================== */
+
+.btc-price {
+	display: inline-block;
+}
+
+.mining-wallet {
+	display: inline-block;
+	margin-left: 30px;
+}
+
+.nav-two-btc-logo {
+	margin-bottom: 10px;
+	width: 25px;
+}
+
+.nav-two-eth-logo {
+	margin-bottom: 10px;
+	width: 16px;
+}
+
+.payout-countdown {
+	display: inline-block;
+  margin: 5px 0 0 30px;
+	text-align: center;
+}
+
+.pinnacle-wallet {
+	display: inline-block;
+	margin-left: 30px;
+}
+
+.price-and-wallets {
+	display: inline-block;
+	position: absolute;
+		right: 40px;
+}
+
+.promotion {
+	display: inline-block;
+	margin-left: 70px;
+	text-align: center;
+}
+
+.top-nav-two {
+	background-color: white;
+	border-bottom: 1px solid #e5e5e5;
+	height: 55px;
+	position: fixed;
+		top: 69px;
+		left: 0;
+	width: 100%;
+	z-index: 8888;
+}
+
+/* ==================== SIDE NAV ===================== */
+
+.fa-home, .fa-address-card, .fa-handshake, .fa-user-friends, .fa-bullhorn {
+	margin-right: 10px;
+}
+
+.fa-hand-holding-usd {
+	margin-right: 11px;
+}
+
+.fa-coins {
+	margin-right: 12px;
+}
+
+.fa-handshake, .fa-shopping-cart, .fa-user-friends {
+	margin-left: 27px !important;
+}
+
+.fa-question {
+	margin-left: 33px !important;
+	margin-right: 16px;
+}
+
+.fa-wallet, .fa-shopping-cart, .fa-life-ring {
+	margin-right: 13px;
+}
+
+.fa-history {
+	margin-left: 54px !important;
+	margin-right: 10px;
+}
+
+.fa-sort-amount-up {
+	margin-left: 55px !important;
+	margin-right: 10px;
+}
+
+.fa-star, .fa-star-half-alt {
+	margin-left: 55px !important;
+	margin-right: 12px;
+}
+
+.fa-exclamation-circle {
+	margin-left: 55px !important;
+	margin-right: 15px;
+}
+
+.fa-user, .fa-sitemap {
+	margin-left: 56px !important;
+	margin-right: 11px;
+}
+
+.fa-file-invoice-dollar {
+	margin-left: 57px !important;
+	margin-right: 12px;
+}
+
+.fa-tree {
+	margin-left: 61.5px !important;
+	margin-right: 17px;
+}
+
+.link_list, .sub-link-list {
+	margin: 0;
+	padding: 0;
+}
+
+.menu-dropdown {
+	cursor: pointer;
+}
+
+.menu-dropdown::after {
+	font-family: "Font Awesome\ 5 Free";
+  content: "\f107";
+  position: absolute;
+  	right: 20px;
+}
+
+.is_open::after {
+	font-family: "Font Awesome\ 5 Free";
+	content: "\f106";
+}
+
+.side-nav {
+	background-color: white;
+	border-right: 1px solid #e5e5e5;
+	height: 100%;
+	position: fixed;
+		top: 124px;
+	width: 390px;
+	z-index: 7777;
+}
+
+.side-nav i {
+	font-size: 24px;
+	margin-left: 30px;
+}
+
+.side-nav-link, .side-nav-sub-link {
+	color: rgb(102,102,102);
+	font-size: 20px;
+	height: 52px;
+	padding-top: 12px;
+	padding-bottom: 12px;
+	position: relative;
+	transition: all 0.2s linear;
+}
+
+.side-nav-link:hover, .side-nav-sub-link:hover, 
+.is_open {
+	background-color: rgb(242, 242, 242);
+	color: black;
+}
+
+.sub-link-list {
+	max-height: 0;
+	overflow: hidden;
+	transition: max-height 0.3s ease-in-out;
+}
+
+/* ==================== DASHBOARD ===================== */
+.business-status-card {
+	display: inline-block;
+	margin-bottom: 25px;
+	margin-right: 25px;
+	text-align: center;
+	width: 350px;
+}
+
+
+.card-info {
+	font-size: 25px
+}
+
+.congrats-container {
+	background-color: white;
+	border-radius: 4px;
+	display: inline-block;
+	padding: 20px;
+}
+
+.congrats-rank, .congrats-rank span {
+	position: relative;
+		top: 3px;
+	text-align: center;
+	width: 100px;
+}
+
+.congrats-text {
+	margin-right: 15px;
+}
+
+.congrats-text, .congrats-rank {
+	display: inline-block;
+	position: relative;
+		bottom: 25px;
+}
+
+.enrollment-chart img {
+	margin-top: 20px;
+	margin-bottom: 15px;
+	margin-left: 47px;
+}
+
+.enrollment-number {
+	color: rgb(0, 121, 211);
+	font-size: 50px;
+	position: relative;
+		top: 18px;
+}
+
+.enrollment-stat {
+	border: none;
+	display: inline-block;
+	text-align: center;
+	width: 163px;
+}
+
+.enrollment-stat-info {
+	font-size: 25px;
+}
+
+.enrollment-stat .card-body {
+	padding: 10px;
+}
+
+.enrollment-summary-card {
+	display: inline-block;
+	height: 344px;
+	margin-right: 23px;
+	width: 540px;
+}
+
+.enrollment-summary-container {
+	margin-left: 460px;
+  position: relative;
+  	top: 750px;
+}
+
+.main-container {
+	background-color: rgb(242, 242, 242);
+	display: absolute;
+	height: 100%;
+	width: 100%;
+	z-index: 0;
+}
+
+.my-balances-container, .price-chart-container {
+	background-color: white;
+	border-radius: 4px;
+	display: inline-block;
+	padding: 20px;
+	position: absolute;
+  margin-top: 50px;
+  width: 535px;
+  height: 450px;
+}
+
+.my-balances-container h2 {
+	text-align: center;
+}
+
+.my-balances-container img, .price-chart-container img {
+	margin-top: 10px;
+	margin-left: 60px;
+}
+
+.my-business-status-container {
+	margin-left: 460px;
+  position: relative;
+  	top: 725px;
+}
+
+.overview-container {
+	display: block;
+	margin-left: 460px;
+	position: relative;
+		top: 175px;
+}
+
+.personal-enrollment-circle {
+	border: 2px solid rgb(0, 121, 211);
+	border-radius: 50%;
+	height: 115px;
+	margin: 0 auto;
+	margin-bottom: 15px;
+	margin-top: 20px;
+	width: 115px;
+}
+
+.personal-enrollment-container {
+	border-bottom: 1px solid #e5e5e5;
+	padding-bottom: 10px;
+	text-align: center;
+}
+
+.price-chart-container {
+	margin-left: 573px;
+}
+
+.sales-volume-chart {
+	background-color: white;
+	width: 1110px;
+}
+
+.sales-volume-summary-container {
+	margin-left: 460px;
+	margin-bottom: 50px;
+	position: relative;
+		top: 800px;
+}
+
+.total-sales-volume-container {
+	background-color: white;
+	border-radius: 4px;
+	display: inline-block;
+	line-height: 1.2;
+  margin-left: 25px;
+  padding: 19px;
+  text-align: center;
+  width: 230px;
+}
+
+.total-sales-volume {
+	position: relative;
+		top: 10px;
+	font-size: 30px;
+}
+
+.total-sales-volume-pct {
+	color: #3CC480;
+	font-size: 20px;
+	position: relative;
+		top: 5px;
+}
+
+.total-sales-volume-container h5 {
+	position: relative;
+		top: 10px;
+}
+
+.total-sales-volume-container i {
+	color: #3CC480;
+	font-size: 35px;
+	margin-bottom: 20px;
+	position: relative;
+		top: 10px;
+}
+
