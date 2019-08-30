@@ -71,12 +71,12 @@ if(($allowance_name) ){
 */
 
 if($_GET['start_dt']){
-	$sql_search .= " and day >= '".$_GET[start_dt]."'";
-	$qstr .= "&start_dt=".$_GET[start_dt];
+	$sql_search .= " and day >= '".$_GET['start_dt']."'";
+	$qstr .= "&start_dt=".$_GET['start_dt'];
 }
 if($_GET['end_dt']){
-	$sql_search .= " and day <= '".$_GET[end_dt]."'";
-	$qstr .= "&end_dt=".$_GET[end_dt];
+	$sql_search .= " and day <= '".$_GET['end_dt']."'";
+	$qstr .= "&end_dt=".$_GET['end_dt'];
 }
 
 if ($stx) {
@@ -189,6 +189,25 @@ $colspan = 16;
 	<input type="submit" name="act_button" value=" EOS 후원 추천 수당 "  class="frm_input" onclick="go_calc(5);">
 	-->
 
+</div>
+
+
+
+<style>
+	.local_ov01{margin-bottom:0;}
+	.sysbtn{background:mintcream;border-bottom:1px solid #ccc;display:block;width:100%;height:20px;top:10px; text-align:right;padding:10px; margin-bottom:15px;padding-top:15px; }
+	.sysbtn .btn{margin:10px 0;padding:10px 15px;background:orange;font-size:11px;}
+	.sysbtn .btn.btn2{background:orangered}
+	.sysbtn .btn.btn3{background:pink}
+	.sysbtn .btn:hover{background:black;color:white;text-decoration: none;}
+</style>
+
+<div class="sysbtn">
+	<!--<a href="./member_grade.php" class="btn btn2" >멤버 등급 수동 갱신</a>-->
+    <a href="#" class="btn btn1" onclick="clear_db('member');">멤버 수당잔고 초기화</a>
+	<a href="#" class="btn btn1" onclick="clear_db('pack');">B팩,Q팩 수당 DB 초기화</a>
+	<a href="#" class="btn btn3" onclick="clear_db('pack_order');">B팩,Q팩 구매 DB 초기화</a>
+	<a href="#" class="btn btn2" onclick="clear_db('soodang');">수당 전체 DB 초기화</a>
 </div>
 
 

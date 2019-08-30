@@ -28,4 +28,37 @@ if($func == 'member'){
 	
 	echo "result : ".$sql_result;
 }
+else if($func == 'pack'){
+	$sql_clear2 = " TRUNCATE table bnoo2; ";
+		$sql_result = sql_query($sql_clear2);
+	$sql_clear2 = " TRUNCATE table bthirty2; ";
+		$sql_result = sql_query($sql_clear2);
+	$sql_clear2 = " TRUNCATE table iwol;";
+		$sql_result = sql_query($sql_clear2);
+
+	$sql_clear2 = " TRUNCATE table noo2;";
+		$sql_result = sql_query($sql_clear2);
+	$sql_clear2 = "TRUNCATE table btoday2;";
+		$sql_result = sql_query($sql_clear2);
+	$sql_clear2 = " TRUNCATE table thirty2";
+		$sql_result = sql_query($sql_clear2);
+	
+	$sql_clear3 = 	"delete from soodang_pay where allowance_name = 'Q Pack' or allowance_name =  'B Pack'" ;
+		$sql_result = sql_query($sql_clear3);
+	
+	echo "result : ".$sql_result;
+}
+
+else if($func == 'pack_order'){
+	$sql_clear2 = " TRUNCATE table g5_shop_cart; ";
+		$sql_result = sql_query($sql_clear2);
+	
+	$sql_clear2 = " UPDATE g5_member set it_pool1 = '', it_pool2 = '',it_pool1_profit = '',it_pool2_profit='', q_autopack ='', b_autopack='' ;";
+		$sql_result = sql_query($sql_clear2);
+
+	$sql_clear3 = 	"delete from soodang_pay where allowance_name = 'Q Pack' or allowance_name =  'B Pack'" ;
+		$sql_result = sql_query($sql_clear3);
+	
+	echo "result : ".$sql_result;
+}
 ?>

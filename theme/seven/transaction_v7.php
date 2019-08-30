@@ -113,6 +113,8 @@ $order_result = sql_query($order_sql);
 					<li class="bonus_tab all <?nav_active('all')?>" data-tab="tab_1" data-category="all"><p data-i18n="wallet.all">ALL</p></li>
 					<li class="bonus_tab <?nav_active('daily payout')?>" data-tab="tab_2" data-category="daily payout"><p data-i18n="wallet.daily payout">Daily payout</p></li>
 					<li class="bonus_tab <?nav_active('Role Down Recom')?>" data-tab="tab_3" data-category="Role Down Recom"><p data-i18n="wallet.role down recom">RoleDown</p></li>
+					<li class="bonus_tab <?nav_active('Q Pack')?>" data-tab="tab_4" data-category="Q Pack"><p data-i18n="wallet.Q Pack">Q Pack</p></li>
+					<li class="bonus_tab <?nav_active('B Pack')?>" data-tab="tab_5" data-category="B Pack"><p data-i18n="wallet.B Pack">B Pack</p></li>
 				</ul>
 				<!-- //탭 -->
 

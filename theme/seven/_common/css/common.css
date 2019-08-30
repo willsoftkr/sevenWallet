@@ -602,7 +602,7 @@ a.all_send{color:#ed2424; padding-left:5px; font-size:0.8em;}
 .mc_v7 input[type=text]{border-color:#07b5e5;}
 
 .tabs{display:block;border-bottom:1px solid #ccc;border-top:1px solid #ccc;margin:20px 0;background:ghostwhite;width:100%;float:left;}
-.tabs li{display:inline-block;width:42.4%;text-align:center;cursor:pointer;float:left;font-size:0.8em;}
+.tabs li{display:inline-block;width:21.0%;text-align:center;cursor:pointer;float:left;font-size:0.8em;}
 .tabs li.all{width:15%;}
 .tabs li p{height:40px;margin:0;padding:0;line-height:40px;}
 .tabs li{border-right:1px solid #ccc}

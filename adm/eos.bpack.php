@@ -110,7 +110,7 @@ for ($i=0; $row=sql_fetch_array($rrr); $i++) {
 	$cond[$i]['immediate']=$row['immediate'];
 	$member_rate[$i]=$row['per'];
 	$cond[$i]['andor']=$row['andor'];
-	$cond[$i]['allowance_name']=$row['allowance_name'];
+	"B Pack"=$row['allowance_name'];
 	$cond[$i]['benefit_limit1']=$row['benefit_limit1'];
 	$cond[$i]['source11']=$row['source11'];
 	$cond[$i]['source_cond11']=$row['source_cond11'];
@@ -251,7 +251,7 @@ for($i=0; $recommend=sql_fetch_array($result); $i++) {
 								echo $note='Binary Cycle Bonus for '.$maxcycle.' cycles as a '.$deslv.' member';
 								$no_benefit=1;$binary_firstname=$mbname;$binary_firstid=$mbid;
 								if($today_sales>0)
-								save_benefit($to_date, $mbid, $mbname, $recom, $cond[$i]['allowance_name'], '', 0, $today_sales, $hap1, $cond[$i]['allowance_name'].' '.$note_adm, $note, $mblevel);
+								save_benefit($to_date, $mbid, $mbname, $recom, "B Pack", '', 0, $today_sales, $hap1, "B Pack".' '.$note_adm, $note, $mblevel);
 								iwol_process($to_date, $mbid, $id1, $mbname, 1, $hap1-$cond[$i]['sales_reset'] , $note_adm);
 								iwol_process($to_date, $mbid, $id2, $mbname, 1,$hap2-$cond[$i]['sales_reset'] , $note_adm);
 							}
@@ -260,7 +260,7 @@ for($i=0; $recommend=sql_fetch_array($result); $i++) {
 								
 								$no_benefit=1;$binary_firstname=$mbname;$binary_firstid=$mbid;
 								if($today_sales>0){
-								save_benefit($to_date, $mbid, $mbname, $recom, $cond[$i]['allowance_name'], '', 0, $today_sales, $limit_point, $cond[$i]['allowance_name'].' '.$note_adm, $note, $mblevel);}
+								save_benefit($to_date, $mbid, $mbname, $recom, "B Pack", '', 0, $today_sales, $limit_point, "B Pack".' '.$note_adm, $note, $mblevel);}
 								echo '대실적 이월해야한다.';
 								echo '대실적 이월해야한다. 제발'."<br>";
 								iwol_process($to_date, $mbid, $id2, $mbname, 2, $hap2-$hap1, $note_adm);
@@ -272,7 +272,7 @@ for($i=0; $recommend=sql_fetch_array($result); $i++) {
 								echo  $note='Binary Cycle Bonus for '.$maxcycle.' cycles as a '.$deslv.' member';
 								$no_benefit=1;$binary_firstname=$mbname;$binary_firstid=$mbid;
 								if($today_sales>0)
-									save_benefit($to_date,$mbid, $mbname, $recom, $cond[$i]['allowance_name'], '', 0, $today_sales, $hap1, $cond[$i]['allowance_name'].' '.$note_adm, $note, $mblevel);
+									save_benefit($to_date,$mbid, $mbname, $recom, "B Pack", '', 0, $today_sales, $hap1, "B Pack".' '.$note_adm, $note, $mblevel);
 								iwol_process($to_date, $mbid,  $id1, $mbname, 3, $hap2-$hap1 , $note_adm);
 							}
 						}
@@ -288,7 +288,7 @@ for($i=0; $recommend=sql_fetch_array($result); $i++) {
 								echo $note='Binary Cycle Bonus for '.$maxcycle.' cycles as a '.$deslv.' member';
 								$no_benefit=1;$binary_firstname=$mbname;$binary_firstid=$mbid;
 								if($today_sales>0)
-								save_benefit($to_date, $mbid, $mbname, $recom, $cond[$i]['allowance_name'], '', 0, $today_sales, $hap1, $cond[$i]['allowance_name'].' '.$note_adm, $note, $mblevel);
+								save_benefit($to_date, $mbid, $mbname, $recom, "B Pack", '', 0, $today_sales, $hap1, "B Pack".' '.$note_adm, $note, $mblevel);
 								iwol_process($to_date, $mbid, $id1, $mbname, 1, $hap1-$cond[$i]['sales_reset'] , $note_adm);
 								iwol_process($to_date, $mbid, $id2, $mbname, 1,$hap2-$cond[$i]['sales_reset'] , $note_adm);
 							}
@@ -297,7 +297,7 @@ for($i=0; $recommend=sql_fetch_array($result); $i++) {
 								echo $note='Binary Bonus for '.$deslv.' member';
 								$no_benefit=1;$binary_firstname=$mbname;$binary_firstid=$mbid;
 								if($today_sales>0)
-								save_benefit($to_date, $mbid, $mbname, $recom, $cond[$i]['allowance_name'], '', 0, $today_sales, $limit_point, $cond[$i]['allowance_name'].' '.$note_adm, $note, $mblevel);
+								save_benefit($to_date, $mbid, $mbname, $recom, "B Pack", '', 0, $today_sales, $limit_point, "B Pack".' '.$note_adm, $note, $mblevel);
 								iwol_process($to_date, $mbid, $id2, $mbname, 2, $hap2-$hap1, $note_adm);
 								//iwol_process($to_date, $mbid, $id2, $mbname, 2, $hap2, $note_adm);
 
@@ -307,7 +307,7 @@ for($i=0; $recommend=sql_fetch_array($result); $i++) {
 								echo  $note='Binary Cycle Bonus for '.$maxcycle.' cycles as a '.$deslv.' member';
 								$no_benefit=1;$binary_firstname=$mbname;$binary_firstid=$mbid;
 								if($today_sales>0)
-									save_benefit($to_date,$mbid, $mbname, $recom, $cond[$i]['allowance_name'], '', 0, $today_sales, $hap1, $cond[$i]['allowance_name'].' '.$note_adm, $note, $mblevel);
+									save_benefit($to_date,$mbid, $mbname, $recom, "B Pack", '', 0, $today_sales, $hap1, "B Pack".' '.$note_adm, $note, $mblevel);
 								iwol_process($to_date, $mbid,  $id1, $mbname, 3, $hap2-$hap1 , $note_adm);
 							}
 						}
@@ -323,7 +323,7 @@ for($i=0; $recommend=sql_fetch_array($result); $i++) {
 								$note_adm='극점초과(대.소실적 모두이월) (8) 소실적:'.$hap2.	'('.$id2.') / 대실적:'.$hap1.	'('.$id1.')';
 								$no_benefit=1;$binary_firstname=$mbname;$binary_firstid=$mbid;
 								if($today_sales>0)
-									save_benefit($to_date,$mbid, $mbname, $recom, $cond[$i]['allowance_name'], '', 0, $today_sales, $hap2, $cond[$i]['allowance_name'].' '.$note_adm,$note, $mblevel);
+									save_benefit($to_date,$mbid, $mbname, $recom, "B Pack", '', 0, $today_sales, $hap2, "B Pack".' '.$note_adm,$note, $mblevel);
 								//echo $note='Binary Cycle Bonus for '.$maxcycle.' cycles as a '.$deslv.' member';
 								iwol_process($to_date, $mbid, $id1, $mbname, 8,$hap1-$cond[$i]['sales_reset'] , $note_adm);
 								iwol_process($to_date, $mbid, $id2, $mbname, 8,$hap2-$cond[$i]['sales_reset'] , $note_adm);
@@ -332,7 +332,7 @@ for($i=0; $recommend=sql_fetch_array($result); $i++) {
 								echo $note='Binary Bonus for '.$deslv.' member';
 								$no_benefit=1;$binary_firstname=$mbname;$binary_firstid=$mbid;
 								if($today_sales>0)
-								save_benefit($to_date, $mbid, $mbname, $recom, $cond[$i]['allowance_name'], '', 0, $today_sales,  $hap2, $cond[$i]['allowance_name'].' '.$note_adm, $note, $mblevel);
+								save_benefit($to_date, $mbid, $mbname, $recom, "B Pack", '', 0, $today_sales,  $hap2, "B Pack".' '.$note_adm, $note, $mblevel);
 								iwol_process($to_date, $mbid, $id1, $mbname, 9, $hap1-$hap2 , $note_adm);
 								//iwol_process($to_date, $mbid, $id1, $mbname, 9, $hap1 , $note_adm); //대실적 1/2
 
@@ -355,7 +355,7 @@ for($i=0; $recommend=sql_fetch_array($result); $i++) {
 								echo $note='Binary Cycle Bonus for '.$maxcycle.' cycles as a '.$deslv.' member';
 								$no_benefit=1;$binary_firstname=$mbname;$binary_firstid=$mbid;
 								if($today_sales>0)
-								save_benefit($to_date, $mbid, $mbname, $recom, $cond[$i]['allowance_name'], '', 0, $today_sales, $hap1, $cond[$i]['allowance_name'].' '.$note_adm, $note, $mblevel);
+								save_benefit($to_date, $mbid, $mbname, $recom, "B Pack", '', 0, $today_sales, $hap1, "B Pack".' '.$note_adm, $note, $mblevel);
 								iwol_process($to_date, $mbid, $id1, $mbname, 1, $hap1-$cond[$i]['sales_reset'] , $note_adm);
 								iwol_process($to_date, $mbid, $id2, $mbname, 1,$hap2-$cond[$i]['sales_reset'] , $note_adm);
 							}
@@ -368,7 +368,7 @@ for($i=0; $recommend=sql_fetch_array($result); $i++) {
 								$no_benefit=1;$binary_firstname=$mbname;$binary_firstid=$mbid;
 
 								if($today_sales>0){
-									save_benefit($to_date, $mbid, $mbname, $recom, $cond[$i]['allowance_name'], '', 0, $today_sales, $today_sales, $cond[$i]['allowance_name'].' '.$note_adm, $note, $mblevel);
+									save_benefit($to_date, $mbid, $mbname, $recom, "B Pack", '', 0, $today_sales, $today_sales, "B Pack".' '.$note_adm, $note, $mblevel);
 									iwol_process($to_date, $mbid, $id1, $mbname, 99, $hap1-$hap2, $note_adm);
 								}
 								//iwol_process($to_date, $mbid, $id2, $mbname, 2, $hap2, $note_adm);
@@ -379,7 +379,7 @@ for($i=0; $recommend=sql_fetch_array($result); $i++) {
 								echo  $note='Binary Cycle Bonus for '.$maxcycle.' cycles as a '.$deslv.' member';
 								$no_benefit=1;$binary_firstname=$mbname;$binary_firstid=$mbid;
 								if($today_sales>0)
-									save_benefit($to_date,$mbid, $mbname, $recom, $cond[$i]['allowance_name'], '', 0, $today_sales, $hap1, $cond[$i]['allowance_name'].' '.$note_adm, $note, $mblevel);
+									save_benefit($to_date,$mbid, $mbname, $recom, "B Pack", '', 0, $today_sales, $hap1, "B Pack".' '.$note_adm, $note, $mblevel);
 								iwol_process($to_date, $mbid,  $id1, $mbname, 3, $hap2-$hap1 , $note_adm);
 							}
 						}
@@ -399,7 +399,7 @@ for($i=0; $recommend=sql_fetch_array($result); $i++) {
 								$no_benefit=1; $binary_firstname=$mbname; $binary_firstid=$mbid;
 
 								if($today_sales>0){
-									save_benefit($to_date, $mbid, $mbname, $recom, $cond[$i]['allowance_name'], '', 0, $today_sales, $hap1, $cond[$i]['allowance_name'].' '.$note_adm, $note, $mblevel, 100);
+									save_benefit($to_date, $mbid, $mbname, $recom, "B Pack", '', 0, $today_sales, $hap1, "B Pack".' '.$note_adm, $note, $mblevel, 100);
 									iwol_process($to_date, $mbid, $id2, $mbname, 100, $hap1 - $hap2 , $note_adm);
 								}
 					}
@@ -542,7 +542,7 @@ function clear_all_benefit_mem(){
 		$cond[$i]['history_in2']='';
 		$cond[$i]['base_source']='';
 		$member_rate[$i]='';
-		$cond[$i]['allowance_name']='';
+		"B Pack"='';
 		$cond[$i]['benefit_limit1']='';
 		$cond[$i]['benefit']=0;
 		$cond[$i]['source11']='';

@@ -366,7 +366,8 @@ if(!sql_query(" select mb_id from {$g5['g5_shop_order_delete_table']} limit 1 ",
 
 
 	<style>
-	td{width:140px !important;}
+	td{width:140px !important; letter-spacing:0px;}
+    .td_odrstatus{letter-spacing: 0px;}
 	</style>
     <tr class="orderlist<?php echo ' '.$bg; ?>">
         <td rowspan="2" class="td_chk">

@@ -140,17 +140,7 @@ $(function(){
             <?php } ?>
             <li id="tnb_logout"><a href="<?php echo G5_BBS_URL ?>/logout.php">로그아웃</a></li>
         </ul>
-<style>
-	.sysbtn{float:right;position:relative;right:10px;z-index:10000;}
-	.sysbtn .btn{padding:10px 15px;background:orange;}
-	.sysbtn .btn.btn2{background:turquoise}
-</style>
 
-<div class="sysbtn">
-	<a href="./member_grade.php" class="btn btn2" >멤버 등급 수동 갱신</a>
-	<a href="#" class="btn btn1" onclick="clear_db('member');">멤버 수당잔고 초기화</a>
-	<a href="#" class="btn btn1" onclick="clear_db('soodang');">수당항목 전체 초기화 버튼</a>
-</div>
 
         <nav id="gnb">
             <h2>관리자 주메뉴</h2>
@@ -192,7 +182,9 @@ $(function(){
 function clear_db(key_value){
 	
 	var key = key_value;
-	
+	var pre = confirm("해당 관련 항목을 초기화하시겠습니까?");
+
+    if(pre == true){
 	 $.ajax({ 
           type : "POST", 
           url : "./delete_db.php", 
@@ -205,8 +197,9 @@ function clear_db(key_value){
             alert('DB가 초기화되었습니다');
         } 
     }); 
-
-	
+    }else{
+        return;
+    }
 }
 </script>
 
