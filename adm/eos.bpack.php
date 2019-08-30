@@ -37,12 +37,15 @@ if($pre_cnt > 0){?>
 <?}
 */
 
+$v7_cost = number_format(get_coin_cost('v7'),2);
+
+
 /*B팩 수당 가져오기*/
 $rate_sql = "select it_name,it_point from g5_shop_item where ca_id  = '10' ORDER BY it_order ASC";
 $rate_result = sql_query($rate_sql);
 $rate_price[] = array();
 
-echo "B팩 수당 현황";
+echo "<strong>B팩 수당 현황</strong>";
 while( $row = sql_fetch_array($rate_result) ){
 	echo "<br>".$row['it_name']." | ".$row['it_point']."%";
 	array_push($rate_price, $row);
@@ -687,6 +690,8 @@ function iwol_process($day,$mb_recommend, $mbid, $mb_name, $kind, $upstair, $not
 /* function end*/
 // benefit_level은 per 금액을 넣어서 바이너리매칭보너스에서 사용한다
 function save_benefit($day, $mbid, $mbname, $recom, $allowance_name, $sales_day, $habu_day_sales, $benefit, $benefit_level, $rec_adm, $rec,$mblevel){
+	global $v7_cost;
+
 	$iwol= sql_fetch("select count(*) as cnt from iwol where mb_brecommend='".$mbid."' and date_format(iwolday,'%Y-%m-%d')='$day'");
 
 	if($iwol['cnt']==0){
@@ -726,7 +731,7 @@ function save_benefit($day, $mbid, $mbname, $recom, $allowance_name, $sales_day,
 			sql_query($temp_sql1);
 			
 			echo "▶▶ 소실적수당지급 : ".$temp_sql1.'<br>';
-			$balance_up = "update g5_member set mb_balance = round(mb_balance+ ".$benefit.", 5) where mb_id = '".$mbid."';";
+			$balance_up = "update g5_member set mb_balance = round(mb_balance+ ".$benefit.", 5), mb_v7_account = round(mb_v7_account+ ".$benefit."/".$v7_cost.",3) where mb_id = '".$mbid."';";
 			sql_query($balance_up);
 		}else {
 				$over_sd = $benefit + $ds_sum - $mrow['mb_deposit_point'];
@@ -736,7 +741,7 @@ function save_benefit($day, $mbid, $mbname, $recom, $allowance_name, $sales_day,
 				sql_query($temp_sql1);
 				
 				echo $temp_sql1.'********1********<br>';
-				$balance_up = "update g5_member set mb_balance = round(mb_balance+ ".$benefit - $over_sd.",5) 	where mb_id = '".$mbid."';";
+				$balance_up = "update g5_member set mb_balance = round(mb_balance+ ".$benefit - $over_sd.",5), mb_v7_account = round(mb_v7_account+ ".$benefit - $over_sd."/".$v7_cost.",3)	where mb_id = '".$mbid."';";
 				sql_query($balance_up);
 			}
 		}

@@ -170,16 +170,18 @@ $colspan = 16;
 		.benefit{color:white;border:0;padding: 5px 20px;height:40px;}
 		.benefit.day{background:cornflowerblue}
 		.benefit.recom{background:palevioletred}
-		.benefit.qpack{background:darkgreen}
-		.benefit.bpack{background:indigo}
+		.benefit.qpack{background:dodgerblue}
+		.benefit.level{background:#ff3061}
+		.benefit.bpack{background:teal}
 		.benefit:hover{background:black;}
 	</style>
 
+
 	<input type="submit" name="act_button" value=" 일일 수당 지급 "  class="frm_input benefit day" onclick="go_calc(0);">
 	<input type="submit" name="act_button" value=" 추천 수당 지급"  class="frm_input benefit recom" onclick="go_calc(1);">
-	
+	<input type="submit" name="act_button" value=" 레벨승급"  class="frm_input benefit level" onclick="go_calc(2);">
 	<input type="submit" name="act_button" value=" Q팩 수당 지급 " class="frm_input benefit bpack" onclick="go_calc(3);">
-	<input type="submit" name="act_button" value=" B팩 수당 지급"  class="frm_input benefit qpack" onclick="go_calc(2);">
+	<input type="submit" name="act_button" value=" B팩 수당 지급"  class="frm_input benefit qpack" onclick="go_calc(4);">
 	<!--
 	<input type="submit" name="act_button" value=" 바이너리 보너스 "  class="frm_input" onclick="go_calc(2);">
 	<input type="submit" name="act_button" value=" 바이너리 매칭 "  class="frm_input" onclick="go_calc(3);">
@@ -338,10 +340,14 @@ function go_calc(n)
 			location.href='eos.benefit.immediate.php?'+str;// 추천수당
 			break;
 		case 2: 
-			location.href='eos.bpack.php?'+str;// B팩
+			location.href='eos.member.level.php?'+str;// 멤버승급
 			break;
-		case 3:
-			location.href='eos.binary.matching.php?'+str;//바이너리 매칭
+
+		case 3: 
+			location.href='eos.qpack.php?'+str;// Q팩
+			break;
+		case 4:
+			location.href='eos.bpack.php?'+str;// B팩
 			break;
 	}
 	

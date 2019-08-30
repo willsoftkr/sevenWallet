@@ -37,7 +37,7 @@ $result_hap;
 
 
 while($m_row = sql_fetch_array($mem_list)){
-	echo '<br><br><br><br>계산 대상 '.$m_row[mb_id]."<br>";
+	echo '<br><br><br><br>계산 대상 '.$m_row['mb_id']."<br>";
 
 	$result_hap = 0;
 	$mb_level = $m_row['grade'];
@@ -52,7 +52,7 @@ while($m_row = sql_fetch_array($mem_list)){
 
 	habu_sales_calc ($m_row['mb_id'], 0, $recom_cnt, $cond,$benefit_rate);
 
-	//echo $m_row[mb_id].' of result_hap : '.$result_hap."<br>";
+	//echo $m_row['mb_id'].' of result_hap : '.$result_hap."<br>";
 
 	$allowance_name = "Role Down Recom";
 	$rec_adm  = "Role Down Recom";
@@ -62,7 +62,7 @@ while($m_row = sql_fetch_array($mem_list)){
 		$result_hap = number_format($result_hap, 2);
 		$soodang_sum  = sql_fetch("select sum(benefit) as eb_sum from soodang_pay where 1=1 and mb_id='".$mrow['mb_id']."'");
 	
-		save_benefit($to_date, $m_row[mb_id], $m_row[mb_no], $m_row[mbname], $recom, $allowance_name,  $result_hap, $rec_adm, $rec, $mb_level,$m_row['mb_v7_account']);
+		save_benefit($to_date, $m_row['mb_id'], $m_row['mb_no'], $m_row['mbname'], $recom, $allowance_name,  $result_hap, $rec_adm, $rec, $mb_level,$m_row['mb_v7_account']);
 	}
 }
 

@@ -3,12 +3,12 @@
 $sub_menu = "600600";
 include_once('./_common.php');
 
-$sql_mb = "select mb_level, mb_id from g5_member where mb_level < 3";
+$sql_mb = "select mb_level, mb_id from g5_member where mb_level = 0";
 $ret = sql_query($sql_mb);
 
 while($mb_row = sql_fetch_array($ret)){
-$mbid = $mb_row['mb_id'];
- //현재 내 직급이 1star 이하이면
+	$mbid = $mb_row['mb_id'];
+ 	//현재 내 직급이 1star 이하이면
 
 		if(my_bchild_hap($mbid)>=3000){
 
@@ -54,6 +54,4 @@ function self_sales($recom){
 	return $res['hap'];    
 	
 } 
-
-
 ?>

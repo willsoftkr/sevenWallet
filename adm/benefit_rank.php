@@ -20,8 +20,6 @@ function self_sales($recom){
 
 
 
-
-
 function clear_all_benefit_mem(){
 	for ($i=0; $row=sql_fetch_array($rrr); $i++) {   
 		$cond[$i]['price_cond']='';

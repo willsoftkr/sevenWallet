@@ -26,26 +26,26 @@ $point_day = $_GET['to_date'];
 $day = $point_day;
 
 $get_today = sql_fetch("select mb_id from soodang_pay where day='".$day."' and allowance_name = 'daily payout' " );
-if($get_today[mb_id]){
+if($get_today['mb_id']){
 	alert("this work is already excuted");
 	die;
 }
 
 while($mrow = sql_fetch_array($rst_list)){
-	$benefit = round($mrow[mb_deposit_point] * $pay_percent[$mrow['grade']]/100 ,3);
+	$benefit = round($mrow['mb_deposit_point'] * $pay_percent[$mrow['grade']]/100 ,3);
 	$allowance_name = "daily payout";
 	$rec_adm = "daily payout";
 	$rec = "daily payout";
 	$mb_level = $mrow['grade'];
 	
-	$soodang_sum  = sql_fetch("select sum(benefit) as eb_sum from soodang_pay where 1=1 and mb_id='".$mrow[mb_id]."'");
-	save_benefit($day, $mrow[mb_id], $mrow[mb_no], $mrow[mbname], $recom, $allowance_name, $benefit, $rec_adm, $rec, $mb_level,$mrow['mb_v7_account']);
+	$soodang_sum  = sql_fetch("select sum(benefit) as eb_sum from soodang_pay where 1=1 and mb_id='".$mrow['mb_id']."'");
+	save_benefit($day, $mrow['mb_id'], $mrow['mb_no'], $mrow['mbname'], $recom, $allowance_name, $benefit, $rec_adm, $rec, $mb_level,$mrow['mb_v7_account']);
 	/*
 	if($soodang_sum[eb_sum]+$benefit>=$mrow[mb_deposit_point]*5){//보유 EOS의 5배를 수당으로 받았을 시에 이 회원 레벨은 0으로 바뀌고 매출도 사라 진다.
-		//$reset_mem = "update g5_member set mb_level=0, mb_deposit_point=0 where mb_id ='".$mrow[mb_id]."'";
+		//$reset_mem = "update g5_member set mb_level=0, mb_deposit_point=0 where mb_id ='".$mrow['mb_id']."'";
 		//sql_query($reset_mem);
 	}else{
-		save_benefit($day, $mrow[mb_id], $mrow[mb_no], $mrow[mbname], $recom, $allowance_name, $benefit, $rec_adm, $rec, $mb_level);
+		save_benefit($day, $mrow['mb_id'], $mrow['mb_no'], $mrow['mbname'], $recom, $allowance_name, $benefit, $rec_adm, $rec, $mb_level);
 	}*/
 }
 
