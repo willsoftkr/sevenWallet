@@ -143,16 +143,16 @@ function out_check($val){
 <?while($l_row = sql_fetch_array($get_lc)){
 	
 	if($l_row['grade']==3){
-	echo $start." Green : ".$l_row[cnt]."명 | ";
+	echo $start." Green : ".$l_row['cnt']."명 | ";
 	}
 	else if($l_row['grade']==2){
-		echo $start." Yellow: ".$l_row[cnt]."명 | ";
+		echo $start." Yellow: ".$l_row['cnt']."명 | ";
 	}
 	else if($l_row['grade']==1){
-		echo "Red : ".$l_row[cnt]."명 | ";
+		echo "Red : ".$l_row['cnt']."명 | ";
 	}
 	else if($l_row['grade']==0){
-		echo "Black : ".$l_row[cnt]."명 | ";
+		echo "Black : ".$l_row['cnt']."명 | ";
 	}
 }?>
 </div>

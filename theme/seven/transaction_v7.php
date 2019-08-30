@@ -30,7 +30,7 @@ $order_result = sql_query($order_sql);
 		$sql_search = " WHERE allowance_name = '$stx' AND ";
 	}
 	$sql_search .= "day between '{$fr_date}' and '{$to_date}' ";
-	$sql_search .= "AND mb_id = '{$member[mb_id]}' ";
+	$sql_search .= "AND mb_id = '{$member['mb_id']}' ";
 	
 	$sql = " select count(*) as cnt
 			{$sql_common}

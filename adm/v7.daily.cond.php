@@ -34,12 +34,12 @@ $list = sql_query($sql);
 
 <?while($row=sql_fetch_array($list)){?>
 	<tr>
-	<td style="text-align:center"><input type="hidden" name="idx[]" value="<?=$row[idx]?>"><?=$row[idx]?></td>
-	<td style="text-align:center"><?=$row[eos_grade]?></td>
-	<td style="text-align:center;background: <?=$row[grade_txt]?>;color:black;"><?=$row[grade_txt]?></td>
-	<td style="text-align:center"><input name="rate[<?=$row['idx']?>]"  value="<?=$row[eos_per]?>"></input></td>
-	<td style="text-align:center"><input name="recom_1[<?=$row['idx']?>]"  value="<?=$row[recom_1]?>"></input></td>
-	<td style="text-align:center"><input name="recom_2[<?=$row['idx']?>]"  value="<?=$row[recom_2]?>"></input></td>
+	<td style="text-align:center"><input type="hidden" name="idx[]" value="<?=$row['idx']?>"><?=$row['idx']?></td>
+	<td style="text-align:center"><?=$row['eos_grade']?></td>
+	<td style="text-align:center;background: <?=$row['grade_txt']?>;color:black;"><?=$row['grade_txt']?></td>
+	<td style="text-align:center"><input name="rate[<?=$row['idx']?>]"  value="<?=$row['eos_per']?>"></input></td>
+	<td style="text-align:center"><input name="recom_1[<?=$row['idx']?>]"  value="<?=$row['recom_1']?>"></input></td>
+	<td style="text-align:center"><input name="recom_2[<?=$row['idx']?>]"  value="<?=$row['recom_2']?>"></input></td>
 	</tr>
 <?}?>
 
@@ -64,7 +64,7 @@ $rate_rst = sql_fetch($team_rate);
 <form name="allowance" id="allowance" method="post" action="./update_eos_daily_cond.php">
 <input type="hidden" name="type" value="team">
 <p> EOS Team Bonus Condition </p>
- Team Bonus Rate : <input name="rate"  value="<?=$rate_rst[rate]?>"></input>
+ Team Bonus Rate : <input name="rate"  value="<?=$rate_rst['rate']?>"></input>
 <input  style="align:center" type="submit" value="저장하기">
 </form>
 -->
@@ -95,7 +95,7 @@ $rate_rst = sql_query($recom_rate);
 
 <div class="tbl_head02 tbl_wrap" style="clear:both">
 <form name="allowance" id="allowance" method="post" action="./update_daily_cond.php">
-<input type="hidden" name="idx[]" value="<?=$row[idx]?>">
+<input type="hidden" name="idx[]" value="<?=$row['idx']?>">
     <table style="width:60%">
     <caption><?php echo $g5['title']; ?> 목록</caption>
     <thead>

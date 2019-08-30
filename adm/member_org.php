@@ -26,7 +26,7 @@ if(!isset($member['mb_org_num'])) {
                     ADD `mb_org_num` int(11) NOT NULL DEFAULT '80'", true);
 }
 
-if ($_GET[go]=="Y"){
+if ($_GET['go']=="Y"){
 	goto_url("member_org.php?gubun=".$gubun."#org_start");
 	exit;
 }
@@ -37,51 +37,51 @@ $token = get_token();
 $sql  = "select count(*) as cnt from g5_member";
 $mrow = sql_fetch($sql);
 
-$sql = "select * from g5_member_class_chk where mb_id='".$member[mb_id]."' and  cc_date='".date("Y-m-d",time())."' order by cc_no desc";
+$sql = "select * from g5_member_class_chk where mb_id='".$member['mb_id']."' and  cc_date='".date("Y-m-d",time())."' order by cc_no desc";
 $row = sql_fetch($sql);
 
-if ($mrow[cnt]>$row[cc_usr] || !$row[cc_no] || $_GET["reset"]){
+if ($mrow['cnt']>$row['cc_usr'] || !$row['cc_no'] || $_GET["reset"]){
 
 	make_habu('');
 
-	$sql = "delete from g5_member_class where mb_id='".$member[mb_id]."'";
+	$sql = "delete from g5_member_class where mb_id='".$member['mb_id']."'";
 	sql_query($sql);
 
-	get_recommend_down($member[mb_id],$member[mb_id],'11');
+	get_recommend_down($member['mb_id'],$member['mb_id'],'11');
 
-	$sql  = " select * from g5_member_class where mb_id='{$member[mb_id]}' order by c_class asc";	
+	$sql  = " select * from g5_member_class where mb_id='{$member['mb_id']}' order by c_class asc";	
 	$result = sql_query($sql);
 	for ($i=0; $row=sql_fetch_array($result); $i++) { 
-		$row2 = sql_fetch("select count(c_class) as cnt from g5_member_class where  mb_id='".$member[mb_id]."' and c_class like '".$row[c_class]."%'");
-		$sql = "update g5_member set mb_child='".$row2[cnt]."' where mb_id='".$row[c_id]."'";
+		$row2 = sql_fetch("select count(c_class) as cnt from g5_member_class where  mb_id='".$member['mb_id']."' and c_class like '".$row['c_class']."%'");
+		$sql = "update g5_member set mb_child='".$row2['cnt']."' where mb_id='".$row['c_id']."'";
 		sql_query($sql);
 	}
 
-	$sql = "insert into g5_member_class_chk set mb_id='".$member[mb_id]."',cc_date='".date("Y-m-d",time())."',cc_usr='".$mrow[cnt]."'";
+	$sql = "insert into g5_member_class_chk set mb_id='".$member['mb_id']."',cc_date='".date("Y-m-d",time())."',cc_usr='".$mrow['cnt']."'";
 	sql_query($sql);
 
 }
 
-$sql = "select * from g5_member_bclass_chk where mb_id='".$member[mb_id]."' and  cc_date='".date("Y-m-d",time())."' order by cc_no desc";
+$sql = "select * from g5_member_bclass_chk where mb_id='".$member['mb_id']."' and  cc_date='".date("Y-m-d",time())."' order by cc_no desc";
 $row = sql_fetch($sql);
 
-if ($mrow[cnt]>$row[cc_usr] || !$row[cc_no] || $_GET["reset"]){
+if ($mrow['cnt']>$row['cc_usr'] || !$row['cc_no'] || $_GET["reset"]){
 
 	make_habu('B');
-	$sql = "delete from g5_member_bclass where mb_id='".$member[mb_id]."'";
+	$sql = "delete from g5_member_bclass where mb_id='".$member['mb_id']."'";
 	sql_query($sql);
 
-	get_brecommend_down($member[mb_id],$member[mb_id],'11');
+	get_brecommend_down($member['mb_id'],$member['mb_id'],'11');
 
-	$sql  = " select * from g5_member_bclass where mb_id='{$member[mb_id]}' order by c_class asc";	
+	$sql  = " select * from g5_member_bclass where mb_id='{$member['mb_id']}' order by c_class asc";	
 	$result = sql_query($sql);
 	for ($i=0; $row=sql_fetch_array($result); $i++) { 
-		$row2 = sql_fetch("select count(c_class) as cnt from g5_member_bclass where  mb_id='".$member[mb_id]."' and c_class like '".$row[c_class]."%'");
-		$sql = "update g5_member set mb_b_child='".$row2[cnt]."' where mb_id='".$row[c_id]."'";
+		$row2 = sql_fetch("select count(c_class) as cnt from g5_member_bclass where  mb_id='".$member['mb_id']."' and c_class like '".$row['c_class']."%'");
+		$sql = "update g5_member set mb_b_child='".$row2['cnt']."' where mb_id='".$row['c_id']."'";
 		sql_query($sql);
 	}
 
-	$sql = "insert into g5_member_bclass_chk set mb_id='".$member[mb_id]."',cc_date='".date("Y-m-d",time())."',cc_usr='".$mrow[cnt]."'";
+	$sql = "insert into g5_member_bclass_chk set mb_id='".$member['mb_id']."',cc_date='".date("Y-m-d",time())."',cc_usr='".$mrow['cnt']."'";
 	sql_query($sql);
 
 
@@ -93,9 +93,9 @@ if ($mrow[cnt]>$row[cc_usr] || !$row[cc_no] || $_GET["reset"]){
 
 if ($mb_org_num){
 	if ($mb_org_num>8) $mb_org_num = 8;
-	$sql = "update g5_member set mb_org_num='".$mb_org_num."' where mb_id='".$member[mb_id]."'";
+	$sql = "update g5_member set mb_org_num='".$mb_org_num."' where mb_id='".$member['mb_id']."'";
 	sql_query($sql);	
-	$member[mb_org_num] = $mb_org_num;
+	$member['mb_org_num'] = $mb_org_num;
 }
 
 
@@ -154,7 +154,7 @@ if (!$to_date) $to_date = Date("Y-m-d", time());
 				<b>표시인원</b>
 				</div>
 				<div style="float:right">
-				<input type="text" id="mb_org_num"  name="mb_org_num" value="<?php echo $member[mb_org_num]; ?>" class="frm_input" style="text-align:center" size="3" maxlength="3"> 단계 &nbsp;
+				<input type="text" id="mb_org_num"  name="mb_org_num" value="<?php echo $member['mb_org_num']; ?>" class="frm_input" style="text-align:center" size="3" maxlength="3"> 단계 &nbsp;
 				</div>
 				</td>
 			</tr>
@@ -388,18 +388,18 @@ text-align:center !important;
 if ($now_id){
 	$go_id = $now_id;
 }else{
-	$go_id = $member[mb_id];
+	$go_id = $member['mb_id'];
 }
 
-if ($member[mb_org_num]){
-	$max_org_num = $member[mb_org_num];
+if ($member['mb_org_num']){
+	$max_org_num = $member['mb_org_num'];
 }else{
 	$max_org_num = 4;
 }
 $org_num     = 0;
 
 //(select mb_child from g5_member where mb_id=c.c_id) as c_child
-$sql = "select c.c_id,c.c_class,(select grade from g5_member where mb_id=c.c_id) as grade,(select pool_level from g5_member where mb_id=c.c_id) as pool_level,(select mb_name from g5_member where mb_id=c.c_id) as c_name,(select count(*) from g5_member where mb_recommend=c.c_id) as c_child,(select mb_b_child from g5_member where mb_id=c.c_id) as b_child,(select mb_id from g5_member where mb_brecommend=c.c_id and mb_brecommend_type='L') as b_recomm,(select mb_id from g5_member where mb_brecommend=c.c_id and mb_brecommend_type='R') as b_recomm2,(select count(mb_no) from g5_member where ".$recommend_name."=c.c_id and mb_leave_date = '') as m_child, (select it_pool1 from g5_member where mb_id=c.c_id) as it_pool1, (select it_pool2 from g5_member where mb_id=c.c_id) as it_pool2, (select it_pool3 from g5_member where mb_id=c.c_id) as it_pool3, (select it_pool4 from g5_member where mb_id=c.c_id) as it_pool4, (select it_GPU from g5_member where mb_id=c.c_id) as it_GPU from g5_member m join ".$class_name." c on m.mb_id=c.mb_id where c.mb_id='{$member[mb_id]}' and c.c_id='$go_id'";
+$sql = "select c.c_id,c.c_class,(select grade from g5_member where mb_id=c.c_id) as grade,(select pool_level from g5_member where mb_id=c.c_id) as pool_level,(select mb_name from g5_member where mb_id=c.c_id) as c_name,(select count(*) from g5_member where mb_recommend=c.c_id) as c_child,(select mb_b_child from g5_member where mb_id=c.c_id) as b_child,(select mb_id from g5_member where mb_brecommend=c.c_id and mb_brecommend_type='L') as b_recomm,(select mb_id from g5_member where mb_brecommend=c.c_id and mb_brecommend_type='R') as b_recomm2,(select count(mb_no) from g5_member where ".$recommend_name."=c.c_id and mb_leave_date = '') as m_child, (select it_pool1 from g5_member where mb_id=c.c_id) as it_pool1, (select it_pool2 from g5_member where mb_id=c.c_id) as it_pool2, (select it_pool3 from g5_member where mb_id=c.c_id) as it_pool3, (select it_pool4 from g5_member where mb_id=c.c_id) as it_pool4, (select it_GPU from g5_member where mb_id=c.c_id) as it_GPU from g5_member m join ".$class_name." c on m.mb_id=c.mb_id where c.mb_id='{$member['mb_id']}' and c.c_id='$go_id'";
 
 $srow = sql_fetch($sql);
 $my_depth = strlen($srow['c_class']);
@@ -407,53 +407,53 @@ $my_depth = strlen($srow['c_class']);
 
 
 if ($order_proc==1){
-	$sql  = "select today as tpv from ".$ngubun."today where mb_id='".$srow[c_id]."'";
+	$sql  = "select today as tpv from ".$ngubun."today where mb_id='".$srow['c_id']."'";
 	$row2 = sql_fetch($sql);
 
-	$sql  = "select noo as tpv from ".$ngubun."noo where mb_id='".$srow[c_id]."'";
+	$sql  = "select noo as tpv from ".$ngubun."noo where mb_id='".$srow['c_id']."'";
 	$row3 = sql_fetch($sql);
 
-	$sql  = "select thirty as tpv from ".$ngubun."thirty where mb_id='".$srow[c_id]."'";
+	$sql  = "select thirty as tpv from ".$ngubun."thirty where mb_id='".$srow['c_id']."'";
 	$row5 = sql_fetch($sql);
 }else{
 
-	$sql  = "select no,today as tpv from ".$ngubun."today where mb_id='".$srow[c_id]."'";
+	$sql  = "select no,today as tpv from ".$ngubun."today where mb_id='".$srow['c_id']."'";
 	$row2 = sql_fetch($sql);
 
 	if ($row2[no]){
 
 	}else{
 
-		$sql  = "select ".$order_field." as tpv from g5_shop_order where mb_id='".$srow[c_id]."' and od_time between '$fr_date 00:00:00' and '$to_date 23:59:59'";
+		$sql  = "select ".$order_field." as tpv from g5_shop_order where mb_id='".$srow['c_id']."' and od_time between '$fr_date 00:00:00' and '$to_date 23:59:59'";
 		$row2 = sql_fetch($sql);
 		if (!$row2['tpv']) $row2['tpv'] = 0;
-		sql_query("insert ".$ngubun."today SET today=".$row2['tpv']." ,mb_id='".$srow[c_id]."'");	
+		sql_query("insert ".$ngubun."today SET today=".$row2['tpv']." ,mb_id='".$srow['c_id']."'");	
 	}
 
-	$sql  = "select no,noo as tpv from ".$ngubun."noo where mb_id='".$srow[c_id]."'";
+	$sql  = "select no,noo as tpv from ".$ngubun."noo where mb_id='".$srow['c_id']."'";
 	$row3 = sql_fetch($sql);
 	if ($row3[no]){
 
 	}else{
-		$sql  = "select ".$order_field." as tpv from g5_shop_order where mb_id in (select c_id from ".$class_name." where mb_id='".$member[mb_id]."'  and c_class like '".$srow[c_class]."%') and od_receipt_time between '$fr_date 00:00:00' and '$to_date 23:59:59'";
+		$sql  = "select ".$order_field." as tpv from g5_shop_order where mb_id in (select c_id from ".$class_name." where mb_id='".$member['mb_id']."'  and c_class like '".$srow['c_class']."%') and od_receipt_time between '$fr_date 00:00:00' and '$to_date 23:59:59'";
 		$row3 = sql_fetch($sql);
 
 		$row3 = sql_fetch($sql);
 		if (!$row3['tpv']) $row3['tpv'] = 0;
-		$sql  = "insert ".$ngubun."noo SET noo=".$row3['tpv']." ,mb_id='".$srow[c_id]."'";
+		$sql  = "insert ".$ngubun."noo SET noo=".$row3['tpv']." ,mb_id='".$srow['c_id']."'";
 		sql_query($sql);	
 	}
 
 	//이전 30일
-	$sql  = "select no,thirty as tpv from ".$ngubun."thirty where mb_id='".$srow[c_id]."'";
+	$sql  = "select no,thirty as tpv from ".$ngubun."thirty where mb_id='".$srow['c_id']."'";
 	$row5 = sql_fetch($sql);
 	if ($row5[no]){
 
 	}else{
-		$sql  = "select ".$order_field." as tpv from g5_shop_order where mb_id in (select c_id from ".$class_name." where mb_id='".$member[mb_id]."' and c_class like '".$srow[c_class]."%') and od_receipt_time between '".Date("Y-m-d",time()-(60*60*24*30))." 00:00:00' and '".Date("Y-m-d",time())." 23:59:59'";
+		$sql  = "select ".$order_field." as tpv from g5_shop_order where mb_id in (select c_id from ".$class_name." where mb_id='".$member['mb_id']."' and c_class like '".$srow['c_class']."%') and od_receipt_time between '".Date("Y-m-d",time()-(60*60*24*30))." 00:00:00' and '".Date("Y-m-d",time())." 23:59:59'";
 		$row5 = sql_fetch($sql);
 		if (!$row5['tpv']) $row5['tpv'] = 0;
-		sql_query("insert ".$ngubun."thirty SET thirty=".$row5['tpv']." ,mb_id='".$srow[c_id]."'");	
+		sql_query("insert ".$ngubun."thirty SET thirty=".$row5['tpv']." ,mb_id='".$srow['c_id']."'");	
 	}
 
 }
@@ -461,15 +461,15 @@ if ($order_proc==1){
 //바이너리 왼쪽 오늘 매출
 
 
-if ($srow[b_recomm]){
-	//$sql  = "select ".$order_field." as tpv from g5_shop_order where mb_id ='".$srow[b_recomm]."' and od_receipt_time between '".$to_date." 00:00:00' and '".$to_date." 23:59:59'";
+if ($srow['b_recomm']){
+	//$sql  = "select ".$order_field." as tpv from g5_shop_order where mb_id ='".$srow['b_recomm']."' and od_receipt_time between '".$to_date." 00:00:00' and '".$to_date." 23:59:59'";
     
-	$sql  = "select (mb_my_sales+habu_day_sales) as tpv from g5_member where mb_id ='".$srow[b_recomm]."' and sales_day='".date("Y-m-d")."'";
+	$sql  = "select (mb_my_sales+habu_day_sales) as tpv from g5_member where mb_id ='".$srow['b_recomm']."' and sales_day='".date("Y-m-d")."'";
 	// and sales_day='".date("Y-m-d")."'
 	$row6 = sql_fetch($sql);
 	if (!$row6['tpv']) $row6['tpv'] = 0;
 
- 	$sql  = "select ".$order_field." as tpv from iwol where mb_id ='".$srow[b_recomm]."'";
+ 	$sql  = "select ".$order_field." as tpv from iwol where mb_id ='".$srow['b_recomm']."'";
 	$row8 = sql_fetch($sql);
 
 	$row6['tpv'] += $row8['tpv'];
@@ -478,24 +478,24 @@ if ($srow[b_recomm]){
 }
 
 //바이너리 오른쪽 오늘 매출
-if ($srow[b_recomm2]){
-//	$sql  = "select ".$order_field." as tpv from g5_shop_order where mb_id ='".$srow[b_recomm2]."' and od_receipt_time between '".$to_date." 00:00:00' and '".$to_date." 23:59:59'";
+if ($srow['b_recomm2']){
+//	$sql  = "select ".$order_field." as tpv from g5_shop_order where mb_id ='".$srow['b_recomm2']."' and od_receipt_time between '".$to_date." 00:00:00' and '".$to_date." 23:59:59'";
 	//echo '<br>';
-    $sql  = "select (mb_my_sales+habu_day_sales) as tpv from g5_member where mb_id ='".$srow[b_recomm2]."' and sales_day='".date("Y-m-d")."'";
+    $sql  = "select (mb_my_sales+habu_day_sales) as tpv from g5_member where mb_id ='".$srow['b_recomm2']."' and sales_day='".date("Y-m-d")."'";
 	// and sales_day='".date("Y-m-d")."'
 	$row7 = sql_fetch($sql);
 	if (!$row7['tpv']) $row7['tpv'] = 0;
 
-	$sql  = "select ".$order_field." as tpv from iwol where mb_id ='".$srow[b_recomm2]."'";
+	$sql  = "select ".$order_field." as tpv from iwol where mb_id ='".$srow['b_recomm2']."'";
 	$row9 = sql_fetch($sql);
 	$row7['tpv'] += $row9['tpv'];
 }else{
 	$row7['tpv'] = 0;
 }
 
-$sql    = "select c_class from ".$class_name." where mb_id='".$member[mb_id]."' and c_id='".$go_id."'";
+$sql    = "select c_class from ".$class_name." where mb_id='".$member['mb_id']."' and c_id='".$go_id."'";
 $row4   = sql_fetch($sql);
-$mdepth = (strlen($row4[c_class])/2);
+$mdepth = (strlen($row4['c_class'])/2);
 
 			$mb_my_sales=$row2['tpv'];
 			$mb_habu_sum=$row3['tpv'];
@@ -508,7 +508,7 @@ $mdepth = (strlen($row4[c_class])/2);
 			$sql = "select * from ".$class_name."_chk where cc_date='".date("Y-m-d",time())."' order by cc_no desc";
 			$mrow = sql_fetch($sql);
 
-			if ($mrow[cc_run]==0){  //업데이트가 안되었으면
+			if ($mrow['cc_run']==0){  //업데이트가 안되었으면
 				if ($gubun){
 					$sql  = "update g5_member set mb_b_my_sales=".$mb_my_sales." , mb_b_habu_sum=".$mb_habu_sum."   where mb_id='".$go_id."'";
 				}else{
@@ -522,7 +522,7 @@ $mdepth = (strlen($row4[c_class])/2);
 ?>
 		<ul id="org" style="display:none" >
 			<li>
-				<?=(strlen($srow[c_class])/2)-1?>-<?=($srow[c_child])?>-<?=($srow[b_child]-1)?>|<?=get_member_label($srow[grade])?>|<?=$srow[c_id]?>|<?=$srow[c_name]?>|<?=number_format($row3[tpv]/$order_split)?>|<?=number_format($row5[tpv]/$order_split)?>|<?=$srow[grade]?>|<?=number_format($row6[tpv]/$order_split)?>|<?=number_format($row7[tpv]/$order_split)?>|<?=$srow[it_pool1]?>|<?=$srow[it_pool2]?>|<?=$srow[it_pool3]?>|<?=$srow[it_pool4]?>|<?=$srow[it_GPU]?>|<?=(strlen($srow[c_class])/2)-1?>|<?=($srow[c_child])?>|<?=($srow[b_child]-1)?>|<?=$gubun?>
+				<?=(strlen($srow['c_class'])/2)-1?>-<?=($srow['c_child'])?>-<?=($srow['b_child']-1)?>|<?=get_member_label($srow['grade'])?>|<?=$srow['c_id']?>|<?=$srow['c_name']?>|<?=number_format($row3['tpv']/$order_split)?>|<?=number_format($row5[tpv]/$order_split)?>|<?=$srow[grade]?>|<?=number_format($row6[tpv]/$order_split)?>|<?=number_format($row7['tpv']/$order_split)?>|<?=$srow['it_pool1']?>|<?=$srow['it_pool2']?>|<?=$srow['it_pool3']?>|<?=$srow['it_pool4']?>|<?=$srow['it_GPU']?>|<?=(strlen($srow['c_class'])/2)-1?>|<?=($srow['c_child'])?>|<?=($srow['b_child']-1)?>|<?=$gubun?>
 <?
 			get_org_down($srow);
 ?>
@@ -578,13 +578,7 @@ $mdepth = (strlen($row4[c_class])/2);
 		});
 
     });
-
-
-
     </script>
-
-
-
 </div>
 
 <script type="text/javascript">
@@ -639,12 +633,10 @@ function go_member(go_id){
 		});
 	});
 
-/*
-
-*/
+/**/
 }
-function btn_print(){
 
+function btn_print(){
 	var html = $('#chart-container');
 
 	var strHtml = '<!doctype html><html lang="ko"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta http-equiv="imagetoolbar" content="no" /><title></title><link rel="stylesheet" type="text/css" media="all" href="jquery.orgchart.css"><link rel="stylesheet" type="text/css" media="all" href="chart.css"></';
@@ -662,8 +654,8 @@ function btn_print(){
 
 		 setTimeout(function(){ objWindow.print(); }, 500);
 	}
-
 }
+
 function btn_menu(){
 	if($("#div_left").css("display") == "none"){ 
 		$("#div_left").show();

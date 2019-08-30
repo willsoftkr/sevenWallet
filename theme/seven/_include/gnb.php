@@ -17,12 +17,12 @@
 					<li>
 						<a href="#0" class="menu_tree clear_fix"><img src="<?=G5_THEME_URL?>/_images/menu05.gif" alt="아이콘"><span data-i18n="nav.비즈니스 현황">Business Status</span></a>
 						<ul>
-							<li><a href="/structure.php"><img src="<?=G5_THEME_URL?>/_images/menu05_1.gif" alt="아이콘"><span data-i18n="nav.추천도 보기">Level Structure</span></a></li>
+							<li><a href="/page.php?id=structure"><img src="<?=G5_THEME_URL?>/_images/menu05_1.gif" alt="아이콘"><span data-i18n="nav.추천도 보기">Level Structure</span></a></li>
 							<li><a href="/page.php?id=binary"><img src="<?=G5_THEME_URL?>/_images/menu05_2.gif" alt="아이콘"><span data-i18n="nav.후원도 보기">Binary Structure</span></a></li>
 							<li><a href="javascript:serviceModal();"><img src="<?=G5_THEME_URL?>/_images/menu05_3.gif" alt="아이콘"><span data-i18n="nav.아바타 보기">Avatar Account</span></a></li>
 						</ul>
 					</li>
-					<li><a href="javascript:serviceModal();"><img src="<?=G5_THEME_URL?>/_images/menu06.gif" alt="아이콘"><span data-i18n="nav.팩 상품 구매하기">Purchase Packs</span></a></li>
+					<li><a href="/page.php?id=purchase"><img src="<?=G5_THEME_URL?>/_images/menu06.gif" alt="아이콘"><span data-i18n="nav.팩 상품 구매하기">Purchase Packs</span></a></li>
 					<li><a href="javascript:serviceModal();"><img src="<?=G5_THEME_URL?>/_images/menu07.gif" alt="아이콘"><span data-i18n="nav.V7 뉴스">V7 News</span></a></li>
 					<li><a href="javascript:serviceModal();"><img src="<?=G5_THEME_URL?>/_images/menu08.gif" alt="아이콘"><span data-i18n="nav.서포트 센터">Support Center</span></a></li>
 					<li>

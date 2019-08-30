@@ -680,6 +680,7 @@ a.all_send{color:#ed2424; padding-left:5px; font-size:0.8em;}
   background-color: #aaa;
   transition-duration: 0.2s;
   right: 0;
+  top:5px;
 }
 .round_chkbox label span {
   position: absolute;
@@ -706,6 +707,7 @@ a.all_send{color:#ed2424; padding-left:5px; font-size:0.8em;}
 .round_chkbox label:after {right:2px; content: 'OFF';}
 .round_chkbox input:checked + label {background-color: #00aeef;}
 .round_chkbox input:checked + label span {transform: translateX(18px);}
+
 .opt_wrap{width:96%; margin:auto; text-align:center;}
 .opt_wrap small{display:block;}
 .opt_wrap img{margin:20px; width:20%;}
@@ -966,6 +968,10 @@ a.all_send{color:#ed2424; padding-left:5px; font-size:0.8em;}
 	font-size:0.93em;
 	padding-left:2%;
 }
+.purchase_wrap .description{
+	padding:10px;
+	font-size:0.9em;
+}
 .radio_box {position: relative; bottom:10px;} 
 .radio_box input[type="radio"] { 
 	position: absolute; 
@@ -990,8 +996,8 @@ a.all_send{color:#ed2424; padding-left:5px; font-size:0.8em;}
 	position: absolute; 
 	left: calc(50% - 6px); 
 	top: 3px; 
-	width: 12px; 
-	height: 12px; 
+	width: 14px; 
+	height: 14px; 
 	text-align: center; 
 	background: #fff; 
 	border: 1px solid #cacece; 
@@ -1001,15 +1007,15 @@ a.all_send{color:#ed2424; padding-left:5px; font-size:0.8em;}
 .radio_box input[type="radio"]:checked + label:after {
 	content: ''; 
 	position: absolute; 
-	top: 6px; 
-	left:calc(50% - 3px); 
-	width: 8px; 
-	height: 8px; 
+	top: 3px; 
+	left:calc(50% - 6px); 
+	width: 14px; 
+	height: 14px; 
 	background: #00aeef; 
 	border-radius: 100%; 
 }
 .purchase_wrap .round_chkbox {bottom: 10px;}
-
+.purchase_wrap .cancel{cursor: pointer;}
 
 
 /* purchase_1  */
@@ -1027,6 +1033,11 @@ a.all_send{color:#ed2424; padding-left:5px; font-size:0.8em;}
 .purchase1_wrap tbody td:first-child{font-weight:500;}
 .purchase1_wrap td{padding:8px 0px;}
 .purchase1_wrap tfoot{border-top:1px solid #ddd; font-weight:600;}
+
+.purchase1_wrap input[type="submit"]{border:0;outline:0;color:white;}
+.purchase1_wrap .purchase_btn{}
+.purchase1_wrap .purchase_btn:hover{background:black}
+
 .payment_div{margin: 20px 0px;}
 .payment_div>p{color: #808080; font-weight:600; font-size:1.02em;}
 .pay_coin{margin:12px 0px;}
@@ -1034,8 +1045,8 @@ a.all_send{color:#ed2424; padding-left:5px; font-size:0.8em;}
 .pay_coin li{float:left;}
 .pay_coin li:first-child{width:5%;}
 .pay_coin li:first-child img{vertical-align:middle;}
-.pay_coin li:nth-child(2){width:calc(95% - 110px);}
-.pay_coin li:last-child{width:110px; font-size:0.9em;}
+.pay_coin li:nth-child(2){width:calc(95% - 80px);}
+.pay_coin li:last-child{width:80px; font-size:0.9em;line-height:50px;}
 .pay_coin li div{
 	position:relative;
 	-webkit-box-sizing: border-box;
@@ -1144,9 +1155,14 @@ div:nth-child(2){color:#ff9b22;}
 .btn.blue:hover{background:rgba(0,0,0,0.8);}
 
 
+/*모달*/
+#purchaseModal .modal-body{_background:url('/img/comform_chk.gif') center center 80% no-repeat; min-height:200px;text-align:center}
+.modal .modal-body .chkimg{display:block;width:100%;}
+.modal .modal-body img{width:120px;margin-bottom:20px;}
 
 
-
+/*UTIL*/
+.upper{text-transform: uppercase;}
 
 /* 아이폰 플러스 세로 */
 @media screen and (max-width:736px) {

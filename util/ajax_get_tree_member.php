@@ -31,7 +31,7 @@ $result = sql_query($sql);
 			?>
 				<tr>
 					<td bgcolor="#f5f5f5"  style="padding:10px;border-bottom:4px solid white;" class="result_member">
-						<span style="cursor:pointer" onclick="go_member('<?=$row[mb_id]?>');"><?=$row[mb_name]?> [<?=$row[mb_id]?>]</span>
+						<span style="cursor:pointer" onclick="go_member('<?=$row['mb_id']?>');"><?=$row['mb_name']?> [<?=$row['mb_id']?>]</span>
 					</td>
 				</tr>
 			<?

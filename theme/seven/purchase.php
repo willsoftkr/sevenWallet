@@ -1,11 +1,21 @@
-<?php include '_include/head.php'; ?>
-<?php include '_include/gnb.php'; ?>
+<?
+	include_once('./_common.php');
+	include_once(G5_THEME_PATH.'/_include/gnb.php'); 
+	include_once(G5_THEME_PATH.'/_include/shop.php');
+	//print_r($member);
+
+	login_check($member['mb_id']);
+?>
 	<script>
 		$(function() {
 			var chb=$('.purchase_wrap input[type=checkbox]');
+
 			$(chb).change(function(){
 				if($(chb).is(":checked")){
+					
 					$(this).closest('table').find('input:checkbox').not(this).prop("checked",false);
+					$(this).closest('table').find('input:radio').not(this).prop("checked",false);
+
 					$(this).closest('tr').find('input:radio').prop("checked",true);
 				}else{
 					$(this).closest('tr').find('input:radio').prop("checked",false);
@@ -13,8 +23,8 @@
 			});
 
 			$('.purchase_wrap table td:last-child').click(function(){
-				$('.purchase_wrap').find('input:radio').prop("checked",false);
-				$('.purchase_wrap').find('input:checkbox').prop("checked",false);
+				$(this).parent().find('input:radio').prop("checked",false);
+				$(this).parent().find('input:checkbox').prop("checked",false);
 			});
 
 			$('.purchase_wrap input:radio').click(function(){
@@ -25,74 +35,94 @@
 </script>
 
 		<section class="v_center purchase_wrap">
-			
+
+		<form id="puchaseBForm" name="puchaseBForm" action="<?=G5_URL?>/page.php?id=purchase_order" onsubmit="return fitemlist_submit(this);" method="post" >
 			<div>
 				<table>
 					<tr>
-						<th>B 팩</th>
-						<th>가격</th>
-						<th>선택</th>
-						<th>자동 <span class="m_br">재구매</span></th>
-						<th>취소</th>
+						<th> <span data-i18n="purchase.B 팩">B Packs</span></th>
+						<th><span data-i18n="purchase.가격">Price</span></th>
+						<th><span data-i18n="purchase.선택">Select</span></th>
+						<th><span data-i18n="purchase.자동">Auto Repurchase</span></th>
+						<th><span data-i18n="purchase.취소">Cancel</span></th>
 					</tr>
-					<tr>
-						<td>B1</td>
-						<td>&#36;600</td>
-						<td>
-							<div class="radio_box"> 
-								<input type="radio" id="p_rd1" name="b_rd1"> 
-								<label for="p_rd1"></label> 
-							</div>
-						</td>
-						<td>
-							<div class="round_chkbox">
-							  <input type="checkbox" id="q_chk1">
-							  <label for="q_chk1"><span></span></label>
-							</div>
-						</td>
-						<td>X</td>
-					</tr>
-					<tr>
-						<td>B2</td>
-						<td>&#36;800</td>
-						<td>
-							<div class="radio_box"> 
-								<input type="radio" id="p_rd2" name="b_rd1"> 
-								<label for="p_rd2"></label> 
-							</div>
-						</td>
-						<td>
-							<div class="round_chkbox">
-							  <input type="checkbox" id="q_chk2">
-							  <label for="q_chk2"><span></span></label>
-							</div>
-						</td>
-						<td>X</td>
-					</tr>
-					<tr>
-						<td>B3</td>
-						<td>&#36;1,000</td>
-						<td>
-							<div class="radio_box"> 
-								<input type="radio" id="p_rd3" name="b_rd1"> 
-								<label for="p_rd3"></label> 
-							</div>
-						</td>
-						<td>
-							<div class="round_chkbox">
-							  <input type="checkbox" id="q_chk3">
-							  <label for="q_chk3"><span></span></label>
-							</div>
-						</td>
-						<td>X</td>
-					</tr>
+					<?
+						$result = shop_item('10');
+						$i = 1;
+						while( $row = sql_fetch_array($result)){
+					?>
+						<tr>
+							<td><?=$row['it_name']?></td>
+							<td >&#36;<?=$row['it_price']?></td>
+							<td>
+								<div class="radio_box"> 
+									<input type="radio" id="b_rd<?=$i?>" name="b_it_id" value="<?=$row['it_id']?>"> 
+									<label for="b_rd<?=$i?>"></label> 
+								</div>
+							</td>
+							<td>
+								<div class="round_chkbox">
+								<input type="checkbox" id="b_chk<?=$i?>" name="b_chk" value="<?=$i?>">
+								<label for="b_chk<?=$i?>"><span></span></label>
+								</div>
+							</td>
+							<td class="cancel">X</td>
+						</tr>
+						
+					<? $i++;}?>
+
 				</table>
-				<p>
-					바이너리 수당을 받으려면 B 팩을 구매해야 합니다.<br/>
-					구매일로 부터 30일간 유효합니다.<br/>
-					한번에 한개의 상품만 살 수 있습니다.<br/>
-					자동 재구매를 활성화하면 매월 자동으로 재구매가 됩니다.
+
+				<p class="description">
+				<span data-i18n="purchase.B팩 설명1"> Purchase B Pack for daily binary bonus qualification.</span><br>
+				<span data-i18n="purchase.B팩 설명2"> The purchase is valid for 30 days from the date of the purchase.</span><br>
+				<span data-i18n="purchase.B팩 설명3"> Only one pack is to select at a time. </span><br>
+				<span data-i18n="purchase.B팩 설명4"> Enable Auto Repurchase if you want to activate automatic recurring purchase</span>
 				</p>
+
+				<table>
+					<tr>
+						<th> <span data-i18n="purchase.Q 팩">Q Packs</span></th>
+						<th><span data-i18n="purchase.가격">Price</span></th>
+						<th><span data-i18n="purchase.선택">Select</span></th>
+						<th><span data-i18n="purchase.자동">Auto Repurchase</span></th>
+						<th><span data-i18n="purchase.취소">Cancel</span></th>
+					</tr>
+					<?
+						$result = shop_item('20');
+						$i = 1;
+						while( $row = sql_fetch_array($result)){
+					?>
+						<tr>
+							<td><?=$row['it_name']?></td>
+							<td >&#36;<?=$row['it_price']?></td>
+							<td>
+								<div class="radio_box"> 
+									<input type="radio" id="q_rd<?=$i?>" name="q_it_id" value="<?=$row['it_id']?>"> 
+									<label for="q_rd<?=$i?>"></label> 
+								</div>
+							</td>
+							<td>
+								<div class="round_chkbox">
+								<input type="checkbox" id="q_chk<?=$i?>" name="q_chk" value="<?=$i?>">
+								<label for="q_chk<?=$i?>"><span></span></label>
+								</div>
+							</td>
+							<td class="cancel">X</td>
+						</tr>
+						
+					<? $i++;}?>
+
+				</table>
+
+				<p class="description">
+				<span data-i18n="purchase.Q팩 설명1"> Purchase Q Pack to maintain your rank and receive Rank Bonus  and Share Bonus.</span><br>
+				<span data-i18n="purchase.Q팩 설명2"> The purchase is valid for 30 days from the date of the purchase.</span><br>
+				<span data-i18n="purchase.Q팩 설명3"> Only one pack is to select at a time. </span><br>
+				<span data-i18n="purchase.Q팩 설명4"> Enable Auto Repurchase if you want to activate automatic recurring purchase</span>
+				</p>
+				
+				<!--
 				<table>
 					<tr>
 						<th>Q 팩</th>
@@ -227,16 +257,18 @@
 					한번에 한 개의 상품만 살 수 있습니다.<br/>
 					자동 재구매를 활성화하면 매월 자동으로 재구매가 됩니다.
 				</p>
+				-->
+				
 			</div>
 			
+			
 			<div class="btn2_wrap">
-				<input type="button" value="취소" onclick="history.back();">
-				<input type="button" value="다음단계" onclick="location.href='purchase_1.php'">
+				<input type="button" value='' onclick=" history.back();" data-i18n="[value]취소">
+				<input type="submit" value=''  data-i18n="[value]다음단계">
 			</div>
-
+			</form>
 		</section>
 
-		<?php include '_include/popup.php'; ?>
 		<div class="gnb_dim"></div>
 
 	</section>
@@ -245,12 +277,23 @@
 
 	<script>
 		$(function() {
-			$(".top_title h3").html("<img src='_images/top_purchase.png' alt='아이콘'> 팩 상품 구매하기");
+			$(".top_title h3").html("<img src='<?=G5_THEME_URL?>/_images/top_purchase.png' alt='아이콘'><span data-i18n='title.팩상품구매하기'> Purchase Packs </span>");
 			$('#wrapper').css("background", "#fff");
-
 		});
+
+		function fitemlist_submit(f)
+		{
+			/*
+			if (!is_checked("chk[]")) {
+				alert(document.pressed+" 하실 항목을 하나 이상 선택하세요.");
+				return false;
+			}
+			*/
+			return true;
+		}
+
 	</script>
 
 
+<? include_once(G5_THEME_PATH.'/_include/tail.php'); ?>
 
-</body></html>

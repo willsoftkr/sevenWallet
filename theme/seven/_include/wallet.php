@@ -2,16 +2,20 @@
 $math_sql = "select  sum(mb_btc_account + mb_btc_calc + mb_btc_amt) as btc_total, mb_v7_account as v7_total from g5_member where mb_id = '".$member['mb_id']."'";
 $math_total = sql_fetch($math_sql);
 
+/* 지갑잔고 */
 $btc_account = number_format($math_total['btc_total'],8);
 $v7_account = number_format($math_total['v7_total'],2);
 $balance_account = number_format($math_total['v7_total']/2,2);
 
+/* 코인시세 */
 $btc_cost = number_format(get_coin_cost('btc'),2);
 $v7_cost = number_format(get_coin_cost('v7'),2);
 
+/* 시세반영잔고 */
 $btc_rate = number_format( $math_total['btc_total'] * get_coin_cost('btc'),2);
 $v7_rate = number_format( $math_total['v7_total'] * get_coin_cost('v7'),2);
 
+/* 전체지갑잔고 */
 $total_rate = number_format(($math_total['btc_total'] * get_coin_cost('btc')) + ($math_total['v7_total'] * get_coin_cost('v7')),2);
 
 function deposit_result($val){
@@ -23,9 +27,23 @@ function shift_doller($val){
 	return Number_format($val, 2);
 }
 
+/*BTC 표시*/
+function shift_btc($val){
+	return Number_format($val, 8);
+}
+
+/*숫자표시*/
 function shift_number($val){
 	return preg_replace("/[^0-9].*/s","",$val);
 }
+
+/*콤마제거숫자표시*/
+function conv_number($val) {
+	$number = (int)str_replace(',', '', $val);
+	return $number;
+}
+
+
 
 /*날짜형식 변환*/
 function timeshift($time){

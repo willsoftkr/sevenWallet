@@ -170,11 +170,16 @@ $colspan = 16;
 		.benefit{color:white;border:0;padding: 5px 20px;height:40px;}
 		.benefit.day{background:cornflowerblue}
 		.benefit.recom{background:palevioletred}
+		.benefit.qpack{background:darkgreen}
+		.benefit.bpack{background:indigo}
 		.benefit:hover{background:black;}
 	</style>
 
 	<input type="submit" name="act_button" value=" 일일 수당 지급 "  class="frm_input benefit day" onclick="go_calc(0);">
-    <input type="submit" name="act_button" value=" 추천 수당 지급"  class="frm_input benefit recom" onclick="go_calc(1);">
+	<input type="submit" name="act_button" value=" 추천 수당 지급"  class="frm_input benefit recom" onclick="go_calc(1);">
+	
+	<input type="submit" name="act_button" value=" Q팩 수당 지급 " class="frm_input benefit bpack" onclick="go_calc(3);">
+	<input type="submit" name="act_button" value=" B팩 수당 지급"  class="frm_input benefit qpack" onclick="go_calc(2);">
 	<!--
 	<input type="submit" name="act_button" value=" 바이너리 보너스 "  class="frm_input" onclick="go_calc(2);">
 	<input type="submit" name="act_button" value=" 바이너리 매칭 "  class="frm_input" onclick="go_calc(3);">
@@ -196,7 +201,9 @@ $colspan = 16;
 
 	<label for="stx" class="sound_only">검색어<strong class="sound_only"> 필수</strong></label>
 	<input type="text" name="stx" value="<?php echo $stx ?>" id="stx" class="frm_input">
-	검색 기간 : <input type="text" name="start_dt" id="start_dt" placeholder="From" class="frm_input" value="<?=$_GET[start_dt]?>" /> ~ <input type="text" name="end_dt" id="end_dt" placeholder="To" class="frm_input" value="<?=$_GET[end_dt]?>" />
+	검색 기간 : <input type="text" name="start_dt" id="start_dt" placeholder="From" class="frm_input" value="<?=$_GET['start_dt']?>" /> 
+	~ <input type="text" name="end_dt" id="end_dt" placeholder="To" class="frm_input" value="<?=$_GET['end_dt']?>"/>
+	
 	<?
 	echo $html;
 	?>
@@ -325,22 +332,16 @@ function go_calc(n)
 	
 	switch(n){
 		case 0: 
-			location.href='eos.daily.pay.php?'+str;         //일배당
+			location.href='eos.daily.pay.php?'+str;         //일일수당
 			break;
 		case 1: 
-			location.href='eos.benefit.immediate.php?'+str;//롤다운 추천
+			location.href='eos.benefit.immediate.php?'+str;// 추천수당
 			break;
 		case 2: 
-			location.href='eos.binary.php?'+str;//바이너리
+			location.href='eos.bpack.php?'+str;// B팩
 			break;
 		case 3:
 			location.href='eos.binary.matching.php?'+str;//바이너리 매칭
-			break;
-		case 4:
-			location.href='eos.team.pay.php?'+str;//팀 수당
-			break;
-		case 5:
-			location.href='eos.binary.recom.php?'+str;//후원 추천 
 			break;
 	}
 	

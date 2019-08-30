@@ -2,8 +2,13 @@
 if (!defined('G5_USE_SHOP') || !G5_USE_SHOP) return;
 
 $menu['menu400'] = array (
-/*
-    array('400000', '쇼핑몰관리', G5_ADMIN_URL.'/shop_admin/', 'shop_config'),
+
+    array('400000', '팩 상품관리', G5_ADMIN_URL.'/shop_admin/itemlist.php', 'scf_item'),
+    array('400100', '팩 상품관리', G5_ADMIN_URL.'/shop_admin/itemlist.php', 'scf_item'),
+    array('400400', '주문내역', G5_ADMIN_URL.'/shop_admin/cart_list.php', 'scf_order', 1),
+
+    /*
+    array('400000', '팩 상품관리', G5_ADMIN_URL.'/shop_admin/', 'shop_config'),
     array('400100', '쇼핑몰설정', G5_ADMIN_URL.'/shop_admin/configform.php', 'scf_config'),
     array('400400', '주문내역', G5_ADMIN_URL.'/shop_admin/orderlist.php', 'scf_order', 1),
     array('400440', '개인결제관리', G5_ADMIN_URL.'/shop_admin/personalpaylist.php', 'scf_personalpay', 1),
@@ -17,6 +22,6 @@ $menu['menu400'] = array (
     array('400800', '쿠폰관리', G5_ADMIN_URL.'/shop_admin/couponlist.php', 'scf_coupon'),
     array('400750', '추가배송비관리', G5_ADMIN_URL.'/shop_admin/sendcostlist.php', 'scf_sendcost', 1),
     array('400410', '미완료주문', G5_ADMIN_URL.'/shop_admin/inorderlist.php', 'scf_inorder', 1),
-	*/
+    */
 );
 ?>

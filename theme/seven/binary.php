@@ -74,10 +74,10 @@ $sql_r = "select mb_id as b_recomm2 from g5_member where mb_brecommend='".$start
 $brst = sql_fetch($sql);
 $brst_r = sql_fetch($sql_r);
 
-$get_point_cnt1 = "CREATE TEMPORARY TABLE IF NOT EXISTS tb_real2 select * from iwol where mb_id='".$brst[b_recomm]."' and pv>=0 and kind in (0,2,22,9,99);";
+$get_point_cnt1 = "CREATE TEMPORARY TABLE IF NOT EXISTS tb_real2 select * from iwol where mb_id='".$brst['b_recomm']."' and pv>=0 and kind in (0,2,22,9,99);";
 sql_query($get_point_cnt1);
 
-$get_point_cnt2 = "select count(A.iwolday) as total_row from tb_real2 A left join iwol B on A.iwolday=B.iwolday where B.mb_id='".$brst_r[b_recomm2]."' and B.pv>=0 and B.kind in (0,2, 22, 9, 99) ";
+$get_point_cnt2 = "select count(A.iwolday) as total_row from tb_real2 A left join iwol B on A.iwolday=B.iwolday where B.mb_id='".$brst_r['b_recomm2']."' and B.pv>=0 and B.kind in (0,2, 22, 9, 99) ";
 $cnt_rst = sql_fetch($get_point_cnt2);
 $total_count = $cnt_rst['total_row'];
 
@@ -88,91 +88,91 @@ if ($page < 1) $page = 1; // 페이지가 없으면 첫 페이지 (1 페이지)
 $from_record = ($page - 1) * $rows; // 시작 열을 구함
 
 
-$get_point1 = "CREATE TEMPORARY TABLE IF NOT EXISTS tb_real select * from iwol where mb_id='".$brst[b_recomm]."' and pv>0 and kind in (0,2,22,9,99);";
+$get_point1 = "CREATE TEMPORARY TABLE IF NOT EXISTS tb_real select * from iwol where mb_id='".$brst['b_recomm']."' and pv>0 and kind in (0,2,22,9,99);";
 sql_query($get_point1);
 
-$get_point2 = "(select A.iwolday, A.mb_id as l_mbid, A.pv as l_pv, B.mb_id as r_mbid, B.pv as r_pv from tb_real A left join iwol B on A.iwolday=B.iwolday where B.mb_id='".$brst_r[b_recomm2]."' and B.pv>=0 and B.kind in (0,2,9,22,99) order by A.no desc limit $from_record, $rows)";
+$get_point2 = "(select A.iwolday, A.mb_id as l_mbid, A.pv as l_pv, B.mb_id as r_mbid, B.pv as r_pv from tb_real A left join iwol B on A.iwolday=B.iwolday where B.mb_id='".$brst_r['b_recomm2']."' and B.pv>=0 and B.kind in (0,2,9,22,99) order by A.no desc limit $from_record, $rows)";
 
 
 $b_recom_arr =  array();
 array_push($b_recom_arr, $start_id);
 array_push($b_recom_arr, $start_id);
-array_push($b_recom_arr, $brst[b_recomm]);
-array_push($b_recom_arr, $brst_r[b_recomm2]);
+array_push($b_recom_arr, $brst['b_recomm']);
+array_push($b_recom_arr, $brst_r['b_recomm2']);
 
-$leg_l = "select sum(pv) as pv from iwol where mb_id = '".$brst[b_recomm]."' order by no desc" ;
-$today_l = "select habu_day_sales, mb_my_sales from g5_member where mb_id = '".$brst[b_recomm]."'" ;
+$leg_l = "select sum(pv) as pv from iwol where mb_id = '".$brst['b_recomm']."' order by no desc" ;
+$today_l = "select habu_day_sales, mb_my_sales from g5_member where mb_id = '".$brst['b_recomm']."'" ;
 $iwol_l_value = sql_fetch($leg_l);
 $today_l_value = sql_fetch($today_l);
-$total_l_value = $iwol_l_value[pv]+$today_l_value[habu_day_sales]+$today_l_value[mb_my_sales];
+$total_l_value = $iwol_l_value['pv']+$today_l_value['habu_day_sales']+$today_l_value['mb_my_sales'];
 
-$leg_r = "select sum(pv) as pv from iwol where mb_id = '".$brst_r[b_recomm2]."' order by no desc";
-$today_r = "select habu_day_sales, mb_my_sales from g5_member where mb_id = '".$brst_r[b_recomm2]."'" ;
+$leg_r = "select sum(pv) as pv from iwol where mb_id = '".$brst_r['b_recomm2']."' order by no desc";
+$today_r = "select habu_day_sales, mb_my_sales from g5_member where mb_id = '".$brst_r['b_recomm2']."'" ;
 $iwol_r_value = sql_fetch($leg_r);
 $today_r_value = sql_fetch($today_r);
-$total_r_value = $iwol_r_value[pv]+$today_r_value[habu_day_sales]+$today_r_value[mb_my_sales];
+$total_r_value = $iwol_r_value['pv']+$today_r_value['habu_day_sales']+$today_r_value['mb_my_sales'];
 
-if($brst[b_recomm])
-$sql2 = "select mb_id as b_recomm from g5_member where mb_brecommend='".$brst[b_recomm]."' and mb_brecommend_type='L'";
-if($brst[b_recomm])
-$sql2_r = "select mb_id as b_recomm2 from g5_member where mb_brecommend='".$brst[b_recomm]."' and mb_brecommend_type='R'";
+if($brst['b_recomm'])
+$sql2 = "select mb_id as b_recomm from g5_member where mb_brecommend='".$brst['b_recomm']."' and mb_brecommend_type='L'";
+if($brst['b_recomm'])
+$sql2_r = "select mb_id as b_recomm2 from g5_member where mb_brecommend='".$brst['b_recomm']."' and mb_brecommend_type='R'";
 $brst2 = sql_fetch($sql2);
 $brst2_r = sql_fetch($sql2_r);
 //echo " 3".$brst2[b_recomm]." 4".$brst2[b_recomm2];
-array_push($b_recom_arr,$brst2[b_recomm]);
-array_push($b_recom_arr,$brst2_r[b_recomm2]);
+array_push($b_recom_arr,$brst2['b_recomm']);
+array_push($b_recom_arr,$brst2_r['b_recomm2']);
 
 
-if($brst_r[b_recomm2])
-$sql3 = "select mb_id as b_recomm from g5_member where mb_brecommend='".$brst_r[b_recomm2]."' and mb_brecommend_type='L'";
-if($brst_r[b_recomm2])
-$sql3_r = "select mb_id as b_recomm2 from g5_member where mb_brecommend='".$brst_r[b_recomm2]."' and mb_brecommend_type='R'";
+if($brst_r['b_recomm2'])
+$sql3 = "select mb_id as b_recomm from g5_member where mb_brecommend='".$brst_r['b_recomm2']."' and mb_brecommend_type='L'";
+if($brst_r['b_recomm2'])
+$sql3_r = "select mb_id as b_recomm2 from g5_member where mb_brecommend='".$brst_r['b_recomm2']."' and mb_brecommend_type='R'";
 $brst3 = sql_fetch($sql3);
 $brst3_r = sql_fetch($sql3_r);
 //echo " 5".$brst3[b_recomm]." 6".$brst3[b_recomm2];
-array_push($b_recom_arr,$brst3[b_recomm]);
-array_push($b_recom_arr,$brst3_r[b_recomm2]);
+array_push($b_recom_arr,$brst3['b_recomm']);
+array_push($b_recom_arr,$brst3_r['b_recomm2']);
 
-if($brst2[b_recomm])
-$sql4 = "select mb_id as b_recomm from g5_member where mb_brecommend='".$brst2[b_recomm]."' and mb_brecommend_type='L'";
-if($brst2[b_recomm])
-$sql4_r = "select mb_id as b_recomm2 from g5_member where mb_brecommend='".$brst2[b_recomm]."' and mb_brecommend_type='R'";
+if($brst2['b_recomm'])
+$sql4 = "select mb_id as b_recomm from g5_member where mb_brecommend='".$brst2['b_recomm']."' and mb_brecommend_type='L'";
+if($brst2['b_recomm'])
+$sql4_r = "select mb_id as b_recomm2 from g5_member where mb_brecommend='".$brst2['b_recomm']."' and mb_brecommend_type='R'";
 
 $brst4 = sql_fetch($sql4);
 $brst4_r = sql_fetch($sql4_r);
 //echo " 7".$brst4[b_recomm]." 8".$brst4[b_recomm2];
-array_push($b_recom_arr,$brst4[b_recomm]);
-array_push($b_recom_arr,$brst4_r[b_recomm2]);
+array_push($b_recom_arr,$brst4['b_recomm']);
+array_push($b_recom_arr,$brst4_r['b_recomm2']);
 
-if($brst2_r[b_recomm2])
-$sql5 = "select mb_id as b_recomm from g5_member where mb_brecommend='".$brst2_r[b_recomm2]."' and mb_brecommend_type='L'";
-if($brst2_r[b_recomm2])
-$sql5_r = "select mb_id as b_recomm2 from g5_member where mb_brecommend='".$brst2_r[b_recomm2]."' and mb_brecommend_type='R'";
+if($brst2_r['b_recomm2'])
+$sql5 = "select mb_id as b_recomm from g5_member where mb_brecommend='".$brst2_r['b_recomm2']."' and mb_brecommend_type='L'";
+if($brst2_r['b_recomm2'])
+$sql5_r = "select mb_id as b_recomm2 from g5_member where mb_brecommend='".$brst2_r['b_recomm2']."' and mb_brecommend_type='R'";
 $brst5 = sql_fetch($sql5);
 $brst5_r = sql_fetch($sql5_r);
 //echo " 9".$brst5[b_recomm]." 10".$brst5[b_recomm2];
-array_push($b_recom_arr,$brst5[b_recomm]);
-array_push($b_recom_arr,$brst5_r[b_recomm2]);
+array_push($b_recom_arr,$brst5['b_recomm']);
+array_push($b_recom_arr,$brst5_r['b_recomm2']);
 
-if($brst3[b_recomm])
-$sql6 = "select mb_id as b_recomm from g5_member where mb_brecommend='".$brst3[b_recomm]."' and mb_brecommend_type='L'";
-if($brst3[b_recomm])
-$sql6_r = "select mb_id as b_recomm2 from g5_member where mb_brecommend='".$brst3[b_recomm]."' and mb_brecommend_type='R'";
+if($brst3['b_recomm'])
+$sql6 = "select mb_id as b_recomm from g5_member where mb_brecommend='".$brst3['b_recomm']."' and mb_brecommend_type='L'";
+if($brst3['b_recomm'])
+$sql6_r = "select mb_id as b_recomm2 from g5_member where mb_brecommend='".$brst3['b_recomm']."' and mb_brecommend_type='R'";
 $brst6 = sql_fetch($sql6);
 $brst6_r = sql_fetch($sql6_r);
 //echo " 11".$brst6[b_recomm]." 12".$brst6[b_recomm2];
-array_push($b_recom_arr,$brst6[b_recomm]);
-array_push($b_recom_arr,$brst6_r[b_recomm2]);
+array_push($b_recom_arr,$brst6['b_recomm']);
+array_push($b_recom_arr,$brst6_r['b_recomm2']);
 
-if($brst3_r[b_recomm2])
-$sql7 = "select mb_id as b_recomm from g5_member where mb_brecommend='".$brst3_r[b_recomm2]."' and mb_brecommend_type='L'";
-if($brst3_r[b_recomm2])
-$sql7_r = "select mb_id as b_recomm2 from g5_member where mb_brecommend='".$brst3_r[b_recomm2]."' and mb_brecommend_type='R'";
+if($brst3_r['b_recomm2'])
+$sql7 = "select mb_id as b_recomm from g5_member where mb_brecommend='".$brst3_r['b_recomm2']."' and mb_brecommend_type='L'";
+if($brst3_r['b_recomm2'])
+$sql7_r = "select mb_id as b_recomm2 from g5_member where mb_brecommend='".$brst3_r['b_recomm2']."' and mb_brecommend_type='R'";
 $brst7 = sql_fetch($sql7);
 $brst7_r = sql_fetch($sql7_r);
 //echo " 13".$brst7[b_recomm]." 14".$brst7[b_recomm2];
-array_push($b_recom_arr,$brst7[b_recomm]);
-array_push($b_recom_arr,$brst7_r[b_recomm2]);
+array_push($b_recom_arr,$brst7['b_recomm']);
+array_push($b_recom_arr,$brst7_r['b_recomm2']);
 
 $list_info = array();
 $list_pinfo = array();
@@ -219,8 +219,8 @@ for($i=1;$i<=15;$i++){
 
 	array_push($list_info, $my_rank_img);
 	array_push($list_pinfo, $my_pool_lv);
-	array_push($left_point, floor($rem_info[left_p]/1000));
-	array_push($right_point, floor ($rem_info[right_p]/1000));
+	array_push($left_point, floor($rem_info['left_p']/1000));
+	array_push($right_point, floor ($rem_info['right_p']/1000));
 
 }
 
@@ -263,19 +263,19 @@ for($i=1;$i<=15;$i++){
 					<div class="gray">
 						<?$leg_stack = array();?>
 						<?
-							if($start_id!=$member[mb_id]){
+							if($start_id!=$member['mb_id']){
 								$get_list_higher  = "select mb_brecommend from g5_member where mb_id='".$start_id."'";
 								$higher_id = sql_fetch($get_list_higher);
-								 array_push($leg_stack, $higher_id[mb_brecommend]);
+								 array_push($leg_stack, $higher_id['mb_brecommend']);
 						?>
 
 						<?
 							while(true){
-								if($higher_id[mb_brecommend] != $member[mb_id]){
-								$get_list_higher  = "select mb_brecommend from g5_member where mb_id='".$higher_id[mb_brecommend]."'";
+								if($higher_id['mb_brecommend'] != $member['mb_id']){
+								$get_list_higher  = "select mb_brecommend from g5_member where mb_id='".$higher_id['mb_brecommend']."'";
 								$higher_id = sql_fetch($get_list_higher);
 						?>
-								<? array_push($leg_stack, $higher_id[mb_brecommend]);?>
+								<? array_push($leg_stack, $higher_id['mb_brecommend']);?>
 
 						<?
 								}
@@ -395,12 +395,12 @@ for($i=1;$i<=15;$i++){
 				while($mb_id!=$start_id){
 					$get_recommend  = "select mb_recommend from g5_member where mb_id='".$mb_id."'";
 					$rst_recom = sql_fetch($get_recommend);
-					$mb_id = $rst_recom[mb_recommend];
+					$mb_id = $rst_recom['mb_recommend'];
 					$distance++;
 				}
 
 				$now_member = get_member($start_id); //get member info
-				$member_nation = "select * from pinna_nation_code where code = ".$now_member[nation_number];
+				$member_nation = "select * from pinna_nation_code where code = ".$now_member['nation_number'];
 				//SELECT * FROM  `pinna_nation_code` 
 				$nation_rst = sql_fetch($member_nation);
 
@@ -409,79 +409,79 @@ for($i=1;$i<=15;$i++){
 
 				?>
 
-			
+					
 				<div class="member-info">
-					<div class="member-details">
-						<h5><span data-i18n="tree.info" >Member Information</span> - <?echo $now_member['mb_id'];?> </h5>
-						<table class="table table-striped table-bordered">
-						  <tbody>
-							<tr>
-							  <th scope="row" data-i18n="tree.fName" >First Name</th>
-							  <td><?echo $now_member['first_name'];?> </td>
-							</tr>
-							<tr>
-							  <th scope="row" data-i18n="tree.lName" >Last Name</th>
-							  <td><?echo $now_member['last_name'];?></td>
-							</tr>
-							<tr>
-							  <th scope="row" data-i18n="tree.country" >Country</th>
-							  <td><?echo $nation_rst[nationv_en];?></td>
-							</tr>
-							<tr>
-							  <th scope="row" data-i18n="tree.spon" >Sponsor</th>
-							  <td><?echo $now_member['mb_recommend'];?></td>
-							</tr>
-							
-							<tr>
-							  <th scope="row" data-i18n="tree.pack" >Packages</th>
-							  <td>
-									<?echo $my_pool_lv?>
-							  </td>
-							</tr>
+				<div class="member-details">
+					<h5><span data-i18n="tree.info" >Member Information</span> - <?echo $now_member['mb_id'];?> </h5>
+					<table class="table table-striped table-bordered">
+						<tbody>
+						<tr>
+							<th scope="row" data-i18n="tree.fName" >First Name</th>
+							<td><?echo $now_member['first_name'];?> </td>
+						</tr>
+						<tr>
+							<th scope="row" data-i18n="tree.lName" >Last Name</th>
+							<td><?echo $now_member['last_name'];?></td>
+						</tr>
+						<tr>
+							<th scope="row" data-i18n="tree.country" >Country</th>
+							<td><?echo $nation_rst['nationv_en'];?></td>
+						</tr>
+						<tr>
+							<th scope="row" data-i18n="tree.spon" >Sponsor</th>
+							<td><?echo $now_member['mb_recommend'];?></td>
+						</tr>
 						
-							<tr>
-							  <th scope="row" data-i18n="tree.rank">Rank</th>
-							  <td><?echo $my_rank_img?></td>
-							</tr>
-							
-							<tr>
-							  <th scope="row" data-i18n="tree.stat">Status</th>
-							  <td>Active</td>
-							</tr>
-							<tr>
-							  <th scope="row" data-i18n="tree.left">Left Volume</th>
-							  <td><?echo round($total_l_value/1000)?></td>
-							</tr>
-							<tr>
-							  <th scope="row" data-i18n="tree.right" >Right Volume</th>
-							  <td><?echo round($total_r_value/1000)?></td>
-							</tr>
-							<tr>
-							  <th scope="row" data-i18n="tree.dist" >Distance From Me</th>
-							  <td><?echo $distance?></td>
-							</tr>
-							
-							<tr>
-							  <th scope="row" data-i18n="tree.sponsored" >Total Sponsored</th>
-							  <td><?echo $recom_rst['recom_cnt'];?></td>
-							</tr>
-							<tr>
-							  <th scope="row" data-i18n="tree.members" >Total Binary Members</th>
-							  <td><?echo $now_member['mb_b_child'];?> </td>
-							</tr>
-							<tr>
-							  <th scope="row" data-i18n="tree.enroll" >Enrollment Date</th>
-							  <td><?echo $now_member['mb_open_date'];?></td>
-							</tr>
-							
-							<tr>
-							  <th scope="row" data-i18n="tree.place" >Placement Date</th>
-							  <td><?echo $now_member['mb_bre_time'];?></td>
-							</tr>
-						  </tbody>
-						</table>
-					</div>
-					-->
+						<tr>
+							<th scope="row" data-i18n="tree.pack" >Packages</th>
+							<td>
+								<?echo $my_pool_lv?>
+							</td>
+						</tr>
+					
+						<tr>
+							<th scope="row" data-i18n="tree.rank">Rank</th>
+							<td><?echo $my_rank_img?></td>
+						</tr>
+						
+						<tr>
+							<th scope="row" data-i18n="tree.stat">Status</th>
+							<td>Active</td>
+						</tr>
+						<tr>
+							<th scope="row" data-i18n="tree.left">Left Volume</th>
+							<td><?echo round($total_l_value/1000)?></td>
+						</tr>
+						<tr>
+							<th scope="row" data-i18n="tree.right" >Right Volume</th>
+							<td><?echo round($total_r_value/1000)?></td>
+						</tr>
+						<tr>
+							<th scope="row" data-i18n="tree.dist" >Distance From Me</th>
+							<td><?echo $distance?></td>
+						</tr>
+						
+						<tr>
+							<th scope="row" data-i18n="tree.sponsored" >Total Sponsored</th>
+							<td><?echo $recom_rst['recom_cnt'];?></td>
+						</tr>
+						<tr>
+							<th scope="row" data-i18n="tree.members" >Total Binary Members</th>
+							<td><?echo $now_member['mb_b_child'];?> </td>
+						</tr>
+						<tr>
+							<th scope="row" data-i18n="tree.enroll" >Enrollment Date</th>
+							<td><?echo $now_member['mb_open_date'];?></td>
+						</tr>
+						
+						<tr>
+							<th scope="row" data-i18n="tree.place" >Placement Date</th>
+							<td><?echo $now_member['mb_bre_time'];?></td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+				-->
 
 
 					<div class="member-volume">
@@ -550,20 +550,20 @@ for($i=1;$i<=15;$i++){
 	$(function() {
 		
 		// 리스트 호출 바로윗단계기준 호출
-		/*
+		
 		$( ".lvl-open" ).each(function( index ) {
 			var upperId = Math.floor($(this).attr("id")/2);
 			console.log("upperId : " +  upperId);
 
 			var id = $(this).attr("id");
 			
-			if(b_recom_arr[upperId]){ // 상위 회원이 있을때 
+			if(b_recom_arr['upperId']){ // 상위 회원이 있을때 
 				$.ajax({
 					url: g5_url+'/util/binary_tree_mem.php',
 					type: 'GET',
 					async: false,
 					data: {
-						mb_id: b_recom_arr[upperId]
+						mb_id: b_recom_arr['upperId']
 					},
 					dataType: 'json',
 					success: function(result) {
@@ -581,7 +581,7 @@ for($i=1;$i<=15;$i++){
 
 			}
 		});
-		*/
+		
 
 		// 리스트 호출 로그인멤버기준
 		$( ".lvl-open" ).each(function( index ) {
@@ -589,13 +589,13 @@ for($i=1;$i<=15;$i++){
 			
 			var id = $(this).attr("id");
 			
-			if(b_recom_arr[upperId]){ // 상위 회원이 있을때 
+			if(b_recom_arr['upperId']){ // 상위 회원이 있을때 
 				$.ajax({
 					url: g5_url+'/util/binary_tree_mem.php',
 					type: 'GET',
 					async: false,
 					data: {
-						mb_id: '<?=$member[mb_id]?>'
+						mb_id: '<?=$member['mb_id']?>'
 					},
 					dataType: 'json',
 					success: function(result) {
@@ -622,7 +622,7 @@ for($i=1;$i<=15;$i++){
 			var no = $(this).parent().attr('id');
 			var upperId = Math.floor(no/2);
 
-			if(!b_recom_arr[upperId]){ // 상위 회원이 없을때
+			if(!b_recom_arr['upperId']){ // 상위 회원이 없을때
 				commonModal('Error',"Can not place this position.",80);
 				return;
 			}
@@ -641,7 +641,7 @@ for($i=1;$i<=15;$i++){
 			 //console.log(set_type);
 			 //console.log($(this).siblings('select').val());
 			data1 = {
-				"set_id": b_recom_arr[upperId],
+				"set_id": b_recom_arr['upperId'],
 				"set_type": set_type,
 				"recommend_id": $(this).siblings('select').val()
 			};
@@ -736,7 +736,7 @@ for($i=1;$i<=15;$i++){
 	});
 
 	$("#go_top").click(function(){
-		location.replace(g5_url + "/page.php?id=binary&start_id=<?=$member[mb_id]?>");
+		location.replace(g5_url + "/page.php?id=binary&start_id=<?=$member['mb_id']?>");
 	});
 
 	$("#go_up_one").click(function(){

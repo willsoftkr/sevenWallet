@@ -18,7 +18,7 @@ if ($_POST['act_button'] == "선택수정") {
 
         // 실제 번호를 넘김
         $k = $_POST['chk'][$i];
-
+        /*
         $sql = "update {$g5['g5_shop_item_table']}
                    set ca_id          = '{$_POST['ca_id'][$k]}',
                        ca_id2         = '{$_POST['ca_id2'][$k]}',
@@ -34,6 +34,17 @@ if ($_POST['act_button'] == "선택수정") {
                        it_order       = '{$_POST['it_order'][$k]}',
                        it_update_time = '".G5_TIME_YMDHIS."'
                  where it_id   = '{$_POST['it_id'][$k]}' ";
+        */
+                 
+        $sql = "update {$g5['g5_shop_item_table']}
+        set ca_id          = '{$_POST['ca_id'][$k]}',
+            it_name        = '{$_POST['it_name'][$k]}',
+            it_price       = '{$_POST['it_price'][$k]}',
+            it_point       = '{$_POST['it_point'][$k]}',
+            it_use         = '{$_POST['it_use'][$k]}',
+            it_order       = '{$_POST['it_order'][$k]}',
+            it_update_time = '".G5_TIME_YMDHIS."'
+            where it_id   = '{$_POST['it_id'][$k]}' ";
         sql_query($sql);
     }
 } else if ($_POST['act_button'] == "선택삭제") {

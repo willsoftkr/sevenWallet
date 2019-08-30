@@ -1,6 +1,6 @@
 <?php
 include_once('./_common.php');
-if(!$_GET[keyword]){
+if(!$_GET['keyword']){
 	print "[]";
 	return ;
 }

@@ -1,6 +1,18 @@
-<?php include '_include/head.php'; ?>
-<?php include '_include/gnb.php'; ?>
+<?
+	include_once('./_common.php');
+	include_once(G5_THEME_PATH.'/_include/gnb.php'); 
+	include_once(G5_THEME_PATH.'/_include/wallet.php'); 
+	//print_r($member);
 
+	login_check($member['mb_id']);
+
+	print_r($_POST);
+
+	//$product =$_POST['b_rd'];
+	//$product_auto = $_POST['q_chk'];
+	//$price = shift_btc(conv_number($product)/conv_number($btc_cost);
+
+?>
 		<section class="v_center purchase_1wrap wrap">
 
 			<ul class="p1_ul clear_fix">
@@ -41,12 +53,13 @@
 			<hr>	
 
 			<div class="invoice_div">
-				<p><span class="font_gray">인보이스 번호 : </span>201906142155220</p>
+				<!--<p><span class="font_gray">인보이스 번호 : </span>201906142155220</p>
 				<ul class="pay_coin_ul clear_fix">
 					<li><img src="_images/bit_round.gif" alt="비트코인"> BTC로 지불</li>
 					<li><img src="_images/eth_round.gif" alt="비트코인"> ETH로 지불</li>
 					<li><img src="_images/rock_round.gif" alt="비트코인"> RWD로 지불</li>
 				</ul>
+				-->
 				<p class="font_gray">지불할 금액</p>
 				<p>3.44521565 ETH</p>
 			</div>
@@ -69,25 +82,23 @@
 			</div>
 		</div>
 
-		<?php include '_include/popup.php'; ?>
-		<div class="gnb_dim"></div>
+	<div class="gnb_dim"></div>
 
-	</section>
-
+</section>
 
 
-	<script>
-		$(function() {
-			$(".top_title h3").html("<img src='_images/top_purchase.png' alt='아이콘'> 팩 상품 구매하기");
-			$('#wrapper').css("background", "#fff");
 
-			$('.noti_pop_open').click(function(){
+<script>
+	$(function() {
+		$(".top_title h3").html("<img src='<?=G5_THEME_URL?>/_images/top_purchase.png' alt='아이콘'> <span data-i18n='title.팩상품구매하기'> Purchase Packs </span>");
+		$('#wrapper').css("background", "#fff");
+
+		$('.noti_pop_open').click(function(){
 				$('.noti_pop_wrap').css("display","block");
-			});
-
 		});
-	</script>
+	});
+</script>
 
 
 
-</body></html>
+<? include_once(G5_THEME_PATH.'/_include/tail.php'); ?>

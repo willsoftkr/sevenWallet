@@ -44,7 +44,7 @@ var gradeMap = {
 	};
 
 	var $selected;
-	var mb_no = '<?=$member[mb_no]?>';
+	var mb_no = '<?=$member['mb_no']?>';
 	//var xhr;
 
 	$(function() {
@@ -84,7 +84,7 @@ var gradeMap = {
 
 		 $(document).on('click','.lvl-username' ,function(e) {
 			console.log($(this).text());
-			//getLeg('<?=$member[mb_id]?>', $(this).text());
+			//getLeg('<?=$member['mb_id']?>', $(this).text());
 			//getList( $(this).text(),name);
 			//e.stopPropagation();
 
@@ -352,7 +352,7 @@ var gradeMap = {
 					</div>
 					<div class="result_btn">Close</div>
 				</div>
-			<div class="bin_top" data-i18n="structure.추천 계보" onclick="getList(<?=$member[mb_no]?>,'no');">Member Stack</div>
+			<div class="bin_top" data-i18n="structure.추천 계보" onclick="getList(<?=$member['mb_no']?>,'no');">Member Stack</div>
 			
 			<div class="main-container">
 				<div id="levelStructure" class="accordion_wrap" ></div>

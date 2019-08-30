@@ -2,17 +2,20 @@
 $sub_menu = "600600";
 include_once ('./_common.php');
 
-//auth_check($auth[$sub_menu], 'r');
-//$to_date =  date("Y-m-d",time() - 3600*24);
+/*
+Q팩 - 추천수당에서 대수와 {직급 계산} + 팩 구매내역 있는사람만 
+B팩 = 바이너리 보너스
+*/
+
 if ($to_date){
 	$day       = $to_date;
 }else{
 	$day    = date('Y-m-d');
 }
+
 /*
 $pre_sql = "select count(*) as cnt from soodang_pay where allowance_name  = 'binary' AND day  =  '$day' ";
 $pre_cnt = sql_query($pre_sql['cnt']);
-
 
 if($pre_cnt > 0){?>
 
@@ -31,22 +34,37 @@ if($pre_cnt > 0){?>
 		}
 	}
  </script>
-
 <?}
 */
+
+/*B팩 수당 가져오기*/
+$rate_sql = "select *  from g5_shop_item where ca_id  = '10' ORDER BY it_order ASC";
+$rate_result = sql_query($rate_sql);
+$rate_price = array();
+
+echo "B팩 수당 현황";
+while( $row = sql_fetch_array($rate_result) ){
+	echo "<br>".$row['it_name']." | ".$row['it_price'];
+	array_push($rate_price, $row['it_price']);
+}
+echo "</br></br>";
+
+
+
 
 if($_GET['mb_id']){
 	$test_id = $_GET['mb_id'];
 }else{
-	$test_id = 'copy5285m';
+	$test_id = 'coolrunning';
 }
 
 
 echo "기준일 : ".$day."    /  회원 : <strong>".$test_id."</strong><br><br>";
 
+echo "<br>=========================수당정산 준비기록===============================<br>";
 habu_sales_calc('b',$test_id,0);
 //habu_sales_calc('','copy5285m',0);
-
+echo "<br>=========================수당정산 준비기록===============================<br>";
 
 $cond = array(array('price_cond'=>'','source'=>'','source_cond1'=>'','source_cond2'=>'','source_in1'=>'','source_in2'=>'','mb_level_cond1'=>'','mb_level_cond2'=>'','mb_level_in1'=>'','mb_level_in2'=>'','partner_cnt'=>'','partner_cont'=>'','history_cnt'=>'','history_cond1'=>'','history_cond2'=>'','history_in1'=>'','history_in2'=>'','base_source'=>'','per'=>'','allowance_name'=>'','mat'=>'','level1'=>'','level2'=>'','bigsmall1'=>'','bigsmall2'=>'','history'=>'','benefit'=>'','benefit_limit1'=>'','source11'=>'','source_cond11'=>'','source_cond12'=>'','source_in11'=>'','source_in12'=>'','sales_reset'=>'','max_reset1'=>'','max_reset2'=>'','mb_level_in11'=>'','mb_level_cond11'=>'','mb_level_cond12'=>'','bf_limit1'=>''));
 
@@ -92,7 +110,6 @@ for ($i=0; $row=sql_fetch_array($rrr); $i++) {
 	$cond[$i]['mb_level_cond12']=$row['mb_level_cond12'];
 	$cond[$i]['recom_kind']=$row['recom_kind'];
 
-	
 	if( ($row['sales_reset']>0) && ($row['cycle']>0)  && ($row['max_reset1']<>'')  && ($row['max_reset2']<>'') ){
 		$cond[$i]['limit_reset']=1;
 	}  //극점 사용여부
@@ -106,7 +123,8 @@ for ($i=0; $row=sql_fetch_array($rrr); $i++) {
 	}// 대소실적조건1
 
 	if(  ($row['source_in11']!=0) || ($row['source_in12']!=0) ){
-		$cond[$i]['bigsmall2']=1;  }// 대소실적조건12
+		$cond[$i]['bigsmall2']=1;  }
+	// 대소실적조건12
 
 	if(  ($row['mb_level_in1']!=0) || ($row['mb_level_in2']!=0) ){
 		$cond[$i]['level1']=1;
@@ -135,19 +153,25 @@ if($iwol_yn_chk==1){
 
 
 
+
+
+
 $history_cnt=0;
 $no_benefit=0;
 $rec='';
 // 직급이 최소 1스타(3) 이상
 
-if($test_id == 'copy5285m'){
-	$sql = "select * from g5_member where mb_level>=1 order by mb_no";
+if($test_id == 'coolrunning'){
+	$sql = "from g5_member where mb_level>=0 order by mb_no";
 }else{
-	$sql = "select * from g5_member where mb_level>=1 AND mb_id = '".$test_id."'order by mb_no";
+	$sql = "from g5_member where mb_level>=0 AND mb_id = '".$test_id."' order by mb_no";
 }
-$result = sql_query($sql);
-echo "<br><br>적용멤버 조건 : ".$sql." <br>";
 
+$result = sql_query("select * ".$sql);
+$result_count = sql_fetch("select count(*) as cnt ".$sql);
+
+echo "<br><br><br>※※※※※※※※※※※※※※※※※※※※※※※ 수당계산 ※※※※※※※※※※※※※※※※※※※※※※ <br>";
+echo "<br>적용멤버 조건 : ".$sql." | 총 <strong>".$result_count['cnt']."</strong>명 <br><br><br>";
 
 
 for($i=0; $recommend=sql_fetch_array($result); $i++) {
@@ -156,40 +180,61 @@ for($i=0; $recommend=sql_fetch_array($result); $i++) {
 	$today_sales=0;
 	$today_sales2=0;
 	$leg_success=0; // 메트릭스 성공찾기 클리어
-	$mbid=$recommend['mb_id']; //회원 아이디 - 등급에 따라 바이너리 후원 %가 다르다.
+
+	$mbid=$recommend['mb_id']; 
 	$mbname=$recommend['mb_name'];
 	$mblevel=$recommend['mb_level'];
-//	$sum =  sql_fetch( "SELECT sum(pv) as od_sum FROM g5_shop_order WHERE 1 and od_receipt_time like '$to_date%' and mb_id ='".$mbid."'");
-	$sum =  sql_fetch( "SELECT mb_deposit_point as od_sum FROM g5_member WHERE 1 and mb_id ='".$mbid."'");
+
+//	$sum =  sql_fetch( "SELECT sum(upstair) as od_sum FROM g5_shop_order WHERE 1 and od_receipt_time like '$to_date%' and mb_id ='".$mbid."'");
+
+	$sum =  sql_fetch( "SELECT mb_deposit_point as od_sum FROM g5_member WHERE 1 and mb_id ='".$mbid."'"); // 회원업스테어 포인트
+
 	if($sum['od_sum']==null)
 		$limit_point=0;
 	else 
 		$limit_point = $sum['od_sum'];
-	echo 'limit_point'.$limit_point;
+
+	//echo '<br> 회원 현재 업스테어 매출 :  '.$limit_point.'<br>';
+
 	if(($mb_name=='본사') || ($mbid=='')  )
 		break;
+
+
+
+
+
+
+
 	$iwol_pass =0;
 	$benefit_pass =0;
 
 	for ($i=0; $i<count($cond); $i++) {
+
 		if($cond[$i]['level1']=='1'){
 			$temp_cond_level1=1;
 		} else {
 			$temp_cond_level1=0;
 		} //본인직급
+
 		if($cond[$i]['limit_reset']==1){
 			$limit_reset=1;
 		} else {
 			$limit_reset=0;
 		} //바이너리보너스조건
+
 		if($cond[$i]['recom_kind']=='mb_recommend'){
 			$recom=$recommend['mb_recommend'];
 		} else{
 			$recom=$recommend['mb_brecommend'];
 		}
 		$temp_sql1 = '';
+		
+
 		if($cond[$i]['per']!=''){ // 수당 퍼센트가 비어있으면 패스~
+
+
 			//******   본인직급 조건이 있다면  성공여부 기록
+			
 			if(($cond[$i]['mb_level_cond1']=='==')   ){
 				if($mblevel==$cond[$i]['mb_level_in1']){
 					$temp_cond_level1=0;
@@ -217,9 +262,15 @@ for($i=0; $recommend=sql_fetch_array($result); $i++) {
 				}
 			}
 			//******   본인직급 조건이 있다면  성공여부 기록
+			
+			
+			$limit_reset = 1;
+			$temp_cond_level1 = 0;
+			
 
 			//******  바이너리보너스 계산
 			if(($limit_reset==1) && ($temp_cond_level1==0) ){
+
 				$note='';
 				$id1='';
 				$id2='';
@@ -227,8 +278,12 @@ for($i=0; $recommend=sql_fetch_array($result); $i++) {
 				$small=0;
 				$hap1=0;
 				$hap2=0;
+
+				echo  $mbid;
+
 				list($id1,$hap1,$id2,$hap2) = my_bchild($mbid,$to_date,$cond[$i]['cycle']);
-				echo $mbid.': '.$id1.'---'.$hap1.'---'.$id2.'---'.$hap2.'<br>';
+				
+				echo '<br> 실적 계산 기준  :: '.$mbid.': '.$id1.'---'.$hap1.' // ---'.$id2.'---'.$hap2.'<br><br>';
 
 				if(($hap1>0) || ($hap2>0)){
 					if( $hap1<$hap2 )
@@ -396,13 +451,21 @@ for($i=0; $recommend=sql_fetch_array($result); $i++) {
 				}// if(($hap1>0) || ($hap2>0)){
 				echo $mbname.'('.$mbid.'): '.$note.'직급: '.$mblevel.'= 직급조건: '.$cond[$i]['mb_level_in1'].'<br>';
 			} // 바이너리보너스 계산
+
+
+
+
 		}// 수당per 가 있으면
+
 	} // for
+
 	$rec='';
-	$rec='';
+
 	$history_cnt=0;
 	$today_sales=0;
 } //for
+
+
 
 function habu_sales_calc($gubun, $recom, $deep){
 
@@ -417,39 +480,33 @@ function habu_sales_calc($gubun, $recom, $deep){
 		$day    = '2019-06-06'; //  = date('Y-m-d');
 	}
 	$yy= strtotime($day);
-
 	$min30=date("Y-m-d", strtotime("-30 day", $yy));
 	
+
+
     $res= sql_query("select * from g5_member where mb_".$gubun."recommend='".$recom."' ");
-	echo "select * from g5_member where mb_".$gubun."recommend='".$recom."' "."<br>";
+		//echo "select * from g5_member where mb_".$gubun."recommend='".$recom."' "."<br>";
+		
+
     for ($j=0; $rrr=sql_fetch_array($res); $j++) { 
 	
 		$recom=$rrr['mb_id'];  
-		echo $recom.'/'.'<br>'; 
+		echo '<br><br><strong>'.$recom.'</strong>   / ('.$j.')<br>'; 
 
 		$noo_search = " and date_format(o.od_receipt_time,'%Y-%m-%d')>='$start_day' and date_format(o.od_receipt_time,'%Y-%m-%d')<='$day'";
-		$sql1= sql_fetch("select sum(pv)as hap from g5_shop_order as o where mb_id='".$recom."' $noo_search");
+		$sql1= sql_fetch("select sum(upstair)as hap from g5_shop_order as o where mb_id='".$recom."' $noo_search");
 		$noo+=$sql1['hap'];
 
 		$mon_search = " and date_format(o.od_receipt_time,'%Y-%m-%d')>='$min30' and date_format(o.od_receipt_time,'%Y-%m-%d')<='$day'";
-		$sql2= sql_fetch("select sum(pv)as hap from g5_shop_order as o where mb_id='".$recom."' $mon_search");
+		$sql2= sql_fetch("select sum(upstair)as hap from g5_shop_order as o where mb_id='".$recom."' $mon_search");
 		$mon+=$sql2['hap'];
 		
 		$day_search = " and date_format(o.od_receipt_time,'%Y-%m-%d')='$day'";
-		$sql3= sql_fetch("select sum(pv)as hap from g5_shop_order as o where mb_id='".$recom."' $day_search");
+		$sql3= sql_fetch("select sum(upstair)as hap from g5_shop_order as o where mb_id='".$recom."' $day_search");
 		$today+=$sql3['hap'];
 		
-		echo $recom.'/'.'<br>'; 
-		echo "select sum(pv)as hap from g5_shop_order as o where mb_id='".$recom."' $day_search"."<br>";
-		
-		/*
-		if($sql['hap']>0){echo "<br>".$sql['hap']."---select sum(pv)as hap from g5_shop_order as o where mb_id='".$recom."' $day_search".'<br>';
-		}
-		*/
-		
-		
-		echo "select sum(pv) as hap from g5_shop_order  where mb_id='".$mbid."' ".$day_search;
-		echo			'today :'.$today.' / '.$sql3['hap'].'mysales : '.$mysales ."<br>";
+		echo "! select sum(pv) as hap from g5_shop_order as o where mb_id='".$recom."' ".$day_search;
+		echo	'<br>'.$recom.' : today :'.$sql3['hap'].' / '.$today.'  / mysales : '.$mysales ."<br>";
 
 		list($noo_r,$mon_r,$today_r)=habu_sales_calc($gubun, $recom, $deep);	 
 
@@ -489,25 +546,32 @@ function habu_sales_calc($gubun, $recom, $deep){
 				}else{
 					$rec=$today_r;
 				}
-				$mysql = sql_fetch("select sum(pv) as hap from g5_shop_order  where mb_id='".$recom."' and date_format(od_receipt_time,'%Y-%m-%d')='".$to_date."'");
+
+				$mysql = sql_fetch("select sum(upstair) as hap from g5_shop_order  where mb_id='".$recom."' and date_format(od_receipt_time,'%Y-%m-%d')='".$to_date."'");
 				$mysum = $mysql['hap'];
+				
 				echo "<br>";
-				echo "select sum(pv) as hap from g5_shop_order  where mb_id='".$recom."' and date_format(od_receipt_time,'%Y-%m-%d')='".$to_date."'";
-				if($j == count($res)){
+				//echo "select sum(upstair) as hap from g5_shop_order  where mb_id='".$recom."' and date_format(od_receipt_time,'%Y-%m-%d')='".$to_date."'";
+				
+				if($j == 0 ){
 					$rec=$rec;
 				}else{
 					$rec=$rec - $mysum;
 				}
-				echo "<br>";
-				echo 'rec : '.$rec.' mysales : '.$mysum;
 
-				$intoday = "insert ".$gubun."today2 SET todayy=".$rec.", mb_id='".$recom."',  day = '".$to_date."'";
+				echo "<br>";
+				echo '하부포함매출 : '.$rec.' | 내매출 : '.$mysum;
+				echo "<br>";
+
+				$intoday = "** insert ".$gubun."today2 SET todayy=".$rec.", mb_id='".$recom."',  day = '".$to_date."'";
 				sql_query($intoday);
 				echo $intoday."<br>";
 			}
 	} // for j	
 	 return array($noo,$mon,$today);
 }
+
+
 
 
 function clear_all_benefit_mem(){
@@ -570,7 +634,7 @@ function clear_benefit_mem(){
 }
 function today_sales($mbid, $day){
 	$day_search = " and date_format(o.od_receipt_time,'%Y-%m-%d')='$day'";
-	$sql= sql_fetch("select sum(pv)as hap from g5_shop_order as o where mb_id='".$mbid."' $day_search");
+	$sql= sql_fetch("select sum(upstair)as hap from g5_shop_order as o where mb_id='".$mbid."' $day_search");
 	if($sql['hap']=='')
 	{
 		$hap=0;
@@ -590,12 +654,12 @@ function btoday_select($mbid,$day){
 	return $hap;
 }
 function minus_iwol($mbid,$day){
-	$res2= sql_fetch("select sum(pv)as hap from iwol where mb_id='".$mbid."'");
+	$res2= sql_fetch("select sum(upstair)as hap from iwol where mb_id='".$mbid."'");
 	$hap=$res2['hap'];
 	if($hap>0){
 		$temp_sql1 = " insert iwol set iwolday='".$day."'";
 		$temp_sql1 .= " ,mb_id		= '".$mbid."'";
-		$temp_sql1 .= " ,pv		= '".-($hap)."'";
+		$temp_sql1 .= " ,upstair		= '".-($hap)."'";
 		$temp_sql1 .= " ,kind		= 1";
 		$temp_sql1 .= " ,note		= '이월매출사용'";
 		sql_query($temp_sql1);
@@ -607,7 +671,7 @@ function plus_iwol($mbid,$day){
 	if($hap>0){
 		$temp_sql1 = " insert iwol set iwolday='".$day."'";
 		$temp_sql1 .= " ,mb_id		= '".$mbid."'";
-		$temp_sql1 .= " ,pv			= '".($hap)."'";
+		$temp_sql1 .= " ,upstair			= '".($hap)."'";
 		$temp_sql1 .= " ,kind		= 100";
 		$temp_sql1 .= " ,note		= '금일 발생한 매출이월'";
 		sql_query($temp_sql1);
@@ -617,20 +681,22 @@ function plus_iwol($mbid,$day){
 function habu_iwol($mbid,$day,$cycle){
     //$res1= sql_fetch("select mb_my_sales+habu_day_sales as hap from g5_member where mb_id='".$mbid."' and sales_day='".$day."'");
 	$hap1=(btoday_select($mbid,$day)+today_sales($mbid,$day));  //자기매출과 하부매출을 합하여
-	$res2= sql_fetch("select sum(pv) as hap from iwol where mb_id='".$mbid."'");
+	$res2= sql_fetch("select sum(upstair) as hap from iwol where mb_id='".$mbid."'");
 	$hap2=$res2['hap'];
-	echo '#########'.$hap1.'+'.$hap2.'<'.$cycle.' && '.$hap1.'>0';
+	echo '▷ '.$mbid.'/'.$day.' btoday :'.btoday_select($mbid,$day)." + today:".today_sales($mbid,$day)." || ".$hap1.'+'.$hap2.'<'.$cycle.' && '.$hap1.'>0 <br>';
 
 	return ($hap1+$hap2);
 	//return ($hap2);
 }
 function my_bchild($mb_id,$day,$cycle){
-	echo 'my_bchild run : '.$mb_id.' '.$day.' '.$cycle;
+	echo '<br> Run : <strong>'.$mb_id.'</strong>     | '.$day.' '.$cycle."<br>";
 	$id1='';
 	$id2='';
 	$hap1=0;
 	$hap2=0;
-    $res= sql_query("select mb_id from g5_member where mb_brecommend='".$mb_id."' order by mb_no");
+
+	$res= sql_query("select mb_id from g5_member where mb_brecommend='".$mb_id."' order by mb_no");
+	
 	for ($j=0; $rrr=sql_fetch_array($res); $j++) {
 		if($j==0){
 			$id1=$rrr['mb_id'];
@@ -643,7 +709,7 @@ function my_bchild($mb_id,$day,$cycle){
 			if($hap2==''){ $hap2=0;}
 		}
 	}
-	echo 'my_bchild run hap: '.$id1.' '.$id2.' '.$hap1.' '.$hap2;
+	echo 'my_bchild run hap: '.$id1.'  '.$hap1.' '.$id2.''.$hap2;
 
 	if($hap1>0) { // cycle보다 같거나 크면 -이월한다
 		minus_iwol($id1, $day);
@@ -654,16 +720,16 @@ function my_bchild($mb_id,$day,$cycle){
 	return array($id1, $hap1, $id2, $hap2);
 }
 /* 이월이 있다면 함께 DB에 저장 한다.*/
-function iwol_process($day,$mb_recommend, $mbid, $mb_name, $kind, $pv, $note){
+function iwol_process($day,$mb_recommend, $mbid, $mb_name, $kind, $upstair, $note){
 	$iwol= sql_fetch("select count(*) as cnt from iwol where mb_id='".$mbid."' and kind<>1 and date_format(iwolday,'%Y-%m-%d')='$day'");
-	echo '### '.$pv.'---'.$iwol['cnt'].'<br>';
-//	if( ($pv>0) && ($iwol['cnt']==0) ){
-	if( ($pv>0)  ){   // 소실적 제거용
+	echo '### '.$upstair.'---'.$iwol['cnt'].'<br>';
+//	if( ($upstair>0) && ($iwol['cnt']==0) ){
+	if( ($upstair>0)  ){   // 소실적 제거용
 		$temp_sql1 = " insert iwol set iwolday='".$day."'";
 		$temp_sql1 .= " ,mb_id		= '".$mbid."'";
 		//$temp_sql1 .= " ,mb_name		= '".$mbname."'";
 		$temp_sql1 .= " ,kind		= '".$kind."'";
-		$temp_sql1 .= " ,pv		= '".$pv."'";
+		$temp_sql1 .= " ,upstair		= '".$upstair."'";
 		$temp_sql1 .= " ,note		= '".$note."'";
 		$temp_sql1 .= " ,mb_brecommend		= '".$mb_recommend."'";
 		sql_query($temp_sql1);
@@ -692,8 +758,8 @@ function save_benefit($day, $mbid, $mbname, $recom, $allowance_name, $sales_day,
 		$mrow =sql_fetch( "select mb_deposit_point from g5_member where mb_id='".$mbid."'");
 		$soodang_sum  = sql_fetch("select sum(benefit) as eb_sum from soodang_pay where 1=1 and mb_id='".$mbid."'"); //reset_day 부터 오늘 까지 수당합.
 
-		if($soodang_sum[eb_sum]  >= $mrow[mb_deposit_point]*5){//보유 EOS의 5배를 수당으로 받았을 시에 이 회원 레벨은 0으로 바뀌고 매출도 사라 진다.
-			if($soodang_sum[eb_sum]>=		$mrow[mb_deposit_point]*5){				
+		if($soodang_sum['eb_sum']  >= $mrow['mb_deposit_point']*5){//보유 EOS의 5배를 수당으로 받았을 시에 이 회원 레벨은 0으로 바뀌고 매출도 사라 진다.
+			if($soodang_sum['eb_sum']>=		$mrow['mb_deposit_point']*5){				
 				//$reset_mem = "update g5_member set mb_level=0, mb_deposit_point=0, reset_day='".$to_date."' where mb_id ='".$mbid."'";
 				//sql_query($reset_mem);
 			}
@@ -712,16 +778,16 @@ function save_benefit($day, $mbid, $mbname, $recom, $allowance_name, $sales_day,
 		}
 		else{
 			$daily_soo_sum = sql_fetch("select sum(benefit) as ds_sum from soodang_pay where allowance_name='".$allowance_name."' and day='".$to_date."' and mb_id='".$mbid."'");
-			if($daily_soo_sum[ds_sum]==null){
+			if($daily_soo_sum['ds_sum']==null){
 				$ds_sum  = 0;
 			}
 			else{
-				$ds_sum = $daily_soo_sum[ds_sum];
+				$ds_sum = $daily_soo_sum['ds_sum'];
 			}
-			if( $mrow[mb_deposit_point]<=$ds_sum){
+			if( $mrow['mb_deposit_point']<=$ds_sum){
 					//아무것도 하지 않는다.
 			}
-			else if( $mrow[mb_deposit_point]>=$benefit + $ds_sum){ //수당 합과 지금 수당의 합이 디파짓보다 작으면 수당 업데이트
+			else if( $mrow['mb_deposit_point']>=$benefit + $ds_sum){ //수당 합과 지금 수당의 합이 디파짓보다 작으면 수당 업데이트
 				$temp_sql1 .= " ,benefit			=  ".$benefit;
 				$temp_sql1 .= " ,benefit_usd		=  '".($benefit)."'";
 				sql_query($temp_sql1);
@@ -730,7 +796,7 @@ function save_benefit($day, $mbid, $mbname, $recom, $allowance_name, $sales_day,
 				sql_query($balance_up);
 			}else {
 				
-					$over_sd = $benefit + $ds_sum - $mrow[mb_deposit_point];
+					$over_sd = $benefit + $ds_sum - $mrow['mb_deposit_point'];
 					if($benefit - $over_sd>0){
 					$temp_sql1 .= " ,benefit			=  '".($benefit - $over_sd)."'";
 					$temp_sql1 .= " ,benefit_usd		=  '".($benefit - $over_sd)."'";
