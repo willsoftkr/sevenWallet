@@ -488,8 +488,18 @@ a.gray_close{background:#6c757d; color:#fff; text-align: center; padding: 8px 10
 .dash_price p{color:#35bae8; font-size:1.2em; letter-spacing:-0.2px; cursor:pointer; display:inline-block;}
 .dash_business div{text-align:center; margin-bottom:8px;}
 .dash_business img{width:95px;}
+
 .dash_business p{color:#0072d1; font-size:1.85em;}
 .dash_business span{color:#87888e; font-size:1.3em; display:block; margin-top:15px;}
+
+
+.dash_business .mystatus .packs{width:100%;display:block;margin-top:10px;}
+
+.dash_business .mystatus li{display:inline-block;list-style: none; margin:3px 0; width:49.5%;}
+.dash_business .mystatus li span{margin-top:0;display:inline;text-align:center}
+.dash_business .mystatus li .right{min-width:140px;display:inline-block;line-height:40px;}
+.dash_business .mystatus  img{width:50px; vertical-align:bottom;}
+
 
 .bx_wrap{
 	width:90%;  
@@ -608,6 +618,8 @@ a.all_send{color:#ed2424; padding-left:5px; font-size:0.8em;}
 .tabs li{border-right:1px solid #ccc}
 .tabs li:last-Child{border:none}
 .tabs .active{background:black;color:white;}
+
+.tabs.five li{width:19.5%;}
 
 /* receive */
 .qr_wrap{

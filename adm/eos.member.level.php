@@ -43,18 +43,28 @@ function update_level($val){
 
 
     while($mb_row = sql_fetch_array( $member_query)){
+        global $to_date;
         $mbid = $mb_row['mb_id'];
         $member_update = my_bchild_hap($mbid); 
         $mblevel = $mb_row['mb_level'];
 
-        print_r(" =  ".$mbid." 총매출 : <span class='blue'>".number_format($member_update[0])."</span><br>");
-       
+    
         $line_sales = $member_update[2];
         $line_levels = $member_update[3];
 
+        
+        
+        print_r(" =  <strong>".$mbid."</strong> 총매출 : <span class='blue'>".number_format($member_update[0])."</span><br>");
+        echo "<br>▶ 하부라인 : <span class='blue'>".$member_update[1]."</span> | 라인별 매출2만달성 :";
+        print_r($line_sales);
+
+        echo "<br>▶▶ 회원등급 : ";
+        print_r($line_levels);
+        
+       
         /* 라인3개가 20,000 이상인지 확인 */
         if( count($line_sales) >= 3) {
-            $line_test = "1";
+            
             //echo "1단계";
 
              /* 하부 총 합계 100,000 이상 */
@@ -62,51 +72,61 @@ function update_level($val){
                 //echo "2단계";
                 
                 if($val == 1){
-                    echo "<br>V1 승급 대상 : <span class='red'>".$mbid."</span>";
+                    echo "<br> <span class='red'> ▶▶ V1 승급 대상 : ".$mbid."</span>";
                     
                     $sql3 = " update g5_member set mb_level=1";
-                    $sql3 .= " , rank_day='".$to_date."'";
+                    $sql3 .= " , rank_note='".$to_date."'";
                     $sql3 .= " where mb_id='".$mbid."'";
                     sql_query($sql3);
 
-                    $sql3 = " insert rank set mb_level=1";
-                    $sql3 .= " , rank_day='".$to_date."'";
-                    $sql3 .= " , rank=1";
-                    $sql3 .= " , old_level='".$mblevel."'";
-                    $sql3 .= " , rank_note='V1 승급함, 등급계산 에서 승급됨'";
-                    $sql3 .= " where mb_id='".$mbid."'";
-                    sql_query($sql3);
+                    $sql4 = " insert rank set ";
+                    $sql4 .= " mb_id='".$mbid."'";
+                    $sql4 .= " , rank_day='".$to_date."'";
+                    $sql4 .= " , rank=1";
+                    $sql4 .= " , old_level='".$mblevel."'";
+                    $sql4 .= " , rank_note='V1 승급함, 등급계산 에서 승급됨'";
+                    sql_query($sql4);
+
                 }else{
-                    //echo "3단계";
+                    //echo "<br>3단계";
                     if($val > $mblevel){
 
                         $line_level = $val-1;
-
+                            
                         /* 라인3개이상에 등급 존재 여부 확인 */
                         foreach ( $line_levels as $key => $value ){
-                            if ($value == ($line_level-1)) 
+
+                            /*echo "<br>";print_r($value); */
+                            $level_count = substr_count($value,$line_level);
+                            /*echo "<br>";print_r($level_count); */
+
+                            if ($level_count > 0) 
                             { 
                                 $level_confirm_count++; 
                             } 
                         }
 
+                        //echo "confirm_count === " . $level_confirm_count;
+                        
                         if($level_confirm_count > 3){
                             echo "<br>V2~7 승급 대상 : <span class='red'>".$mbid."</span> | 하부 라인 <span class='blue'>V".$line_level."</span> 레벨 ".$level_confirm_count."명 존재" ;
 
-                            $sql3 = " update g5_member set mb_level='$val'";
-                            $sql3 .= " , rank_day='".$to_date."'";
-                            $sql3 .= " where mb_id='".$mbid."'";
-                            sql_query($sql3);
+                            $sql5 = " update g5_member set mb_level='$val'";
+                            $sql5 .= " , rank_note='".$to_date."'";
+                            $sql5 .= " where mb_id='".$mbid."'";
+                            sql_query($sql5);
 
-                            $sql4 = " insert rank set mb_level=1";
-                            $sql4 .= " , rank_day='".$to_date."'";
-                            $sql4 .= " , rank='{$val}'";
-                            $sql4 .= " , old_level='".$mblevel."'";
-                            $sql4 .= " , rank_note='V{$val} 승급함, 등급계산 에서 승급됨'";
-                            $sql4 .= " where mb_id='".$mbid."'";
-                            sql_query($sql4);
+                            $sql6 = " insert rank set ";
+                            $sql6 .= " mb_id='".$mb_id."'";
+                            $sql6 .= " , rank_day='".$to_date."'";
+                            $sql6 .= " , rank='{$val}'";
+                            $sql6 .= " , old_level='".$mblevel."'";
+                            $sql6 .= " , rank_note='V{$val} 승급함, 등급계산 에서 승급됨'";
+                            sql_query($sql6);
                             //echo  $sql4;
                         }
+
+                        unset($level_confirm_count);
                     }
 
                 }
@@ -115,38 +135,85 @@ function update_level($val){
     }
 }
 
+
+
 function my_bchild_hap($mb_id){
-    
-	$hap=0;
+    global $hap_sale;
+    //global $line_level;
+   
+
     $cnt=0;
     $line_confirm = array();
-    $line_level = array();
-    echo "<br>**<br>".$mb_id."<br>";
+    $line_levels = array();
+    $hap_sale = 0; 
+
+    echo "<br><br>**<br><strong>".$mb_id."</strong><br>";
 
     $res= sql_query("select mb_id,mb_level from g5_member where mb_recommend='".$mb_id."' order by mb_no"); 
-	for ($j=0; $rrr=sql_fetch_array($res); $j++) { 
-        $line_hap = self_sales($rrr['mb_id']);
 
-        if($line_hap > 20000){
-            array_push($line_confirm,$line_hap);
+	for ($j=0; $rrr=sql_fetch_array($res); $j++) { 
+       
+        $line_level = self_habu_level($rrr['mb_id']);
+        $line_level_total = $line_level.$rrr['mb_level'];
+        array_push($line_levels, $line_level_total);
+
+
+        $self_hap = self_sales($rrr['mb_id']);
+        $line_hap = self_habu($rrr['mb_id']);
+        $line_total = $line_hap + $self_hap; // 하부매출 + 직하부매출
+        $hap+=$line_hap + $self_hap; // 하부매출 + 직하부매출 누계
+
+        if($line_total >= 20000){
+            array_push($line_confirm,$line_total);
         }
 
-        array_push($line_level,$rrr['mb_level']);
-
-        $hap+=$line_hap; // 하부매출을 구한다
-		$cnt++;
+        $cnt++;
     } 
-    echo "▶▶ 하부라인 : ".$cnt;
-    return [$hap,$cnt,$line_confirm,$line_level];
-
+    return [$hap,$cnt,$line_confirm,$line_levels];
+    
     /*배열초기화*/
     unset($line_confirm);
     unset($line_level);
 } 
 
+
+
+
+
+function self_habu($recom){
+   
+    $hap2=0;
+    $res= sql_query("select mb_id,mb_level from g5_member where mb_recommend='".$recom."' order by mb_no"); 
+
+	for ($j=0; $rrr=sql_fetch_array($res); $j++) { 
+
+		$hap2+=self_sales($rrr['mb_id']); // 하부매출을 구한다
+        $hap2 = $hap2 + self_habu($rrr['mb_id']);
+    } 	
+	return $hap2;
+} 
+
+
+function self_habu_level($recom){
+    $line_habu_level =array();
+    
+    $res= sql_query("select mb_id, mb_level from g5_member where mb_recommend='".$recom."' order by mb_no"); 
+
+	for ($j=0; $rrr=sql_fetch_array($res); $j++) { 
+        
+        $levels .= $rrr['mb_level'].self_habu_level($rrr['mb_id']);
+    } 	
+	return $levels;
+} 
+
+
+
 function self_sales($recom){
+    global $hap_sale;
     $res= sql_fetch("select sum(upstair)as hap from g5_shop_order as o where o.mb_id='".$recom."'");    
-    if(!$res['hap']) $res['hap'] = 0;
+
+    if(!$res['hap']) $res['hap'] = 0;{
          echo $recom." Sales : ". number_format($res['hap'])." | ";
-	return $res['hap'];    
+    }
+    return $res['hap'];
 } 

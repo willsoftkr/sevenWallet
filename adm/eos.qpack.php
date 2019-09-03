@@ -114,9 +114,9 @@ while($m_row = sql_fetch_array($mem_list)){
     //echo "<br><br>".$m_row['mb_id'].' -  직추천인수 ::'.$recom_cnt."<br>";
 
 
-	$allowance_name = "Q Pack";
-	$rec_adm  = "Q Pack";
-	$rec = "Q Pack";
+	$allowance_name = "Infinite matching";
+	$rec_adm  = "Infinite matching";
+	$rec = "Infinite matching";
 
     
 

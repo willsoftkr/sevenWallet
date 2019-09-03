@@ -50,12 +50,19 @@
 		"All deposit" : "All deposit",
 		"all" : "ALL",
 		"daily payout" : "Daily payout",
-		"role down recom" : "Role Down",
+		"10x10 Matching" : "10x10 Matching",
+		"Infinite matching" : "Infinite matching",
+		"Binary" : "Binary",
 		"warning":{
 			"A" : "Warning: This order can't be undone."
-		}
+		},
+		"입금" : "Deposit",
+		"출금" : "Withdrawal",
+		"매출" : "Sales"
+
 	},
 	"purchase": {
+		  "구매" : "Purchase",
 		  "B 팩" : "B Packs",
 		  "가격" : "Price",
 		  "선택" : "Select",

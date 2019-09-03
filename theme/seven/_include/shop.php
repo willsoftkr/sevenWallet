@@ -57,4 +57,29 @@
 		return $result;
 	}
 
+	
+	function packImg($val){
+		$packimg_sql = "select it_id from g5_shop_item where it_name = '{$val}'";
+		$packimg_result = sql_fetch($packimg_sql);
+	
+		return $packimg_result['it_id'];   
+	}
+	
+
+	function shift_date($val){
+		return date("Y-m-d", strtotime($val));
+	}
+
+	function item_valid($mb_id, $it_type){
+		global $today;
+		$item_valid_sql = "select * FROM g5_member A left Join g5_shop_cart B on  A.mb_id = B.mb_id where A.mb_id = '{$mb_id}'  and B.ct_select_time > '{$today}' and B.it_sc_type = '{$it_type}' order by ct_time desc limit 0,1";
+		$result = sql_query($item_valid_sql);
+		$result_f = sql_fetch($item_valid_sql);
+
+		if($result->num_rows > 0){
+			return $result_f;
+		}
+		
+	}
+
 ?>

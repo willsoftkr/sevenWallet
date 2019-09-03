@@ -11,7 +11,9 @@
     //echo "<br><br>";
     //print_r($member);
     
-    $shop_list = shop_history($member['mb_id']);
+	$shop_list = shop_history($member['mb_id']);
+	$category = $_GET['stx'];
+
 ?>
 
 	<section class="v_center purchase_1wrap wrap">

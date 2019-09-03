@@ -79,7 +79,7 @@ function deposit_result($val){
 			$('#exchange').on('click', function(){
 				var amount = $('#amount').val();
 				var upstair = $('#upstair').val();
-				var mb_id = "<?=$member[mb_id]?>";
+				var mb_id = "<?=$member['mb_id']?>";
 
 				console.log(amount +" / "+ btc_account);
 
@@ -91,7 +91,7 @@ function deposit_result($val){
 					
 					$.ajax({
 						type: "POST",
-						url: "./upstairs_proc.php",
+						url: "/util/upstairs_proc.php",
 						cache: false,
 						async: false,
 						dataType: "json",

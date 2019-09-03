@@ -110,7 +110,6 @@ for ($i=0; $row=sql_fetch_array($rrr); $i++) {
 	$cond[$i]['immediate']=$row['immediate'];
 	$member_rate[$i]=$row['per'];
 	$cond[$i]['andor']=$row['andor'];
-	"B Pack"=$row['allowance_name'];
 	$cond[$i]['benefit_limit1']=$row['benefit_limit1'];
 	$cond[$i]['source11']=$row['source11'];
 	$cond[$i]['source_cond11']=$row['source_cond11'];
@@ -209,7 +208,7 @@ for($i=0; $recommend=sql_fetch_array($result); $i++) {
 		}
 	}
 
-//	$sum =  sql_fetch( "SELECT sum(upstair) as od_sum FROM g5_shop_order WHERE 1 and od_receipt_time like '$to_date%' and mb_id ='".$mbid."'");
+//	$sum =  sql_fetch( "SELECT sum(upstair) as od_sum FROM g5_shop_order WHERE 1 and od_time like '$to_date%' and mb_id ='".$mbid."'");
 
 	$sum =  sql_fetch( "SELECT mb_deposit_point as od_sum FROM g5_member WHERE 1 and mb_id ='".$mbid."'"); // 회원업스테어 포인트
 
@@ -251,7 +250,7 @@ for($i=0; $recommend=sql_fetch_array($result); $i++) {
 								echo $note='Binary Cycle Bonus for '.$maxcycle.' cycles as a '.$deslv.' member';
 								$no_benefit=1;$binary_firstname=$mbname;$binary_firstid=$mbid;
 								if($today_sales>0)
-								save_benefit($to_date, $mbid, $mbname, $recom, "B Pack", '', 0, $today_sales, $hap1, "B Pack".' '.$note_adm, $note, $mblevel);
+								save_benefit($to_date, $mbid, $mbname, $recom, "Binary", '', 0, $today_sales, $hap1, "Binary".' '.$note_adm, $note, $mblevel);
 								iwol_process($to_date, $mbid, $id1, $mbname, 1, $hap1-$cond[$i]['sales_reset'] , $note_adm);
 								iwol_process($to_date, $mbid, $id2, $mbname, 1,$hap2-$cond[$i]['sales_reset'] , $note_adm);
 							}
@@ -260,7 +259,7 @@ for($i=0; $recommend=sql_fetch_array($result); $i++) {
 								
 								$no_benefit=1;$binary_firstname=$mbname;$binary_firstid=$mbid;
 								if($today_sales>0){
-								save_benefit($to_date, $mbid, $mbname, $recom, "B Pack", '', 0, $today_sales, $limit_point, "B Pack".' '.$note_adm, $note, $mblevel);}
+								save_benefit($to_date, $mbid, $mbname, $recom, "Binary", '', 0, $today_sales, $limit_point, "Binary".' '.$note_adm, $note, $mblevel);}
 								echo '대실적 이월해야한다.';
 								echo '대실적 이월해야한다. 제발'."<br>";
 								iwol_process($to_date, $mbid, $id2, $mbname, 2, $hap2-$hap1, $note_adm);
@@ -272,7 +271,7 @@ for($i=0; $recommend=sql_fetch_array($result); $i++) {
 								echo  $note='Binary Cycle Bonus for '.$maxcycle.' cycles as a '.$deslv.' member';
 								$no_benefit=1;$binary_firstname=$mbname;$binary_firstid=$mbid;
 								if($today_sales>0)
-									save_benefit($to_date,$mbid, $mbname, $recom, "B Pack", '', 0, $today_sales, $hap1, "B Pack".' '.$note_adm, $note, $mblevel);
+									save_benefit($to_date,$mbid, $mbname, $recom, "Binary", '', 0, $today_sales, $hap1, "Binary".' '.$note_adm, $note, $mblevel);
 								iwol_process($to_date, $mbid,  $id1, $mbname, 3, $hap2-$hap1 , $note_adm);
 							}
 						}
@@ -288,7 +287,7 @@ for($i=0; $recommend=sql_fetch_array($result); $i++) {
 								echo $note='Binary Cycle Bonus for '.$maxcycle.' cycles as a '.$deslv.' member';
 								$no_benefit=1;$binary_firstname=$mbname;$binary_firstid=$mbid;
 								if($today_sales>0)
-								save_benefit($to_date, $mbid, $mbname, $recom, "B Pack", '', 0, $today_sales, $hap1, "B Pack".' '.$note_adm, $note, $mblevel);
+								save_benefit($to_date, $mbid, $mbname, $recom, "Binary", '', 0, $today_sales, $hap1, "Binary".' '.$note_adm, $note, $mblevel);
 								iwol_process($to_date, $mbid, $id1, $mbname, 1, $hap1-$cond[$i]['sales_reset'] , $note_adm);
 								iwol_process($to_date, $mbid, $id2, $mbname, 1,$hap2-$cond[$i]['sales_reset'] , $note_adm);
 							}
@@ -297,7 +296,7 @@ for($i=0; $recommend=sql_fetch_array($result); $i++) {
 								echo $note='Binary Bonus for '.$deslv.' member';
 								$no_benefit=1;$binary_firstname=$mbname;$binary_firstid=$mbid;
 								if($today_sales>0)
-								save_benefit($to_date, $mbid, $mbname, $recom, "B Pack", '', 0, $today_sales, $limit_point, "B Pack".' '.$note_adm, $note, $mblevel);
+								save_benefit($to_date, $mbid, $mbname, $recom, "Binary", '', 0, $today_sales, $limit_point, "Binary".' '.$note_adm, $note, $mblevel);
 								iwol_process($to_date, $mbid, $id2, $mbname, 2, $hap2-$hap1, $note_adm);
 								//iwol_process($to_date, $mbid, $id2, $mbname, 2, $hap2, $note_adm);
 
@@ -307,7 +306,7 @@ for($i=0; $recommend=sql_fetch_array($result); $i++) {
 								echo  $note='Binary Cycle Bonus for '.$maxcycle.' cycles as a '.$deslv.' member';
 								$no_benefit=1;$binary_firstname=$mbname;$binary_firstid=$mbid;
 								if($today_sales>0)
-									save_benefit($to_date,$mbid, $mbname, $recom, "B Pack", '', 0, $today_sales, $hap1, "B Pack".' '.$note_adm, $note, $mblevel);
+									save_benefit($to_date,$mbid, $mbname, $recom, "Binary", '', 0, $today_sales, $hap1, "Binary".' '.$note_adm, $note, $mblevel);
 								iwol_process($to_date, $mbid,  $id1, $mbname, 3, $hap2-$hap1 , $note_adm);
 							}
 						}
@@ -323,7 +322,7 @@ for($i=0; $recommend=sql_fetch_array($result); $i++) {
 								$note_adm='극점초과(대.소실적 모두이월) (8) 소실적:'.$hap2.	'('.$id2.') / 대실적:'.$hap1.	'('.$id1.')';
 								$no_benefit=1;$binary_firstname=$mbname;$binary_firstid=$mbid;
 								if($today_sales>0)
-									save_benefit($to_date,$mbid, $mbname, $recom, "B Pack", '', 0, $today_sales, $hap2, "B Pack".' '.$note_adm,$note, $mblevel);
+									save_benefit($to_date,$mbid, $mbname, $recom, "Binary", '', 0, $today_sales, $hap2, "Binary".' '.$note_adm,$note, $mblevel);
 								//echo $note='Binary Cycle Bonus for '.$maxcycle.' cycles as a '.$deslv.' member';
 								iwol_process($to_date, $mbid, $id1, $mbname, 8,$hap1-$cond[$i]['sales_reset'] , $note_adm);
 								iwol_process($to_date, $mbid, $id2, $mbname, 8,$hap2-$cond[$i]['sales_reset'] , $note_adm);
@@ -332,7 +331,7 @@ for($i=0; $recommend=sql_fetch_array($result); $i++) {
 								echo $note='Binary Bonus for '.$deslv.' member';
 								$no_benefit=1;$binary_firstname=$mbname;$binary_firstid=$mbid;
 								if($today_sales>0)
-								save_benefit($to_date, $mbid, $mbname, $recom, "B Pack", '', 0, $today_sales,  $hap2, "B Pack".' '.$note_adm, $note, $mblevel);
+								save_benefit($to_date, $mbid, $mbname, $recom, "Binary", '', 0, $today_sales,  $hap2, "Binary".' '.$note_adm, $note, $mblevel);
 								iwol_process($to_date, $mbid, $id1, $mbname, 9, $hap1-$hap2 , $note_adm);
 								//iwol_process($to_date, $mbid, $id1, $mbname, 9, $hap1 , $note_adm); //대실적 1/2
 
@@ -355,7 +354,7 @@ for($i=0; $recommend=sql_fetch_array($result); $i++) {
 								echo $note='Binary Cycle Bonus for '.$maxcycle.' cycles as a '.$deslv.' member';
 								$no_benefit=1;$binary_firstname=$mbname;$binary_firstid=$mbid;
 								if($today_sales>0)
-								save_benefit($to_date, $mbid, $mbname, $recom, "B Pack", '', 0, $today_sales, $hap1, "B Pack".' '.$note_adm, $note, $mblevel);
+								save_benefit($to_date, $mbid, $mbname, $recom, "Binary", '', 0, $today_sales, $hap1, "Binary".' '.$note_adm, $note, $mblevel);
 								iwol_process($to_date, $mbid, $id1, $mbname, 1, $hap1-$cond[$i]['sales_reset'] , $note_adm);
 								iwol_process($to_date, $mbid, $id2, $mbname, 1,$hap2-$cond[$i]['sales_reset'] , $note_adm);
 							}
@@ -368,7 +367,7 @@ for($i=0; $recommend=sql_fetch_array($result); $i++) {
 								$no_benefit=1;$binary_firstname=$mbname;$binary_firstid=$mbid;
 
 								if($today_sales>0){
-									save_benefit($to_date, $mbid, $mbname, $recom, "B Pack", '', 0, $today_sales, $today_sales, "B Pack".' '.$note_adm, $note, $mblevel);
+									save_benefit($to_date, $mbid, $mbname, $recom, "Binary", '', 0, $today_sales, $today_sales, "Binary".' '.$note_adm, $note, $mblevel);
 									iwol_process($to_date, $mbid, $id1, $mbname, 99, $hap1-$hap2, $note_adm);
 								}
 								//iwol_process($to_date, $mbid, $id2, $mbname, 2, $hap2, $note_adm);
@@ -379,7 +378,7 @@ for($i=0; $recommend=sql_fetch_array($result); $i++) {
 								echo  $note='Binary Cycle Bonus for '.$maxcycle.' cycles as a '.$deslv.' member';
 								$no_benefit=1;$binary_firstname=$mbname;$binary_firstid=$mbid;
 								if($today_sales>0)
-									save_benefit($to_date,$mbid, $mbname, $recom, "B Pack", '', 0, $today_sales, $hap1, "B Pack".' '.$note_adm, $note, $mblevel);
+									save_benefit($to_date,$mbid, $mbname, $recom, "Binary", '', 0, $today_sales, $hap1, "Binary".' '.$note_adm, $note, $mblevel);
 								iwol_process($to_date, $mbid,  $id1, $mbname, 3, $hap2-$hap1 , $note_adm);
 							}
 						}
@@ -399,7 +398,7 @@ for($i=0; $recommend=sql_fetch_array($result); $i++) {
 								$no_benefit=1; $binary_firstname=$mbname; $binary_firstid=$mbid;
 
 								if($today_sales>0){
-									save_benefit($to_date, $mbid, $mbname, $recom, "B Pack", '', 0, $today_sales, $hap1, "B Pack".' '.$note_adm, $note, $mblevel, 100);
+									save_benefit($to_date, $mbid, $mbname, $recom, "Binary", '', 0, $today_sales, $hap1, "Binary".' '.$note_adm, $note, $mblevel, 100);
 									iwol_process($to_date, $mbid, $id2, $mbname, 100, $hap1 - $hap2 , $note_adm);
 								}
 					}
@@ -441,19 +440,19 @@ function habu_sales_calc($gubun, $recom, $deep){
 		$recom=$rrr['mb_id'];  
 		echo '<br><br><strong>'.$recom.'</strong>   / ('.$j.')<br>'; 
 
-		$noo_search = " and date_format(o.od_receipt_time,'%Y-%m-%d')>='$start_day' and date_format(o.od_receipt_time,'%Y-%m-%d')<='$day'";
+		$noo_search = " and date_format(o.od_time,'%Y-%m-%d')>='$start_day' and date_format(o.od_time,'%Y-%m-%d')<='$day'";
 		$sql1= sql_fetch("select sum(upstair)as hap from g5_shop_order as o where mb_id='".$recom."' $noo_search");
 		$noo+=$sql1['hap'];
 
-		$mon_search = " and date_format(o.od_receipt_time,'%Y-%m-%d')>='$min30' and date_format(o.od_receipt_time,'%Y-%m-%d')<='$day'";
+		$mon_search = " and date_format(o.od_time,'%Y-%m-%d')>='$min30' and date_format(o.od_time,'%Y-%m-%d')<='$day'";
 		$sql2= sql_fetch("select sum(upstair)as hap from g5_shop_order as o where mb_id='".$recom."' $mon_search");
 		$mon+=$sql2['hap'];
 		
-		$day_search = " and date_format(o.od_receipt_time,'%Y-%m-%d')='$day'";
+		$day_search = " and date_format(o.od_time,'%Y-%m-%d')='$day'";
 		$sql3= sql_fetch("select sum(upstair)as hap from g5_shop_order as o where mb_id='".$recom."' $day_search");
 		$today+=$sql3['hap'];
 		
-		echo "! select sum(pv) as hap from g5_shop_order as o where mb_id='".$recom."' ".$day_search;
+		echo "select sum(pv) as hap from g5_shop_order as o where mb_id='".$recom."' ".$day_search;
 		echo	'<br>'.$recom.' : today :'.$sql3['hap'].' / '.$today.'  / mysales : '.$mysales ."<br>";
 
 		list($noo_r,$mon_r,$today_r)=habu_sales_calc($gubun, $recom, $deep);	 
@@ -496,11 +495,11 @@ function habu_sales_calc($gubun, $recom, $deep){
 					$rec=$today_r;
 				}
 
-				$mysql = sql_fetch("select sum(upstair) as hap from g5_shop_order  where mb_id='".$recom."' and date_format(od_receipt_time,'%Y-%m-%d')='".$to_date."'");
+				$mysql = sql_fetch("select sum(upstair) as hap from g5_shop_order  where mb_id='".$recom."' and date_format(od_time,'%Y-%m-%d')='".$to_date."'");
 				$mysum = $mysql['hap'];
 				
 				echo "<br>";
-				//echo "select sum(upstair) as hap from g5_shop_order  where mb_id='".$recom."' and date_format(od_receipt_time,'%Y-%m-%d')='".$to_date."'";
+				//echo "select sum(upstair) as hap from g5_shop_order  where mb_id='".$recom."' and date_format(od_time,'%Y-%m-%d')='".$to_date."'";
 				
 				if($j == count($rrr) ){
 					$rec=$rec;
@@ -541,8 +540,6 @@ function clear_all_benefit_mem(){
 		$cond[$i]['history_in1']='';
 		$cond[$i]['history_in2']='';
 		$cond[$i]['base_source']='';
-		$member_rate[$i]='';
-		"B Pack"='';
 		$cond[$i]['benefit_limit1']='';
 		$cond[$i]['benefit']=0;
 		$cond[$i]['source11']='';
@@ -580,7 +577,7 @@ function clear_benefit_mem(){
 	}
 }
 function today_sales($mbid, $day){
-	$day_search = " and date_format(o.od_receipt_time,'%Y-%m-%d')='$day'";
+	$day_search = " and date_format(o.od_time,'%Y-%m-%d')='$day'";
 	$sql= sql_fetch("select sum(upstair)as hap from g5_shop_order as o where mb_id='".$mbid."' $day_search");
 	if($sql['hap']=='')
 	{
@@ -709,7 +706,6 @@ function save_benefit($day, $mbid, $mbname, $recom, $allowance_name, $sales_day,
 		
 		$mrow =sql_fetch( "select mb_deposit_point from g5_member where mb_id='".$mbid."'");
 		$soodang_sum  = sql_fetch("select sum(benefit) as eb_sum from soodang_pay where 1=1 and mb_id='".$mbid."'"); //reset_day 부터 오늘 까지 수당합.
-
 		
 		$daily_soo_sum = sql_fetch("select sum(benefit) as ds_sum from soodang_pay where allowance_name='".$allowance_name."' and day='".$to_date."' and mb_id='".$mbid."'");
 

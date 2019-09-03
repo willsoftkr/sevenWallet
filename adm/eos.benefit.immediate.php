@@ -54,9 +54,9 @@ while($m_row = sql_fetch_array($mem_list)){
 
 	//echo $m_row['mb_id'].' of result_hap : '.$result_hap."<br>";
 
-	$allowance_name = "Role Down Recom";
-	$rec_adm  = "Role Down Recom";
-	$rec = "Role Down Recom";
+	$allowance_name = "10x10 Matching";
+	$rec_adm  = "10x10 Matching";
+	$rec = "10x10 Matching";
 
 	if($result_hap>0) {
 		$result_hap = number_format($result_hap, 2);

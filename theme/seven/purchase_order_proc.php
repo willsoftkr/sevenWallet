@@ -23,11 +23,12 @@
         $order_B = get_shop_item($_POST['b_it_id']); // B팩
 
         /*B팩 구매내역 있다면*/
-        if($_POST['expire_date_b']){
+        if($_POST['expire_date_b'] && $_POST['b_it_name'] == $member['it_pool1'] ){
             $order_date_b = $_POST['expire_date_b'];
         }else{
             $order_date_b = G5_TIME_YMDHIS;
         }
+
         $expire_date_b = date("Y-m-d", strtotime($order_date_b."+1 month"));
 
         $B_sql =  ",it_pool1 =  '$order_B[it_name]' ,
@@ -38,7 +39,7 @@
     if($_POST['q_it_id']){
         $order_Q = get_shop_item($_POST['q_it_id']); // Q팩
          /*Q팩 구매내역 있다면*/
-        if($_POST['expire_date_q']){
+        if($_POST['expire_date_q'] && $_POST['q_it_name'] == $member['it_pool2']){
             $order_date_q = $_POST['expire_date_q'];
         }else{
             $order_date_q = G5_TIME_YMDHIS;
@@ -84,7 +85,7 @@
 		, mb_id             = '".$mb_id."'
 		, it_id     = '{$order_B['it_id']}'
         , it_name     = '{$order_B['it_name']}'
-        , it_sc_type    ='1'
+        , it_sc_type    ='10'
         , it_sc_method    ='".$coin."'
         , ct_status         = '구매'
         , ct_price         = '".$order_price."'
@@ -108,7 +109,7 @@
 		, mb_id             = '".$mb_id."'
 		, it_id     = '{$order_Q['it_id']}'
         , it_name     = '{$order_Q['it_name']}'
-        , it_sc_type    ='1'
+        , it_sc_type    ='20'
         , it_sc_method    ='".$coin."'
         , ct_status         = '구매'
         , ct_price         = '".$order_price."'

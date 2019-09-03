@@ -46,6 +46,9 @@
 
 		<section class="v_center purchase1_wrap wrap">
 		<form id="purchaseForm" name="purchaseForm" action="<?=G5_URL?>/page.php?id=purchase_order_proc"   method="post" >
+			
+			<input type="hidden" name="b_it_name" value="<?=$b_it_name?>">
+			<input type="hidden" name="q_it_name" value="<?=$q_it_name?>">
 
 			<input type="hidden" name="b_it_id" value="<?=$b_it_id?>">
 			<input type="hidden" name="b_it_auto" value="<?=$b_it_auto?>">
@@ -218,7 +221,7 @@
 			var expire_q = "<?=$expire_date_q?>";
 			var order_q = "<?=$q_it_name?>";
 			
-			var item_b = "<?=$$expire_item_b?>";
+			var item_b = "<?=$expire_item_b?>";
 			var expire_b = "<?=$expire_date_b?>";
 			var order_b = "<?=$b_it_name?>";
 

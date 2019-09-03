@@ -4,6 +4,8 @@
 	//print_r($member);
 	
 	include_once(G5_THEME_PATH.'/_include/wallet.php'); 
+	include_once(G5_PATH.'/lib/shop.lib.php'); 
+	include_once(G5_THEME_PATH.'/_include/shop.php'); 
 ?>
 
 <!-- bxslider -->
@@ -106,6 +108,30 @@
 
 			<section class="dash_business">
 				<h5  data-i18n="dashboard.비즈니스 현황">Business Status</h5>
+				<div class="mystatus">
+					<p><?=$member['mb_id']?></p>
+					<div class='gradelevel'>
+						<li><span><img src="/img/package-<?=$member['grade']?>.png"></span> <span class="right"> <?=$member['grade']?> grade </span></li>
+						<li><span><img src="/img/<?=$member['mb_level']?>star.png"></span> <span class="right"> V<?=$member['mb_level']?> level</span></li>
+					</div>
+					<hr>
+					<div class='packs'>
+					
+						<? 
+						$b_valid = item_valid($member['mb_id'],10);
+						if($b_valid){?>
+							<li><a href="<?=G5_URL?>/page.php?id=purchase_order_end&stx=b"><?=get_it_image(packImg($b_valid['it_pool1']), 50, 50);?></a> <span class="right"><?=shift_date($b_valid['it_pool1_profit'])?></span></li>
+						<?}?>
+						
+						<?
+						$q_valid = item_valid($member['mb_id'],20);
+						if($q_valid){?>
+							<li><a href="<?=G5_URL?>/page.php?id=purchase_order_end&stx=q"><?=get_it_image(packImg($q_valid['it_pool2']), 50, 50);?></a> <span class="right"><?=shift_date($q_valid['it_pool2_profit'])?></span></li>
+						<?}?>
+					</div>
+					
+				</div>
+
 				<div>
 					<img src="<?=G5_THEME_URL?>/_images/busi1.gif" alt="아이콘">
 					<p><?=$member['mb_recommend']?></p>

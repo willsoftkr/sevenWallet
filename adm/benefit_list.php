@@ -178,9 +178,9 @@ $colspan = 16;
 
 
 	<input type="submit" name="act_button" value=" 일일 수당 지급 "  class="frm_input benefit day" onclick="go_calc(0);">
-	<input type="submit" name="act_button" value=" 추천 수당 지급"  class="frm_input benefit recom" onclick="go_calc(1);">
+	<input type="submit" name="act_button" value=" 10X10 지급"  class="frm_input benefit recom" onclick="go_calc(1);">
 	<input type="submit" name="act_button" value=" 레벨승급"  class="frm_input benefit level" onclick="go_calc(2);">
-	<input type="submit" name="act_button" value=" Q팩 수당 지급 " class="frm_input benefit bpack" onclick="go_calc(3);">
+	<input type="submit" name="act_button" value=" 무한 매칭 지급 " class="frm_input benefit bpack" onclick="go_calc(3);">
 	<input type="submit" name="act_button" value=" B팩 수당 지급"  class="frm_input benefit qpack" onclick="go_calc(4);">
 	<!--
 	<input type="submit" name="act_button" value=" 바이너리 보너스 "  class="frm_input" onclick="go_calc(2);">
