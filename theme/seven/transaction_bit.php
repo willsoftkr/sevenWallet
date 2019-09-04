@@ -135,8 +135,8 @@ $pack_result = sql_query($pack_sql); // 팩구매내역
 					<li class="bonus_tab <?nav_active('Deposit')?>" data-tab="tab_2" data-category="Deposit"><p data-i18n="wallet.입금">Deposit</p></li>
 					<li class="bonus_tab <?nav_active('Withdrawal')?>" data-tab="tab_3" data-category="Withdrawal"><p data-i18n="wallet.출금">Withdrawal</p></li>
 					<li class="bonus_tab <?nav_active('sales')?>" data-tab="tab_3" data-category="sales"><p data-i18n="wallet.매출">Sales</p></li>
-					<li class="bonus_tab <?nav_active('Q Pack')?>" data-tab="tab_4" data-category="Q Pack"><p data-i18n="purchase.Q Pack">Q Pack</p></li>
-					<li class="bonus_tab <?nav_active('B Pack')?>" data-tab="tab_5" data-category="B Pack"><p data-i18n="purchase.B Pack">B Pack</p></li>
+					<li class="bonus_tab <?nav_active('Infinite matching')?>" data-tab="tab_4" data-category="Infinite matching"><p data-i18n="wallet.Infinite matching">Infinite matching</p></li>
+					<li class="bonus_tab <?nav_active('Binary')?>" data-tab="tab_5" data-category="Binary"><p data-i18n="wallet.Binary">Binary</p></li>
 				</ul>
 				<!-- //탭 -->
 				

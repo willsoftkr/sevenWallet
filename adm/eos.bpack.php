@@ -108,7 +108,7 @@ for ($i=0; $row=sql_fetch_array($rrr); $i++) {
 	$cond[$i]['history_in2']=$row['history_in2'];
 	$cond[$i]['base_source']=$row['base_source'];
 	$cond[$i]['immediate']=$row['immediate'];
-	$member_rate[$i]=$row['per'];
+	$member_rate=$row['per'];
 	$cond[$i]['andor']=$row['andor'];
 	$cond[$i]['benefit_limit1']=$row['benefit_limit1'];
 	$cond[$i]['source11']=$row['source11'];
@@ -231,20 +231,20 @@ for($i=0; $recommend=sql_fetch_array($result); $i++) {
 				
 				echo '<br> 실적 계산 기준  :: '.$mbid.': '.$id1.'---'.$hap1.' // ---'.$id2.'---'.$hap2.'   // B팩 :'.$recommend['it_pool1']. '<br><br>';
 
-				//print_r("<br>". $mbid." num :".$i." rate :".$member_rate[$i]."<br>");
+				//print_r("<br>". $mbid." num :".$i." rate :".$member_rate."<br>");
 				
-				if(!$member_rate[$i]){$member_rate[$i] = '0';}
+				if(!$member_rate){$member_rate = '0';}
 
 				if(($hap1>0) || ($hap2>0)){
 					if( $hap1<$hap2 )
 					{ //$hap1이 소실적이라면
-						if( ($hap1*$member_rate[$i]/100 ) > $limit_point && $limit_point!=0){ //소실적이 극점?
+						if( ($hap1*$member_rate/100 ) > $limit_point && $limit_point!=0){ //소실적이 극점?
 
 							$today_sales=$limit_point;
 							$firstname=$mbname;
 							$firstid=$mbid;
 
-							echo "수당 계산 하자 asdf : ".$id1.' '.$hap1.' '.$id2.' '.$hap2.'percentage : '.$member_rate[$i].'today_sales'.$today_sales.'<br>';
+							echo "수당 계산 하자 asdf : ".$id1.' '.$hap1.' '.$id2.' '.$hap2.'percentage : '.$member_rate.'today_sales'.$today_sales.'<br>';
 							if( $cond[$i]['max_reset1'] =='대.소실적 모두이월'){
 								$note_adm='극점초과(대.소실적 모두이월) (1) 소실적:'.$hap1.'('.$id1.') / 대실적:'.$hap2.'('.$id2.')';
 								echo $note='Binary Cycle Bonus for '.$maxcycle.' cycles as a '.$deslv.' member';
@@ -277,11 +277,11 @@ for($i=0; $recommend=sql_fetch_array($result); $i++) {
 						}
 						else { //소실적이 극점x
 						//if($hap1>=($cond[$i]['sales_reset']) ){ //소실적이 극점?
-							$today_sales=$hap1* ($member_rate[$i]/100);
+							$today_sales=$hap1* ($member_rate/100);
 						//	$binary_trig=($cond[$i]['sales_reset']/$cond[$i]['cycle']);
 							$firstname=$mbname;
 							$firstid=$mbid;
-							echo "수당 계산 하자 fads : ".$id1.' '.$hap1.' '.$id2.' '.$hap2.'percentage : '.$member_rate[$i].'today_sales'.$today_sales.'<br>';
+							echo "수당 계산 하자 fads : ".$id1.' '.$hap1.' '.$id2.' '.$hap2.'percentage : '.$member_rate.'today_sales'.$today_sales.'<br>';
 							if( $cond[$i]['max_reset1'] =='대.소실적 모두이월'){
 								$note_adm='극점초과(대.소실적 모두이월) (1) 소실적:'.$hap1.'('.$id1.') / 대실적:'.$hap2.'('.$id2.')';
 								echo $note='Binary Cycle Bonus for '.$maxcycle.' cycles as a '.$deslv.' member';
@@ -312,12 +312,12 @@ for($i=0; $recommend=sql_fetch_array($result); $i++) {
 						}
 					}  //$hap1이 소실적이라면
 					else if( $hap1>$hap2 ){ //$hap2가 소실적이라면
-						if($hap2*($member_rate[$i]/100)>=$limit_point && $limit_point!=0){ //소실적이 극점?
+						if($hap2*($member_rate/100)>=$limit_point && $limit_point!=0){ //소실적이 극점?
 							$today_sales=$limit_point;
 							$binary_trig=($cond[$i]['sales_reset']/$cond[$i]['cycle']);
 							$firstname=$mbname;
 							$firstid=$mbid;
-							echo "수당 계산 하자 : ".$id1.' '.$hap1.' '.$id2.' '.$hap2.'percentage : '.$member_rate[$i].'today_sales'.$today_sales.'<br>';
+							echo "수당 계산 하자 : ".$id1.' '.$hap1.' '.$id2.' '.$hap2.'percentage : '.$member_rate.'today_sales'.$today_sales.'<br>';
 							if($cond[$i]['max_reset1']=='대.소실적 모두이월'){
 								$note_adm='극점초과(대.소실적 모두이월) (8) 소실적:'.$hap2.	'('.$id2.') / 대실적:'.$hap1.	'('.$id1.')';
 								$no_benefit=1;$binary_firstname=$mbname;$binary_firstid=$mbid;
@@ -343,11 +343,11 @@ for($i=0; $recommend=sql_fetch_array($result); $i++) {
 						}
 						else { //소실적이 극점x
 						//if($hap1>=($cond[$i]['sales_reset']) ){ //소실적이 극점?
-							$today_sales=$hap2*($member_rate[$i]/100);
+							$today_sales=$hap2*($member_rate/100);
 						//	$binary_trig=($cond[$i]['sales_reset']/$cond[$i]['cycle']);
 							$firstname=$mbname;
 							$firstid=$mbid;
-							echo '수당 계산 ::  대실적-<strong>'.$hap1.'</strong>('.$id1.') ||  소실적-<strong>'.$hap2.'</strong>('.$id2.') ||  수당: <strong>'.$member_rate[$i].'%</strong> || today_sales: <strong>'.$today_sales.'</strong><br><br>';
+							echo '수당 계산 ::  대실적-<strong>'.$hap1.'</strong>('.$id1.') ||  소실적-<strong>'.$hap2.'</strong>('.$id2.') ||  수당: <strong>'.$member_rate.'%</strong> || today_sales: <strong>'.$today_sales.'</strong><br><br>';
 
 							if( $cond[$i]['max_reset1'] =='대.소실적 모두이월'){
 								$note_adm='극점초과(대.소실적 모두이월) (1) 대실적:'.$hap1.'('.$id1.') / 소실적:'.$hap2.'('.$id2.')';
@@ -359,7 +359,7 @@ for($i=0; $recommend=sql_fetch_array($result); $i++) {
 								iwol_process($to_date, $mbid, $id2, $mbname, 1,$hap2-$cond[$i]['sales_reset'] , $note_adm);
 							}
 							else if($cond[$i]['max_reset1']=='대실적만 이월'){
-								echo " ▶ 대실적만이월 : ".'hap2'.$hap2. 'percentage : '.$member_rate[$i].' today_sales : '.$today_sales.'<br><br>';
+								echo " ▶ 대실적만이월 : ".'hap2'.$hap2. 'percentage : '.$member_rate.' today_sales : '.$today_sales.'<br><br>';
 
 								$note_adm='소실적 발생 (대실적만 이월) (99) 대실적:'.$hap1.	'('.$id1.') / 소실적:'.$hap2.	'('.$id2.') 이월금:'.($hap1-$hap2);
 
@@ -384,11 +384,11 @@ for($i=0; $recommend=sql_fetch_array($result); $i++) {
 						}
 					}else if( $hap1=$hap2 ){ //$hap1 과 hap2 가 같다면
 
-							$today_sales=$hap2*$member_rate[$i]/100;
+							$today_sales=$hap2*$member_rate/100;
 							$firstname=$mbname;
 							$firstid=$mbid;
 
-							echo "수당 계산 : ".$id1.' '.$hap1.' '.$id2.' '.$hap2.' | percentage : '.$member_rate[$i].' | today_sales'.$today_sales.'<br>';
+							echo "수당 계산 : ".$id1.' '.$hap1.' '.$id2.' '.$hap2.' | percentage : '.$member_rate.' | today_sales'.$today_sales.'<br>';
 
 						
 								$note_adm='Binary (대소실적같음 소멸)(100) 대실적:'.$hap1.'('.$id1.') / 소실적:'.$hap2.'('.$id2.')';
