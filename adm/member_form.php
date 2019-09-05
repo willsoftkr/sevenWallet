@@ -287,6 +287,11 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
 			});
 		});
 	}); // ready close
+
+
+	$rank_sql = "select * from rank where mb_id = '{$mb['mb_id']}' and rank = '{$mb['mb_level']' ";
+	$rank_result = sql_query($rank_sql);
+	
 </script>
 
 <style>
@@ -357,9 +362,10 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
   	<tr>
 		<th scope="row"><label for="grade">회원 등급</label></th>
 		<td><?php echo get_grade_select('grade', 0, $member['grade'], $mb['grade']) ?></td>
-
+		
+		
 		<th scope="row"><label for="mb_level">회원 직급</label></th>
-		<td ><?php echo get_member_level_select('mb_level', 0, $member['mb_level'], $mb['mb_level']) ?></td>
+		<td ><?php echo get_member_level_select('mb_level', 0, $member['mb_level'], $mb['mb_level']) ?> <div><?=$rank_result['rank_day']?></div> </td>
 	</tr>
 
 	

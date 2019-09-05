@@ -167,7 +167,7 @@ function out_check($val){
 	.td_name{width:8%}
 	.td_mail{width:10%;}
 	.td_mbgrade{text-align:center}
-	.td_mbgrade select{min-width:100px;padding:5px 5px }
+	.td_mbgrade select{min-width:60px;padding:3px 5px }
 	
 	.tbl_head02 tbody td{padding:5px;}
 	.over{color:red;}
@@ -226,6 +226,8 @@ function out_check($val){
 
 
 		<th scope="col" id="mb_list_authcheck" rowspan="2"><?php echo subject_sort_link('grade', '', 'desc') ?>회원등급/직급</a></th>
+		<th scope="col" id="mb_list_levelcheck" rowspan="2"><?php echo subject_sort_link('mb_level', '', 'desc') ?>회원등급/직급</a></th>
+		
 		<th scope="col" id="mb_list_member"><?php echo subject_sort_link('mb_today_login', '', 'desc') ?>최종접속</a></th>
 		<th scope="col" rowspan="3" id="mb_list_mng">관리</th>
 	</tr>
@@ -422,8 +424,13 @@ function out_check($val){
 			?>
 		-->
 			
-			<?php echo get_grade_select("grade[$i]", 0, $member['grade'], $row['grade']) ?>
+			<div><?php echo get_grade_select("grade[$i]", 0, $member['grade'], $row['grade']) ?></div>
+			
 		</td>
+		<td headers="mb_list_member" class="td_mbgrade" rowspan="2">
+			<div><?php echo get_level_select("mb_level[$i]", 0, $member['mb_level'], $row['level']) ?></div>
+		</td>
+
 		<td headers="mb_list_lastcall" class="td_date"><?php echo substr($row['mb_today_login'],2,8); ?></td>
 		<!--<td headers="mb_list_grp" rowspan="1" class="td_numsmall"><?php echo $group ?></td>-->
 		<td headers="mb_list_mng" rowspan="2" class="td_mngsmall"><?php echo $s_mod ?> <?php echo $s_grp ?></br> <?php echo $s_mod_binary ?></td>

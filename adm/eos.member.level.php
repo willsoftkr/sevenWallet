@@ -65,11 +65,11 @@ function update_level($val){
         /* 라인3개가 20,000 이상인지 확인 */
         if( count($line_sales) >= 3) {
             
-            //echo "1단계";
+            echo "1단계";
 
              /* 하부 총 합계 100,000 이상 */
             if($member_update[0] >= 100000){
-                //echo "2단계";
+                echo "2단계";
                 
                 if($val == 1){
                     echo "<br> <span class='red'> ▶▶ V1 승급 대상 : ".$mbid."</span>";
@@ -88,9 +88,9 @@ function update_level($val){
                     sql_query($sql4);
 
                 }else{
-                    //echo "<br>3단계";
+                    echo "<br>3단계";
                     if($val > $mblevel){
-
+                       
                         $line_level = $val-1;
                             
                         /* 라인3개이상에 등급 존재 여부 확인 */
@@ -105,10 +105,10 @@ function update_level($val){
                                 $level_confirm_count++; 
                             } 
                         }
-
+                        echo "<br>4단계 confirm_count === " . $level_confirm_count;
                         //echo "confirm_count === " . $level_confirm_count;
                         
-                        if($level_confirm_count > 3){
+                        if($level_confirm_count >= 3){
                             echo "<br>V2~7 승급 대상 : <span class='red'>".$mbid."</span> | 하부 라인 <span class='blue'>V".$line_level."</span> 레벨 ".$level_confirm_count."명 존재" ;
 
                             $sql5 = " update g5_member set mb_level='$val'";

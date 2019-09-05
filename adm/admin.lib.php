@@ -217,7 +217,7 @@ function get_member_level_select($name, $start_id=0, $end_id=4, $selected="", $e
 function get_member_level($mb_level)
 {
     global $g5;
-	$level_name=array("0","1","2","3","4","5","6","7","8","9","admin");
+	$level_name=array("0","1","2","3","4","5","6","7","","","admin");
 	//$level_name=array("Black","Red","Yellow","Green");
 	
     return $level_name[$mb_level];
@@ -228,7 +228,8 @@ function get_member_level($mb_level)
 function get_grade_select($name, $start_id=0, $end_id=4, $selected="", $event="")
 {
     global $g5;
-	//$level_name=array("Freshman","Miner","0Star","1Star","2Star","3Star","4Star","5Star","6Star","manager","admin");
+    //$level_name=array("Freshman","Miner","0Star","1Star","2Star","3Star","4Star","5Star","6Star","manager","admin");
+    
 	$level_name=array("Black","Red","Yellow","Green");
     $str = "\n<select id=\"{$name}\" name=\"{$name}\"";
     if ($event) $str .= " $event";
@@ -242,6 +243,25 @@ function get_grade_select($name, $start_id=0, $end_id=4, $selected="", $event=""
     $str .= "</select>\n";
     return $str;
 }
+
+// 회원등급을 SELECT 형식으로 얻음
+function get_level_select($name, $start_id=0, $end_id=4, $selected="", $event="")
+{
+    global $g5;
+    $level_name=array("0","1","2","3","4","5","6","7");
+    $str = "\n<select id=\"{$name}\" name=\"{$name}\"";
+    if ($event) $str .= " $event";
+    $str .= ">\n";
+    for ($i=$start_id; $i<=$end_id; $i++) {
+        $str .= '<option value="'.$i.'"';
+        if ($i == $selected)
+            $str .= ' selected="selected"';
+        $str .= ">{$level_name[$i]}</option>\n";
+    }
+    $str .= "</select>\n";
+    return $str;
+}
+
 
 
 

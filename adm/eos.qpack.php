@@ -102,13 +102,13 @@ while($m_row = sql_fetch_array($mem_list)){
 	}
 	*/
 
-	$cart_sql = "select * from g5_shop_cart as A left join g5_shop_item as B on A.it_name = B.it_name where A.mb_id ='{$m_row['mb_id']}' and A.ct_time < '{$to_date}' and A.ct_select_time > '{$to_date}' and A.it_sc_type = '20'  order by A.ct_time desc limit 0,1";
+	$cart_sql = "select * from g5_shop_cart as A left join g5_shop_item as B on A.it_name = B.it_name where A.mb_id ='{$m_row['mb_id']}' and date(A.ct_time) <= '{$to_date}' and date(A.ct_select_time) >= '{$to_date}' and A.it_sc_type = '20'  order by A.ct_time desc limit 0,1";
 	$cart_result = sql_fetch($cart_sql);
 
-	//echo  $cart_sql;
+	echo  $cart_sql;
 	$qpak_num = 0;
 
-	if($cart_result > 0){
+	if($cart_result){
 		$mb_qpack = $cart_result['it_name'];
 		$mb_qpack_expire_date = $cart_result['ct_select_time'];
 		

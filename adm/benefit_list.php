@@ -4,6 +4,7 @@ include_once('./_common.php');
 
 //auth_check($auth[$sub_menu], 'r');
 
+$v7_cost = number_format(get_coin_cost('v7'),2);
 
 
 
@@ -268,7 +269,6 @@ $colspan = 16;
 		$bg = 'bg'.($i%2);
 		$soodang = $row['benefit'];
 		$doodang2 = $row['benefit_usd'];
-	
 	?>
 
     <tr class="<?php echo $bg; ?>">
@@ -278,7 +278,7 @@ $colspan = 16;
 		<td width='100'><?php echo get_text($row['allowance_name']); ?></td>
         <td width="150" ><?php echo get_text($row['mb_recommend']); ?></td>
 		<td width="150" align='center'><?php echo Number_format($soodang,2)  ?></td>
-		<td width="150" align='center'><?php echo Number_format($soodang/0.5,2)  ?></td>
+		<td width="150" align='center'><?php echo Number_format($soodang/$v7_cost,2)  ?></td>
         <td width="500"><?php echo ($row['rec_adm']) ?></td>
     </tr>
 
