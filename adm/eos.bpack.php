@@ -555,7 +555,7 @@ function minus_iwol($mbid,$day){
 	if($hap>0){
 		$temp_sql1 = " insert iwol set iwolday='".$day."'";
 		$temp_sql1 .= " ,mb_id		= '".$mbid."'";
-		$temp_sql1 .= " ,upstair		= '".-($hap)."'";
+		$temp_sql1 .= " ,pv		= '".-($hap)."'";
 		$temp_sql1 .= " ,kind		= 1";
 		$temp_sql1 .= " ,note		= '이월매출사용'";
 		sql_query($temp_sql1);
@@ -567,7 +567,7 @@ function plus_iwol($mbid,$day){
 	if($hap>0){
 		$temp_sql1 = " insert iwol set iwolday='".$day."'";
 		$temp_sql1 .= " ,mb_id		= '".$mbid."'";
-		$temp_sql1 .= " ,upstair			= '".($hap)."'";
+		$temp_sql1 .= " ,pv			= '".($hap)."'";
 		$temp_sql1 .= " ,kind		= 100";
 		$temp_sql1 .= " ,note		= '금일 발생한 매출이월'";
 		sql_query($temp_sql1);
