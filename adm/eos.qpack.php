@@ -88,8 +88,9 @@ while($m_row = sql_fetch_array($mem_list)){
     $result_hap = 0;
     
 	$mb_level = $m_row['grade'];
+
     //$benefit_rate = $rate[ $m_row['grade'] ]; //회원등급별 수당률
-    
+    /*
     $mb_qpack = $m_row['it_pool2']; //Q팩 보유
     $mb_qpack_expire_date = $m_row['it_pool2_profit']; // Q팩유효기간
     
@@ -98,9 +99,22 @@ while($m_row = sql_fetch_array($mem_list)){
         $qpak_num = substr($mb_qpack,1,1);
     }else{
         $qpak_num = 0;
-    }
+	}
+	*/
 
+	$cart_sql = "select * from g5_shop_cart as A left join g5_shop_item as B on A.it_name = B.it_name where A.mb_id ='{$m_row['mb_id']}' and A.ct_time < '{$to_date}' and A.ct_select_time > '{$to_date}' and A.it_sc_type = '20'  order by A.ct_time desc limit 0,1";
+	$cart_result = sql_fetch($cart_sql);
 
+	//echo  $cart_sql;
+	$qpak_num = 0;
+
+	if($cart_result > 0){
+		$mb_qpack = $cart_result['it_name'];
+		$mb_qpack_expire_date = $cart_result['ct_select_time'];
+		
+		print_r(" _________  <span class='blue'>Q Pack 보유 : ".$mb_qpack." | 기간 :".$mb_qpack_expire_date."</span><br>" );
+		$qpak_num = substr($mb_qpack,1,1);
+	}
 
 	//회원의 직 추천인 수를 구한다. 
 	$recom_cont = sql_fetch( "select count(mb_id) as r_count from g5_member where  mb_recommend = '".$m_row['mb_id']."' and mb_deposit_point >= 500 ");
@@ -181,10 +195,10 @@ function habu_sales_calc($recom, $deep, $count, $cond, $qpak_num){
 
         $daily_paid = sql_fetch("select benefit from soodang_pay where allowance_name = 'daily payout' and mb_id='".$recom."'");
         $daily_benefit = $daily_paid['benefit']*$percent_hist;
-        echo '  || 수당계산 - deep : '.$deep.'  | daily_benefit. : '.$daily_benefit;
+        echo '  || 수당계산 - deep : '.$deep.'  | daily_benefit = : '.$daily_benefit;
 
 			if($daily_benefit != 0){
-				echo '  percent_hist '.$percent_hist.'   | <span class="blue">Q PACK kind: Q'. $qpak_num."</span>"  ;
+				echo ' <span class="blue"> | 발생수당 '.$percent_hist.'   | Q PACK kind: Q'. $qpak_num."</span>"  ;
             }
             
 		$result_hap+=$daily_benefit;

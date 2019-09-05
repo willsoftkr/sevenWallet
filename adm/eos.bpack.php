@@ -201,12 +201,23 @@ for($i=0; $recommend=sql_fetch_array($result); $i++) {
 	$mbname=$recommend['mb_name'];
 	$mblevel=$recommend['mb_level'];
 
+	/* 로직변경
 	if($recommend['it_pool1'] && $recommend['it_pool1_profit'] ){
 		if($recommend['it_pool1_profit'] >= $day){
 
 			$member_rate = member_rate($recommend['it_pool1']);
 		}
 	}
+	*/
+
+	$cart_sql = "select * from g5_shop_cart as A  left join g5_shop_item as B on A.it_name = B.it_name where A.mb_id ='{$recommend['mb_id']}' and A.ct_time < '{$day}' and A.ct_select_time > '{$day}' and A.it_sc_type = '10'  order by A.ct_time desc limit 0,1";
+	$cart_result = sql_fetch($cart_sql);
+
+	if($cart_result > 0){
+		$member_rate = $cart_result['it_point'];
+	}
+
+	
 
 //	$sum =  sql_fetch( "SELECT sum(upstair) as od_sum FROM g5_shop_order WHERE 1 and od_time like '$to_date%' and mb_id ='".$mbid."'");
 
@@ -245,16 +256,8 @@ for($i=0; $recommend=sql_fetch_array($result); $i++) {
 							$firstid=$mbid;
 
 							echo "수당 계산 하자 asdf : ".$id1.' '.$hap1.' '.$id2.' '.$hap2.'percentage : '.$member_rate.'today_sales'.$today_sales.'<br>';
-							if( $cond[$i]['max_reset1'] =='대.소실적 모두이월'){
-								$note_adm='극점초과(대.소실적 모두이월) (1) 소실적:'.$hap1.'('.$id1.') / 대실적:'.$hap2.'('.$id2.')';
-								echo $note='Binary Cycle Bonus for '.$maxcycle.' cycles as a '.$deslv.' member';
-								$no_benefit=1;$binary_firstname=$mbname;$binary_firstid=$mbid;
-								if($today_sales>0)
-								save_benefit($to_date, $mbid, $mbname, $recom, "Binary", '', 0, $today_sales, $hap1, "Binary".' '.$note_adm, $note, $mblevel);
-								iwol_process($to_date, $mbid, $id1, $mbname, 1, $hap1-$cond[$i]['sales_reset'] , $note_adm);
-								iwol_process($to_date, $mbid, $id2, $mbname, 1,$hap2-$cond[$i]['sales_reset'] , $note_adm);
-							}
-							else if($cond[$i]['max_reset1']=='대실적만 이월'){
+							
+							if($cond[$i]['max_reset1']=='대실적만 이월'){
 								$note_adm='소실적 발생 (대실적만 이월) (2) 소실적:'.$hap1.	'('.$id1.') / 대실적:'.$hap2.	'('.$id2.') 이월금:'.($hap2-$hap1);
 								
 								$no_benefit=1;$binary_firstname=$mbname;$binary_firstid=$mbid;
@@ -266,14 +269,6 @@ for($i=0; $recommend=sql_fetch_array($result); $i++) {
 								//iwol_process($to_date, $mbid, $id2, $mbname, 2, $hap2, $note_adm);
 
 							}
-							else if($cond[$i]['max_reset1']=='소실적만 이월'){
-								$note_adm='극점초과(소실적만 이월) (3) 소실적:'.$hap1.	'('.$id1.') / 대실적:'.$hap2.	'('.$id2.') 이월금:'.($hap1-$cond[$i]['sales_reset']);
-								echo  $note='Binary Cycle Bonus for '.$maxcycle.' cycles as a '.$deslv.' member';
-								$no_benefit=1;$binary_firstname=$mbname;$binary_firstid=$mbid;
-								if($today_sales>0)
-									save_benefit($to_date,$mbid, $mbname, $recom, "Binary", '', 0, $today_sales, $hap1, "Binary".' '.$note_adm, $note, $mblevel);
-								iwol_process($to_date, $mbid,  $id1, $mbname, 3, $hap2-$hap1 , $note_adm);
-							}
 						}
 						else { //소실적이 극점x
 						//if($hap1>=($cond[$i]['sales_reset']) ){ //소실적이 극점?
@@ -282,16 +277,8 @@ for($i=0; $recommend=sql_fetch_array($result); $i++) {
 							$firstname=$mbname;
 							$firstid=$mbid;
 							echo "수당 계산 하자 fads : ".$id1.' '.$hap1.' '.$id2.' '.$hap2.'percentage : '.$member_rate.'today_sales'.$today_sales.'<br>';
-							if( $cond[$i]['max_reset1'] =='대.소실적 모두이월'){
-								$note_adm='극점초과(대.소실적 모두이월) (1) 소실적:'.$hap1.'('.$id1.') / 대실적:'.$hap2.'('.$id2.')';
-								echo $note='Binary Cycle Bonus for '.$maxcycle.' cycles as a '.$deslv.' member';
-								$no_benefit=1;$binary_firstname=$mbname;$binary_firstid=$mbid;
-								if($today_sales>0)
-								save_benefit($to_date, $mbid, $mbname, $recom, "Binary", '', 0, $today_sales, $hap1, "Binary".' '.$note_adm, $note, $mblevel);
-								iwol_process($to_date, $mbid, $id1, $mbname, 1, $hap1-$cond[$i]['sales_reset'] , $note_adm);
-								iwol_process($to_date, $mbid, $id2, $mbname, 1,$hap2-$cond[$i]['sales_reset'] , $note_adm);
-							}
-							else if($cond[$i]['max_reset1']=='대실적만 이월'){
+							
+							if($cond[$i]['max_reset1']=='대실적만 이월'){
 								$note_adm='소실적 발생 (대실적만 이월) (22) 소실적:'.$hap1.	'('.$id1.') / 대실적:'.$hap2.	'('.$id2.') 이월금:'.($hap2-$hap1);
 								echo $note='Binary Bonus for '.$deslv.' member';
 								$no_benefit=1;$binary_firstname=$mbname;$binary_firstid=$mbid;
@@ -299,46 +286,28 @@ for($i=0; $recommend=sql_fetch_array($result); $i++) {
 								save_benefit($to_date, $mbid, $mbname, $recom, "Binary", '', 0, $today_sales, $limit_point, "Binary".' '.$note_adm, $note, $mblevel);
 								iwol_process($to_date, $mbid, $id2, $mbname, 2, $hap2-$hap1, $note_adm);
 								//iwol_process($to_date, $mbid, $id2, $mbname, 2, $hap2, $note_adm);
-
-							}
-							else if($cond[$i]['max_reset1']=='소실적만 이월'){
-								$note_adm='극점초과(소실적만 이월) (3) 소실적:'.$hap1.	'('.$id1.') / 대실적:'.$hap2.	'('.$id2.') 이월금:'.($hap1-$cond[$i]['sales_reset']);
-								echo  $note='Binary Cycle Bonus for '.$maxcycle.' cycles as a '.$deslv.' member';
-								$no_benefit=1;$binary_firstname=$mbname;$binary_firstid=$mbid;
-								if($today_sales>0)
-									save_benefit($to_date,$mbid, $mbname, $recom, "Binary", '', 0, $today_sales, $hap1, "Binary".' '.$note_adm, $note, $mblevel);
-								iwol_process($to_date, $mbid,  $id1, $mbname, 3, $hap2-$hap1 , $note_adm);
 							}
 						}
 					}  //$hap1이 소실적이라면
 					else if( $hap1>$hap2 ){ //$hap2가 소실적이라면
 						if($hap2*($member_rate/100)>=$limit_point && $limit_point!=0){ //소실적이 극점?
+
 							$today_sales=$limit_point;
 							$binary_trig=($cond[$i]['sales_reset']/$cond[$i]['cycle']);
 							$firstname=$mbname;
 							$firstid=$mbid;
-							echo "수당 계산 하자 : ".$id1.' '.$hap1.' '.$id2.' '.$hap2.'percentage : '.$member_rate.'today_sales'.$today_sales.'<br>';
-							if($cond[$i]['max_reset1']=='대.소실적 모두이월'){
-								$note_adm='극점초과(대.소실적 모두이월) (8) 소실적:'.$hap2.	'('.$id2.') / 대실적:'.$hap1.	'('.$id1.')';
-								$no_benefit=1;$binary_firstname=$mbname;$binary_firstid=$mbid;
-								if($today_sales>0)
-									save_benefit($to_date,$mbid, $mbname, $recom, "Binary", '', 0, $today_sales, $hap2, "Binary".' '.$note_adm,$note, $mblevel);
-								//echo $note='Binary Cycle Bonus for '.$maxcycle.' cycles as a '.$deslv.' member';
-								iwol_process($to_date, $mbid, $id1, $mbname, 8,$hap1-$cond[$i]['sales_reset'] , $note_adm);
-								iwol_process($to_date, $mbid, $id2, $mbname, 8,$hap2-$cond[$i]['sales_reset'] , $note_adm);
-							}else if($cond[$i]['max_reset1']=='대실적만 이월'){
+
+							if($cond[$i]['max_reset1']=='대실적만 이월'){
 								$note_adm='소실적 발생 (대실적만 이월) (9) 소실적:'.$hap2.	'('.$id2.') / 대실적:'.$hap1.	'('.$id1.') 이월금:'.($hap1-$hap2);
+								
 								echo $note='Binary Bonus for '.$deslv.' member';
 								$no_benefit=1;$binary_firstname=$mbname;$binary_firstid=$mbid;
+
 								if($today_sales>0)
 								save_benefit($to_date, $mbid, $mbname, $recom, "Binary", '', 0, $today_sales,  $hap2, "Binary".' '.$note_adm, $note, $mblevel);
 								iwol_process($to_date, $mbid, $id1, $mbname, 9, $hap1-$hap2 , $note_adm);
 								//iwol_process($to_date, $mbid, $id1, $mbname, 9, $hap1 , $note_adm); //대실적 1/2
 
-							}else if($cond[$i]['max_reset1']=='소실적만 이월'){
-								$note_adm ='극점초과(소실적만 이월) (10) 소실적:'.$hap2.	'('.$id2.') / 대실적:'.$hap1.	'('.$id2.') 이월금:'.($hap2-$cond[$i]['sales_reset']);
-								//echo $note='Binary Cycle Bonus as a '.$maxcycle.' cycles as a '.$deslv.' member';
-								iwol_process($to_date, $mbid, $id2, $mbname, 10, $hap2-$cond[$i]['sales_reset'] , $note_adm);
 							}
 						}
 						else { //소실적이 극점x
@@ -347,18 +316,10 @@ for($i=0; $recommend=sql_fetch_array($result); $i++) {
 						//	$binary_trig=($cond[$i]['sales_reset']/$cond[$i]['cycle']);
 							$firstname=$mbname;
 							$firstid=$mbid;
-							echo '수당 계산 ::  대실적-<strong>'.$hap1.'</strong>('.$id1.') ||  소실적-<strong>'.$hap2.'</strong>('.$id2.') ||  수당: <strong>'.$member_rate.'%</strong> || today_sales: <strong>'.$today_sales.'</strong><br><br>';
 
-							if( $cond[$i]['max_reset1'] =='대.소실적 모두이월'){
-								$note_adm='극점초과(대.소실적 모두이월) (1) 대실적:'.$hap1.'('.$id1.') / 소실적:'.$hap2.'('.$id2.')';
-								echo $note='Binary Cycle Bonus for '.$maxcycle.' cycles as a '.$deslv.' member';
-								$no_benefit=1;$binary_firstname=$mbname;$binary_firstid=$mbid;
-								if($today_sales>0)
-								save_benefit($to_date, $mbid, $mbname, $recom, "Binary", '', 0, $today_sales, $hap1, "Binary".' '.$note_adm, $note, $mblevel);
-								iwol_process($to_date, $mbid, $id1, $mbname, 1, $hap1-$cond[$i]['sales_reset'] , $note_adm);
-								iwol_process($to_date, $mbid, $id2, $mbname, 1,$hap2-$cond[$i]['sales_reset'] , $note_adm);
-							}
-							else if($cond[$i]['max_reset1']=='대실적만 이월'){
+							echo ' 수당 계산 ::  대실적-<strong>'.$hap1.'</strong>('.$id1.') ||  소실적-<strong>'.$hap2.'</strong>('.$id2.') ||  수당: <strong>'.$member_rate.'%</strong> || today_sales: <strong>'.$today_sales.'</strong><br><br>';
+
+							
 								echo " ▶ 대실적만이월 : ".'hap2'.$hap2. 'percentage : '.$member_rate.' today_sales : '.$today_sales.'<br><br>';
 
 								$note_adm='소실적 발생 (대실적만 이월) (99) 대실적:'.$hap1.	'('.$id1.') / 소실적:'.$hap2.	'('.$id2.') 이월금:'.($hap1-$hap2);
@@ -370,17 +331,7 @@ for($i=0; $recommend=sql_fetch_array($result); $i++) {
 									save_benefit($to_date, $mbid, $mbname, $recom, "Binary", '', 0, $today_sales, $today_sales, "Binary".' '.$note_adm, $note, $mblevel);
 									iwol_process($to_date, $mbid, $id1, $mbname, 99, $hap1-$hap2, $note_adm);
 								}
-								//iwol_process($to_date, $mbid, $id2, $mbname, 2, $hap2, $note_adm);
-
-							}
-							else if($cond[$i]['max_reset1']=='소실적만 이월'){
-								$note_adm='극점초과(소실적만 이월) (3) 소실적:'.$hap1.	'('.$id1.') / 대실적:'.$hap2.	'('.$id2.') 이월금:'.($hap1-$cond[$i]['sales_reset']);
-								echo  $note='Binary Cycle Bonus for '.$maxcycle.' cycles as a '.$deslv.' member';
-								$no_benefit=1;$binary_firstname=$mbname;$binary_firstid=$mbid;
-								if($today_sales>0)
-									save_benefit($to_date,$mbid, $mbname, $recom, "Binary", '', 0, $today_sales, $hap1, "Binary".' '.$note_adm, $note, $mblevel);
-								iwol_process($to_date, $mbid,  $id1, $mbname, 3, $hap2-$hap1 , $note_adm);
-							}
+						
 						}
 					}else if( $hap1=$hap2 ){ //$hap1 과 hap2 가 같다면
 

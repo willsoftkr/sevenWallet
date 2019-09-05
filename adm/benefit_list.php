@@ -176,7 +176,7 @@ $colspan = 16;
 		.benefit:hover{background:black;}
 	</style>
 
-
+	<input type="submit" name="act_button" value=" 업스테어 "  class="frm_input benefit day" onclick="go_calc(5);">
 	<input type="submit" name="act_button" value=" 일일 수당 지급 "  class="frm_input benefit day" onclick="go_calc(0);">
 	<input type="submit" name="act_button" value=" 10X10 지급"  class="frm_input benefit recom" onclick="go_calc(1);">
 	<input type="submit" name="act_button" value=" 레벨승급"  class="frm_input benefit level" onclick="go_calc(2);">
@@ -367,6 +367,9 @@ function go_calc(n)
 			break;
 		case 4:
 			location.href='eos.bpack.php?'+str;// B팩
+			break;
+		case 5: 
+			location.href='eos.upstair.php?'+str;         //임시 해당일 업스테어
 			break;
 	}
 	
