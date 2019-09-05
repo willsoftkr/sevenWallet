@@ -174,6 +174,7 @@ $colspan = 16;
 		.benefit.qpack{background:dodgerblue}
 		.benefit.level{background:#ff3061}
 		.benefit.bpack{background:teal}
+		.benefit.black{background:teal}
 		.benefit:hover{background:black;}
 	</style>
 
@@ -183,6 +184,8 @@ $colspan = 16;
 	<input type="submit" name="act_button" value=" 레벨승급"  class="frm_input benefit level" onclick="go_calc(2);">
 	<input type="submit" name="act_button" value=" 무한 매칭 지급 " class="frm_input benefit bpack" onclick="go_calc(3);">
 	<input type="submit" name="act_button" value=" B팩 수당 지급"  class="frm_input benefit qpack" onclick="go_calc(4);">
+	<input type="submit" name="act_button" value=" 전체클릭"  class="frm_input benefit black" onclick="go_calc(6);">
+
 	<!--
 	<input type="submit" name="act_button" value=" 바이너리 보너스 "  class="frm_input" onclick="go_calc(2);">
 	<input type="submit" name="act_button" value=" 바이너리 매칭 "  class="frm_input" onclick="go_calc(3);">
@@ -370,6 +373,9 @@ function go_calc(n)
 			break;
 		case 5: 
 			location.href='eos.upstair.php?'+str;         //임시 해당일 업스테어
+			break;
+		case 6: 
+			location.href='eos.all.php?'+str;         //전체수당지급
 			break;
 	}
 	
