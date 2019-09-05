@@ -72,6 +72,7 @@ if(i < 5){
   }else{
     alert( today + "수당지급이 완료되었습니다.");
     clearInterval(it);
+    history.back();
    
     //이후 실행문
   }
