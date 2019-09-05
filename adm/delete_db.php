@@ -6,7 +6,7 @@ include_once ('./admin.head.php');
 
 
 if($func == 'member'){
-	$sql_clear = "update g5_member set mb_balance = '0', mb_v7_account = '0'";
+	$sql_clear = "update g5_member set mb_balance = '0', mb_v7_account = '0', mb_deposit_point = '0'";
 	$sql_result = sql_query($sql_clear);
 	echo "result : ".$sql_result;
 	

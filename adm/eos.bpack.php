@@ -622,13 +622,14 @@ function my_bchild($mb_id,$day,$cycle){
 function iwol_process($day,$mb_recommend, $mbid, $mb_name, $kind, $upstair, $note){
 	$iwol= sql_fetch("select count(*) as cnt from iwol where mb_id='".$mbid."' and kind<>1 and date_format(iwolday,'%Y-%m-%d')='$day'");
 	echo '### '.$upstair.'---'.$iwol['cnt'].'<br>';
+
 //	if( ($upstair>0) && ($iwol['cnt']==0) ){
 	if( ($upstair>0)  ){   // 소실적 제거용
 		$temp_sql1 = " insert iwol set iwolday='".$day."'";
 		$temp_sql1 .= " ,mb_id		= '".$mbid."'";
 		//$temp_sql1 .= " ,mb_name		= '".$mbname."'";
 		$temp_sql1 .= " ,kind		= '".$kind."'";
-		$temp_sql1 .= " ,upstair		= '".$upstair."'";
+		$temp_sql1 .= " ,pv		= '".$upstair."'";
 		$temp_sql1 .= " ,note		= '".$note."'";
 		$temp_sql1 .= " ,mb_brecommend		= '".$mb_recommend."'";
 		sql_query($temp_sql1);
