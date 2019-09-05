@@ -31,7 +31,7 @@ for ($i=0; $allowance_name=sql_fetch_array($rrr); $i++) {
 		}
 
 		
-			$qstr.='&'.$nnn.'='.$allowance_name['allowance_name'];
+			$q`str`.='&'.$nnn.'='.$allowance_name['allowance_name'];
 		
 		$allowcnt++;
 

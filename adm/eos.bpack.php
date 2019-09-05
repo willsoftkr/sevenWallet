@@ -210,6 +210,7 @@ for($i=0; $recommend=sql_fetch_array($result); $i++) {
 	}
 	*/
 
+	/*B팩 보유 및 수당 가져오기*/
 	$cart_sql = "select * from g5_shop_cart as A  left join g5_shop_item as B on A.it_name = B.it_name where A.mb_id ='{$recommend['mb_id']}' and A.ct_time < '{$day}' and A.ct_select_time > '{$day}' and A.it_sc_type = '10'  order by A.ct_time desc limit 0,1";
 	$cart_result = sql_fetch($cart_sql);
 

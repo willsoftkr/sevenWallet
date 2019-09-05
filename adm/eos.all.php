@@ -12,7 +12,7 @@ var today = "<?=$today?>";
 var stx = "<?=$stx?>";
 
 var it = setInterval(function(){
-if(i < 5){
+if(i < 6){
      if(i == 0){
         $.ajax({ 
             type: 'GET',
