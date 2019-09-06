@@ -117,7 +117,7 @@ function update_level($val){
                             sql_query($sql5);
 
                             $sql6 = " insert rank set ";
-                            $sql6 .= " mb_id='".$mb_id."'";
+                            $sql6 .= " mb_id='".$mbid."'";
                             $sql6 .= " , rank_day='".$to_date."'";
                             $sql6 .= " , rank='{$val}'";
                             $sql6 .= " , old_level='".$mblevel."'";
@@ -209,8 +209,8 @@ function self_habu_level($recom){
 
 
 function self_sales($recom){
-    global $hap_sale;
-    $res= sql_fetch("select sum(upstair)as hap from g5_shop_order as o where o.mb_id='".$recom."'");    
+    global $hap_sale,$to_date;
+    $res= sql_fetch("select sum(upstair)as hap from g5_shop_order as o where o.mb_id='{$recom}' and date(o.od_time) <= '{$to_date}' ");    
 
     if(!$res['hap']) $res['hap'] = 0;{
          echo $recom." Sales : ". number_format($res['hap'])." | ";

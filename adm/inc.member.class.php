@@ -290,7 +290,8 @@ function get_org_down($srow){
 					$sql  = "select (mb_my_sales+habu_day_sales) as tpv from g5_member where mb_id ='".$row[b_recomm]."' and sales_day='".date("Y-m-d")."'"; // 
 					$row6 = sql_fetch($sql);
 
-					$sql  = "select ".$order_field." as tpv from iwol where mb_id ='".$row[b_recomm]."'";
+					$sql  = "select pv as tpv from iwol where mb_id ='".$row['b_recomm']."' order by iwolday desc limit 1";
+					
 					$row8 = sql_fetch($sql);
 
 					$row6['tpv'] += $row8['tpv'];
@@ -305,7 +306,7 @@ function get_org_down($srow){
 					// and sales_day='".date("Y-m-d")."'
 					$row7 = sql_fetch($sql);
 
-					$sql  = "select ".$order_field." as tpv from iwol where mb_id ='".$row[b_recomm2]."'";
+					$sql  = "select pv as tpv from iwol where mb_id ='".$row[b_recomm2]."' order by iwolday desc limit 1";
 					$row9 = sql_fetch($sql);
 					$row7['tpv'] += $row9['tpv'];
 

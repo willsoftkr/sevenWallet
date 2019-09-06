@@ -473,6 +473,7 @@ if ($srow['b_recomm']){
 	$row8 = sql_fetch($sql);
 
 	$row6['tpv'] += $row8['tpv'];
+
 }else{
 	$row6['tpv'] = 0;
 }
@@ -489,9 +490,13 @@ if ($srow['b_recomm2']){
 	$sql  = "select ".$order_field." as tpv from iwol where mb_id ='".$srow['b_recomm2']."'";
 	$row9 = sql_fetch($sql);
 	$row7['tpv'] += $row9['tpv'];
+
 }else{
 	$row7['tpv'] = 0;
 }
+
+
+
 
 $sql    = "select c_class from ".$class_name." where mb_id='".$member['mb_id']."' and c_id='".$go_id."'";
 $row4   = sql_fetch($sql);

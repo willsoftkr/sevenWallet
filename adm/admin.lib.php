@@ -217,7 +217,7 @@ function get_member_level_select($name, $start_id=0, $end_id=4, $selected="", $e
 function get_member_level($mb_level)
 {
     global $g5;
-	$level_name=array("0","1","2","3","4","5","6","7","","","admin");
+	$level_name=array("0","1","2","3","4","5","6","7","8","9","admin");
 	//$level_name=array("Black","Red","Yellow","Green");
 	
     return $level_name[$mb_level];
@@ -248,7 +248,7 @@ function get_grade_select($name, $start_id=0, $end_id=4, $selected="", $event=""
 function get_level_select($name, $start_id=0, $end_id=4, $selected="", $event="")
 {
     global $g5;
-    $level_name=array("0","1","2","3","4","5","6","7");
+    $level_name=array("0","1","2","3","4","5","6","7","8","9","10");
     $str = "\n<select id=\"{$name}\" name=\"{$name}\"";
     if ($event) $str .= " $event";
     $str .= ">\n";

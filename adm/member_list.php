@@ -428,7 +428,7 @@ function out_check($val){
 			
 		</td>
 		<td headers="mb_list_member" class="td_mbgrade" rowspan="2">
-			<div><?php echo get_level_select("mb_level[$i]", 0, $member['mb_level'], $row['level']) ?></div>
+			<div><?php echo get_level_select("mb_level[$i]", 0, $member['mb_level'], $row['mb_level']) ?></div>
 		</td>
 
 		<td headers="mb_list_lastcall" class="td_date"><?php echo substr($row['mb_today_login'],2,8); ?></td>

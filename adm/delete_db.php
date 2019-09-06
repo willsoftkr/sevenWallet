@@ -6,8 +6,9 @@ include_once ('./admin.head.php');
 
 
 if($func == 'member'){
-	$sql_clear = "update g5_member set mb_balance = '0', mb_v7_account = '0', mb_deposit_point = '0'";
+	$sql_clear = "update g5_member set mb_balance = '0', mb_v7_account = '0', mb_level=0, mb_deposit_point = '0',  mb_deposit_acc ='0'  where mb_id != 'coolrunning' ";
 	$sql_result = sql_query($sql_clear);
+
 	echo "result : ".$sql_result;
 	
 }else if($func == 'soodang'){
@@ -24,6 +25,8 @@ if($func == 'member'){
 	$sql_clear2 = "TRUNCATE table btoday2;";
 		$sql_result = sql_query($sql_clear2);
 	$sql_clear2 = " TRUNCATE table thirty2";
+		$sql_result = sql_query($sql_clear2);
+	$sql_clear2 = " TRUNCATE table rank";
 		$sql_result = sql_query($sql_clear2);
 	
 	echo "result : ".$sql_result;

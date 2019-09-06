@@ -168,13 +168,13 @@ $colspan = 16;
             <!--<input type="checkbox" name="save_noo_mon" id="save_benefit" value="1">정산된 매출로 수당계산만&nbsp;&nbsp;&nbsp; -->
 
 	<style>
-		.benefit{color:white;border:0;padding: 5px 20px;height:40px;}
+		.benefit{color:white;border:0;padding: 5px 15px;height:40px;}
 		.benefit.day{background:cornflowerblue}
 		.benefit.recom{background:palevioletred}
 		.benefit.qpack{background:dodgerblue}
 		.benefit.level{background:#ff3061}
 		.benefit.bpack{background:teal}
-		.benefit.black{background:teal}
+		.benefit.black{background:black}
 		.benefit:hover{background:black;}
 	</style>
 
@@ -185,6 +185,7 @@ $colspan = 16;
 	<input type="submit" name="act_button" value=" 무한 매칭 지급 " class="frm_input benefit bpack" onclick="go_calc(3);">
 	<input type="submit" name="act_button" value=" B팩 수당 지급"  class="frm_input benefit qpack" onclick="go_calc(4);">
 	<input type="submit" name="act_button" value=" 전체클릭"  class="frm_input benefit black" onclick="go_calc(6);">
+	<input type="submit" name="act_button" value=" 어제까지자동지급"  class="frm_input benefit black" onclick="go_calc(7);">
 
 	<!--
 	<input type="submit" name="act_button" value=" 바이너리 보너스 "  class="frm_input" onclick="go_calc(2);">
@@ -376,6 +377,9 @@ function go_calc(n)
 			break;
 		case 6: 
 			location.href='eos.all.php?'+str;         //전체수당지급
+			break;
+		case 7: 
+			location.href='eos.auto.php?'+str;         //전체수당지급
 			break;
 	}
 	

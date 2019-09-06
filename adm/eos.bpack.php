@@ -577,7 +577,7 @@ function plus_iwol($mbid,$day){
 function habu_iwol($mbid,$day,$cycle){
     //$res1= sql_fetch("select mb_my_sales+habu_day_sales as hap from g5_member where mb_id='".$mbid."' and sales_day='".$day."'");
 	$hap1=(btoday_select($mbid,$day)+today_sales($mbid,$day));  //자기매출과 하부매출을 합하여
-	$res2= sql_fetch("select sum(upstair) as hap from iwol where mb_id='".$mbid."'");
+	$res2= sql_fetch("select sum(pv) as hap from iwol where mb_id='".$mbid."'");
 	$hap2=$res2['hap'];
 	echo '▷ '.$mbid.'/'.$day.' btoday :'.btoday_select($mbid,$day)." + today:".today_sales($mbid,$day)." || ".$hap1.'+'.$hap2.'<'.$cycle.' && '.$hap1.'>0 <br>';
 
