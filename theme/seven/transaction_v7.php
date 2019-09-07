@@ -15,27 +15,29 @@ $order_result = sql_query($order_sql);
 	if (empty($fr_date)) {$fr_date = date("Y-m-d", strtotime(date("Y-m-d")."-3 month"));}
 	if (empty($to_date)) $to_date = G5_TIME_YMD;
 
+
 	/*수당로그계산*/
 	$qstr = "stx=".$stx."&fr_date=".$fr_date."&amp;to_date=".$to_date;
 	$query_string = $qstr ? '?'.$qstr : '';
 	
-	$sql_common ="FROM soodang_pay";
-
-	if (empty($stx)) $stx = 'all';  // 수당로그 기본값 
+	if (empty($stx)) $stx = 'exchage';  // 수당로그 기본값 
 	
-	
-	if ($stx == 'all') {
-		$sql_search = " WHERE ";
-	}else{
-		$sql_search = " WHERE allowance_name = '$stx' AND ";
+	if($stx == "exchange" ){ 
+		$sql_common ="FROM g5_shop_change WHERE date(od_time)";
+		$sql_order_type = "od_time";
+	}else {
+		$sql_common ="FROM soodang_pay WHERE allowance_name = '$stx' AND day";
+		$sql_order_type = "day";
 	}
-	$sql_search .= "day between '{$fr_date}' and '{$to_date}' ";
+
+	$sql_search .= "between '{$fr_date}' and '{$to_date}' ";
 	$sql_search .= "AND mb_id = '{$member['mb_id']}' ";
 	
 	$sql = " select count(*) as cnt
 			{$sql_common}
 			{$sql_search} ";
 	//print_r($sql);
+
 	$row = sql_fetch($sql);
 	$total_count = $row['cnt']; 
 
@@ -47,7 +49,7 @@ $order_result = sql_query($order_sql);
 	$sql = " select *
 			{$sql_common}
 			{$sql_search}
-			order by datetime desc
+			order by {$sql_order_type} desc
 			limit {$from_record}, {$rows} ";
 	$result = sql_query($sql);
 
@@ -108,13 +110,20 @@ $order_result = sql_query($order_sql);
 				</div>
 				<!-- //SEARCH -->
 
+				<style>
+					.tabs li p{line-height:40px;}
+				</style>
 				<!-- 탭 -->
-				<ul class="tabs">
-					<li class="bonus_tab all <?nav_active('all')?>" data-tab="tab_1" data-category="all"><p data-i18n="wallet.all">ALL</p></li>
+				<ul class="tabs five">
+					<li class="bonus_tab all <?nav_active('exchange')?>" data-tab="tab_1" data-category="exchange"><p data-i18n="wallet.exchange">Exchange</p></li>
+					<!--<li class="bonus_tab <?nav_active('Sales')?>" data-tab="tab_2" data-category="Sales"><p data-i18n="wallet.Sales">Sales</p>(<?=$total_count?>)</li>-->
+
+					
 					<li class="bonus_tab <?nav_active('daily payout')?>" data-tab="tab_2" data-category="daily payout"><p data-i18n="wallet.daily payout">Daily payout</p></li>
-					<li class="bonus_tab <?nav_active('10x10 Matching')?>" data-tab="tab_3" data-category="10x10 Matching"><p data-i18n="wallet.10x10 Matching">10x10 Matching</p></li>
-					<li class="bonus_tab <?nav_active('Infinite matching')?>" data-tab="tab_4" data-category="Infinite matching"><p data-i18n="wallet.Infinite matching">Infinite matching</p></li>
+					<li class="bonus_tab <?nav_active('10x10 Matching')?>" data-tab="tab_3" data-category="10x10 Matching"><p data-i18n="wallet.10x10 Matching">10x10 M</p></li>
+					<li class="bonus_tab <?nav_active('Infinite matching')?>" data-tab="tab_4" data-category="Infinite matching"><p data-i18n="wallet.Infinite matching">Infinite M</p></li>
 					<li class="bonus_tab <?nav_active('Binary')?>" data-tab="tab_5" data-category="Binary"><p data-i18n="wallet.Binary">Binary</p></li>
+				
 				</ul>
 				<!-- //탭 -->
 
@@ -175,25 +184,35 @@ $order_result = sql_query($order_sql);
 					</li>
 					-->
 
-					<?
+					<?while( $row = sql_fetch_array($result) ){?>
+						<?if($stx == 'exchange'){?>	
+						<li>
+							<div>
+								<span><?=timeshift($row['od_time'])?></span>
+								<div class="f_right font_blue">- <?=Number_format($row['amount'])?> v7 &#47; $ <?=shift_doller($row['amount']*$v7_cost)?> </span></div>
+							</div>
+							<div>
+								<span class="font_orange">v7 > btc</span>  
+								<span class="f_right" ><span class="font_orange">+ <?=Number_format($row['exchange'],8)?> btc</span></span>
+							</div>
+						</li>
 
-					while( $row = sql_fetch_array($result) ){
-					?>
-					
-					<li>
-						<div>
-							<span><?=timeshift($row['day'])?></span>
-							
-							<span class="f_right"><?=$sum?> <i>V7</i></span> 
-							
-						</div>
-						<div class="font_<?if($row['allowance_name'] == 'daily payout'){ echo "blue";}else{echo "green";}?>">
-							<span><?=$row['allowance_name']?></span>
-							<span class="f_right"> + <?=shift_doller($row['benefit']*2)?> <i>V7</i> <!--<span style="font-size:14px;">($ <?=shift_doller($row['benefit'])?>)</span>--></span>
-						</div>
-					</li>
+						<?}else{?>
+
+						<li>
+							<div>
+								<span><?=timeshift($row['day'])?></span>
+								
+								<span class="f_right"><?=$sum?> <i>V7</i></span> 
+								
+							</div>
+							<div class="font_<?if($row['allowance_name'] == 'daily payout'){ echo "blue";}else{echo "green";}?>">
+								<span><?=$row['allowance_name']?></span>
+								<span class="f_right"> + <?=shift_doller($row['benefit']*2)?> <i>V7</i> <!--<span style="font-size:14px;">($ <?=shift_doller($row['benefit'])?>)</span>--></span>
+							</div>
+						</li>
+						<?}?>
 					<?}?>
-
 				</ul>
 				<?php
 					$pagelist = get_paging($config['cf_write_pages'], $page, $total_page, "{$_SERVER['SCRIPT_NAME']}?$qstr");
