@@ -82,7 +82,7 @@ $order_result = sql_query($order_sql);
 	
 	<link rel="stylesheet" href="<?=G5_THEME_URL?>/_common/css/utils.css">
 
-			<section class="con90_wrap">
+			<section class="con90_wrap" style="padding-bottom:80px">
 
 				<div class="color_block v7_block">
 						<a href="transaction_v7.php">
@@ -216,27 +216,28 @@ $order_result = sql_query($order_sql);
 							<p>받기</p>
 						</a>
 					</li>
-					
+					-->	
 					<li style="width:100%;">
 						<a href="javascript:void(0);" class="pop_open">
-							<img src="_images/btm_menu_exchange.png" alt="아이콘">
-							<p>환전</p>
+							<img src="<?=G5_THEME_URL?>/_images/btm_menu_exchange.png" alt="아이콘">
+							<p data-i18n="wallet.환전하기">Exchange</p>
 						</a>
 					</li>
-					-->
+					
 				</ul>
 			</div>
 
-			<!--
+			
 			<div class="pop_wrap exc_pop_wrap">
-				<p class="pop_title">환전할 코인을 선택하세요</p>
+				<p class="pop_title" data-i18n="wallet환전할 코인">Select coin to exchange</p>
 				<ul>
 					<li>
-						<a href="exchange_bit.php">
-							<img src="_images/bit_round.gif" alt="아이콘">
-							비트코인
+						<a href="/wallet/exchange_bit.php">
+							<img src="<?=G5_THEME_URL?>/_images/bit_round.gif" alt="아이콘">
+							Bitcoin
 						</a>
 					</li>
+					<!--
 					<li>
 						<a href="exchange_eth.php">
 							<img src="_images/eth_round.gif" alt="아이콘">
@@ -255,12 +256,13 @@ $order_result = sql_query($order_sql);
 							루키
 						</a>
 					</li>
+					-->
 				</ul>
 				<p class="pop_close_wrap">
-					<a href="javascript:void(0);" class="pop_close">취소</a>
+					<a href="javascript:void(0);" class="pop_close">Cancle</a>
 				</p>
 			</div>
-			-->
+			
 			</form>
 
 					

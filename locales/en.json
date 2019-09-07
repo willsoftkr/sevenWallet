@@ -58,8 +58,23 @@
 		},
 		"입금" : "Deposit",
 		"출금" : "Withdrawal",
-		"매출" : "Sales"
-
+		"매출" : "Sales",
+		"환전할 코인" : "Select coin to exchange",
+		"비트코인으로 환전하기" : "Exchange to Bitcoin",
+		"환전할 금액" : "Amount to exchange",
+		"전부환전하기" : "Exchange ALL",
+		"환전 수수료" : "Exchange fee",
+		"합계" : "Total",
+		"환전하기" : "Exchange",
+		"수신인지갑주소" : "Recipient's wallet address" ,
+		"비트코인 지갑 주소를 입력하거나 스캔하십시오" : "Copy to Paste BTC address to send" ,
+		"전송할 코인 갯수" : "Amount to send" ,
+		"잔고가 부족합니다." : "Not enough balance" ,
+		"지갑 잔고 다 보내기" : "Use maximum" ,
+		"수수료" : "Fee" ,
+		"인출 합계" : "Total withdrawal" ,
+		"전송하기" : "Send" ,
+		"취소" : "Cancel" 
 	},
 	"purchase": {
 		  "구매" : "Purchase",
@@ -187,7 +202,8 @@
 		"Transaction History" : "Transaction History",
 		"Deposit with Bitcoin" : "Deposit with Bitcoin",
 		"Binary Structure" : "Binary Structure",
-		"팩상품구매하기" : "Purchase Packs"
+		"팩상품구매하기" : "Purchase Packs",
+		"비트코인 보내기" : "Send Bitcoin" 
 	},
 	"register": {
 		"유저네임 (4~ 10자리, 특수기호 사용불가)": "Username (4 ~ 10 letters. No special character allowed)",

@@ -619,6 +619,7 @@ a.all_send{color:#ed2424; padding-left:5px; font-size:0.8em;}
 .tabs li:last-Child{border:none}
 .tabs .active{background:black;color:white;}
 
+.tabs.four li{width:24.5%;}
 .tabs.five li{width:19.5%;}
 
 /* receive */
@@ -1211,7 +1212,7 @@ div:nth-child(2){color:#ff9b22;}
 	.filebox label{max-width:100px; padding-left: 31px;}
 	/* .enroll_wrap .ecode_div{font-size: 15px;} */
 	
-	.bottom_menu_wrap{background:#fff;}
+	/*.bottom_menu_wrap{background:#fff;}*/
 	.bottom_menu img{height:20px;}
 	
 	.dash_price div{font-size:13px;}

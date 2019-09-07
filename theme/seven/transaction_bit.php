@@ -34,11 +34,10 @@ $pack_result = sql_query($pack_sql); // 팩구매내역
 		$sql_order_type = "ct_time";
 	}else if($stx == "sales"){
 		$sql_common ="FROM g5_shop_order WHERE date(od_time)";
-		$member['mb_id'] = 'wgs8428';
 		$sql_order_type = "od_time";
 	}else if($stx == "Deposit"){
 		$sql_common ="FROM eos_coin_transfer_hist WHERE date(transfer_date)";
-		$member['mb_id'] = 'wgs8428';
+	
 		$sql_order_type = "transfer_date";
 	}else if($stx == "Withdrawal"){
 		$sql_common ="FROM withdrawal_request WHERE date(create_dt)";
@@ -69,6 +68,7 @@ $pack_result = sql_query($pack_sql); // 팩구매내역
 			{$sql_search}
 			order by {$sql_order_type} desc
 			limit {$from_record}, {$rows} ";
+			
 	$result = sql_query($sql);
 	
 	//print_R($sql );
@@ -130,13 +130,13 @@ $pack_result = sql_query($pack_sql); // 팩구매내역
 				<!-- //SEARCH -->
 
 				<!-- 탭 -->
-				<ul class="tabs five">
+				<ul class="tabs four">
 					<!--<li class="bonus_tab all <?nav_active('all')?>" data-tab="tab_1" data-category="all"><p data-i18n="wallet.all">ALL</p></li>-->
 					<li class="bonus_tab <?nav_active('Deposit')?>" data-tab="tab_2" data-category="Deposit"><p data-i18n="wallet.입금">Deposit</p></li>
 					<li class="bonus_tab <?nav_active('Withdrawal')?>" data-tab="tab_3" data-category="Withdrawal"><p data-i18n="wallet.출금">Withdrawal</p></li>
 					<li class="bonus_tab <?nav_active('sales')?>" data-tab="tab_3" data-category="sales"><p data-i18n="wallet.매출">Sales</p></li>
-					<li class="bonus_tab <?nav_active('Infinite matching')?>" data-tab="tab_4" data-category="Infinite matching"><p data-i18n="wallet.Infinite matching">Infinite matching</p></li>
-					<li class="bonus_tab <?nav_active('Binary')?>" data-tab="tab_5" data-category="Binary"><p data-i18n="wallet.Binary">Binary</p></li>
+					<li class="bonus_tab <?nav_active('earnings')?>" data-tab="tab_4" data-category="earnings"><p data-i18n="wallet.earnings">earnings</p></li>
+					
 				</ul>
 				<!-- //탭 -->
 				
@@ -199,7 +199,17 @@ $pack_result = sql_query($pack_sql); // 팩구매내역
 								<span class="font_orange" data-i18n='wallet.Deposited'>입금</span>
 							</div>
 						</li>
-						<?}else{?>
+						<?}else if($stx == 'Withdrawal'){?>
+							<li>
+							<div>
+								<span><?=timeshift($row['update_dt'])?></span>
+								<span class="f_right font_orange">- <?=Number_format($row['amt'],8)?> BTC &#47;- $<?=Number_format($row['amt_usd'],2)?></span>
+							</div>
+							<div>
+								<span class="font_orange" data-i18n='wallet.출금'>출금</span>
+							</div>
+						</li>
+
 						<?}?>
 					<?}?>
 
@@ -222,10 +232,17 @@ $pack_result = sql_query($pack_sql); // 팩구매내역
 						</a>
 					</li>
 				-->
-					<li style="width:100%;">
+					<li style="width:50%;">
 						<a href="deposit_bit.php">
 							<img src="<?=G5_THEME_URL?>/_images/btm_menu_deposit.gif" alt="아이콘">
-							<p data-i18n='wallet.Deposited'>입금</p>
+							<p data-i18n='wallet.입금'>입금</p>
+						</a>
+					</li>
+				
+					<li style="width:50%;">
+						<a href="send_bit.php">
+						<img src="<?=G5_THEME_URL?>/_images/btm_menu_send.png"  alt="아이콘">
+							<p data-i18n='wallet.출금'>Withdrawal</p>
 						</a>
 					</li>
 				</ul>
