@@ -53,7 +53,7 @@ if ($od_status) {
 }
 
 if ($od_settle_case) {
-    $where[] = " od_settle_case = '$od_settle_case' ";
+    $where[] = " it_sc_type = '$od_settle_case' ";
 }
 
 if ($od_misu) {
@@ -81,7 +81,7 @@ if ($od_escrow) {
 }
 
 if ($fr_date && $to_date) {
-    $where[] = " od_time between '$fr_date 00:00:00' and '$to_date 23:59:59' ";
+    $where[] = " ct_time between '$fr_date 00:00:00' and '$to_date 23:59:59' ";
 }
 
 if ($where) {
@@ -96,9 +96,11 @@ $sql_common = " from g5_shop_cart $sql_search ";
 
 $sql = " select count(od_id) as cnt " . $sql_common;
 $row = sql_fetch($sql);
+
 $total_count = $row['cnt'];
 
-$rows = $config['cf_page_rows'];
+//$rows = $config['cf_page_rows'];
+$rows = 51;
 $total_page  = ceil($total_count / $rows);  // 전체 페이지 계산
 if ($page < 1) { $page = 1; } // 페이지가 없으면 첫 페이지 (1 페이지)
 $from_record = ($page - 1) * $rows; // 시작 열을 구함
@@ -107,7 +109,7 @@ $sql  = " select *
            $sql_common
            order by $sort1 $sort2
            limit $from_record, $rows ";
-
+//print_r($sql );
 $result = sql_query($sql);
 
 $qstr1 = "od_status=".urlencode($od_status)."&amp;od_settle_case=".urlencode($od_settle_case)."&amp;od_misu=$od_misu&amp;od_cancel_price=$od_cancel_price&amp;od_refund_price=$od_refund_price&amp;od_receipt_point=$od_receipt_point&amp;od_coupon=$od_coupon&amp;fr_date=$fr_date&amp;to_date=$to_date&amp;sel_field=$sel_field&amp;search=$search&amp;save_search=$search";
@@ -158,8 +160,8 @@ if(!sql_query(" select mb_id from {$g5['g5_shop_order_delete_table']} limit 1 ",
 <label for="search" class="sound_only">검색어<strong class="sound_only"> 필수</strong></label>
 <input type="text" name="search" value="<?php echo $search; ?>" id="search" required class="required frm_input" autocomplete="off">
 <input type="submit" value="검색" class="btn_submit">
-
 </form>
+
 
 <form class="local_sch02 local_sch">
 <!--
@@ -182,36 +184,21 @@ if(!sql_query(" select mb_id from {$g5['g5_shop_order_delete_table']} limit 1 ",
     <input type="radio" name="od_status" value="부분취소" id="od_status_pcancel" <?php echo get_checked($od_status, '부분취소'); ?>>
     <label for="od_status_pcancel">부분취소</label>
 </div>
+-->
+
 
 <div>
-    <strong>결제수단</strong>
+    <strong>구매종류</strong>
     <input type="radio" name="od_settle_case" value="" id="od_settle_case01"        <?php echo get_checked($od_settle_case, '');          ?>>
     <label for="od_settle_case01">전체</label>
-	
-    <input type="radio" name="od_settle_case" value="현금" id="od_settle_case11"   <?php echo get_checked($od_settle_case, '현금');    ?>>
-    <label for="od_settle_case11">현금</label>
-    <input type="radio" name="od_settle_case" value="매장카드" id="od_settle_case12"   <?php echo get_checked($od_settle_case, '매장카드');    ?>>
-    <label for="od_settle_case12">매장카드</label>
-	
-
-
-
-    <input type="radio" name="od_settle_case" value="무통장" id="od_settle_case02"   <?php echo get_checked($od_settle_case, '무통장');    ?>>
-    <label for="od_settle_case02">무통장</label>
-    <input type="radio" name="od_settle_case" value="가상계좌" id="od_settle_case03" <?php echo get_checked($od_settle_case, '가상계좌');  ?>>
-    <label for="od_settle_case03">가상계좌</label>
-    <input type="radio" name="od_settle_case" value="계좌이체" id="od_settle_case04" <?php echo get_checked($od_settle_case, '계좌이체');  ?>>
-    <label for="od_settle_case04">계좌이체</label>
-    <input type="radio" name="od_settle_case" value="휴대폰" id="od_settle_case05"   <?php echo get_checked($od_settle_case, '휴대폰');    ?>>
-    <label for="od_settle_case05">휴대폰</label>
-    <input type="radio" name="od_settle_case" value="신용카드" id="od_settle_case06" <?php echo get_checked($od_settle_case, '신용카드');  ?>>
-    <label for="od_settle_case06">신용카드</label>
-    <input type="radio" name="od_settle_case" value="간편결제" id="od_settle_case07" <?php echo get_checked($od_settle_case, '간편결제');  ?>>
-    <label for="od_settle_case07">PG간편결제</label>
-    <input type="radio" name="od_settle_case" value="KAKAOPAY" id="od_settle_case08" <?php echo get_checked($od_settle_case, 'KAKAOPAY');  ?>>
-    <label for="od_settle_case08">KAKAOPAY</label>
+    <input type="radio" name="od_settle_case" value="10" id="od_settle_case2"   <?php echo get_checked($od_settle_case, '10');    ?>>
+    <label for="od_settle_case2">B팩</label>
+    <input type="radio" name="od_settle_case" value="20" id="od_settle_case3"   <?php echo get_checked($od_settle_case, '20');    ?>>
+    <label for="od_settle_case3">Q팩</label>
+    <input type="submit" value="검색" class="btn_submit">
 </div>
 
+<!--
 <div>
     <strong>기타선택</strong>
     <input type="checkbox" name="od_misu" value="Y" id="od_misu01" <?php echo get_checked($od_misu, 'Y'); ?>>
@@ -351,7 +338,7 @@ if(!sql_query(" select mb_id from {$g5['g5_shop_order_delete_table']} limit 1 ",
         if($default['de_escrow_use'] && $row['od_escrow'])
             $od_paytype .= '<span class="list_escrow">에스크로</span>';
 
-        $uid = md5($row['od_id'].$row['od_time'].$row['od_ip']);
+        $uid = md5($row['od_id'].$row['ct_time'].$row['od_ip']);
 
         $invoice_time = is_null_time($row['od_invoice_time']) ? G5_TIME_YMDHIS : $row['od_invoice_time'];
         $delivery_company = $row['od_delivery_company'] ? $row['od_delivery_company'] : $default['de_delivery_company'];
@@ -466,7 +453,8 @@ if(!sql_query(" select mb_id from {$g5['g5_shop_order_delete_table']} limit 1 ",
         $tot_misu          += $row['od_misu'];
 		$tot_odcount     += $od_cnt;
     }
-    sql_free_result($result);
+
+    //sql_free_result($result);
     if ($i == 0)
         echo '<tr><td colspan="13" class="empty_table">자료가 없습니다.</td></tr>';
     ?>

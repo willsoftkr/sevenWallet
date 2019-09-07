@@ -12,7 +12,12 @@ if ($to_date){
 }else{
 	$day    = date('Y-m-d');
 }
-
+?>
+<style>
+	.red{color:red; font-weight:600}
+	.blue{color:blue; font-weight:600}
+</style>
+<?
 /*
 $pre_sql = "select count(*) as cnt from soodang_pay where allowance_name  = 'binary' AND day  =  '$day' ";
 $pre_cnt = sql_query($pre_sql['cnt']);
@@ -53,7 +58,11 @@ while( $row = sql_fetch_array($rate_result) ){
 echo "</br></br>";
 //print_r($rate_price);
 
+$cart_have_sql = "select count(*) as cnt from g5_shop_cart  where date(ct_time) <= '{$day}' and date(ct_select_time) >= '{$day}' and it_sc_type = '10'";
+$cart_have_result = sql_fetch($cart_have_sql);
+$cart_have_cnt =  $cart_have_result['cnt'];
 
+echo  "금일 B팩 보유자 : <span class='blue'>".$cart_have_cnt."명 </span><br>";
 
 /*B팩 수당 리턴함수*/
 function member_rate($val){
@@ -200,6 +209,7 @@ for($i=0; $recommend=sql_fetch_array($result); $i++) {
 	$mbid=$recommend['mb_id']; 
 	$mbname=$recommend['mb_name'];
 	$mblevel=$recommend['mb_level'];
+	$recom=$recommend['mb_recommend'];
 
 	/* 로직변경
 	if($recommend['it_pool1'] && $recommend['it_pool1_profit'] ){
@@ -211,14 +221,17 @@ for($i=0; $recommend=sql_fetch_array($result); $i++) {
 	*/
 
 	/*B팩 보유 및 수당 가져오기*/
-	$cart_sql = "select * from g5_shop_cart as A  left join g5_shop_item as B on A.it_name = B.it_name where A.mb_id ='{$recommend['mb_id']}' and A.ct_time < '{$day}' and A.ct_select_time > '{$day}' and A.it_sc_type = '10'  order by A.ct_time desc limit 0,1";
+	$cart_sql = "select * from g5_shop_cart as A  left join g5_shop_item as B on A.it_name = B.it_name where A.mb_id ='{$mbid}' and  date(A.ct_time) <= '{$day}' and date(A.ct_select_time) >= '{$day}' and A.it_sc_type = '10'  order by A.ct_time desc limit 0,1";
 	$cart_result = sql_fetch($cart_sql);
-
-	if($cart_result > 0){
-		$member_rate = $cart_result['it_point'];
-	}
-
 	
+	$member_rate = $cart_result['it_point'];
+	$member_rate_pack = $cart_result['it_name'];
+	/*
+	echo "<br>";
+	echo print_r("<span class='red'>".$mbid."+++++++++++++++++++++++".$cart_result['it_point']."</span>");;
+	echo $cart_sql;
+	echo "<br>";
+	*/
 
 //	$sum =  sql_fetch( "SELECT sum(upstair) as od_sum FROM g5_shop_order WHERE 1 and od_time like '$to_date%' and mb_id ='".$mbid."'");
 
@@ -241,10 +254,13 @@ for($i=0; $recommend=sql_fetch_array($result); $i++) {
 
 				list($id1,$hap1,$id2,$hap2) = my_bchild($mbid,$to_date,$cond[$i]['cycle']);
 				
-				echo '<br> 실적 계산 기준  :: '.$mbid.': '.$id1.'---'.$hap1.' // ---'.$id2.'---'.$hap2.'   // B팩 :'.$recommend['it_pool1']. '<br><br>';
+				echo '<br>▶ 실적 계산 기준  ::' .$id1.'---'.$hap1.' // ---'.$id2.'---'.$hap2;
 
-				//print_r("<br>". $mbid." num :".$i." rate :".$member_rate."<br>");
-				
+				if($member_rate){
+					echo  "<span class='red'> +++++++++++++ B팩 : ".$member_rate_pack." | ".$member_rate." % </span><br>";
+				}
+				echo "<br>";
+
 				if(!$member_rate){$member_rate = '0';}
 
 				if(($hap1>0) || ($hap2>0)){
@@ -256,76 +272,70 @@ for($i=0; $recommend=sql_fetch_array($result); $i++) {
 							$firstname=$mbname;
 							$firstid=$mbid;
 
-							echo "수당 계산 하자 asdf : ".$id1.' '.$hap1.' '.$id2.' '.$hap2.'percentage : '.$member_rate.'today_sales'.$today_sales.'<br>';
+							echo "▶▶ 수당 계산 1-1 (수당초과) :: 대실적-<strong>".$hap2."</strong>(".$id2.") ||  소실적-<strong>".$hap1."</strong>(".$id1.") ||  수당: <strong>".$member_rate."%</strong> || 발생수당 : <strong>".$today_sales."</strong><br><br>";
 							
-							if($cond[$i]['max_reset1']=='대실적만 이월'){
-								$note_adm='소실적 발생 (대실적만 이월) (2) 소실적:'.$hap1.	'('.$id1.') / 대실적:'.$hap2.	'('.$id2.') 이월금:'.($hap2-$hap1);
-								
-								$no_benefit=1;$binary_firstname=$mbname;$binary_firstid=$mbid;
-								if($today_sales>0){
-								save_benefit($to_date, $mbid, $mbname, $recom, "Binary", '', 0, $today_sales, $limit_point, "Binary".' '.$note_adm, $note, $mblevel);}
-								echo '대실적 이월해야한다.';
-								echo '대실적 이월해야한다. 제발'."<br>";
-								iwol_process($to_date, $mbid, $id2, $mbname, 2, $hap2-$hap1, $note_adm);
-								//iwol_process($to_date, $mbid, $id2, $mbname, 2, $hap2, $note_adm);
+							$note_adm=' 소실적 발생 (대실적만 이월) (1) 소실적:'.$hap1.	'('.$id1.') || 대실적:'.$hap2.	'('.$id2.') | 이월금:'.($hap2-$hap1);
 
-							}
-						}
-						else { //소실적이 극점x
-						//if($hap1>=($cond[$i]['sales_reset']) ){ //소실적이 극점?
-							$today_sales=$hap1* ($member_rate/100);
-						//	$binary_trig=($cond[$i]['sales_reset']/$cond[$i]['cycle']);
-							$firstname=$mbname;
-							$firstid=$mbid;
-							echo "수당 계산 하자 fads : ".$id1.' '.$hap1.' '.$id2.' '.$hap2.'percentage : '.$member_rate.'today_sales'.$today_sales.'<br>';
-							
-							if($cond[$i]['max_reset1']=='대실적만 이월'){
-								$note_adm='소실적 발생 (대실적만 이월) (22) 소실적:'.$hap1.	'('.$id1.') / 대실적:'.$hap2.	'('.$id2.') 이월금:'.($hap2-$hap1);
-								echo $note='Binary Bonus for '.$deslv.' member';
-								$no_benefit=1;$binary_firstname=$mbname;$binary_firstid=$mbid;
-								if($today_sales>0)
+							echo $note='Binary Bonus for member';
+							$no_benefit=1;$binary_firstname=$mbname;$binary_firstid=$mbid;
+
+							if($today_sales>0){
 								save_benefit($to_date, $mbid, $mbname, $recom, "Binary", '', 0, $today_sales, $limit_point, "Binary".' '.$note_adm, $note, $mblevel);
 								iwol_process($to_date, $mbid, $id2, $mbname, 2, $hap2-$hap1, $note_adm);
-								//iwol_process($to_date, $mbid, $id2, $mbname, 2, $hap2, $note_adm);
 							}
+
+						}
+						else { //소실적이 극점x
+						
+							$today_sales= $hap1* ($member_rate/100);
+							$firstname=$mbname;
+							$firstid=$mbid;
+
+							echo "▶▶ 수당 계산 1-2 :: 대실적-<strong>".$hap2."</strong>(".$id2.") ||  소실적-<strong>".$hap1."</strong>(".$id1.") ||  수당: <strong>".$member_rate."%</strong> || 발생수당 : <strong>".$today_sales."</strong><br><br>";
+							
+							
+								$note_adm=" 소실적 발생 (대실적만 이월) (2) 소실적:".$hap1.	'('.$id1.') || 대실적:'.$hap2.	'('.$id2.') | 이월금:'.($hap2-$hap1);
+
+								$note='Binary Bonus for member';
+								$no_benefit=1;$binary_firstname=$mbname;$binary_firstid=$mbid;
+
+								if($today_sales>0){
+									save_benefit($to_date, $mbid, $mbname, $recom, "Binary", '', 0, $today_sales, $limit_point, "Binary".' '.$note_adm, $note, $mblevel);
+									iwol_process($to_date, $mbid, $id2, $mbname, 2, $hap2-$hap1, $note_adm);
+								}
 						}
 					}  //$hap1이 소실적이라면
 					else if( $hap1>$hap2 ){ //$hap2가 소실적이라면
+
 						if($hap2*($member_rate/100)>=$limit_point && $limit_point!=0){ //소실적이 극점?
 
 							$today_sales=$limit_point;
-							$binary_trig=($cond[$i]['sales_reset']/$cond[$i]['cycle']);
 							$firstname=$mbname;
 							$firstid=$mbid;
+							
+							echo " ▶▶ 수당 계산 2-1 (수당초과) :: 대실적-<strong>".$hap1."</strong>(".$id1.") ||  소실적-<strong>".$hap2."</strong>(".$id2.") ||  수당: <strong>".$member_rate."%</strong> || 발생수당 : <strong>".$today_sales."</strong><br><br>";
 
-							if($cond[$i]['max_reset1']=='대실적만 이월'){
-								$note_adm='소실적 발생 (대실적만 이월) (9) 소실적:'.$hap2.	'('.$id2.') / 대실적:'.$hap1.	'('.$id1.') 이월금:'.($hap1-$hap2);
+								$note_adm=' 소실적 발생 (대실적만 이월) (3) 대실적:'.$hap1.	'('.$id1.') ||  소실적:'.$hap2.'('.$id2.') | 이월금:'.($hap1-$hap2);
 								
-								echo $note='Binary Bonus for '.$deslv.' member';
+								$note='Binary Bonus for member';
 								$no_benefit=1;$binary_firstname=$mbname;$binary_firstid=$mbid;
 
-								if($today_sales>0)
-								save_benefit($to_date, $mbid, $mbname, $recom, "Binary", '', 0, $today_sales,  $hap2, "Binary".' '.$note_adm, $note, $mblevel);
-								iwol_process($to_date, $mbid, $id1, $mbname, 9, $hap1-$hap2 , $note_adm);
-								//iwol_process($to_date, $mbid, $id1, $mbname, 9, $hap1 , $note_adm); //대실적 1/2
-
-							}
+								if($today_sales>0){
+									save_benefit($to_date, $mbid, $mbname, $recom, "Binary", '', 0, $today_sales,  $hap2, "Binary".' '.$note_adm, $note, $mblevel);
+									iwol_process($to_date, $mbid, $id1, $mbname, 9, $hap1-$hap2 , $note_adm);
+								}
 						}
 						else { //소실적이 극점x
-						//if($hap1>=($cond[$i]['sales_reset']) ){ //소실적이 극점?
+							
 							$today_sales=$hap2*($member_rate/100);
-						//	$binary_trig=($cond[$i]['sales_reset']/$cond[$i]['cycle']);
 							$firstname=$mbname;
 							$firstid=$mbid;
 
-							echo ' 수당 계산 ::  대실적-<strong>'.$hap1.'</strong>('.$id1.') ||  소실적-<strong>'.$hap2.'</strong>('.$id2.') ||  수당: <strong>'.$member_rate.'%</strong> || today_sales: <strong>'.$today_sales.'</strong><br><br>';
+							echo " ▶▶ 수당 계산 2-2 ::  대실적-<strong>".$hap1."</strong>(".$id1.") ||  소실적-<strong>".$hap2."</strong>(".$id2.") ||  수당: <strong>".$member_rate."%</strong> || 발생수당 : <strong>".$today_sales."</strong><br><br>";
 
-							
-								echo " ▶ 대실적만이월 : ".'hap2'.$hap2. 'percentage : '.$member_rate.' today_sales : '.$today_sales.'<br><br>';
+								$note_adm='소실적 발생 (대실적만 이월) (4) 대실적:'.$hap1.	'('.$id1.') || 소실적:'.$hap2.'('.$id2.') | 이월금:'.($hap1-$hap2);
 
-								$note_adm='소실적 발생 (대실적만 이월) (99) 대실적:'.$hap1.	'('.$id1.') / 소실적:'.$hap2.	'('.$id2.') 이월금:'.($hap1-$hap2);
-
-								echo $note='Binary Bonus for '.$deslv.' member';
+								$note='Binary Bonus for member';
 								$no_benefit=1;$binary_firstname=$mbname;$binary_firstid=$mbid;
 
 								if($today_sales>0){
@@ -340,12 +350,11 @@ for($i=0; $recommend=sql_fetch_array($result); $i++) {
 							$firstname=$mbname;
 							$firstid=$mbid;
 
-							echo "수당 계산 : ".$id1.' '.$hap1.' '.$id2.' '.$hap2.' | percentage : '.$member_rate.' | today_sales'.$today_sales.'<br>';
+							echo " ▶▶ 수당 계산 3 :: 대실적-<strong>".$hap1."</strong>(".$id1.") ||  소실적-<strong>".$hap2."</strong>(".$id2.") <br><br>";
+						 
+								$note_adm='Binary (대소실적같음 소멸)(5) 대실적:'.$hap1.'('.$id1.') || 소실적:'.$hap2.'('.$id2.')';
 
-						
-								$note_adm='Binary (대소실적같음 소멸)(100) 대실적:'.$hap1.'('.$id1.') / 소실적:'.$hap2.'('.$id2.')';
-
-									echo $note='Binary Cycle Bonus for '.$maxcycle.' cycles as a '.$deslv.' member';
+								$note='Binary Bonus for member';
 
 								$no_benefit=1; $binary_firstname=$mbname; $binary_firstid=$mbid;
 
@@ -355,8 +364,7 @@ for($i=0; $recommend=sql_fetch_array($result); $i++) {
 								}
 					}
 	
-				}// if(($hap1>0) || ($hap2>0)){
-				//echo $mbname.'('.$mbid.'): '.$note.'직급: '.$mblevel.'= <br>';
+				}
 			
 	$rec='';
 
@@ -621,7 +629,7 @@ function my_bchild($mb_id,$day,$cycle){
 /* 이월이 있다면 함께 DB에 저장 한다.*/
 function iwol_process($day,$mb_recommend, $mbid, $mb_name, $kind, $upstair, $note){
 	$iwol= sql_fetch("select count(*) as cnt from iwol where mb_id='".$mbid."' and kind<>1 and date_format(iwolday,'%Y-%m-%d')='$day'");
-	echo '### '.$upstair.'---'.$iwol['cnt'].'<br>';
+	//echo '### '.$upstair.'---'.$iwol['cnt'].'<br>';
 
 //	if( ($upstair>0) && ($iwol['cnt']==0) ){
 	if( ($upstair>0)  ){   // 소실적 제거용
@@ -633,7 +641,7 @@ function iwol_process($day,$mb_recommend, $mbid, $mb_name, $kind, $upstair, $not
 		$temp_sql1 .= " ,note		= '".$note."'";
 		$temp_sql1 .= " ,mb_brecommend		= '".$mb_recommend."'";
 		sql_query($temp_sql1);
-		echo '<br> 이월기록 : '.$temp_sql1.'<br>';
+		echo '<br><span class=blue>▶▶▶▶ 이월금 : '.$upstair.'</span><br>';
 	}
 }
 
@@ -645,8 +653,6 @@ function save_benefit($day, $mbid, $mbname, $recom, $allowance_name, $sales_day,
 	$iwol= sql_fetch("select count(*) as cnt from iwol where mb_brecommend='".$mbid."' and date_format(iwolday,'%Y-%m-%d')='$day'");
 
 	if($iwol['cnt']==0){
-		//수당을 비트로 환산 한다.
-		$benefit_bit = round($benefit,5);
 		$temp_sql1 = " insert soodang_pay set day='".$day."'";
 		$temp_sql1 .= " ,mb_id		= '".$mbid."'";
 		$temp_sql1 .= " ,mb_name		= '".$mbname."'";
@@ -674,28 +680,16 @@ function save_benefit($day, $mbid, $mbname, $recom, $allowance_name, $sales_day,
 		if( $mrow['mb_deposit_point']<=$ds_sum){
 				//아무것도 하지 않는다.
 		}
-		else if( $mrow['mb_deposit_point']>=$benefit + $ds_sum){ //수당 합과 지금 수당의 합이 디파짓보다 작으면 수당 업데이트
+		else { //수당 합과 지금 수당의 합이 디파짓보다 작으면 수당 업데이트
 			$temp_sql1 .= " ,benefit			=  ".$benefit;
 			$temp_sql1 .= " ,benefit_usd		=  '".($benefit)."'";
 			sql_query($temp_sql1);
 			
-			echo "▶▶ 소실적수당지급 : ".$temp_sql1.'<br>';
+			echo " <span class=red>▶▶▶ 소실적수당지급 : ".$benefit.'</span>';
+			
 			$balance_up = "update g5_member set mb_balance = round(mb_balance+ ".$benefit.", 5), mb_v7_account = round(mb_v7_account+ ".$benefit."/".$v7_cost.",3) where mb_id = '".$mbid."';";
 			sql_query($balance_up);
-		}else {
-				$over_sd = $benefit + $ds_sum - $mrow['mb_deposit_point'];
-				if($benefit - $over_sd>0){
-				$temp_sql1 .= " ,benefit			=  '".($benefit - $over_sd)."'";
-				$temp_sql1 .= " ,benefit_usd		=  '".($benefit - $over_sd)."'";
-				sql_query($temp_sql1);
-				
-				echo $temp_sql1.'********1********<br>';
-				$balance_up = "update g5_member set mb_balance = round(mb_balance+ ".$benefit - $over_sd.",5), mb_v7_account = round(mb_v7_account+ ".$benefit - $over_sd."/".$v7_cost.",3)	where mb_id = '".$mbid."';";
-				sql_query($balance_up);
-			}
 		}
-		
-
 	}
 }
 ?>
