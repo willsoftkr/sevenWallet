@@ -100,7 +100,7 @@ if($account < $amount){
 		sql_query($update_point);
 		
 		//echo "<br>";
-		echo (json_encode(array("result" => "success",  "code" => "0000", "sql" => $update_point)));
+		echo (json_encode(array("result" => "success",  "code" => "0000", "sql" => $rst."/".$update_point)));
 	}
 	else{
 		echo (json_encode(array("result" => "failed",  "code" => "0001", "sql" => $update_point)));

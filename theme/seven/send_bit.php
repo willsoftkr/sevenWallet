@@ -66,6 +66,7 @@ include_once(G5_THEME_PATH.'/_include/wallet.php');
 							<p class="f_right"><span class="font_gray" id="amount_total">0</span> btc</p>
 						</div>
 					</li>
+					<input type="hidden" id="amount_total_usd" name ="amount_total_usd"  val="">
 				</ul>
 			</section>
 			
@@ -111,13 +112,15 @@ include_once(G5_THEME_PATH.'/_include/wallet.php');
 				var amount = Number(rate).toFixed(2); //total
 				var amount_left = Number( (btcusd)*1).toFixed(2); //exchage
 				var amount_fee = Number( (rate)*0.01).toFixed(8); // fee
-				var amount_total = Number( (rate)*1.01).toFixed(8); // fee
+				var amount_total = Number( (rate)*1.01).toFixed(8); // exchage+fee
+				
 
 				//console.log(v7usd+" | "+ shifted);
 
 				$('#amount_left').val(amount_left );
 				$('#amount_fee').html(amount_fee);
 				$('#amount_total').html(amount_total);
+				$('#amount_total_usd').val(amount_total_usd);
 				valid = true;
 			});
 
@@ -131,13 +134,14 @@ include_once(G5_THEME_PATH.'/_include/wallet.php');
 				var amount = Number(maxbtc).toFixed(8); //total
 				var amount_left = Number(btcusd).toFixed(2); //exchage
 				var amount_fee = Number((btc_account)*0.01).toFixed(8); // fee
-				var amount_total = Number(btc_account).toFixed(8); 
+				var amount_total = Number(btc_account).toFixed(8); //exchage+fee
 
 				//console.log(v7usd+" | "+ shifted);
 				$('#amount').val(amount);
 				$('#amount_left').val(amount_left );
 				$('#amount_fee').html(amount_fee);
 				$('#amount_total').html(amount_total);
+				$('#amount_total_usd').val(amount_total_usd);
 				valid = true;
 			});
 
@@ -183,14 +187,14 @@ include_once(G5_THEME_PATH.'/_include/wallet.php');
 							"fee": amount_fee,
 							"amount_total": amount_total,
 							"coin_cost" : btc_cost,
-							"source" : "btc",
+							"source" : "btc",wi
 							"coin" : "btc",
 							"type" : "withdrawal",
 							"address" : address
 						},
 						success: function(data) {
 							
-							commonModal('Congratulation! Complete Deposit','<strong> Congratulation! Complete Deposit.</strong>',80);	
+							commonModal('Complete send request','<strong> Complete Send/withdrawal.</strong>',80);	
 							$('#closeModal').on('click', function(){
 								location.reload();
 							});
