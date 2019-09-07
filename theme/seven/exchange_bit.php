@@ -33,23 +33,32 @@ $order_result = sql_query($order_sql);
 				</div>
 			</div>
 
-
+	<style>
+		.exchange_wrap .send_con li{padding:10px 0px;}
+	</style>
 			<form action="">
-				<ul class="money_chage clear_fix mc_bit">
-					<li>
+				<ul class="money_chage clear_fix mc_bit" >
+					<li style="width:100%;">
 						<p data-i18n="wallet.환전할 금액">Amount to exchange</p>
 						<input type="number" id="amount" placeholder="<?=$v7_account?>" min="0" max="<?=$v7_account_num?>"  >
 						<span>V7</span>
 					</li>
+					<!--
 					<li>=</li>
 					<li>
-						<p class="font_red" data-i18n="wallet.전부 환전하기">Exchange ALL</p>
+						<p class="font_red" data-i18n="wallet.전부 환전하기">Exchange</p>
 						<input type="number" id="exchange_amount" placeholder="0" disabled >
 						<span>BTC</span>
 					</li>
+					-->
 				</ul>
 
-				<ul class="send_con">
+				<ul class="send_con" >
+					<li >
+						<span class="send_title" data-i18n="wallet.환전">Exchange</span>
+						<p class="f_right"><span class="font_gray" id="exchange_amount">0</span> BTC</p>
+					</li>
+
 					<li class="clear_fix">
 						<span class="send_title" data-i18n="wallet.환전 수수료">Exchange fee</span>
 						<p class="f_right"><span class="font_gray" id="exchange_fee">0</span> BTC</p>
@@ -88,7 +97,7 @@ $order_result = sql_query($order_sql);
 			var v7_account = Number("<?=$v7_account_num?>");
 			var v7_cost = "<?=$v7_cost?>";
 			var btc_cost = Number("<?=$btc_cost_num?>");
-			var btc_cost_plus = btc_cost + btc_cost*0.03 ;
+			var btc_cost_plus = Number(btc_cost) + Number(btc_cost*0.03) ;
 			//var btc_cost_1 = 10000.00;
 			
 			function exchage_result(val) {
@@ -100,7 +109,7 @@ $order_result = sql_query($order_sql);
 
 			$('#amount').on('change',function(){
 				
-				console.log(this.value +" / "+ v7_account);
+				//console.log(this.value +" / "+ btc_cost_plus);
 
 				if(this.value > v7_account){
 					commonModal('check input amount','<strong> out of the maximum amount. </strong>',80);
@@ -110,21 +119,22 @@ $order_result = sql_query($order_sql);
 				var rate = this.value;
 				var v7usd = rate * v7_cost; //달러 환산
 
-				var shifted = Number( v7usd / btc_cost).toFixed(8); //total
-				var shift_left = Number( (v7usd /btc_cost)*0.97).toFixed(8); //exchage
-				var shift_fee = Number( (v7usd /btc_cost)*0.03).toFixed(8); // fee
+				var shifted = Number( v7usd / btc_cost_plus).toFixed(8); //total
+				var shift_left = Number( (v7usd / btc_cost_plus)*0.99).toFixed(8); //exchage
+				var shift_fee = Number( (v7usd / btc_cost_plus)*0.01).toFixed(8); // fee
 
-				//console.log(v7usd+" | "+ shifted);
+				console.log( v7usd+ " | "+ btc_cost + " | "  + btc_cost_plus + "::  "+ shifted + " | "+ shift_left + " | " + shift_fee);
 
-				$('#exchange_amount').val(shift_left );
+				//$('#exchange_amount').val(shift_left );
+				$('#exchange_amount').html(shifted);
 				$('#exchange_fee').html(shift_fee);
-				$('#exchange_total').html(shifted);
+				$('#exchange_total').html(shift_left);
 			});
 
 			
 			$('#exchange').on('click', function(){
 				var amount = $('#amount').val();
-				var exchange_amount = $('#exchange_amount').val();
+				var exchange_amount = $('#exchange_amount').text();
 				var exchange_fee = $('#exchange_fee').text();
 				var exchange_total = $('#exchange_total').text();
 				var mb_id = "<?=$member['mb_id']?>";

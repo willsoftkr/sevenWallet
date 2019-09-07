@@ -16,8 +16,8 @@ $type= 'exchage';
 $mb_id = $_POST['mb_id'];
 $account = $_POST['account'];
 $amount = $_POST['amount'];
-$exchange = $_POST['exchange'];
-$exchange_total = $_POST['exchange_total'];
+$exchange = $_POST['exchange']; // 변환된 btc + fee
+$exchange_total = $_POST['exchange_total']; // 변환된 btc
 $fee = $_POST['fee'];
 $cost = $_POST['coin_cost'];
 $source = $_POST['source'];
@@ -85,7 +85,7 @@ if($account < $amount){
         */
 		
 
-        $update_point = "update g5_member set {$where_calc} = $where_calc - $amount , $to_calc = $to_calc + $exchange ";
+        $update_point = "update g5_member set {$where_calc} = $where_calc - $amount , $to_calc = $to_calc + $exchange_total ";
         
         /*
 		if($mb_id != 'copy5285m'){
