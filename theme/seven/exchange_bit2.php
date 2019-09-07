@@ -88,7 +88,7 @@ $order_result = sql_query($order_sql);
 			var v7_account = Number("<?=$v7_account_num?>");
 			var v7_cost = "<?=$v7_cost?>";
 			var btc_cost = Number("<?=$btc_cost_num?>");
-			var btc_cost_plus = btc_cost + btc_cost*0.03 ;
+			var btc_cost_plus = 
 			//var btc_cost_1 = 10000.00;
 			
 			function exchage_result(val) {
@@ -173,7 +173,7 @@ $order_result = sql_query($order_sql);
 
 
 		$(function() {
-			$(".top_title h3").html("<img src='<?=G5_THEME_URL?>/_images/top_deposit.png' alt='아이콘'><span data-i18n='title.비트코인으로 환전하기'> Exchange to Bitcoin</span>");
+			$(".top_title h3").html("<img src='<?=G5_THEME_URL?>/_images/top_deposit.png' alt='아이콘'><span data-i18n='title.Deposit with Bitcoin'> 비트코인 입금</span>");
 			$('#wrapper').css("background","#fff");
 		});
 	</script>
