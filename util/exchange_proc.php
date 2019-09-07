@@ -54,7 +54,8 @@ if($account < $amount){
 		, exchange     = '".$exchange."'
 		, exchange_total     = '".$exchange_total."'
 		, fee = '".$fee."'
-        , cost           = '".$cost."'
+		, cost           = '".$cost."'
+		, source           = '"$source."'
         , coin           = '".$coin."'
 		, od_type   = '전환'
 		, od_time    = '".$now_date."'";

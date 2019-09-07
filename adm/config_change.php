@@ -1,10 +1,10 @@
 <?php
-$sub_menu = "700300";
+$sub_menu = "700400";
 include_once('./_common.php');
 
 include_once(G5_THEME_PATH.'/_include/wallet.php'); 
 
-$g5['title'] = "BTC 출금 요청내역";
+$g5['title'] = "코인 전환 내역";
 
 include_once(G5_ADMIN_PATH.'/admin.head.php');
 
@@ -41,7 +41,7 @@ if($_GET['ord']!=null && $_GET['ord_word']!=null){
 	$sql_ord = "order by ".$_GET['ord_word']." ".$_GET['ord'];
 }
 
-$sql = " select count(*) as cnt, sum(amt) as hap, sum(amt_usd) as usdhap, sum(fee) as feehap from withdrawal_request A inner join g5_member M on A.mb_id = M.mb_id WHERE 1=1  	 ";
+$sql = " select count(*) as cnt from g5_shop_change A inner join g5_member M on A.mb_id = M.mb_id WHERE 1=1  	 ";
 $sql .= $sql_condition;
 $sql .= $sql_ord;
 $row = sql_fetch($sql,true);
@@ -56,12 +56,12 @@ $total_page  = ceil($total_count / $rows);  // 전체 페이지 계산
 if ($page < 1) $page = 1; // 페이지가 없으면 첫 페이지 (1 페이지)
 $from_record = ($page - 1) * $rows; // 시작 열을 구함
 
-$sql = "select * from withdrawal_request A inner join g5_member M on A.mb_id = M.mb_id WHERE 1=1   ";
+$sql = "select * from g5_shop_change A inner join g5_member M on A.mb_id = M.mb_id WHERE 1=1   ";
 $sql .= $sql_condition;
 if($sql_ord){
 	$sql .= $sql_ord;
 }else{
-$sql .= " order by create_dt desc ";
+$sql .= " order by od_time desc ";
 }
 $sql .= " limit {$from_record}, {$rows} ";
 
@@ -113,7 +113,7 @@ $list = sql_query($sql);
 		};
 		$.datepicker.setDefaults($.datepicker.regional["ko"]);
 
-		$("#create_dt, #update_dt").datepicker({ changeMonth: true, changeYear: true, dateFormat: "yy-mm-dd", showButtonPanel: true, yearRange: "c-99:c+99", maxDate: "+0d" });
+		$("#create_dt").datepicker({ changeMonth: true, changeYear: true, dateFormat: "yy-mm-dd", showButtonPanel: true, yearRange: "c-99:c+99", maxDate: "+0d" });
 	});
 
 </script>
@@ -194,7 +194,7 @@ $(function(){
 
 </style>
 
-<form name="fsearch" id="fsearch" class="local_sch01 local_sch" action="./config_withdrawal.php" method="GET">
+<form name="fsearch" id="fsearch" class="local_sch01 local_sch" action="./config_change.php" method="GET">
 	상태 : 
 	<select name="status" id="status">
 		<option value="">전체</option>
@@ -232,46 +232,35 @@ $ord_rev = $ord_array[($ord_key+1)%2]; // 내림차순→오름차순, 오름차
 			<th style="width:3%;">선택</th>
 			<th style="width:3%;"><a href="?ord=<?php echo $ord_rev; ?>&ord_word=uid">No <?php echo $ord_arrow[$ord_key]; ?></a></th>
 			<th style="width:10%;">아이디 </th>
-			<th style="width:10%;">지갑주소</th>
-			<th  style="width:10%;">출금후잔고</th>
+			<th  style="width:10%;">출금후잔고(V7)</th>
 			<!--<th>현재 BTC 수당 잔고</th>-->
 			<th style="width:5%;">요청코인</th>
+			<th style="width:5%;">전환코인</th>
 			<th style="width:10%;">출금요청금액</th>
 			<th style="width:10%;">출금수수료</th>
-			<th style="width:10%;">총출금</th>
+			<th style="width:10%;">전환금액</th>
 			<th style="width:10%;">적용 코인시세</th>
 			<th style="width:10%;">요청일시</th>
-			<th style="width:6%;">승인여부</th>
-			<th style="width:10%;">승인일시</th>
 		</thead>
 
         <tbody>
-		<?for ($i=0; $row=sql_fetch_array($list); $i++) {?>
+		<?for ($i=0; $row=sql_fetch_array($list); $i++) {
+			?>
 			<tr>
-				<td ><input type="checkbox" name="paid_BTC[]" value="<?=$row['uid']?>" class="pay_check">  </td>
-				<td><?=$row['uid']?></td>
+				<td ><input type="checkbox" name="paid_BTC[]" value="<?=$row['no']?>" class="pay_check">  </td>
+				<td><?=$row['no']?></td>
 				<td><?=$row['mb_id']?></td>
 				<!--<td><a href="#" onclick="window.open('https://blockchain.info/address/<?=$row['addr']?>','width=800, height=500');"><?=$row['addr']?></a></td>-->
-				<td><a href="https://bloks.io/account/<?=$row['addr']?>" target="_blank"><?=$row['addr']?></a></td>
-				<td><?=$row['amt_left']?></td>
 				
+				<td><?=$row['account']?></td>
+				<td class="td_amt"><?=$row['source']?></td>
 				<td class="td_amt"><?=$row['coin']?></td>
-				<td class="td_amt" style="color:red"><?=$row['amt']?></td>
+				<td class="td_amt" style="color:red"><?=$row['amount']?></td>
 				
 				<td class="td_amt"><?=$row['fee']?></td>
-				<td class="td_amt"><?=$row['amt_total']?></td>
+				<td class="td_amt"><?=$row['exchange']?></td>
 				<td class="td_amt"><?=$row['cost']?></td>
-				<td style="font-size:11px;letter-spacing:-1px;"><?=$row['create_dt']?></td>
-				<td>
-					<!-- <?=$row['status']?> -->
-					<select name="status" uid="<?=$row['uid']?>">
-						<option <?=$row['status'] == 'R' ? 'selected':'';?> value="R">요청</option>
-						<option <?=$row['status'] == 'Y'? 'selected':'';?> value="Y">승인</option>
-						<option <?=$row['status'] == 'S'? 'selected':'';?> value="S">대기</option>
-						<option <?=$row['status'] == 'N'? 'selected':'';?> value="N">불가</option>
-					</select>
-				</td>
-				<td style="font-size:11px;letter-spacing:-1px;"><?=$row['update_dt']?></td>
+				<td style="font-size:11px;letter-spacing:-1px;"><?=$row['od_time']?></td>
 			</tr>
 		<?}?>
         </tbody>
@@ -287,14 +276,7 @@ if ($pagelist) {
 }
 
 ?>
-<div style="float:right;wdith:100%;">
-<div class="adm_wallet"  style="margin-top:30px;width:400px;background:#f5f5f5;padding:15px;">
-<span>관리자 지갑 주소</span> <input type="text" value="" id="wallet_addr" style="height:30px;width:100%;" /><br>
-<span>관리자 지갑 ID</span> <input type="text" value="" id="wallet_id"  style="height:30px;width:100%;"/><br>
-<span>관리자 지갑 PW</span> <input type="text" value="" id="wallet_pw" style="height:30px;width:100%;"/><br>
-<input class="wd_btn" type="button" value="송금하기" id="com_send"></input>
-</div>
-</div>
+
 <?
 include_once ('./admin.tail.php');
 ?>

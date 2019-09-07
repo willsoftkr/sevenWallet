@@ -166,8 +166,8 @@ $order_result = sql_query($order_sql);
 							"type" : "exchage"
 						},
 						success: function(data) {
-							
-							commonModal('Congratulation! Complete Deposit','<strong> Congratulation! Complete Deposit.</strong>',80);	
+							purchaseModal('Complete Exchange coin','<strong> Complete Exchange <br> <span class="font_blue">'+ amount +' V7 </span><br>'+ '<span class="transimg"></span> <span class="font_orange">' + exchange_total +'btc.</span></strong>','success');
+							//commonModal('Congratulation! Complete Deposit','<strong> Congratulation! Complete Exchange.</strong>',80);	
 							$('#closeModal').on('click', function(){
 								location.reload();
 							});

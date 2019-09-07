@@ -187,14 +187,14 @@ include_once(G5_THEME_PATH.'/_include/wallet.php');
 							"fee": amount_fee,
 							"amount_total": amount_total,
 							"coin_cost" : btc_cost,
-							"source" : "btc",wi
+							"source" : "btc",
 							"coin" : "btc",
 							"type" : "withdrawal",
 							"address" : address
 						},
 						success: function(data) {
-							
-							commonModal('Complete send request','<strong> Complete Send/withdrawal.</strong>',80);	
+							purchaseModal('Complete send request','<strong> Complete Send/withdrawal.</strong>','success');
+							//succsessModal('Complete send request','<strong> Complete Send/withdrawal.</strong>',80);	
 							$('#closeModal').on('click', function(){
 								location.reload();
 							});

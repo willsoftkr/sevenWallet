@@ -6,40 +6,40 @@ $g5['title'] = "BTC 출금 요청내역";
 
 include_once(G5_ADMIN_PATH.'/admin.head.php');
 
-if($_GET[status]){
-	$sql_condition .= " and A.status = '".$_GET[status]."'";
-	$qstr .= "&status=".$_GET[status];
+if($_GET['status']){
+	$sql_condition .= " and A.status = '".$_GET['status']."'";
+	$qstr .= "&status=".$_GET['status'];
 }
-if($_GET[id]){
-	$sql_condition .= " and A.mb_id like '%".$_GET[id]."%'";
-	$qstr .= "&id=".$_GET[id];
+if($_GET['id']){
+	$sql_condition .= " and A.mb_id like '%".$_GET['id']."%'";
+	$qstr .= "&id=".$_GET['id'];
 }
-if($_GET[first_name]){
-	$sql_condition .= " and M.first_name like '%".$_GET[first_name]."%'";
-	$qstr .= "&first_name=".$_GET[first_name];
+if($_GET['first_name']){
+	$sql_condition .= " and M.first_name like '%".$_GET['first_name']."%'";
+	$qstr .= "&first_name=".$_GET['first_name'];
 }
-if($_GET[last_name]){
-	$sql_condition .= " and M.last_name like '%".$_GET[last_name]."%'";
-	$qstr .= "&last_name=".$_GET[last_name];
+if($_GET['last_name']){
+	$sql_condition .= " and M.last_name like '%".$_GET['last_name']."%'";
+	$qstr .= "&last_name=".$_GET['last_name'];
 }
-if($_GET[mb_hp]){
-	$sql_condition .= " and M.mb_hp like '%".$_GET[mb_hp]."%'";
-	$qstr .= "&mb_hp=".$_GET[mb_hp];
+if($_GET['mb_hp']){
+	$sql_condition .= " and M.mb_hp like '%".$_GET['mb_hp']."%'";
+	$qstr .= "&mb_hp=".$_GET['mb_hp'];
 }
-if($_GET[create_dt]){
-	$sql_condition .= " and DATE_FORMAT(A.create_dt, '%Y-%m-%d') = '".$_GET[create_dt]."'";
-	$qstr .= "&create_dt=".$_GET[create_dt];
+if($_GET['create_dt']){
+	$sql_condition .= " and DATE_FORMAT(A.create_dt, '%Y-%m-%d') = '".$_GET['create_dt']."'";
+	$qstr .= "&create_dt=".$_GET['create_dt'];
 }
-if($_GET[update_dt]){
-	$sql_condition .= " and DATE_FORMAT(A.update_dt, '%Y-%m-%d') = '".$_GET[update_dt]."'";
-	$qstr .= "&update_dt=".$_GET[update_dt];
-}
-
-if($_GET[ord]!=null && $_GET[ord_word]!=null){
-	$sql_ord = "order by ".$_GET[ord_word]." ".$_GET[ord];
+if($_GET['update_dt']){
+	$sql_condition .= " and DATE_FORMAT(A.update_dt, '%Y-%m-%d') = '".$_GET['update_dt']."'";
+	$qstr .= "&update_dt=".$_GET['update_dt'];
 }
 
-$sql = " select count(*) as cnt from pinna_eos_trans A inner join g5_member M on A.mb_id = M.mb_id WHERE 1=1 and A.type  = 2	 ";
+if($_GET['ord']!=null && $_GET['ord_word']!=null){
+	$sql_ord = "order by ".$_GET['ord_word']." ".$_GET['ord'];
+}
+
+$sql = " select count(*) as cnt from withdrawal_request A inner join g5_member M on A.mb_id = M.mb_id WHERE 1=1 ";
 $sql .= $sql_condition;
 $sql .= $sql_ord;
 $row = sql_fetch($sql,true);
@@ -50,7 +50,7 @@ $total_page  = ceil($total_count / $rows);  // 전체 페이지 계산
 if ($page < 1) $page = 1; // 페이지가 없으면 첫 페이지 (1 페이지)
 $from_record = ($page - 1) * $rows; // 시작 열을 구함
 
-$sql = "select * from pinna_eos_trans A inner join g5_member M on A.mb_id = M.mb_id WHERE 1=1  and A.type = 2 ";
+$sql = "select * from withdrawal_request A inner join g5_member M on A.mb_id = M.mb_id WHERE 1=1 ";
 $sql .= $sql_condition;
 if($sql_ord){
 	$sql .= $sql_ord;
@@ -60,7 +60,7 @@ $sql .= " order by create_dt desc ";
 $sql .= " limit {$from_record}, {$rows} ";
 
 $list = sql_query($sql);
-
+print_r($list );
 ?>
 <link type="text/css" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.4/themes/base/jquery-ui.css" rel="stylesheet" />
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.4/jquery-ui.min.js"></script>
@@ -128,14 +128,14 @@ $list = sql_query($sql);
 	상태 : 
 	<select name="status" id="status">
 		<option value="">전체</option>
-		<option <?=$_GET[status] == 'R' ? 'selected':'';?> value="R">요청</option>
-		<option <?=$_GET[status] == 'Y'? 'selected':'';?> value="Y">승인</option>
-		<option <?=$_GET[status] == 'S'? 'selected':'';?> value="S">대기</option>
-		<option <?=$_GET[status] == 'N'? 'selected':'';?> value="N">불가</option>
+		<option <?=$_GET['status'] == 'R' ? 'selected':'';?> value="R">요청</option>
+		<option <?=$_GET['status'] == 'Y'? 'selected':'';?> value="Y">승인</option>
+		<option <?=$_GET['status'] == 'S'? 'selected':'';?> value="S">대기</option>
+		<option <?=$_GET['status'] == 'N'? 'selected':'';?> value="N">불가</option>
 	</select>
-	<input type="text" name="id" placeholder="id" class="frm_input" value="<?=$_GET[id]?>" />
-	<input type="text" name="create_dt" id="create_dt" placeholder="요청일시" class="frm_input" value="<?=$_GET[create_dt]?>" />
-	<input type="text" name="update_dt" id="update_dt" placeholder="승인일시" class="frm_input" value="<?=$_GET[update_dt]?>" />
+	<input type="text" name="id" placeholder="id" class="frm_input" value="<?=$_GET['id']?>" />
+	<input type="text" name="create_dt" id="create_dt" placeholder="요청일시" class="frm_input" value="<?=$_GET['create_dt']?>" />
+	<input type="text" name="update_dt" id="update_dt" placeholder="승인일시" class="frm_input" value="<?=$_GET['update_dt']?>" />
 
 	<input type="submit" class="btn_submit" value="검색" />
 </form>
@@ -186,24 +186,24 @@ $ord_rev = $ord_array[($ord_key+1)%2]; // 내림차순→오름차순, 오름차
 				<td><input type="checkbox" name="paid_eos[]" value="<?=$row[uid]?>" class="pay_check">  </td>
 				<td><?=$row['uid']?></td>
 				<td><?=$row['mb_id']?></td>
-				<!--<td><a href="#" onclick="window.open('https://blockchain.info/address/<?=$row[addr]?>','width=800, height=500');"><?=$row[addr]?></a></td>-->
-				<td><a href="https://bloks.io/account/<?=$row[addr]?>" target="_blank"><?=$row[addr]?></a></td>
+				<!--<td><a href="#" onclick="window.open('https://blockchain.info/address/<?=$row['addr']?>','width=800, height=500');"><?=$row['addr']?></a></td>-->
+				<td><a href="https://bloks.io/account/<?=$row['addr']?>" target="_blank"><?=$row['addr']?></a></td>
 				<td><?=$row['addrmemo']?></a></td> <!--지갑주소-->
 				<td><?= $row['mb_balance'] + $row['mb_save_point'] ?></td>
-				<?if($row[mb_balance]<0){?><td style="color:red"><?=$row[mb_balance]?></td><?}else{?><td><?=$row[mb_balance]?></td><?}?>
+				<?if($row['mb_balance']<0){?><td style="color:red"><?=$row['mb_balance']?></td><?}else{?><td><?=$row['mb_balance']?></td><?}?>
 				
-				<td><?=$row[amt]?></td>
-				<td><?=$row[create_dt]?></td>
+				<td><?=$row['amt']?></td>
+				<td><?=$row['create_dt']?></td>
 				<td>
-					<!-- <?=$row[status]?> -->
+					<!-- <?=$row['status']?> -->
 					<select name="status" uid="<?=$row[uid]?>">
-						<option <?=$row[status] == 'R' ? 'selected':'';?> value="R">요청</option>
-						<option <?=$row[status] == 'Y'? 'selected':'';?> value="Y">승인</option>
-						<option <?=$row[status] == 'S'? 'selected':'';?> value="S">대기</option>
-						<option <?=$row[status] == 'N'? 'selected':'';?> value="N">불가</option>
+						<option <?=$row['status'] == 'R' ? 'selected':'';?> value="R">요청</option>
+						<option <?=$row['status'] == 'Y'? 'selected':'';?> value="Y">승인</option>
+						<option <?=$row['status'] == 'S'? 'selected':'';?> value="S">대기</option>
+						<option <?=$row['status'] == 'N'? 'selected':'';?> value="N">불가</option>
 					</select>
 				</td>
-				<td><?=$row[update_dt]?></td>
+				<td><?=$row['update_dt']?></td>
 			</tr>
 		<?}?>
         </tbody>

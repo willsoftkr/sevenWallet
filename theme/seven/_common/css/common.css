@@ -1172,7 +1172,12 @@ div:nth-child(2){color:#ff9b22;}
 #purchaseModal .modal-body{_background:url('/img/comform_chk.gif') center center 80% no-repeat; min-height:200px;text-align:center}
 .modal .modal-body .chkimg{display:block;width:100%;}
 .modal .modal-body img{width:120px;margin-bottom:20px;}
-
+.modal .modal-body .transimg{background: url(/theme/seven/_images/exchange_arrow.gif) center center no-repeat;
+    background-size: contain;
+    display: block;
+    width: 100%;
+    height: 20px;
+    margin: 10px 0;}
 
 /*UTIL*/
 .upper{text-transform: uppercase;}
