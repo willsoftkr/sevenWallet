@@ -15,7 +15,7 @@ $where = array();
 $sql_search = "";
 if ($search != "") {
     if ($sel_field != "") {
-        $where[] = " $sel_field like '%$search%' and od_status <>'재구매' ";
+        $where[] = " $sel_field like '%$search%'  ";
     }
 
     if ($save_search != $search) {
@@ -189,13 +189,12 @@ if(!sql_query(" select mb_id from {$g5['g5_shop_order_delete_table']} limit 1 ",
 
 <div>
     <strong>구매종류</strong>
-    <input type="radio" name="od_settle_case" value="" id="od_settle_case01"        <?php echo get_checked($od_settle_case, '');          ?>>
+    <input type="radio" name="od_settle_case" value="" id="od_settle_case01"  class="od_settle_case"  <?php echo get_checked($od_settle_case, '');          ?>>
     <label for="od_settle_case01">전체</label>
-    <input type="radio" name="od_settle_case" value="10" id="od_settle_case2"   <?php echo get_checked($od_settle_case, '10');    ?>>
+    <input type="radio" name="od_settle_case" value="10" id="od_settle_case2" class="od_settle_case"  <?php echo get_checked($od_settle_case, '10');    ?>>
     <label for="od_settle_case2">B팩</label>
-    <input type="radio" name="od_settle_case" value="20" id="od_settle_case3"   <?php echo get_checked($od_settle_case, '20');    ?>>
+    <input type="radio" name="od_settle_case" value="20" id="od_settle_case3" class="od_settle_case"  <?php echo get_checked($od_settle_case, '20');    ?>>
     <label for="od_settle_case3">Q팩</label>
-    <input type="submit" value="검색" class="btn_submit">
 </div>
 
 <!--
@@ -592,6 +591,11 @@ function set_date(today)
 </script>
 
 <script>
+
+$(document).ready(function(){
+  
+});
+
 function forderlist_submit(f)
 {
     if (!is_checked("chk[]")) {
