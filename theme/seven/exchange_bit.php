@@ -17,7 +17,7 @@ if($nw['nw_change'] == 'Y'){
 if($nw_change == 'Y'){
 	include_once(G5_PATH.'/service_pop.php');
 }
-
+$btc_cost_num = get_coin_cost('btc');
 
 /*
 $order_sql = "select * from g5_shop_order where mb_id = '".$member['mb_id']."'";
@@ -110,11 +110,14 @@ $order_result = sql_query($order_sql);
 <script>
 			
 			var v7_account = Number("<?=$v7_account_num?>");
-			var v7_cost = "<?=$v7_cost?>";
+			var v7_cost = "<?=$v7_cost_num?>";
+
 			var btc_cost = Number("<?=$btc_cost_num?>");
-			var btc_cost_plus = Number(btc_cost) + Number(btc_cost*0.03) ;
+			var btc_cost_plus = Number(btc_cost) + Number(btc_cost * 0.03) ;
 			var valid = false;
+			
 			//var btc_cost_1 = 10000.00;
+
 			
 			function exchage_result(val) {
 				//var shiftbtc = Number( v7usd / btc_cost );
@@ -125,7 +128,7 @@ $order_result = sql_query($order_sql);
 
 			$('#amount').on('change',function(){
 				
-				//console.log(this.value +" / "+ btc_cost_plus);
+				console.log(this.value + " / " + btc_cost + "/" + btc_cost_plus);
 
 				if(this.value > v7_account){
 					commonModal('check input amount','<strong> out of the maximum amount. </strong>',80);
@@ -138,8 +141,9 @@ $order_result = sql_query($order_sql);
 				var shifted = Number( v7usd / btc_cost_plus).toFixed(8); //total
 				var shift_left = Number( (v7usd / btc_cost_plus)*0.99).toFixed(8); //exchage
 				var shift_fee = Number( (v7usd / btc_cost_plus)*0.01).toFixed(8); // fee
-
-				console.log( v7usd+ " | "+ btc_cost + " | "  + btc_cost_plus + "::  "+ shifted + " | "+ shift_left + " | " + shift_fee);
+				
+				
+				console.log( "<br>" + v7usd+ " | "+ btc_cost + " | "  + btc_cost_plus + "::  "+ shifted + " | "+ shift_left + " | " + shift_fee);
 
 				//$('#exchange_amount').val(shift_left );
 				$('#exchange_amount').html(shifted);

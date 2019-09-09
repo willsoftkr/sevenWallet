@@ -191,7 +191,7 @@ $(function(){
 	.td_pbal,.td_amt{font-size:1.2em; font-weight:600;}
 	table.regTb tr:hover td{background:papayawhip;}
 	.font_red{color:red;font-weight:600};
-
+	.btn2{padding:5px 15px; margin-left:20px; background:#ff3061;color:white;}
 </style>
 
 <form name="fsearch" id="fsearch" class="local_sch01 local_sch" action="./config_change.php" method="GET">
@@ -223,9 +223,12 @@ $ord_rev = $ord_array[($ord_key+1)%2]; // 내림차순→오름차순, 오름차
 
 <form name="site" method="post" action="" enctype="multipart/form-data" style="margin:0px;">
 <div class="adminWrp">
+	
+<div>
+	<button type="button" class="total_right btn_submit btn2" style="padding:5px 15px; margin-left:20px; " onclick="location.href='./delete_db_sol.php?id=change'">초기화</button>
 	<span class="total_left">Total : <?=$total_count?></span> 
 	<span class="total_right">Total withdrawal BTC : <span class="font_red"><?echo round($total_hap,8)?></span>
-	 BTC / <span class="font_red"><?=$total_usd?></span> USD <br> Total transfer Fee : <span class="font_red"><?= $total_fee ?></span> BTC</span>
+	 BTC / <span class="font_red"><?=$total_usd?></span> USD <br> Total transfer Fee : <span class="font_red"><?= round($total_fee,8) ?></span> BTC</span>
 	<table cellspacing="0" cellpadding="0" border="0" class="regTb">
         
 		<thead>
@@ -236,8 +239,8 @@ $ord_rev = $ord_array[($ord_key+1)%2]; // 내림차순→오름차순, 오름차
 			<!--<th>현재 BTC 수당 잔고</th>-->
 			<th style="width:5%;">요청코인</th>
 			<th style="width:5%;">전환코인</th>
-			<th style="width:10%;">출금요청금액</th>
-			<th style="width:10%;">출금수수료</th>
+			<th style="width:10%;">전환요청금액</th>
+			<th style="width:10%;">전환수수료</th>
 			<th style="width:10%;">전환금액</th>
 			<th style="width:10%;">적용 코인시세</th>
 			<th style="width:10%;">요청일시</th>

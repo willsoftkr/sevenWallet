@@ -223,9 +223,10 @@ $ord_rev = $ord_array[($ord_key+1)%2]; // 내림차순→오름차순, 오름차
 
 <form name="site" method="post" action="" enctype="multipart/form-data" style="margin:0px;">
 <div class="adminWrp">
+	<button type="button" class="total_right btn_submit btn2" style="padding:5px 15px; margin-left:20px; " onclick="location.href='./delete_db_sol.php?id=with'">초기화</button>
 	<span class="total_left">Total : <?=$total_count?></span> 
 	<span class="total_right">Total withdrawal BTC : <span class="font_red"><?echo round($total_hap,8)?></span>
-	 BTC / <span class="font_red"><?=$total_usd?></span> USD <br> Total transfer Fee : <span class="font_red"><?= $total_fee ?></span> BTC</span>
+	 BTC / <span class="font_red"><?=$total_usd?></span> USD <br> Total transfer Fee : <span class="font_red"><?=  round($total_fee,8) ?></span> BTC</span>
 	<table cellspacing="0" cellpadding="0" border="0" class="regTb">
         
 		<thead>
