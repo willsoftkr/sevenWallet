@@ -98,6 +98,7 @@ $order_result = sql_query($order_sql);
 			var v7_cost = "<?=$v7_cost?>";
 			var btc_cost = Number("<?=$btc_cost_num?>");
 			var btc_cost_plus = Number(btc_cost) + Number(btc_cost*0.03) ;
+			var valid = false;
 			//var btc_cost_1 = 10000.00;
 			
 			function exchage_result(val) {
@@ -129,6 +130,7 @@ $order_result = sql_query($order_sql);
 				$('#exchange_amount').html(shifted);
 				$('#exchange_fee').html(shift_fee);
 				$('#exchange_total').html(shift_left);
+				valid =true;
 			});
 
 			
@@ -140,6 +142,11 @@ $order_result = sql_query($order_sql);
 				var mb_id = "<?=$member['mb_id']?>";
 
 				console.log(amount +" / "+ exchange_amount);
+				
+				if(!valid){
+					commonModal('check input amount','<strong> input amount. </strong>',80);
+					return false;
+				}
 
 				if(amount > v7_account){
 					commonModal('check input amount','<strong> out of the maximum amount. </strong>',80);
@@ -169,6 +176,10 @@ $order_result = sql_query($order_sql);
 							purchaseModal('Complete Exchange coin','<strong> Complete Exchange <br> <span class="font_blue">'+ amount +' V7 </span><br>'+ '<span class="transimg"></span> <span class="font_orange">' + exchange_total +'btc.</span></strong>','success');
 							//commonModal('Congratulation! Complete Deposit','<strong> Congratulation! Complete Exchange.</strong>',80);	
 							$('#modal_return_url').on('click', function(){
+								location.reload();
+							});
+							$('#purchaseModal').on('click', function(){
+								console.log("click");
 								location.reload();
 							});
 						},

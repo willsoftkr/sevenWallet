@@ -42,7 +42,13 @@ $math_total = sql_fetch($math_sql);
 $EOS_TOTAL =  number_format($math_total['total'],3);  //합계잔고  //합계잔고
 */
 
-if($account < $amount){
+$sum_deposit = "select sum(mb_v7_account + mb_v7_calc) as hap from g5_member where mb_id='".$mb_id."'";
+$sum_deposit_result= sql_fetch($sum_deposit);
+
+$save = $sum_deposit_result['hap'];
+
+
+if($save < $amount){
 	echo (json_encode(array("result" => "failed",  "code" => "0002", "sql" => 'not enough balance')));
 }else{
 

@@ -1,7 +1,9 @@
 <?
 include_once(G5_THEME_PATH.'/_include/head.php'); 
 include_once(G5_THEME_PATH.'/_include/gnb.php'); 
+include_once(G5_THEME_PATH.'/_include/wallet.php'); 
 //print_r($member);
+/*
 $math_sql = "select  sum(mb_btc_account + mb_btc_calc + mb_btc_amt) as total from g5_member where mb_id = '".$member['mb_id']."'";
 $math_total = sql_fetch($math_sql);
 
@@ -9,10 +11,17 @@ $btc_account = number_format($math_total['total'],8);
 $btc_cost = get_coin_cost('btc');
 $v7_cost = get_coin_cost('v7');
 
+
 function deposit_result($val){
 	return Number_format(get_coin_cost('btc')*$val, 2);
 }
+*/
+//echo $deposit_cost;
+
 ?>
+<style>
+	.total {margin:40px !important;padding-top:30px;border-top:1px solid #bbb}
+</style>
 			<section class="con90_wrap deposit_wrap">
 
 				<div class="color_block bit_block">
@@ -37,11 +46,20 @@ function deposit_result($val){
 								<li>=</li>
 								<li>
 									<p class="font_red" data-i18n="wallet.All deposit">모두 입금하기</p>
-									<input type="number" id="upstair" placeholder="<?=deposit_result($btc_account);?>" disabled >
+									<input type="number" id="upstair" placeholder="<?=deposit_result($btc_account_num);?>" disabled >
 									<span>USD</span>
 								</li>
 							</ul>
 						</div>
+
+						
+						<div class="total">
+							<span class="send_title" data-i18n="wallet.인출합계">Total Deposit</span>
+							<p class="f_right"><span class="font_gray" id="amount_total">0</span> Sales/Point</p>
+						</div>
+						
+	
+</div>
 							
 			</section>
 			
@@ -57,28 +75,34 @@ function deposit_result($val){
 
 	<script>
 			
-			var btc_account = "<?=$btc_account?>";
-			var btc_cost = "<?=$btc_cost?>";
+			var btc_account = "<?=$btc_account_num?>";
+			var btc_cost = "<?=$btc_cost_num?>";
+			var deposit_cost = "<?=$deposit_cost?>";
 
 			function deposit_result(val){
+				return Number(deposit_cost*val).toFixed(2);
+			}
+			
+			function btc_result(val){
 				return Number(btc_cost*val).toFixed(2);
 			}
 
 			$('#amount').on('change',function(){
 				//console.log(this.value +" / "+ btc_account);
 
-				if(this.value > btc_account){
+				if(this.value > Number(btc_account)){
 					commonModal('check input amount','<strong> out of the maximum amount. </strong>',80);
 					return false;
 				}
 				var rate = this.value;
-				$('#upstair').val(deposit_result(rate));
+				$('#upstair').val(btc_result(rate));
+				$('#amount_total').text(deposit_result(rate));
 			});
 
 			
 			$('#exchange').on('click', function(){
 				var amount = $('#amount').val();
-				var upstair = $('#upstair').val();
+				var upstair = $('#amount_total').text();
 				var mb_id = "<?=$member['mb_id']?>";
 
 				console.log(amount +" / "+ btc_account);
@@ -96,7 +120,7 @@ function deposit_result($val){
 						async: false,
 						dataType: "json",
 						data:  {
-							"account" : btc_account,
+							"account" : Number(btc_account),
 							"amount" : amount,
 							"upstair": upstair,
 							"coin_cost" : btc_cost,

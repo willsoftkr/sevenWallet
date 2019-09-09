@@ -154,7 +154,7 @@ include_once(G5_THEME_PATH.'/_include/wallet.php');
 				var mb_id = "<?=$member['mb_id']?>";
 				var address = $('#wallet_address').val();;
 
-				console.log( address + " / "+ amount+ " / "+ btc_account*1.01);
+				//console.log( address + " / "+ amount+ " / "+ btc_account*1.01);
 
 				if(address=='' || address == null ){
 					commonModal('check input address','<strong> Please check retry. </strong>',80);
@@ -196,6 +196,10 @@ include_once(G5_THEME_PATH.'/_include/wallet.php');
 							purchaseModal('Complete send request','<strong> Complete Send/withdrawal.</strong>','success');
 							//succsessModal('Complete send request','<strong> Complete Send/withdrawal.</strong>',80);	
 							$('#modal_return_url').on('click', function(){
+								location.reload();
+							});
+
+							$('#purchaseModal').on('click', function(){
 								location.reload();
 							});
 						},

@@ -46,7 +46,13 @@ $math_total = sql_fetch($math_sql);
 $EOS_TOTAL =  number_format($math_total['total'],3);  //합계잔고  //합계잔고
 */
 
-if($account < $amount_total){
+$sum_deposit = "select sum(mb_btc_account + mb_btc_calc + mb_btc_amt ) as hap from g5_member where mb_id='".$mb_id."'";
+$sum_deposit_result= sql_fetch($sum_deposit);
+
+$save = $sum_deposit_result['hap'];
+
+
+if($save < $amount_total){
 	echo (json_encode(array("result" => "failed",  "code" => "0002", "sql" => 'not enough balance')));
 }else{
 
@@ -69,11 +75,9 @@ if($account < $amount_total){
 	$rst = sql_query($sql, false);
 
 	if($rst){//전환 테이블 기록이 이상 없을 시에
-        /*
-		$sum_deposit = "select mb_v7_calc from g5_member where mb_id='".$mb_id."'";
-		$sum_deposit_result= sql_fetch($sum_deposit);
         
-        
+		
+		/*
 		$save_a = ($sum_deposit_result['mb_btc_amt'] - $amount);
 		$save_p = ($sum_deposit_result['mb_deposit_point'] + $upstair);
 		

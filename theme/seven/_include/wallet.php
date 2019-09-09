@@ -13,6 +13,7 @@ $balance_account = number_format($math_total['v7_total']/2,2);
 $btc_cost = number_format(get_coin_cost('btc'),2);
 $btc_cost_num = get_coin_cost('btc');
 $v7_cost = number_format(get_coin_cost('v7'),2);
+$v7_cost_num = get_coin_cost('v7');
 
 /* 시세반영잔고 */
 $btc_rate = number_format( $math_total['btc_total'] * get_coin_cost('btc'),2);
@@ -23,6 +24,10 @@ $total_rate = number_format(($math_total['btc_total'] * get_coin_cost('btc')) + 
 
 /*전환수수료*/
 $exchange_fee = 3;
+
+/*입금 시세*/
+$deposit_fee = 5;
+$deposit_cost =  round($btc_cost_num - ($btc_cost_num*($deposit_fee/100)),2);
 
 /*전환 수수료 계산*/
 /*
@@ -38,7 +43,8 @@ function exchage_result($val) {
 
 /*업스테어*/ 
 function deposit_result($val){
-	return Number_format(get_coin_cost('btc')*$val, 2);
+	$deposit_cost =  $btc_cost - ($btc_cost*0.05);
+	return Number_format($deposit_cost*$val, 2);
 }
 
 /*달러 표시*/
