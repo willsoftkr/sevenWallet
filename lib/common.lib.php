@@ -147,6 +147,7 @@ function goto_url($url)
 }
 
 
+
 // 세션변수 생성
 function set_session($session_name, $value)
 {
