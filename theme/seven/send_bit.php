@@ -195,7 +195,7 @@ include_once(G5_THEME_PATH.'/_include/wallet.php');
 						success: function(data) {
 							purchaseModal('Complete send request','<strong> Complete Send/withdrawal.</strong>','success');
 							//succsessModal('Complete send request','<strong> Complete Send/withdrawal.</strong>',80);	
-							$('#closeModal').on('click', function(){
+							$('#modal_return_url').on('click', function(){
 								location.reload();
 							});
 						},
