@@ -121,5 +121,4 @@ if($maintenance == 'Y' && $is_admin != 'super' &&  strpos($url,'adm')  < 1){
 	include_once(G5_PATH.'/index_pop.php');
 }
 
-login_check($member['mb_id']);
 ?>
