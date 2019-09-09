@@ -2,6 +2,21 @@
 include_once(G5_THEME_PATH.'/_include/head.php'); 
 include_once(G5_THEME_PATH.'/_include/gnb.php'); 
 include_once(G5_THEME_PATH.'/_include/wallet.php'); 
+
+
+$sql = " select * from maintenance";
+$nw = sql_fetch($sql);
+
+if($nw['nw_upstair'] == 'Y'){
+	$nw_upstair = 'Y';
+}else{
+	$nw_upstair = 'N';
+}
+
+if($nw_upstair == 'Y'){
+	include_once(G5_PATH.'/service_pop.php');
+}
+
 //print_r($member);
 /*
 $math_sql = "select  sum(mb_btc_account + mb_btc_calc + mb_btc_amt) as total from g5_member where mb_id = '".$member['mb_id']."'";

@@ -4,6 +4,21 @@
 	include_once(G5_THEME_PATH.'/_include/shop.php');
 	//print_r($member);
 
+	
+	$sql = " select * from maintenance";
+	$nw = sql_fetch($sql);
+
+	if($nw['nw_purchase'] == 'Y'){
+		$nw_purchase = 'Y';
+	}else{
+		$nw_purchase = 'N';
+	}
+
+	if($nw_purchase == 'Y'){
+		include_once(G5_PATH.'/service_pop.php');
+	}
+
+
 	login_check($member['mb_id']);
 ?>
 	<script>

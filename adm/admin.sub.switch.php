@@ -42,15 +42,27 @@ include_once (G5_ADMIN_PATH.'/admin.head.php');
     <tbody>
     
 	<tr>
-        <th scope="row"><label for="nw_with">출금 서비스 사용<strong class="sound_only"> 필수</strong></label></th>
+        <th scope="row"><label for="nw_with">출금 금지<strong class="sound_only"> 필수</strong></label></th>
         <td>
             <p style="padding:0;"><input type="checkbox" id="nw_with" name="nw_with" <?if($nw['nw_with'] == 'Y') {echo "checked";}?>/><label for="nw_with" style=""><span class="ui"></span><span class="nw_with_txt">사용 설정</span></label></p>
         </td>
 
-		  <th scope="row"><label for="nw_upstair">업스테어 서비스 사용<strong class="sound_only"> 필수</strong></label></th>
+		<th scope="row"><label for="nw_upstair"> 매출 금지<strong class="sound_only"> 필수</strong></label></th>
 		<td>
             <p style="padding:0;"><input type="checkbox" id="nw_upstair" name="nw_upstair" <?if($nw['nw_upstair'] == 'Y') {echo "checked";}?>/><label for="nw_upstair" style=""><span class="ui"></span><span class="nw_upstair_txt">사용 설정</span></label></p>
-        </td>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row"><label for="nw_change"> 전환 금지<strong class="sound_only"> 필수</strong></label></th>
+		<td>
+            <p style="padding:0;"><input type="checkbox" id="nw_change" name="nw_change" <?if($nw['nw_change'] == 'Y') {echo "checked";}?>/><label for="nw_change" style=""><span class="ui"></span><span class="nw_change_txt">사용 설정</span></label></p>
+		</td>
+
+		<th scope="row"><label for="nw_purchase"> 팩 구매 금지<strong class="sound_only"> 필수</strong></label></th>
+		<td>
+            <p style="padding:0;"><input type="checkbox" id="nw_purchase" name="nw_purchase" <?if($nw['nw_purchase'] == 'Y') {echo "checked";}?>/><label for="nw_purchase" style=""><span class="ui"></span><span class="nw_purchase_txt">사용 설정</span></label></p>
+		</td>
+		
     </tr>
 
     </tbody>
@@ -81,6 +93,20 @@ $(document).ready(function(){
 			$('.nw_upstair_txt').html('사용안함');
 		}
 	});
+	$('#nw_change').on('click',function(){
+		if($('#nw_change').is(":checked")){
+			$('.nw_change_txt').html('사용함');
+		}else{
+			$('.nw_change_txt').html('사용안함');
+		}
+	});
+	$('#nw_purchase').on('click',function(){
+		if($('#nw_purchase').is(":checked")){
+			$('.nw_purchase_txt').html('사용함');
+		}else{
+			$('.nw_purchase_txt').html('사용안함');
+		}
+	});
 
 });
 
@@ -105,7 +131,24 @@ function frmnewwin_check(f)
 		$('input[name=nw_upstair]').val('N');
 	}
 
-	f.nw_upstair = $('#nw_upstair').val();
+	f.nw_upstair = $('#nw_change').val();
+
+	if ($('input[name=nw_change]').is(":checked")) {
+    $('input[name=nw_change]').val('Y');
+	} else {
+		$('input[name=nw_change]').val('N');
+	}
+
+	f.nw_change = $('#nw_change').val();
+
+	
+	if ($('input[name=nw_purchase]').is(":checked")) {
+    $('input[name=nw_purchase]').val('Y');
+	} else {
+		$('input[name=nw_purchase]').val('N');
+	}
+
+	f.nw_purchase = $('#nw_purchase').val();
 
 
     if (errmsg != "") {

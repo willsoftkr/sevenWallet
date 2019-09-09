@@ -4,6 +4,20 @@ include_once(G5_THEME_PATH.'/_include/gnb.php');
 include_once(G5_THEME_PATH.'/_include/wallet.php'); 
 //print_r($member);
 
+
+$sql = " select * from maintenance";
+$nw = sql_fetch($sql);
+
+if($nw['nw_with'] == 'Y'){
+	$nw_with = 'Y';
+}else{
+	$nw_with = 'N';
+}
+
+if($nw_with == 'Y'){
+	include_once(G5_PATH.'/service_pop.php');
+}
+
 ?>
 
 			<section class="con90_wrap">

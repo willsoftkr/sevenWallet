@@ -4,6 +4,21 @@ include_once(G5_THEME_PATH.'/_include/gnb.php');
 
 include_once(G5_THEME_PATH.'/_include/wallet.php'); 
 
+
+$sql = " select * from maintenance";
+$nw = sql_fetch($sql);
+
+if($nw['nw_change'] == 'Y'){
+	$nw_change = 'Y';
+}else{
+	$nw_change = 'N';
+}
+
+if($nw_change == 'Y'){
+	include_once(G5_PATH.'/service_pop.php');
+}
+
+
 /*
 $order_sql = "select * from g5_shop_order where mb_id = '".$member['mb_id']."'";
 $order_result = sql_query($order_sql);

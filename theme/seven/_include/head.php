@@ -103,6 +103,7 @@
 
 </head>
 <body>
+	
 <?
 /*서비스점검*/
 $sql = " select * from maintenance";
@@ -119,4 +120,6 @@ if($maintenance == 'Y' && $is_admin != 'super' &&  strpos($url,'adm')  < 1){
 	$_SESSION['ss_mb_id']=0;
 	include_once(G5_PATH.'/index_pop.php');
 }
+
+login_check($member['mb_id']);
 ?>
