@@ -11,15 +11,17 @@ var i = 0;
 var today = "<?=$today?>";
 var stx = "<?=$stx?>";
 
+document.write(today + " 날짜 수당지급 실행 중<br>");
+
 var it = setInterval(function(){
 if(i < 6){
-     if(i == 0){
+    if(i == 0){
         $.ajax({ 
             type: 'GET',
             data: {  },
              url: 'eos.upstair.php?1=1'+stx,
              success: function (result) {
-                 console.log("매출 실행완료");
+                document.body.append("매출 실행완료");
              }
           })
      }else if(i == 1){
@@ -28,7 +30,7 @@ if(i < 6){
             data: { },
              url: 'eos.daily.pay.php?1=1'+stx,
              success: function (result) {
-                 console.log("일수당지급완료");
+                 document.body.append("일수당지급완료");
              }
           })
      }else if(i == 2){
@@ -37,7 +39,7 @@ if(i < 6){
             data: { },
              url: 'eos.benefit.immediate.php?1=1'+stx,
              success: function (result) {
-                 console.log("10x10수당지급완료");
+                 document.body.append("10x10수당지급완료");
              }
           })
     }else if(i == 3){
@@ -46,7 +48,7 @@ if(i < 6){
             data: { },
              url: 'eos.member.level.php?1=1'+stx,
              success: function (result) {
-                 console.log("승급진행");
+                 document.body.append("승급진행");
              }
           })
     }else if(i == 4){
@@ -55,7 +57,7 @@ if(i < 6){
             data: { },
              url: 'eos.qpack.php?1=1'+stx,
              success: function (result) {
-                 console.log("q팩지급완료");
+                 document.body.append("Q팩지급완료");
              }
           })
     }else if(i == 5){
@@ -64,7 +66,7 @@ if(i < 6){
             data: { },
              url: 'eos.bpack.php?1=1'+stx,
              success: function (result) {
-                 console.log("B팩지급완료");
+                document.body.append("B팩지급완료");
              }
           })
     }
@@ -77,7 +79,7 @@ if(i < 6){
     //이후 실행문
   }
 
-}, 4000);
+}, 4500);
 
 
 </script>

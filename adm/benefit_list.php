@@ -170,22 +170,24 @@ $colspan = 16;
 	<style>
 		.benefit{color:white;border:0;padding: 5px 15px;height:40px;}
 		.benefit.day{background:cornflowerblue}
-		.benefit.recom{background:palevioletred}
+		.benefit.upstair{background:steelblue}
+		.benefit.recom{background:slateblue}
 		.benefit.qpack{background:dodgerblue}
-		.benefit.level{background:#ff3061}
+		.benefit.level{background:slategray}
 		.benefit.bpack{background:teal}
 		.benefit.black{background:black}
+		.benefit.red{background:red}
 		.benefit:hover{background:black;}
 	</style>
 
-	<input type="submit" name="act_button" value=" 업스테어 "  class="frm_input benefit day" onclick="go_calc(5);">
+	<input type="submit" name="act_button" value=" 업스테어 "  class="frm_input benefit upstair" onclick="go_calc(5);">
 	<input type="submit" name="act_button" value=" 일일 수당 지급 "  class="frm_input benefit day" onclick="go_calc(0);">
 	<input type="submit" name="act_button" value=" 10X10 지급"  class="frm_input benefit recom" onclick="go_calc(1);">
 	<input type="submit" name="act_button" value=" 레벨승급"  class="frm_input benefit level" onclick="go_calc(2);">
 	<input type="submit" name="act_button" value=" 무한 매칭 지급 " class="frm_input benefit bpack" onclick="go_calc(3);">
 	<input type="submit" name="act_button" value=" B팩 수당 지급"  class="frm_input benefit qpack" onclick="go_calc(4);">
-	<input type="submit" name="act_button" value=" 전체클릭"  class="frm_input benefit black" onclick="go_calc(6);">
-	<input type="submit" name="act_button" value=" 어제까지자동지급"  class="frm_input benefit black" onclick="go_calc(7);">
+	<input type="submit" name="act_button" value=" 전체수당지급"  class="frm_input benefit black" onclick="go_calc(6);">
+	<input type="submit" name="act_button" value=" 어제까지자동지급"  class="frm_input benefit red" onclick="go_calc(7);">
 
 	<!--
 	<input type="submit" name="act_button" value=" 바이너리 보너스 "  class="frm_input" onclick="go_calc(2);">
