@@ -51,6 +51,12 @@ else if($func == 'pack'){
 	
 	echo "result : ".$sql_result;
 }
+else if($func == 'amt'){
+	$sql_clear = "update g5_member set mb_btc_calc = '0', mb_btc_amt = '0', mb_v7_calc = '0' ";
+	$sql_result = sql_query($sql_clear);
+	
+	echo "result : ".$sql_result;
+}
 
 else if($func == 'pack_order'){
 	$sql_clear2 = " TRUNCATE table g5_shop_cart; ";

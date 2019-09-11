@@ -211,6 +211,7 @@ $colspan = 16;
 
 <div class="sysbtn">
 	<!--<a href="./member_grade.php" class="btn btn2" >멤버 등급 수동 갱신</a>-->
+	<a href="#" class="btn btn3" onclick="clear_db('amt');">멤버 출금,전환 초기화</a>
     <a href="#" class="btn btn1" onclick="clear_db('member');">멤버 수당잔고 초기화</a>
 	<a href="#" class="btn btn1" onclick="clear_db('pack');">B팩,Q팩 수당 DB 초기화</a>
 	<a href="#" class="btn btn3" onclick="clear_db('pack_order');">B팩,Q팩 구매 DB 초기화</a>
