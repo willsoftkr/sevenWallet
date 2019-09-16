@@ -643,15 +643,15 @@ function iwol_process($day,$mb_recommend, $mbid, $mb_name, $kind, $upstair, $not
 	//echo '### '.$upstair.'---'.$iwol['cnt'].'<br>';
 
 //	if( ($upstair>0) && ($iwol['cnt']==0) ){
-	if( ($upstair>0)  ){   // 소실적 제거용
+	if( ($upstair>=0)  ){   // 소실적 제거용
 		$temp_sql1 = " insert iwol set iwolday='".$day."'";
 		$temp_sql1 .= " ,mb_id		= '".$mbid."'";
-		$temp_sql1 .= " ,mb_no		= '".$mbname."'";
 		$temp_sql1 .= " ,kind		= '".$kind."'";
 		$temp_sql1 .= " ,pv		= '".$upstair."'";
 		$temp_sql1 .= " ,note		= '".$note."'";
 		$temp_sql1 .= " ,mb_brecommend		= '".$mb_recommend."'";
 		sql_query($temp_sql1);
+		echo $temp_sql1;
 		echo '<br><span class=blue>▶▶▶▶ 이월금 : '.$upstair.'</span><br>';
 	}
 }
