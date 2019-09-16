@@ -83,7 +83,7 @@ $result = sql_query($sql);
 $send_sql = $sql;
 $listall = '<a href="'.$_SERVER['PHP_SELF'].'" class="ov_listall">전체목록</a>';
 
-$g5['title'] = '수당계산 및 수당리스트';
+$g5['title'] = 'B팩 수당';
 include_once ('./admin.head.php');
 include_once(G5_PLUGIN_PATH.'/jquery-ui/datepicker.php');
 

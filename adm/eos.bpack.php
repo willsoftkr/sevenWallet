@@ -700,7 +700,7 @@ function save_benefit($day, $mbid, $mbname, $recom, $allowance_name, $sales_day,
 			
 			$balance_up = "update g5_member set mb_balance = round(mb_balance+ ".$benefit.", 5), mb_v7_account = round(mb_v7_account+ ".$benefit."/".$v7_cost.",3) where mb_id = '".$mbid."';";
 			sql_query($balance_up);
-			echo $balance_up;
+			//echo $balance_up;
 		}
 	}
 }
