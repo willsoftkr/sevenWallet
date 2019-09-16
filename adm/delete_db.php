@@ -46,7 +46,27 @@ else if($func == 'pack'){
 	$sql_clear2 = " TRUNCATE table thirty2";
 		$sql_result = sql_query($sql_clear2);
 	
-	$sql_clear3 = 	"delete from soodang_pay where allowance_name = 'Q Pack' or allowance_name =  'B Pack'" ;
+	$sql_clear3 = 	"delete from soodang_pay where allowance_name = 'Binary' or allowance_name =  'B Pack'" ;
+		$sql_result = sql_query($sql_clear3);
+	
+	echo "result : ".$sql_result;
+}
+else if($func == 'bpack'){
+	$sql_clear2 = " TRUNCATE table bnoo2; ";
+		$sql_result = sql_query($sql_clear2);
+	$sql_clear2 = " TRUNCATE table bthirty2; ";
+		$sql_result = sql_query($sql_clear2);
+	$sql_clear2 = " TRUNCATE table iwol;";
+		$sql_result = sql_query($sql_clear2);
+
+	$sql_clear2 = " TRUNCATE table noo2;";
+		$sql_result = sql_query($sql_clear2);
+	$sql_clear2 = "TRUNCATE table btoday2;";
+		$sql_result = sql_query($sql_clear2);
+	$sql_clear2 = " TRUNCATE table thirty2";
+		$sql_result = sql_query($sql_clear2);
+	
+	$sql_clear3 = 	"delete from soodang_pay where allowance_name = 'Binary' or allowance_name =  'B Pack'" ;
 		$sql_result = sql_query($sql_clear3);
 	
 	echo "result : ".$sql_result;
