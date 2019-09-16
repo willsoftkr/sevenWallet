@@ -8,37 +8,8 @@ $v7_cost = number_format(get_coin_cost('v7'),2);
 
 
 
-$benefit = "SELECT allowance_name FROM soodang_pay WHERE (1) GROUP BY allowance_name ";
+$benefit = "SELECT * FROM soodang_pay WHERE allowance_name ='Binary'";
 $rrr = sql_query($benefit);
-
-$allowcnt=0;
-for ($i=0; $allowance_name=sql_fetch_array($rrr); $i++) {   
-	$nnn="allowance_chk".$i;
-	$html.= "<input type='checkbox' name='".$nnn."' id='".$nnn."'";
-	
-	if($$nnn!=''){
-		$html.=" checked='true' ";
-	}		
-
-	$html.=" value='".$allowance_name['allowance_name']."'>".$allowance_name['allowance_name']."&nbsp;&nbsp;";
-
-
-	if(${"allowance_chk".$i}!=''){
-		if($allowcnt==0){
-			$sql_search .= " and ( (allowance_name='".${"allowance_chk".$i}."')";
-		}else{
-			$sql_search .= "  or ( allowance_name='".${"allowance_chk".$i}."' )";
-		}
-
-		
-			$qstr.='&'.$nnn.'='.$allowance_name['allowance_name'];
-		
-		$allowcnt++;
-
-	}
-}
-
-if ($allowcnt>0) $sql_search .= ")";
 
 
 $token = get_token();
@@ -51,24 +22,13 @@ $qstr.='&diviradio='.$diviradio.'&r='.$r;
 $qstr.='&stx='.$stx.'&sfl='.$sfl;
 $qstr.='&aaa='.$aaa;
 
-$sql_common = " from soodang_pay where (1) ";
+$sql_common = " from soodang_pay where allowance_name ='Binary'";
 
 if(!$fr_date){
 	$fr_date=date("Y-m-d");
 	$to_date=$fr_date;
 	
 }
-
-	$sql_search .= " and (";
-		if($chkc){
-		$sql_search .= " allowance_name=' Binary'";
-		
- $sql_search .= " )";
- 
-}/*else if($dv_gubun){
-	 $sql_search .= " and dv_gubun='".$dv_gubun."'";
-}
-*/
 
 if($_GET['start_dt']){
 	$sql_search .= " and day >= '".$_GET['start_dt']."'";
@@ -116,7 +76,7 @@ $sql = "select *
         {$sql_order}
         limit {$from_record}, {$rows} ";
 
-
+//echo $sql;
 $result = sql_query($sql);
 
 
