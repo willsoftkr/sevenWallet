@@ -93,6 +93,7 @@ $(document).ready(function(){
 			$('.nw_upstair_txt').html('사용안함');
 		}
 	});
+
 	$('#nw_change').on('click',function(){
 		if($('#nw_change').is(":checked")){
 			$('.nw_change_txt').html('사용함');
@@ -100,6 +101,7 @@ $(document).ready(function(){
 			$('.nw_change_txt').html('사용안함');
 		}
 	});
+	
 	$('#nw_purchase').on('click',function(){
 		if($('#nw_purchase').is(":checked")){
 			$('.nw_purchase_txt').html('사용함');
@@ -141,7 +143,7 @@ function frmnewwin_check(f)
 
 	f.nw_change = $('#nw_change').val();
 
-	
+
 	if ($('input[name=nw_purchase]').is(":checked")) {
     $('input[name=nw_purchase]').val('Y');
 	} else {

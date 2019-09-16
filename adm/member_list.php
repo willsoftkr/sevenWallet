@@ -137,6 +137,7 @@ function out_check($val){
 	#member_depth{background:lightskyblue}
 	#member_depth:hover{background:black; color:white;}
 </style>
+
 <?php if ($is_admin == 'super') { ?>
 <div class="btn_add01 btn_add">
 	<a href="./member_table_depth.php" id="member_depth">회원추천관계갱신</a>

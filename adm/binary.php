@@ -59,11 +59,10 @@ if(!$fr_date){
 	
 }
 
-if(($allowance_name) ){
 	$sql_search .= " and (";
 		if($chkc){
-		$sql_search .= " allowance_name='".$allowance_name."'";
-		}
+		$sql_search .= " allowance_name=' Binary'";
+		
  $sql_search .= " )";
  
 }/*else if($dv_gubun){
@@ -181,14 +180,10 @@ $colspan = 16;
 		.benefit:hover{background:black;}
 	</style>
 
-	<input type="submit" name="act_button" value=" 업스테어 "  class="frm_input benefit upstair" onclick="go_calc(5);">
-	<input type="submit" name="act_button" value=" 일일 수당 지급 "  class="frm_input benefit day" onclick="go_calc(0);">
-	<input type="submit" name="act_button" value=" 10X10 지급"  class="frm_input benefit recom" onclick="go_calc(1);">
-	<input type="submit" name="act_button" value=" 레벨승급"  class="frm_input benefit level" onclick="go_calc(2);">
-	<input type="submit" name="act_button" value=" 무한 매칭 지급 " class="frm_input benefit bpack" onclick="go_calc(3);">
-	<input type="submit" name="act_button" value=" B팩 수당 지급"  class="frm_input benefit qpack" onclick="go_calc(4);">
-	<input type="submit" name="act_button" value=" 전체수당지급"  class="frm_input benefit black" onclick="go_calc(6);">
-	<input type="submit" name="act_button" value=" 어제까지자동지급"  class="frm_input benefit red" onclick="go_calc(7);">
+    
+    <input type="submit" name="act_button" value=" B팩수당지급 되돌리기"  class="frm_input benefit red" onclick="go_calc(9);">
+	<input type="submit" name="act_button" value=" B팩 수당(일일) 지급"  class="frm_input benefit qpack" onclick="go_calc(4);">
+    <input type="submit" name="act_button" value=" 어제까지 B팩자동 지급"  class="frm_input benefit hotpink" onclick="go_calc(8);">
 
 	<!--
 	<input type="submit" name="act_button" value=" 바이너리 보너스 "  class="frm_input" onclick="go_calc(2);">
@@ -212,9 +207,8 @@ $colspan = 16;
 
 <div class="sysbtn">
 	<!--<a href="./member_grade.php" class="btn btn2" >멤버 등급 수동 갱신</a>-->
-	<a href="#" class="btn btn3" onclick="clear_db('amt');">멤버 출금,전환 초기화</a>
-	<a href="#" class="btn btn3" onclick="clear_db('pack_order');">B팩,Q팩 구매 DB 초기화</a>
-	<a href="#" class="btn btn2" onclick="clear_db('soodang');">수당 전체 DB 초기화</a>
+    <a href="#" class="btn btn1" onclick="clear_db('member');">멤버 수당 잔고(전체) 초기화</a>
+	<a href="#" class="btn btn1" onclick="clear_db('pack');">B팩,Q팩 관련 수당 DB 초기화</a>
 </div>
 
 
@@ -384,7 +378,10 @@ function go_calc(n)
 			location.href='eos.auto.php?'+str;         //전체수당지급
 			break;
 		case 8: 
-			location.href='eos.Bpack_auto.php?'+str;         //전체수당지급
+			location.href='eos.bpack_auto.php?'+str;         //전체수당지급
+            break;
+        case 9: 
+			location.href='return_binary.php?'+str;         //전체수당지급
 			break;
 	}
 	

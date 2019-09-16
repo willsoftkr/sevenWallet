@@ -44,8 +44,9 @@ if($this_id){
 		print_r($sql_update);
 	}
 
+	
 
-	//goto_url("./adm/member_list.php");
+	goto_url("./adm/member_list.php");
 }
 ?>
 
