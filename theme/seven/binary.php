@@ -74,13 +74,14 @@ $sql_r = "select mb_id as b_recomm2 from g5_member where mb_brecommend='".$start
 $brst = sql_fetch($sql);
 $brst_r = sql_fetch($sql_r);
 
+/*
 $get_point_cnt1 = "CREATE TEMPORARY TABLE IF NOT EXISTS tb_real2 select * from iwol where mb_id='".$brst['b_recomm']."' and pv>=0 and kind in (0,2,22,9,99);";
 sql_query($get_point_cnt1);
 
 $get_point_cnt2 = "select count(A.iwolday) as total_row from tb_real2 A left join iwol B on A.iwolday=B.iwolday where B.mb_id='".$brst_r['b_recomm2']."' and B.pv>=0 and B.kind in (0,2, 22, 9, 99) ";
 $cnt_rst = sql_fetch($get_point_cnt2);
 $total_count = $cnt_rst['total_row'];
-
+*/
 
 $rows = 12;
 $total_page  = ceil($total_count / $rows);  // 전체 페이지 계산
@@ -173,6 +174,7 @@ $brst7_r = sql_fetch($sql7_r);
 //echo " 13".$brst7[b_recomm]." 14".$brst7[b_recomm2];
 array_push($b_recom_arr,$brst7['b_recomm']);
 array_push($b_recom_arr,$brst7_r['b_recomm2']);
+
 
 $list_info = array();
 $list_pinfo = array();
@@ -544,13 +546,12 @@ for($i=1;$i<=15;$i++){
 	<script>
 	var b_recom_arr = JSON.parse('<? echo json_encode($b_recom_arr);?>');
 	var $div = $('<div>');
-
 	var data1 = {};
 
 	$(function() {
 		
 		// 리스트 호출 바로윗단계기준 호출
-		
+		/*
 		$( ".lvl-open" ).each(function( index ) {
 			var upperId = Math.floor($(this).attr("id")/2);
 			console.log("upperId : " +  upperId);
@@ -567,7 +568,7 @@ for($i=1;$i<=15;$i++){
 					},
 					dataType: 'json',
 					success: function(result) {
-						// console.log(result);
+						 //console.log(result);
 						$div.empty();
 						$.each(result, function( index, obj ) {
 							var opt = $('#dup > option').clone();
@@ -581,25 +582,29 @@ for($i=1;$i<=15;$i++){
 
 			}
 		});
-		
+		*/
 
 		// 리스트 호출 로그인멤버기준
 		$( ".lvl-open" ).each(function( index ) {
 			var upperId = Math.floor($(this).attr("id")/2);
-			
 			var id = $(this).attr("id");
+			var mem_id = "<?=$member['mb_id']?>";
+
+			console.log("upperId : " +  id + " | mem : "+ mem_id);
+			//console.log("success : "+ b_recom_arr);
 			
-			if(b_recom_arr['upperId']){ // 상위 회원이 있을때 
 				$.ajax({
 					url: g5_url+'/util/binary_tree_mem.php',
-					type: 'GET',
+					type: 'POST',
 					async: false,
 					data: {
-						mb_id: '<?=$member['mb_id']?>'
+						mb_id: mem_id
 					},
 					dataType: 'json',
 					success: function(result) {
-						// console.log(result);
+						
+						console.log("success" +result);
+
 						$div.empty();
 						$.each(result, function( index, obj ) {
 							var opt = $('#dup > option').clone();
@@ -610,8 +615,7 @@ for($i=1;$i<=15;$i++){
 						$('#'+id+'.lvl-open').find('select').append($div.html());
 					}
 				});
-
-			}
+			
 		});
 	
 

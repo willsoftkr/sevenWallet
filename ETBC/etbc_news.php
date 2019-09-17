@@ -1,17 +1,23 @@
 <?php
 include_once('./_common.php');
-$sql = "select * from {$write_table} order by wr_id desc";
+echo $write_table;
+$sql = "select * from {g5_write_news} order by wr_id desc";
 $list = sql_query($sql);
+
+
+echo "______________________".$list;
+
 ?>
+
 
 <!doctype html>
 <html lang="ko">
 <head>
-	<?include_once('common_head.php')?>
+	
 	<link rel="stylesheet" href="css/style.css">
 
 	<script>
-		var open = '<?=$_GET[open]?>';
+		var open = '<?=$_GET['open']?>';
 		var $selected;
 		$(function() {
 
@@ -72,7 +78,7 @@ $list = sql_query($sql);
 	</script>
 </head>
 <body>
-	<?include_once('mypage_head.php')?>
+	
 	<div class="main-container">		
 		<div id="body-wrapper" class="big-container-wrapper">
 			<h2 class="gray"> <!--data-i18n="news.title"-->ETBC News</h2>
@@ -88,10 +94,10 @@ $list = sql_query($sql);
 				<div class="qa-container">
                 
 <?for($i; $row = sql_fetch_array($list);$i++){?>
-					<div class="question" no="<?echo $row[wr_id]?>">
-						<span class="date"><?echo date("Y-m-d", strtotime($row[wr_last]))?></span> 
-						<span class="inner_title"><?echo $row[wr_subject]?></span>
-						<!--xx<span class="views"><?echo $row[wr_hit]?></span>--><!--
+					<div class="question" no="<?echo $row['wr_id']?>">
+						<span class="date"><?echo date("Y-m-d", strtotime($row['wr_last']))?></span> 
+						<span class="inner_title"><?echo $row['wr_subject']?></span>
+						<!--<span class="views"><?echo $row['wr_hit']?></span>--><!--
 					</div>
 					<div class="answer">
 						<p class="images"></p> 
