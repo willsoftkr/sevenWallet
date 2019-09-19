@@ -3,10 +3,17 @@ include_once('./_common.php');
 
 $wr_id = $_GET['no'];
 
+
 $ss_name = 'ss_view_'.$bo_table.'_'.$wr_id;
+//print_r(get_session($ss_name));
+
+if(!get_session($ss_name)){
+    sql_query("update g5_write_news set wr_hit = wr_hit + 1  where wr_id ={$wr_id}");
+}
+
 set_session($ss_name, TRUE);
 
-sql_query("update g5_write_news set wr_hit = wr_hit + 1  where wr_id ={$wr_id}");
+
 
 $sql = "select * from {$write_table} A ";
 $sql .= " WHERE wr_id=".$_GET['no'];

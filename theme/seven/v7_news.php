@@ -5,18 +5,11 @@ include_once(G5_THEME_PATH.'/_include/gnb.php');
 
 $bo_table = "g5_write_news";
 
-$sql = "select * from {$bo_table} order by wr_id desc";
+$sql = "select * from {$bo_table} where wr_1 = '1' order by wr_datetime desc";
 $list = sql_query($sql);
-
-
 ?>
 
-
-<!doctype html>
-<html lang="ko">
-<head>
-	
-	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href= g5_url + "/theme/css/style.css">
 
 	<script>
 		var open = '<?=$_GET['open']?>';
@@ -38,18 +31,22 @@ $list = sql_query($sql);
 			alterClass();
 
 			$(document).on('click','.question' ,function(e) {
+                var table = "news";
+
 				$selected = $(this).next();
 				if($(this).hasClass('qa-open')){// 닫기
 					$(this).removeClass('qa-open');
 					$selected.css('max-height','0px');
 				}else{ // 열기
 					$(this).addClass('qa-open');
-					$(this).find('.views').text(Number($(this).find('.views').text()) + 1);
-					$.get( "pinnacle_news.r.php", {
-						bo_table : 'news',
+                   //0px $(this).find('.views').text(Number($(this).find('.views').text()) + 1);
+                    
+					$.get( g5_url + "/util/news_read.php", {
+						bo_table : table,
 						no : $(this).attr('no')
 					}, function(data) {
-						$('#notReadCnt').text(data.not_read_cnt);
+                        //$('#notReadCnt').text(data.not_read_cnt);
+                        
 						$selected.find('p.writing').html(data.writing);
 						$selected.find('p.files').empty();
 						$selected.find('p.images').empty();
@@ -58,19 +55,20 @@ $list = sql_query($sql);
 							if(obj.filename != ''){
 								if(obj.bf_type == 0){
 									var btn = $('<a>');
-									btn.attr('href','<?=G5_URL?>/bbs/download.php?bo_table=<?=$bo_table?>&wr_id=' + obj.wr_id + '&no=' + obj.bf_no);
+									btn.attr('href','/bbs/download.php?bo_table='+ table +'&wr_id=' + obj.wr_id + '&no=' + obj.bf_no);
 									btn.html(obj.filename);
-									$selected.find('p.files').append(btn).append('<br>');
+									$selected.find('p.files').append("<span class='font_red' style='font-weight:600'>Download : </span>").append(btn).append('<br>');
 								}else {
 									// console.log(obj)
 									var img = $('<img>');
 									img.attr('src','<?=G5_DATA_URL?>/file/<?=$bo_table?>/' + obj.bf_file);
-									img.attr('onload',"$selected.css('max-height', $selected.prop('scrollHeight') + 'px');");
+									
+                                    img.attr('onload',"$selected.css('height', $selected.prop('scrollHeight') + 'px');");
 									$selected.find('p.images').append(img).append('<br>');
-								}
+                                }
 							}
 						});
-						$selected.css('max-height', $selected.prop('scrollHeight') + 'px');
+						$selected.css('max-height', ($selected.prop('scrollHeight') + 30) + 'px');
 					},'json');
 				}
 			});
@@ -80,27 +78,32 @@ $list = sql_query($sql);
 			}
 		});
 	</script>
-</head>
-<body>
-	
-	<div class="main-container">		
+     <?php if($is_admin){?>
+        <div style="position:relative;right:10px;text-align:right;"><a class="btn btn-primary" style="margin-top:30px;color:white;" href="/bbs/write.php?bo_table=news">admin</a></div>
+    <?php }?>
+
+
+    <section class="con90_wrap">
+
+   
+	<div class="main-container">	
+        
 		<div id="body-wrapper" class="big-container-wrapper">
-			<h2 class="gray"> <!--data-i18n="news.title"--> News</h2>
 			<div class="faq-container shadow">
 				<div class="qa-container ">
 					<div class="title">
 						<span class="date" data-i18n="news.th1">Date</span> 
-						<span data-i18n="news.th2">Title</span>
-						<span class="views" data-i18n="news.th3">views</span>
+						<span class="inner_title" data-i18n="news.th2">Title</span>
+						<span class="views" data-i18n="news.th3">Views</span>
 					</div>
 				</div>
 				
 				<div class="qa-container">
                 
-<?for($i; $row = sql_fetch_array($list); $i++){?>
+                    <?for($i; $row = sql_fetch_array($list); $i++){?>
 	
 					<div class="question" no="<?echo $row['wr_id']?>">
-						<span class="date"><?echo date("Y-m-d", strtotime($row['wr_last']))?></span> 
+						<span class="date"><?echo date("d-m-Y", strtotime($row['wr_last']))?></span> 
 						<span class="inner_title" ><?echo $row['wr_subject']?></span>
 						<span class="views"><?echo $row['wr_hit']?></span>
 					</div>
@@ -109,18 +112,23 @@ $list = sql_query($sql);
 						<p class="files"></p> 
 						<p class="writing"></p> 
 					</div>
-<?}?>			
+                    <?}?>			
 				</div>
 
+            </div>
+        </div>
+    </div>		
+			    
+    <div class="gnb_dim"></div>
 
-<!--xx 관리자 게시판 링크버튼 
-				<?php if($is_admin){				?>
-				<a class="btn btn-primary" style="float:right;margin-top:30px;" href="/bbs/board.php?bo_table=notice">admin</a>
-				<?php }?>
-        -->
-				<div style="clear:both;"></div>
-			</div>
-		</div>
-	</div>
-</body>
-</html>
+    </section>
+
+
+
+<script>
+    $(function() {
+        $(".top_title h3").html("<img src='<?=G5_THEME_URL?>/_images/top_news.png' alt='아이콘'> <span data-i18n='title.뉴스'>코인 거래 내역</span>");
+    });
+</script>
+
+<? include_once(G5_THEME_PATH.'/_include/tail.php'); ?>

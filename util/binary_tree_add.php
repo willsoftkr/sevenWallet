@@ -24,7 +24,7 @@ function get_brecommend_down($mb_id, $m_id, $ca_id)
 		$brd_num++;
 		$len = strlen($ca_id);
 		//if ($brd_num>$max_num)  break;
-		if ($row[mb_id]=="admin") break;
+		if ($row['mb_id']=="admin") break;
 		if ($len == 200)	break;
 		$len2  = $len + 1;
 		$subid = base_convert(($i+1), 36, 10);
@@ -46,15 +46,15 @@ function get_brecommend_down($mb_id, $m_id, $ca_id)
 		}
 
 //		echo $brd_num.".".$subid." = ".$row[mb_id]."<br>\n";
-		$sql = "insert into g5_member_bclass set mb_id='".$mb_id."',c_id='".$row[mb_id]."',c_class='".$subid."'";
+		$sql = "insert into g5_member_bclass set mb_id='".$mb_id."',c_id='".$row['mb_id']."',c_class='".$subid."'";
 		sql_query($sql);
 		//echo $sql."<br>\n";
 
-		$sql  = "select count(mb_no) as cnt from g5_member where mb_brecommend = '".$row[mb_id]."' and length(mb_id)>0 and mb_leave_date = ''";	
+		$sql  = "select count(mb_no) as cnt from g5_member where mb_brecommend = '".$row['mb_id']."' and length(mb_id)>0 and mb_leave_date = ''";	
 		$row2 = sql_fetch($sql); 
 
 		if ($row2[cnt]){
-			get_brecommend_down($mb_id,$row[mb_id],$subid);
+			get_brecommend_down($mb_id,$row['mb_id'],$subid);
 		}
 	}
 }

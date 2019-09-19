@@ -590,9 +590,9 @@ for($i=1;$i<=15;$i++){
 			var id = $(this).attr("id");
 			var mem_id = "<?=$member['mb_id']?>";
 
-			console.log("upperId : " +  id + " | mem : "+ mem_id);
-			//console.log("success : "+ b_recom_arr);
-			
+			console.log("upperId : " +  upperId + " | mem : "+ mem_id + " | " + b_recom_arr[upperId]);
+			//console.log("success : "+ b_recom_arr[upperId]);
+			if(b_recom_arr[upperId]){
 				$.ajax({
 					url: g5_url+'/util/binary_tree_mem.php',
 					type: 'POST',
@@ -615,7 +615,7 @@ for($i=1;$i<=15;$i++){
 						$('#'+id+'.lvl-open').find('select').append($div.html());
 					}
 				});
-			
+			}
 		});
 	
 
@@ -625,11 +625,12 @@ for($i=1;$i<=15;$i++){
 
 			var no = $(this).parent().attr('id');
 			var upperId = Math.floor(no/2);
-
-			if(!b_recom_arr['upperId']){ // 상위 회원이 없을때
+			
+			if(!b_recom_arr[upperId]){ // 상위 회원이 없을때
 				commonModal('Error',"Can not place this position.",80);
 				return;
 			}
+			
 
 			if(!$(this).siblings('select').val()){
 				commonModal('Error',"Select Member",80);
@@ -645,7 +646,7 @@ for($i=1;$i<=15;$i++){
 			 //console.log(set_type);
 			 //console.log($(this).siblings('select').val());
 			data1 = {
-				"set_id": b_recom_arr['upperId'],
+				"set_id": b_recom_arr[upperId],
 				"set_type": set_type,
 				"recommend_id": $(this).siblings('select').val()
 			};
@@ -744,7 +745,9 @@ for($i=1;$i<=15;$i++){
 	});
 
 	$("#go_up_one").click(function(){
+		
 		var id = "<?=$start_id?>";
+		//console.log(id);
 		$.ajax({
 			type: "POST",
 			url: g5_url + "/util/binary_tree_uptree.php",

@@ -134,7 +134,6 @@
 		"바이너리 볼륨" : "Binary Volume"
 	},
 	"support": {
-		"파일첨부": "File less than 5MB .jpg, .png, .pdf only",
 		"파일 업로드" : "Upload file",
 		"티켓 보내기" : "Submit ticket",
 		"메시지" : "Message",

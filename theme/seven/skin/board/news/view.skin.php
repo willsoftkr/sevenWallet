@@ -8,6 +8,10 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
 
 <script src="<?php echo G5_JS_URL; ?>/viewimageresize.js"></script>
 
+
+<link rel="stylesheet" href="<?=G5_THEME_URL?>/css/default.css">
+<link rel="stylesheet" href="<?=$board_skin_url?>/style.css">
+
 <!-- 게시물 읽기 시작 { -->
 
 <article id="bo_v" style="width:<?php echo $width; ?>">
@@ -91,7 +95,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
     </section>
 
     <div id="bo_v_share">
-        <?php if ($scrap_href) { ?><a href="<?php echo $scrap_href;  ?>" target="_blank" class="btn btn_b03" onclick="win_scrap(this.href); return false;"><i class="fa fa-thumb-tack" aria-hidden="true"></i> 스크랩</a><?php } ?>
+        <!--<?php if ($scrap_href) { ?><a href="<?php echo $scrap_href;  ?>" target="_blank" class="btn btn_b03" onclick="win_scrap(this.href); return false;"><i class="fa fa-thumb-tack" aria-hidden="true"></i> 스크랩</a><?php } ?>-->
 
         <?php
         include_once(G5_SNS_PATH."/view.sns.skin.php");
@@ -197,10 +201,12 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
     </div>
     <!-- } 게시물 상단 버튼 끝 -->
 
+        
     <?php
     // 코멘트 입출력
-    include_once(G5_BBS_PATH.'/view_comment.php');
+    //include_once(G5_BBS_PATH.'/view_comment.php');
      ?>
+     
 
 
 </article>

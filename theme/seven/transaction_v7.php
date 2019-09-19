@@ -208,7 +208,7 @@ $order_result = sql_query($order_sql);
 							</div>
 							<div class="font_<?if($row['allowance_name'] == 'daily payout'){ echo "blue";}else{echo "green";}?>">
 								<span><?=$row['allowance_name']?></span>
-								<span class="f_right"> + <?=shift_doller($row['benefit']*2)?> <i>V7</i> <!--<span style="font-size:14px;">($ <?=shift_doller($row['benefit'])?>)</span>--></span>
+								<span class="f_right"> + <?=shift_doller($row['benefit']/$v7_cost)?> <i>V7</i> <!--<span style="font-size:14px;">($ <?=shift_doller($row['benefit'])?>)</span>--></span>
 							</div>
 						</li>
 						<?}?>

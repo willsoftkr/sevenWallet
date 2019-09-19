@@ -156,7 +156,7 @@ if (!$sst) {
 }
 
 if(!$sst)
-    $sst  = "wr_num, wr_reply";
+    $sst  = "wr_datetime, wr_num";
 
 if ($sst) {
     $sql_order = " order by {$sst} {$sod} ";

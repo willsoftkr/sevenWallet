@@ -233,6 +233,8 @@ if ($w == '' || $w == 'r') {
 		$wr_reply = '';
 	}
 
+	
+
 	$sql = " insert into $write_table
 				set wr_num = '$wr_num',
 					 wr_reply = '$wr_reply',
@@ -256,7 +258,7 @@ if ($w == '' || $w == 'r') {
 					 wr_datetime = '".G5_TIME_YMDHIS."',
 					 wr_last = '".G5_TIME_YMDHIS."',
 					 wr_ip = '{$_SERVER['REMOTE_ADDR']}',
-					 wr_1 = '$wr_1',
+					 wr_1 = '$notice',
 					 wr_2 = '$wr_2',
 					 wr_3 = '$wr_3',
 					 wr_4 = '$wr_4',
@@ -373,7 +375,7 @@ if ($w == '' || $w == 'r') {
 					 wr_name = '{$wr_name}',
 					 wr_email = '{$wr_email}',
 					 wr_homepage = '{$wr_homepage}',
-					 wr_1 = '{$wr_1}',
+					 wr_1 = '{$notice}',
 					 wr_2 = '{$wr_2}',
 					 wr_3 = '{$wr_3}',
 					 wr_4 = '{$wr_4}',

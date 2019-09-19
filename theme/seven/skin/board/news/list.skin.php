@@ -9,12 +9,12 @@ if ($is_good) $colspan++;
 if ($is_nogood) $colspan++;
 
 // add_stylesheet('css 구문', 출력순서); 숫자가 작을 수록 먼저 출력됨
-
 //add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0);
 ?>
+
+
 <link rel="stylesheet" href="<?=G5_THEME_URL?>/css/default.css">
 <link rel="stylesheet" href="<?=$board_skin_url?>/style.css">
-
 
 <!-- 게시판 목록 시작 { -->
 <div id="bo_list" style="width:<?php echo $width; ?>">
@@ -30,7 +30,7 @@ if ($is_nogood) $colspan++;
         <?php if ($rss_href || $write_href) { ?>
         <ul class="btn_bo_user">
             <?php if ($rss_href) { ?><li><a href="<?php echo $rss_href ?>" class="btn_b01 btn"><i class="fa fa-rss" aria-hidden="true"></i> RSS</a></li><?php } ?>
-            <?php if ($admin_href) { ?><li><a href="<?php echo $admin_href ?>" class="btn_admin btn"><i class="fa fa-user-circle" aria-hidden="true"></i> 관리자</a></li><?php } ?>
+            <!--<?php if ($admin_href) { ?><li><a href="<?php echo $admin_href ?>" class="btn_admin btn"><i class="fa fa-user-circle" aria-hidden="true"></i> 관리자</a></li><?php } ?>-->
             <?php if ($write_href) { ?><li><a href="<?php echo $write_href ?>" class="btn_b02 btn"><i class="fa fa-pencil" aria-hidden="true"></i> 글쓰기</a></li><?php } ?>
         </ul>
         <?php } ?>
@@ -70,16 +70,13 @@ if ($is_nogood) $colspan++;
                 <input type="checkbox" id="chkall" onclick="if (this.checked) all_checked(true); else all_checked(false);">
             </th>
             <?php } ?>
-            <th scope="col"><?php echo subject_sort_link('wr_datetime', $qstr2, 1) ?>Date <!-- <i class="fa fa-sort" aria-hidden="true"></i>--></a></th>
-            <!--<th scope="col">번호</th>-->
-            <th scope="col">Title</th>
-            
-            <th scope="col"><?php echo subject_sort_link('wr_hit', $qstr2, 1) ?>Views <!--<i class="fa fa-sort" aria-hidden="true"></i>--></a></th>
-
-            <!--
+            <th scope="col">번호</th>
+            <th scope="col">제목</th>
+            <th scope="col">글쓴이</th>
+            <th scope="col"><?php echo subject_sort_link('wr_hit', $qstr2, 1) ?>조회 <i class="fa fa-sort" aria-hidden="true"></i></a></th>
             <?php if ($is_good) { ?><th scope="col"><?php echo subject_sort_link('wr_good', $qstr2, 1) ?>추천 <i class="fa fa-sort" aria-hidden="true"></i></a></th><?php } ?>
             <?php if ($is_nogood) { ?><th scope="col"><?php echo subject_sort_link('wr_nogood', $qstr2, 1) ?>비추천 <i class="fa fa-sort" aria-hidden="true"></i></a></th><?php } ?>
-            -->
+            <th scope="col"><?php echo subject_sort_link('wr_datetime', $qstr2, 1) ?>날짜  <i class="fa fa-sort" aria-hidden="true"></i></a></th>
         </tr>
         </thead>
         <tbody>
@@ -87,20 +84,15 @@ if ($is_nogood) $colspan++;
         for ($i=0; $i<count($list); $i++) {
          ?>
         <tr class="<?php if ($list[$i]['is_notice']) echo "bo_notice"; ?>">
-            
-
             <?php if ($is_checkbox) { ?>
             <td class="td_chk">
                 <label for="chk_wr_id_<?php echo $i ?>" class="sound_only"><?php echo $list[$i]['subject'] ?></label>
                 <input type="checkbox" name="chk_wr_id[]" value="<?php echo $list[$i]['wr_id'] ?>" id="chk_wr_id_<?php echo $i ?>">
             </td>
             <?php } ?>
-            <td class="td_datetime"><?php echo $list[$i]['datetime2'] ?></td>
-
-            <!--
             <td class="td_num2">
             <?php
-            if ($list[$i]['is_notice']) 
+            if ($list[$i]['is_notice']) // 공지사항
                 echo '<strong class="notice_icon"><i class="fa fa-bullhorn" aria-hidden="true"></i><span class="sound_only">공지</span></strong>';
             else if ($wr_id == $list[$i]['wr_id'])
                 echo "<span class=\"bo_current\">열람중</span>";
@@ -108,10 +100,13 @@ if ($is_nogood) $colspan++;
                 echo $list[$i]['num'];
              ?>
             </td>
-            -->
 
             <td class="td_subject" style="padding-left:<?php echo $list[$i]['reply'] ? (strlen($list[$i]['wr_reply'])*10) : '0'; ?>px">
-                
+                <?php
+                if ($is_category && $list[$i]['ca_name']) {
+                 ?>
+                <a href="<?php echo $list[$i]['ca_name_href'] ?>" class="bo_cate_link"><?php echo $list[$i]['ca_name'] ?></a>
+                <?php } ?>
                 <div class="bo_tit">
                     
                     <a href="<?php echo $list[$i]['href'] ?>">
@@ -120,8 +115,8 @@ if ($is_nogood) $colspan++;
                             if (isset($list[$i]['icon_secret'])) echo rtrim($list[$i]['icon_secret']);
                          ?>
                         <?php echo $list[$i]['subject'] ?>
+                       
                     </a>
-
                     <?php
                     // if ($list[$i]['file']['count']) { echo '<'.$list[$i]['file']['count'].'>'; }
                     if (isset($list[$i]['icon_file'])) echo rtrim($list[$i]['icon_file']);
@@ -133,11 +128,11 @@ if ($is_nogood) $colspan++;
                 </div>
 
             </td>
-
+            <td class="td_name sv_use"><?php echo $list[$i]['name'] ?></td>
             <td class="td_num"><?php echo $list[$i]['wr_hit'] ?></td>
             <?php if ($is_good) { ?><td class="td_num"><?php echo $list[$i]['wr_good'] ?></td><?php } ?>
             <?php if ($is_nogood) { ?><td class="td_num"><?php echo $list[$i]['wr_nogood'] ?></td><?php } ?>
-            
+            <td class="td_datetime"><?php echo $list[$i]['datetime2'] ?></td>
 
         </tr>
         <?php } ?>
@@ -165,7 +160,6 @@ if ($is_nogood) $colspan++;
     </form>
      
        <!-- 게시판 검색 시작 { -->
-        <!--
     <fieldset id="bo_sch">
         <legend>게시물 검색</legend>
 
@@ -188,7 +182,6 @@ if ($is_nogood) $colspan++;
         <button type="submit" value="검색" class="sch_btn"><i class="fa fa-search" aria-hidden="true"></i><span class="sound_only">검색</span></button>
         </form>
     </fieldset>
-       -->
     <!-- } 게시판 검색 끝 -->   
 </div>
 
@@ -268,10 +261,3 @@ function select_copy(sw) {
 </script>
 <?php } ?>
 <!-- } 게시판 목록 끝 -->
-
-<script>
-    $(function() {
-			$(".top_title h3").html("<img src='<?=G5_THEME_URL?>/_images/top_news.png' alt='아이콘'> <span data-i18n='title.뉴스'> V7 News </span>");
-			$('#wrapper').css("background", "#fff");
-		});
-</script>

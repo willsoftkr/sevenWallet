@@ -465,7 +465,7 @@ function habu_sales_calc($gubun, $recom, $deep){
 				}else{
 					$rec=$today_r;
 				}
-
+				$rec=$today;
 				$mysql = sql_fetch("select sum(upstair) as hap from g5_shop_order  where mb_id='".$recom."' and date_format(od_time,'%Y-%m-%d')='".$to_date."'");
 				$mysum = $mysql['hap'];
 				
@@ -475,7 +475,7 @@ function habu_sales_calc($gubun, $recom, $deep){
 				if($j == count($rrr) ){
 					$rec=$rec;
 				}else{
-					$rec=$rec - $mysum;
+					$rec=$today_r;
 				}
 				echo '하부포함매출 : '.$rec.' | 내매출 : '.$mysum;
 				echo "<br>";

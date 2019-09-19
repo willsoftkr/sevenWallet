@@ -338,7 +338,7 @@ if(!sql_query(" select mb_id from {$g5['g5_shop_order_delete_table']} limit 1 ",
                 $disp_od_id = substr($row['od_id'],0,8).'-'.substr($row['od_id'],8);
                 break;
             default:
-                $disp_od_id = substr($row['od_id'],0,6).'-'.substr($row['od_id'],6);
+                $disp_od_id = substr($row['od_id'],0,8).'-'.substr($row['od_id'],8);
                 break;
         }
 
