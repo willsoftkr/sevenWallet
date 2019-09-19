@@ -23,7 +23,7 @@
 						</ul>
 					</li>
 					<li><a href="/page.php?id=purchase"><img src="<?=G5_THEME_URL?>/_images/menu06.gif" alt="아이콘"><span data-i18n="nav.팩 상품 구매하기">Purchase Packs</span></a></li>
-					<li><a href="javascript:serviceModal();"><img src="<?=G5_THEME_URL?>/_images/menu07.gif" alt="아이콘"><span data-i18n="nav.V7 뉴스">V7 News</span></a></li>
+					<li><a href="/page.php?id=v7_news"><img src="<?=G5_THEME_URL?>/_images/menu07.gif" alt="아이콘"><span data-i18n="nav.V7 뉴스">V7 News</span></a></li>
 					<li><a href="javascript:serviceModal();"><img src="<?=G5_THEME_URL?>/_images/menu08.gif" alt="아이콘"><span data-i18n="nav.서포트 센터">Support Center</span></a></li>
 					<li>
 						<a href="#0" class="menu_tree clear_fix"><img src="<?=G5_THEME_URL?>/_images/menu09.gif" alt="아이콘"><span data-i18n="nav.언어선택">Select Language</a>
