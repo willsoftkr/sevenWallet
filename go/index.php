@@ -77,7 +77,7 @@ die("Unknown Error Occured");
 
 function generateUniqueID(){
  global $conn; 
- $token = substr(md5(uniqid(rand(), true)),0,6); // creates a 6 digit unique short id
+ $token = substr(md5(uniqid(rand(), true)),0,5); // creates a 6 digit unique short id
  $query = "SELECT * FROM url_shorten WHERE short_code = '".$token."' ";
  $result = $conn->query($query); 
  if ($result->num_rows > 0) {

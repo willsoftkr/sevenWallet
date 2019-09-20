@@ -24,7 +24,7 @@ $header = substr($res, 0, $header_size);
 $short_URL_row = substr($res, $header_size);  
 $short_URL_p = preg_replace("/\s+/", "", (substr($short_URL_row,3)));
 
-$short_URL = str_replace(array('http://','www.'), '', $short_URL_p);
+$short_URL = str_replace(array('www.'), '', $short_URL_p);
 //print_r($short_URL_p);
 curl_close($ch);
 ?>
@@ -39,7 +39,7 @@ curl_close($ch);
 				<div class="qr_wrap mc_bit">
 					<p><?=$member['mb_id']?></p>
 					<div class="google-auth-top-qr" id="qrcode"></div>
-					<p id="short_URL"><?=$short_URL?></p>
+					<p id="short_URL"><a href="<?=$short_URL_p?>"><?=$short_URL?></a></p>
 					<input class="btn_basic_block" type="button" onclick="copyToClipboard(short_URL);" value="Share link" data-i18n='=[value]referral.링크 공유하기' >
 				</div>		
 			</section>
@@ -92,7 +92,7 @@ curl_close($ch);
 	
 		function copyToClipboard(element) {
 		
-		commonModal("","Your referral link is copied!",80);
+		commonModal("Referral link copied","Your referral link is copied!",80);
 
 		var $temp = $("<input>");
 			$("body").append($temp);
