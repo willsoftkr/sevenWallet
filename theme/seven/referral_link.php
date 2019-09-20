@@ -24,7 +24,7 @@ $header = substr($res, 0, $header_size);
 $short_URL_row = substr($res, $header_size);  
 $short_URL_p = preg_replace("/\s+/", "", (substr($short_URL_row,3)));
 
-$short_URL = str_replace(array('http://','http://www.'), '', $short_URL_p);
+$short_URL = str_replace(array('http://','www.'), '', $short_URL_p);
 //print_r($short_URL_p);
 curl_close($ch);
 ?>
@@ -92,7 +92,7 @@ curl_close($ch);
 	
 		function copyToClipboard(element) {
 		
-		alert("Your referral link is copied!");
+		commonModal("","Your referral link is copied!",80);
 
 		var $temp = $("<input>");
 			$("body").append($temp);
