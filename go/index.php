@@ -7,8 +7,8 @@ $username = 'root';
 $password = 'willsoft0780'; // on localhost by default there is no password
 $dbname = 'wallet';
 
-$base = str_replace(array('www.'), '', G5_URL);
-$base_url= $base.'/go/'; // it is your application url
+
+$base_url= G5_URL.'/go/'; // it is your application url
 
 $geturl = $_GET['url'];
 
@@ -55,6 +55,7 @@ else
 
 function GetShortUrl($url){
  global $conn;
+ $url = str_replace(array('www.'), '',$url );
  $urlstring = explode('recom_referral=',$url);
  $mb_no = $urlstring[1];
  
