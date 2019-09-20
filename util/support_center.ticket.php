@@ -179,16 +179,20 @@ if($method == 'GET'){
 	///// 파일 업로드 종료 ////////
 
 	if($file_upload_msg){
-		header('Location: '.G5_THEME_URL.'/support_center.php?msg='.$file_upload_msg);
+		header('Location: '.G5_URL.'/page.php?id=support_center&msg='.$file_upload_msg);
 	}else{
-		header('Location:  '.G5_THEME_URL.'/support_center.php?idx='.$idx);
-	}
+		header('Location: '.G5_URL.'/page.php?id=support_center&idx='.$pid);
+    }
+    
 	
 }else if($method == 'PUT'){
 	parse_str(file_get_contents("php://input"),$put_vars);
-	sql_query("update ticket set is_closed = 1 where idx = {$put_vars[idx]}");
-	print json_encode(array('idx' => $put_vars[idx]));
+    
+    $update_closed = sql_query("update ticket set is_closed = 1 where idx = {$put_vars['idx']}");
+    
+    if($update_closed){
+        print json_encode(array('idx' => $put_vars['idx']));
+    }
 }
-
 
 ?>

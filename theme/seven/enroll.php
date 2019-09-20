@@ -1,6 +1,12 @@
 <?
 include_once(G5_THEME_PATH.'/_include/head.php'); 
 include_once(G5_THEME_PATH.'/_include/gnb.php'); 
+
+if($_GET['recom_referral'])
+	$recom_sql = "select mb_id from g5_member where mb_no = '{$_GET['recom_referral']}'";
+	$recom_result = sql_fetch($recom_sql);
+
+	$mb_recommend = $recom_result['mb_id'];
 ?>
 
 

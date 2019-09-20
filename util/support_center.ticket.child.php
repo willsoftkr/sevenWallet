@@ -45,9 +45,11 @@ if($method == 'GET'){ // 상세 댓글 출력
 	sql_query("insert into ticket_child(content, pid, mb_no, create_date) values ('{$content}', {$pid}, $member[mb_no], now())");
 	$idx = sql_insert_id();
 
+    /*
 	if($member['mb_no'] = 1) {
 		shell_exec("php support.mail.php ".$idx." > /dev/null &");
 	}
+    */
 
 	///// 파일 업로드 시작 ////////
 	$wr_id = $idx;
@@ -167,13 +169,18 @@ if($method == 'GET'){ // 상세 댓글 출력
 		sql_query($sql);
 	}
 
-	///// 파일 업로드 종료 ////////
+   
+    ///// 파일 업로드 종료 ////////
+    //$path = 'Location: '.G5_URL.'/page.php?id=support_center.php?msg='.$file_upload_msg;
+    //print_r($path);
 
+    
 	if($file_upload_msg){
-		header('Location: /util/support_center.php?msg='.$file_upload_msg);
+		header('Location: '.G5_URL.'/page.php?id=support_center&msg='.$file_upload_msg);
 	}else{
-		header('Location: /util/support_center.php?idx='.$pid);
-	}
+		header('Location: '.G5_URL.'/page.php?id=support_center&idx='.$pid);
+    }
+    
 
 	//print json_encode(array('pid' => $_POST['idx']));
 }

@@ -5,11 +5,16 @@ include_once(G5_THEME_PATH.'/_include/gnb.php');
 
 $bo_table = "g5_write_news";
 
+
+$list_cnt = sql_fetch("select count(*) as cnt from {$bo_table} where wr_1 = '1' order by wr_datetime desc");
+$cnt = $list_cnt['cnt'];
+
 $sql = "select * from {$bo_table} where wr_1 = '1' order by wr_datetime desc";
 $list = sql_query($sql);
+
 ?>
 
-	<link rel="stylesheet" href= g5_url + "/theme/css/style.css">
+	<!--<link rel="stylesheet" href= "<?=G5_THEME_URL?>/theme/css/style.css">-->
 
 	<script>
 		var open = '<?=$_GET['open']?>';
@@ -36,7 +41,7 @@ $list = sql_query($sql);
 				$selected = $(this).next();
 				if($(this).hasClass('qa-open')){// 닫기
 					$(this).removeClass('qa-open');
-					$selected.css('max-height','0px');
+					$selected.css('height','0px');
 				}else{ // 열기
 					$(this).addClass('qa-open');
                    //0px $(this).find('.views').text(Number($(this).find('.views').text()) + 1);
@@ -62,13 +67,12 @@ $list = sql_query($sql);
 									// console.log(obj)
 									var img = $('<img>');
 									img.attr('src','<?=G5_DATA_URL?>/file/<?=$bo_table?>/' + obj.bf_file);
-									
-                                    img.attr('onload',"$selected.css('height', $selected.prop('scrollHeight') + 'px');");
 									$selected.find('p.images').append(img).append('<br>');
                                 }
 							}
 						});
-						$selected.css('max-height', ($selected.prop('scrollHeight') + 30) + 'px');
+
+						$selected.css('height', ($selected.prop('scrollHeight') + 30) + 'px');
 					},'json');
 				}
 			});
@@ -92,7 +96,7 @@ $list = sql_query($sql);
 			<div class="faq-container shadow">
 				<div class="qa-container ">
 					<div class="title">
-						<span class="date" data-i18n="news.th1">Date</span> 
+						<span class="date" data-i18n="news.th1" style="text-align:left" >Date</span> 
 						<span class="inner_title" data-i18n="news.th2">Title</span>
 						<span class="views" data-i18n="news.th3">Views</span>
 					</div>
@@ -101,18 +105,23 @@ $list = sql_query($sql);
 				<div class="qa-container">
                 
                     <?for($i; $row = sql_fetch_array($list); $i++){?>
-	
-					<div class="question" no="<?echo $row['wr_id']?>">
-						<span class="date"><?echo date("d-m-Y", strtotime($row['wr_last']))?></span> 
-						<span class="inner_title" ><?echo $row['wr_subject']?></span>
-						<span class="views"><?echo $row['wr_hit']?></span>
-					</div>
-					<div class="answer">
-						<p class="images"></p> 
-						<p class="files"></p> 
-						<p class="writing"></p> 
-					</div>
-                    <?}?>			
+					
+
+						<div class="question" no="<?echo $row['wr_id']?>">
+							<span class="date"><?echo date("d-m-Y", strtotime($row['wr_last']))?></span> 
+							<span class="inner_title" ><?echo $row['wr_subject']?></span>
+							<span class="views"><?echo $row['wr_hit']?></span>
+						</div>
+						<div class="answer">
+							<p class="images"></p> 
+							<p class="files"></p> 
+							<p class="writing"></p> 
+						</div>
+
+					<?}?>
+					<?if($cnt == 0){?>
+						<div style="height:200px; text-align:center;line-height:200px;font-size:1.5em;"> Not yet news.</div>
+					<?}?>
 				</div>
 
             </div>

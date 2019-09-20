@@ -1268,11 +1268,11 @@ div:nth-child(2){color:#ff9b22;}
 	background-color: #fff;	
 	border-bottom:1px solid #e5e5e5;
 	font-size: 16px;
-	max-height: 0;
 	overflow: hidden;
 	padding-left: 15px;
 	padding-right: 15px;
 	transition: all 0.3s ease;
+	height:0;
 }
 
 .answer p {margin:20px;}
@@ -1318,7 +1318,7 @@ div:nth-child(2){color:#ff9b22;}
 .chat-box {
 	height: 0;
 	overflow: hidden;
-	transition: height 0.2s ease-in-out;
+	transition:all 0.3s ease-in-out;
 	margin-bottom:0;
 	padding:0;
 	border-bottom-left-radius:0px;
@@ -1331,12 +1331,12 @@ div:nth-child(2){color:#ff9b22;}
 
 .chat-box.active{
 	height:auto;
-	transition: height 0.2s ease-in-out;
-	margin-bottom:60px;
+	transition: all 0.3s ease-in-out;
 	padding:20px;
 	border-bottom-left-radius:6px;
 	border-bottom-right-radius:6px;
 	margin:0 1px;
+	margin-bottom:60px;
 	margin-top:-1px;
 	border:1px solid #ccc;
 	background:ghostwhite;
@@ -1355,6 +1355,9 @@ div:nth-child(2){color:#ff9b22;}
 	margin-bottom: 15px;
 	padding: 20px;
 	position: relative;
+	display:table;
+	width:100%;
+
 }
 
 .member-message {
@@ -1448,6 +1451,7 @@ div:nth-child(2){color:#ff9b22;}
 .support-tabs li.active {
 	border-color: rgb(0, 121, 211);
 	color: rgb(0, 121, 211);
+	font-weight: 600;
 }
 
 .ticket-header {
@@ -1458,6 +1462,8 @@ div:nth-child(2){color:#ff9b22;}
 	margin-top: 15px;
 	padding: 15px 20px;
 	transition: all 0.2s linear;
+	width:100%;
+	display:table;
 }
 
 .ticket-header:hover, .ticket-header.active {
@@ -1480,11 +1486,18 @@ div:nth-child(2){color:#ff9b22;}
 	font-size:0.9em;
 }
 .support-container .writer{
-	font-size:0.8em;
-	_background:#e1e1e1;
+	font-size:0.7em;
+	background:rgba(0,0,0,0.1);
 	padding:3px 10px;
 	border-radius:5px;
-	display:block;
+	display:inline-block;
+	float:right;
+	color:#333;
+}
+
+.support-message .writer{
+	float:left;
+	background:azure;
 }
 .email{background:ghostwhite;}
 .chat-input .btn{margin:0;}

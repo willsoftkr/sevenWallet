@@ -43,13 +43,10 @@ if($is_admin){
 			// 댓글 펼치기
 			$(document).on('click','.ticket-header' ,function(e) {
 				$selected = $(this).next();
-
-
 				$(this).toggleClass('active');
 
 					
 				$selected.toggleClass('active');
-				
 				getComment($(this).attr('idx'));
 				
 			});
@@ -130,8 +127,10 @@ if($is_admin){
 					$(this).next().find('.send').trigger('click');
 				}
 			});
-
+			
+			// 티켓종료 
 			$(document).on('click','.btn.cl' ,function(e) {
+				console.log("closed");
 				$.ajax({
 					url: '/util/support_center.ticket.php',
 					type: 'PUT',
@@ -140,7 +139,13 @@ if($is_admin){
 					},
 					success: function(result) {
 						$('.support-panels .support-tabs li[rel=active-tickets]').trigger('click');
-						//console.log(result);
+						commonModal("Ticket Closed","Ticket Move Closed","80");
+
+						$('#commonModal #closeModal').click(function () {
+							location.reload();
+						});
+							
+
 					}
 				});
 			});
@@ -178,6 +183,7 @@ if($is_admin){
 					}
 					vHtml.append(row.html());
 				});
+
 				if(data.file){
 					// console.log(data.file);
 					var btn = $('<a class="file_addon">');

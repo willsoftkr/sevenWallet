@@ -1,5 +1,4 @@
 <?php
-
 include_once('./_common.php');
 include_once(G5_THEME_PATH.'/_include/head.php'); 
 include_once(G5_THEME_PATH.'/_include/gnb.php');
@@ -11,24 +10,24 @@ if(!$is_admin){
 
 	<script>
 		var topicOption = {
-			0 : 'General Support',
-			1 : 'Withdrawal Issue',
-			2 : 'Payment Issue',
-			3 : 'Commission Issue',
-			4 : 'Mining Pool Earnings Issue',
-			5 : 'Account Changes',
-			6 : 'HACKED'
+			0 : 'General',
+			1 : 'Hacking',
+			2 : 'Bonus',
+			3 : 'Wallet',
+			4 : 'Account'
 		};
+
 		$(function() {
 
-			// 티켓 펼치기 
+			// 댓글 펼치기
 			$(document).on('click','.ticket-header' ,function(e) {
 				$selected = $(this).next();
-				if($selected.css('max-height') != '0px' ){ // close
-					$selected.css('max-height','0px');
-				}else{ // open
-					getComment($(this).attr('idx'));
-				}
+				$(this).toggleClass('active');
+
+					
+				$selected.toggleClass('active');
+				getComment($(this).attr('idx'));
+				
 			});
 
 			// 코멘트 달기
@@ -48,14 +47,24 @@ if(!$is_admin){
 				}
 			});
 
+			// 티켓종료 
 			$(document).on('click','.btn.cl' ,function(e) {
+				console.log("closed");
 				$.ajax({
-					url: '<?=G5_THEME_URL?>/support_center.ticket.php',
+					url: '/util/support_center.ticket.php',
 					type: 'PUT',
-					data: {idx : $(this).attr('idx')},
+					data: {
+						idx : $(this).attr('idx')
+					},
 					success: function(result) {
 						$('.support-panels .support-tabs li[rel=active-tickets]').trigger('click');
-						// console.log(result);
+						commonModal("Ticket Closed","Ticket Move Closed","80");
+
+						$('#commonModal #closeModal').click(function () {
+							location.reload();
+						});
+							
+
 					}
 				});
 			});
@@ -68,20 +77,20 @@ if(!$is_admin){
 				$('#' + $(this).attr('rel')).addClass('active').fadeIn(300);
 
 				if($(this).attr('rel') == 'active-tickets'){
-					$.get( "<?=G5_THEME_URL?>/support_center.ticket.php",{
+					$.get( "/util/support_center.ticket.php",{
 						is_closed : 0
 					}).done(function( data ) {
 						// console.log(data);
 						makeList('#active-tickets',data);
 					});
 				}else if($(this).attr('rel') == 'closed-tickets'){
-					$.get( "<?=G5_THEME_URL?>/support_center.ticket.php",{
+					$.get( "/util/support_center.ticket.php",{
 						is_closed : 1
 					}).done(function( data ) {
 						makeList('#closed-tickets',data);
 					});
 				}else if($(this).attr('rel') == 'answered-tickets'){
-					$.get( "<?=G5_THEME_URL?>/support_center.ticket.php",{
+					$.get( "/util/support_center.ticket.php",{
 						is_closed : 1,
 						is_answer : 1
 					}).done(function( data ) {
@@ -118,7 +127,7 @@ if(!$is_admin){
 		function getComment(paramIdx){
 			$selected.find('.chat').empty();
 			$selected.find('.chat-input .message').val('');
-			$.get( "<?=G5_THEME_URL?>/support_center.ticket.child.php",{
+			$.get( "/util/support_center.ticket.child.php",{
 				idx : paramIdx
 			}).done(function( data ) {
 				// console.log(data);
@@ -127,10 +136,10 @@ if(!$is_admin){
 					var row = $('#dup2').clone();
 					if(obj.mb_no == 1){ // 관리자
 						row.find('.message').addClass('support-message');
-						row.find('.name').text('FIJI Support');
+						row.find('.name').text('V7 Support');
 					}else{
 						row.find('.message').addClass('member-message');
-						row.find('.name').text(obj.mb_id + ' (' + obj.mb_name + ')');
+						row.find('.name').text(obj.mb_id );
 					}
 					row.find('.content').text(obj.content);
 					row.find('.time').text(obj.create_date);
@@ -143,7 +152,6 @@ if(!$is_admin){
 					vHtml.append(row.html());
 				});
 				$selected.find('.chat').append(vHtml.html());
-				$selected.css('max-height', $selected.prop('scrollHeight') + 'px');
 			}).fail(function(e) {
 				console.log( e );
 			});
@@ -152,11 +160,12 @@ if(!$is_admin){
     </script>
     
 
-	<div class="main-container">		
-		<div id="body-wrapper" class="big-container-wrapper">
-			<h2 class="gray support-title">Support Center Admin</h2> 
-			<span class="gray"></span>
-			<div class="support-container shadow">
+	<section class="con90_wrap">
+
+	<div class="main-container dash_contents">		
+		<div id="body-wrapper" >
+			
+			<div class="support-container">
 				<div class="support-panels">
 					<ul class="support-tabs">
 						<li rel="active-tickets" class="active">Active Tickets</li>
@@ -203,16 +212,28 @@ if(!$is_admin){
 
 	<div style="display:none;" id="dup2" >
 		<div class="message">
-			<span class="content">Mauris et interdum tellus. Praesent nec </span><br>
-			<p>- <span class="name">FIJI Support</span> (<span class="time" >12:40 PM</span>)</p>
+			<span class="content"> </span><br>
+			<p class="writer"><span class="name">V7Wallet Support</span> | <span class="time" >12:40 PM</span></p>
 		</div>
 	</div>
 
 	<div style="display:none;" >
-		<form id="ticketChildForm" action ="support_center.ticket.child.php" method="post" enctype="multipart/form-data" >
+		<form id="ticketChildForm" action ="/util/support_center.ticket.child.php" method="post" enctype="multipart/form-data" >
 			<input type="hidden" name="idx" >
 			<input type="hidden" name="content" >
 		</form>
 	</div>
-</body>
-</html>
+
+	<div class="gnb_dim"></div>
+
+	</section>
+
+
+
+	<script>
+		$(function() {
+			$(".top_title h3").html("<img src='<?=G5_THEME_URL?>/_images/top_support.png' alt='아이콘'> <span data-i18n='title.서포트센터'>Support Center</span>");
+		});
+	</script>
+
+<? include_once(G5_THEME_PATH.'/_include/tail.php'); ?>
