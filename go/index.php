@@ -7,8 +7,8 @@ $username = 'root';
 $password = 'willsoft0780'; // on localhost by default there is no password
 $dbname = 'wallet';
 
-$base = str_replace(array('www.'), '', G5_URL );
-$base_url= $base.'/go/'; // it is your application url
+$base = str_replace(array('www.'), '', G5_URL);
+$base_url= G5_URL.'/go/'; // it is your application url
 
 $geturl = $_GET['url'];
 
@@ -55,7 +55,6 @@ else
 
 function GetShortUrl($url){
  global $conn;
- $url = str_replace(array('www.'), '',$url );
  $urlstring = explode('recom_referral=',$url);
  $mb_no = $urlstring[1];
  
@@ -80,7 +79,7 @@ die("Unknown Error Occured");
 
 function generateUniqueID(){
  global $conn; 
- $token = substr(md5(uniqid(rand(), true)),0,5); // creates a 6 digit unique short id
+ $token = substr(md5(uniqid(rand(), true)),0,4); // creates a 6 digit unique short id
  $query = "SELECT * FROM url_shorten WHERE short_code = '".$token."' ";
  $result = $conn->query($query); 
  if ($result->num_rows > 0) {
