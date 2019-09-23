@@ -120,7 +120,7 @@ $list = sql_query($sql);
 
 					<?}?>
 					<?if($cnt == 0){?>
-						<div style="height:200px; text-align:center;line-height:200px;font-size:1.5em;"> Not yet news.</div>
+						<div style="height:200px; text-align:center;line-height:200px;font-size:1.5em;"> No news announced.</div>
 					<?}?>
 				</div>
 

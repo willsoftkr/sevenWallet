@@ -9,9 +9,21 @@ if($_GET['recom_referral']){
 	$mb_recommend = $recom_result['mb_id'];
 }
 
+function timeshift($time){
+	return date("d/m/Y ",strtotime($time));
+}
+
 $mb_id = $member['mb_id'];
 $avatar_no = '1';
 
+$avatar_cnt_sql = "select count(*) as cnt from avatar_savings where mb_id = '{$mb_id}' order by create_date desc limit 0,1";
+$avatar_cnt_result = sql_fetch($avatar_cnt_sql);
+$av_cnt = $avatar_cnt_result['cnt'];
+
+$av_latest_result = 
+
+$avatar_sql = "select * from avatar_savings where mb_id = '{$mb_id}' order by create_date desc";
+$avatar_info = sql_query($avatar_sql);
 ?>
 
 			<input type="hidden" name="mode" id="mode" value="w">
@@ -62,12 +74,30 @@ $avatar_no = '1';
 				<div class="ava_history_wrap v_center">
 					<p class="ava_title"><img src="<?=G5_THEME_URL?>/_images/ava_icon.gif" alt="이미지" data-i18n="avatar.아바타 생성 기록"> Avatar Creation list</p>
 					<ul class="clear_fix">
-						<li>
-							<p>Avatar 1: </p>
-							<p><span data-i18n="avatar.유저네임">Username</span>: mynameyehuQO_1</p>
-							<p><span data-i18n="avatar.생성일">Created on</span>: 8/7/2019</p>
-						</li>
+						<?
+							while( $row = sql_fetch_array($avatar_info)){
+						?>
+							<?if($row['status'] == '1'){?>
+								<li>
+									<p>Avatar <?=$row['avatar_no']?>: </p>
+									<p><span data-i18n="avatar.유저네임">Username</span> : <?=$row['avatar_id']?></p>
+									<p><span data-i18n="avatar.생성일">Created on</span> : <?= timeshift($row['create_date'])?></p>
+								</li>
+							<?}else{?>
+								<li>
+								<p>Avatar <?=$row['avatar_no']?>: </p>
+								<p><span data-i18n="avatar.누적금액">Saving</span> : <?=$row['current_saving']?></p>
+							</li>
+							<?}?>
+						<?}?>
 						<!--
+
+						
+							<li>
+								<p>Avatar 1: </p>
+								<p><span data-i18n="avatar.누적금액">Saving</span> : <?=$row['current_saving']?></p>
+							</li>
+						
 						<li>
 							<p>Avatar 2: </p>
 							<p>유저네임: mynameyehuQO_1</p>
@@ -191,12 +221,17 @@ $avatar_no = '1';
 				},
 				dataType: 'json',
 				success: function(result) {
-					//console.log(result);
-					dimShow();
-                	purchaseModal('Avatar setting','<p>Avatar setting change complete</p>','success');
+					console.log(result.result);
+					if(result.result == 'success'){
+						dimShow();
+						purchaseModal('Avatar setting','<p>Avatar setting change complete</p>','success');
+						
+					}else{
+						purchaseModal('Avatar setting','<p>Check and retry</p>','failed');
+					}
 				},
 				error: function(e){
-					//console.log(e);
+					console.log(e);
 				}
 			});
 		});

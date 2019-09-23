@@ -1134,7 +1134,7 @@ div:nth-child(2){color:#ff9b22;}
 .img_select select{margin-top:8px; width:80%;}
 .ava_title{margin-bottom:20px;}
 .ava_history_wrap li{
-	width:49%; 
+	width:100%; 
 	border-bottom:1px solid #808080; 
 	padding-bottom:10px; 
 	margin-bottom:10px;
@@ -1285,7 +1285,7 @@ div:nth-child(2){color:#ff9b22;}
 	margin-left: 0;
 }
 
-.title{
+.qa-container  .title{
 	background-color:#1e9fff;
 	color:#fff;
 	cursor: pointer;
@@ -1295,7 +1295,7 @@ div:nth-child(2){color:#ff9b22;}
 	transition: all 0.2s linear;
 	text-align: center;
 }
-.title:hover {
+.qa-container .title:hover {
 	background-color: rgb(124, 124, 124);
 	color:#fff;
 }
