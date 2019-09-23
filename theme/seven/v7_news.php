@@ -96,7 +96,7 @@ $list = sql_query($sql);
 			<div class="faq-container shadow">
 				<div class="qa-container ">
 					<div class="title">
-						<span class="date" data-i18n="news.th1" style="text-align:left" >Date</span> 
+						<span class="date" data-i18n="news.th1">Date</span> 
 						<span class="inner_title" data-i18n="news.th2">Title</span>
 						<span class="views" data-i18n="news.th3">Views</span>
 					</div>
@@ -119,6 +119,7 @@ $list = sql_query($sql);
 						</div>
 
 					<?}?>
+
 					<?if($cnt == 0){?>
 						<div style="height:200px; text-align:center;line-height:200px;font-size:1.5em;"> No news announced.</div>
 					<?}?>
