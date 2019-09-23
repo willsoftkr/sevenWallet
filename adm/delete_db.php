@@ -77,6 +77,12 @@ else if($func == 'amt'){
 	
 	echo "result : ".$sql_result;
 }
+else if($func == 'balance'){
+	$sql_clear = "update g5_member set mb_v7_account = '0', mb_balance = '0', mb_deposit_point = '0', mb_deposit_acc = '0', mb_level = '0' where mb_id != '{coolrunning}' ";
+	$sql_result = sql_query($sql_clear);
+	
+	echo "result : ".$sql_result;
+}
 
 else if($func == 'pack_order'){
 	$sql_clear2 = " TRUNCATE table g5_shop_cart; ";

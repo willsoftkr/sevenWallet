@@ -254,7 +254,7 @@ for($i=0; $recommend=sql_fetch_array($result); $i++) {
 
 				list($id1,$hap1,$id2,$hap2) = my_bchild($mbid,$to_date,$cond[$i]['cycle']);
 				
-				echo '<br>▶ 실적 계산 기준  ::' .$id1.'---'.$hap1.' // ---'.$id2.'---'.$hap2;
+				echo '<br>▶ 실적 계산 기준  ::' .$id1.'---'.$hap1.' // ---'.$id2.'---'.$hap2.' || 수당한계 : '.$limit_point;
 
 				if($member_rate){
 					echo  "<span class='red'> +++++++++++++ B팩 : ".$member_rate_pack." | ".$member_rate." % </span><br>";
@@ -274,19 +274,38 @@ for($i=0; $recommend=sql_fetch_array($result); $i++) {
 
 							echo "▶▶ 수당 계산 1-1 (수당초과) :: 대실적-<strong>".$hap2."</strong>(".$id2.") ||  소실적-<strong>".$hap1."</strong>(".$id1.") ||  수당: <strong>".$member_rate."%</strong> || 발생수당 : <strong>".$today_sales."</strong><br><br>";
 							
-							$note_adm=' 소실적 발생 (대실적만 이월) (1) 소실적:'.$hap1.	'('.$id1.') || 대실적:'.$hap2.	'('.$id2.') | 이월금:'.($hap2-$hap1);
-							$note_adm2=' 소실적 소멸 (1-1) 소실적:'.$hap1.'('.$id1.') | 이월금: 0';
+							$note_adm=' 소실적 발생 (대실적만 이월) (1-1-1) 소실적:'.$hap1.	'('.$id1.') || 대실적:'.$hap2.	'('.$id2.') | 이월금:'.($hap2-$hap1);
+							$note_adm2=' 소실적 소멸 (1-1-2) 소실적:'.$hap1.'('.$id1.') | 이월금 0 소멸';
 
 							echo $note='Binary Bonus for member';
 							$no_benefit=1;$binary_firstname=$mbname;$binary_firstid=$mbid;
 
 							if($today_sales>0){
 								save_benefit($to_date, $mbid, $mbname, $recom, "Binary", '', 0, $today_sales, $limit_point, "Binary".' '.$note_adm, $note, $mblevel);
-								iwol_process($to_date, $mbid, $id2, $mbname, 2, $hap2-$hap1, $note_adm);
-								iwol_process($to_date, $mbid, $id1, $mbname, 2, 0, $note_adm2); //소실적 소멸
+								iwol_process($to_date, $mbid, $id2, $mbname, 111, $hap2-$hap1, $note_adm);
+								iwol_process($to_date, $mbid, $id1, $mbname, 112, 0, $note_adm2); //소실적 소멸
 							}
 
 						}
+						else if($hap1 == 0){ //소실적이 0일때
+							
+							$today_sales=$hap2*($member_rate/100);
+							$firstname=$mbname;
+							$firstid=$mbid;
+
+							echo " ▶▶ 수당 계산 1-3 ::  대실적-<strong>".$hap2."</strong>(".$id2.") ||  소실적-<strong>".$hap1."</strong>(".$id1.") ||  수당: <strong>".$member_rate."%</strong> || 발생수당 : <strong>".$today_sales."</strong><br><br>";
+
+								$note_adm='소실적 0 (대실적만 이월) (1-3-1) 대실적:'.$hap2.	'('.$id2.') || 소실적:'.$hap1.'('.$id1.') | 이월금:'.($hap2-$hap1);
+							
+
+								$note='Binary Bonus for member';
+								$no_benefit=1;$binary_firstname=$mbname;$binary_firstid=$mbid;
+
+								iwol_process($to_date, $mbid, $id1, $mbname, 13, $hap1-$hap2, $note_adm);
+								
+						
+						}
+
 						else { //소실적이 극점x
 						
 							$today_sales= $hap1* ($member_rate/100);
@@ -296,16 +315,16 @@ for($i=0; $recommend=sql_fetch_array($result); $i++) {
 							echo "▶▶ 수당 계산 1-2 :: 대실적-<strong>".$hap2."</strong>(".$id2.") ||  소실적-<strong>".$hap1."</strong>(".$id1.") ||  수당: <strong>".$member_rate."%</strong> || 발생수당 : <strong>".$today_sales."</strong><br><br>";
 							
 							
-								$note_adm=" 소실적 발생 (대실적만 이월) (2) 소실적:".$hap1.	'('.$id1.') || 대실적:'.$hap2.	'('.$id2.') | 이월금:'.($hap2-$hap1);
-								$note_adm2=' 소실적 소멸 (2-1) 소실적:'.$hap1.'('.$id1.') | 이월금: 0';
+								$note_adm=" 소실적 발생 (대실적만 이월) (1-2-1) 소실적:".$hap1.	'('.$id1.') || 대실적:'.$hap2.	'('.$id2.') | 이월금:'.($hap2-$hap1);
+								$note_adm2=' 소실적 소멸 (1-2-2) 소실적:'.$hap1.'('.$id1.') | 이월금: 0';
 
 								$note='Binary Bonus for member';
 								$no_benefit=1;$binary_firstname=$mbname;$binary_firstid=$mbid;
 
 								if($today_sales>0){
 									save_benefit($to_date, $mbid, $mbname, $recom, "Binary", '', 0, $today_sales, $limit_point, "Binary".' '.$note_adm, $note, $mblevel);
-									iwol_process($to_date, $mbid, $id2, $mbname, 2, $hap2-$hap1, $note_adm);
-									iwol_process($to_date, $mbid, $id1, $mbname, 2, 0, $note_adm2); //소실적 소멸
+									iwol_process($to_date, $mbid, $id2, $mbname, 121, $hap2-$hap1, $note_adm);
+									iwol_process($to_date, $mbid, $id1, $mbname, 122, 0, $note_adm2); //소실적 소멸
 								}
 						}
 					}  //$hap1이 소실적이라면
@@ -319,20 +338,37 @@ for($i=0; $recommend=sql_fetch_array($result); $i++) {
 							
 							echo " ▶▶ 수당 계산 2-1 (수당초과) :: 대실적-<strong>".$hap1."</strong>(".$id1.") ||  소실적-<strong>".$hap2."</strong>(".$id2.") ||  수당: <strong>".$member_rate."%</strong> || 발생수당 : <strong>".$today_sales."</strong><br><br>";
 
-								$note_adm=' 소실적 발생 (대실적만 이월) (3) 대실적:'.$hap1.	'('.$id1.') ||  소실적:'.$hap2.'('.$id2.') | 이월금:'.($hap1-$hap2);
-								$note_adm2=' 소실적 소멸 (3-1) 소실적:'.$hap1.'('.$id1.') | 이월금: 0';
+								$note_adm=' 소실적 발생 (대실적만 이월) (2-1-1) 대실적:'.$hap1.	'('.$id1.') ||  소실적:'.$hap2.'('.$id2.') | 이월금:'.($hap1-$hap2);
+								$note_adm2=' 소실적 소멸 (2-1-1) 소실적:'.$hap1.'('.$id1.') | 이월금: 0';
 
 								$note='Binary Bonus for member';
 								$no_benefit=1;$binary_firstname=$mbname;$binary_firstid=$mbid;
 
 								if($today_sales>0){
 									save_benefit($to_date, $mbid, $mbname, $recom, "Binary", '', 0, $today_sales,  $hap2, "Binary".' '.$note_adm, $note, $mblevel);
-									iwol_process($to_date, $mbid, $id1, $mbname, 9, $hap1-$hap2 , $note_adm);
-									iwol_process($to_date, $mbid, $id2, $mbname, 2, 0, $note_adm2); //소실적 소멸
-									
 								}
+								iwol_process($to_date, $mbid, $id1, $mbname, 211, $hap1-$hap2 , $note_adm);
+								iwol_process($to_date, $mbid, $id2, $mbname, 212, 0, $note_adm2); //소실적 소멸
 						}
-						else { //소실적이 극점x
+						else if($hap2 == 0){ //소실적이 0일때
+							
+							$today_sales=$hap2*($member_rate/100);
+							$firstname=$mbname;
+							$firstid=$mbid;
+
+							echo " ▶▶ 수당 계산 2-3 ::  대실적-<strong>".$hap1."</strong>(".$id1.") ||  소실적-<strong>".$hap2."</strong>(".$id2.") ||  수당: <strong>".$member_rate."%</strong> || 발생수당 : <strong>".$today_sales."</strong><br><br>";
+
+								$note_adm='소실적 0 (대실적만 이월) (2-3) 대실적:'.$hap1.	'('.$id1.') || 소실적:'.$hap2.'('.$id2.') | 이월금:'.($hap1-$hap2);
+
+								$note='Binary Bonus for member';
+								$no_benefit=1;$binary_firstname=$mbname;$binary_firstid=$mbid;
+								
+								iwol_process($to_date, $mbid, $id1, $mbname, 23, $hap1-$hap2, $note_adm);
+								
+						
+						}
+
+						else{ //소실적이 극점x
 							
 							$today_sales=$hap2*($member_rate/100);
 							$firstname=$mbname;
@@ -340,16 +376,16 @@ for($i=0; $recommend=sql_fetch_array($result); $i++) {
 
 							echo " ▶▶ 수당 계산 2-2 ::  대실적-<strong>".$hap1."</strong>(".$id1.") ||  소실적-<strong>".$hap2."</strong>(".$id2.") ||  수당: <strong>".$member_rate."%</strong> || 발생수당 : <strong>".$today_sales."</strong><br><br>";
 
-								$note_adm='소실적 발생 (대실적만 이월) (4) 대실적:'.$hap1.	'('.$id1.') || 소실적:'.$hap2.'('.$id2.') | 이월금:'.($hap1-$hap2);
-								$note_adm2=' 소실적 소멸 (4-1) 소실적:'.$hap1.'('.$id1.') | 이월금: 0';
+								$note_adm='소실적 발생 (대실적만 이월) (2-2-1) 대실적:'.$hap1.	'('.$id1.') || 소실적:'.$hap2.'('.$id2.') | 이월금:'.($hap1-$hap2);
+								$note_adm2=' 소실적 소멸 (2-2-2) 소실적:'.$hap1.'('.$id1.') | 이월금: 0';
 
 								$note='Binary Bonus for member';
 								$no_benefit=1;$binary_firstname=$mbname;$binary_firstid=$mbid;
 
 								if($today_sales>0){
 									save_benefit($to_date, $mbid, $mbname, $recom, "Binary", '', 0, $today_sales, $today_sales, "Binary".' '.$note_adm, $note, $mblevel);
-									iwol_process($to_date, $mbid, $id1, $mbname, 99, $hap1-$hap2, $note_adm);
-									iwol_process($to_date, $mbid, $id2, $mbname, 2, 0, $note_adm2); //소실적 소멸
+									iwol_process($to_date, $mbid, $id1, $mbname, 221, $hap1-$hap2, $note_adm);
+									iwol_process($to_date, $mbid, $id2, $mbname, 222, 0, $note_adm2); //소실적 소멸
 								}
 						
 						}
@@ -361,8 +397,8 @@ for($i=0; $recommend=sql_fetch_array($result); $i++) {
 
 							echo " ▶▶ 수당 계산 3 :: 대실적-<strong>".$hap1."</strong>(".$id1.") ||  소실적-<strong>".$hap2."</strong>(".$id2.") <br><br>";
 						 
-								$note_adm='Binary (대소실적같음 소멸)(5) 대실적:'.$hap1.'('.$id1.') || 소실적:'.$hap2.'('.$id2.')';
-								$note_adm2=' 소실적 소멸 (5-1) 소실적:'.$hap1.'('.$id1.') | 이월금: 0';
+								$note_adm='Binary (대소실적같음 소멸)(3-1-1) 대실적:'.$hap1.'('.$id1.') || 소실적:'.$hap2.'('.$id2.')';
+								$note_adm2=' 소실적 소멸 (3-1-2) 소실적:'.$hap1.'('.$id1.') | 이월금: 0';
 
 								$note='Binary Bonus for member';
 
@@ -370,8 +406,8 @@ for($i=0; $recommend=sql_fetch_array($result); $i++) {
 
 								if($today_sales>0){
 									save_benefit($to_date, $mbid, $mbname, $recom, "Binary", '', 0, $today_sales, $hap1, "Binary".' '.$note_adm, $note, $mblevel, 100);
-									iwol_process($to_date, $mbid, $id2, $mbname, 100, $hap1 - $hap2 , $note_adm);
-									iwol_process($to_date, $mbid, $id2, $mbname, 2, 0, $note_adm2); //소실적 소멸
+									iwol_process($to_date, $mbid, $id2, $mbname, 311, $hap1 - $hap2 , $note_adm);
+									iwol_process($to_date, $mbid, $id2, $mbname, 312, 0, $note_adm2); //소실적 소멸
 								}
 					}
 	

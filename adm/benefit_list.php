@@ -211,9 +211,10 @@ $colspan = 16;
 </style>
 
 <div class="sysbtn">
-	<!--<a href="./member_grade.php" class="btn btn2" >멤버 등급 수동 갱신</a>-->
-	<a href="#" class="btn btn3" onclick="clear_db('amt');">멤버 출금,전환 초기화</a>
-	<a href="#" class="btn btn3" onclick="clear_db('pack_order');">B팩,Q팩 구매 DB 초기화</a>
+	<a href="./member_grade.php" class="btn btn2" >멤버 등급 수동 갱신</a>
+	<a href="#" class="btn btn" onclick="clear_db('balance');">멤버 수당,V7,매출전환,level 초기화(출금,전환 제외)</a>
+	<a href="#" class="btn btn3" onclick="clear_db('amt');">멤버 출금, 전환 내역 초기화</a>
+	<!--<a href="#" class="btn btn3" onclick="clear_db('pack_order');">B팩,Q팩 구매 DB 초기화</a>-->
 	<a href="#" class="btn btn2" onclick="clear_db('soodang');">수당 전체 DB 초기화</a>
 </div>
 
