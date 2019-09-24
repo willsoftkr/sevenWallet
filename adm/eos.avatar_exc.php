@@ -13,6 +13,8 @@ if ($to_date){
 $now_date_time = date('Y-m-d H:i:s');
 $now_date = date('Y-m-d');
 
+echo "기준일 : ".$now_date." <br><br>";
+
 $v7_cost = number_format(get_coin_cost('v7'),2);
 
 $avatar_sql = "select * from avatar_savings where status != 1";
@@ -65,7 +67,7 @@ while( $row = sql_fetch_array($avatar_result)){
 
         // 수당내역 로그
         $allowance_name = "avatar";
-        $rec = "Avatar Account incom";
+        $rec = "Avatar Account income";
 
         $soodang_log_sql = " insert soodang_pay set day='".$to_date."'";
         $soodang_log_sql .= " ,mb_id		= '".$mb_id."'";
