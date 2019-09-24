@@ -1,8 +1,20 @@
 <?php
-$sub_menu = "600300";
+$sub_menu = "600500";
 include_once('./_common.php');
+include_once(G5_THEME_PATH.'/_include/wallet.php');
 
 //auth_check($auth[$sub_menu], 'r');
+
+function get_avatar_mem($mb_id,$avatar_no){
+
+    $create_avatar = $avatar_no -1;
+
+    $sql = "select * from avatar_savings where mb_id = '{$mb_id}' and avatar_no = '{$create_avatar}' ";
+    $result = sql_fetch($sql);
+    //print_r($sql);
+
+    echo $result['avatar_id']." | ".timeShift($result['create_date']);
+}
 
 $v7_cost = number_format(get_coin_cost('v7'),2);
 
@@ -18,6 +30,7 @@ $qstr.='&fr_date='.$fr_date.'&to_date='.$to_date.'&chkc='.$chkc.'&chkm='.$chkm.'
 $qstr.='&diviradio='.$diviradio.'&r='.$r;
 $qstr.='&stx='.$stx.'&sfl='.$sfl;
 $qstr.='&aaa='.$aaa;
+
 
 $sql_common = " from soodang_pay where allowance_name ='Avatar'";
 
@@ -54,7 +67,6 @@ $sql = " select count(*) as cnt
             {$sql_order} ";
 
 
-
 $row = sql_fetch($sql);
 $total_count = $row['cnt'];
 
@@ -68,8 +80,11 @@ $sql_order='order by day desc';
 
 
 $sql = "select * 
-		{$sql_common}
+from soodang_pay AS A INNER JOIN avatar_savings AS B ON A.mb_id = B.mb_id 
+ WHERE A.allowance_name ='Avatar' AND B.status != 1
+
         {$sql_search}
+        GROUP BY A.mb_id
         {$sql_order}
         limit {$from_record}, {$rows} ";
 
@@ -80,7 +95,7 @@ $result = sql_query($sql);
 $send_sql = $sql;
 $listall = '<a href="'.$_SERVER['PHP_SELF'].'" class="ov_listall">전체목록</a>';
 
-$g5['title'] = 'B팩 수당';
+$g5['title'] = '아바타 적금';
 include_once ('./admin.head.php');
 include_once(G5_PLUGIN_PATH.'/jquery-ui/datepicker.php');
 
@@ -88,6 +103,7 @@ $colspan = 16;
 
 
  ?>   
+ 
  
 
 
@@ -167,7 +183,14 @@ $colspan = 16;
 	.sysbtn .btn{margin:10px 0;padding:10px 15px;background:orange;font-size:11px;}
 	.sysbtn .btn.btn2{background:orangered}
 	.sysbtn .btn.btn3{background:pink}
-	.sysbtn .btn:hover{background:black;color:white;text-decoration: none;}
+    .sysbtn .btn:hover{background:black;color:white;text-decoration: none;}
+   
+    .center{text-align:center;}
+    .num{text-align:right; font-weight:600; padding-right:10px !important;}
+    .red{color:red;font-weight:600;}
+    .blue{color:blue;font-weight:600;}
+
+    
 </style>
 
 <!--
@@ -219,13 +242,17 @@ $colspan = 16;
     <tr>
 		<th scope="col">수당날짜</th>
 		<th scope="col">회원아이디</a></th>
-		<th scope="col">회원레벨</a></th>
         <th scope="col">수당이름</th>
-        <th scope="col">추천인</th>     
-
-        <th scope="col">발생수당 (USD)</a></th>	
-		 <th scope="col">발생수당V7 </a></th>	
-        <th scope="col">수당근거</a></th>				
+        <th scope="col">적금수당 (USD)</a></th>	
+		<th scope="col">적금수당 (V7) </a></th>	
+        <th scope="col">아바타번호</a></th>
+        <th scope="col">아바타아이디</a></th>	
+        <th scope="col">적립한도 (USD)</a></th>
+        <th scope="col">적립비율 (%)</a></th>	
+        <th scope="col">현재적립금 (USD)</a></th>	
+        <th scope="col">생성일</a></th>	
+        <th scope="col">업데이트</a></th>	
+        <th scope="col">아바타멤버 생성일(last)</a></th>
     </tr>
     </thead>
     <tbody>
@@ -239,13 +266,18 @@ $colspan = 16;
 
     <tr class="<?php echo $bg; ?>">
 		<td width='100'><? echo $row['day'];?></td>
-		<td class="td_num"><?php echo get_text($row['mb_id']); ?></td>
-		<td width='100'><?= get_member_level($row['mb_level'])?></td>
-		<td width='100'><?php echo get_text($row['allowance_name']); ?></td>
-        <td width="150" ><?php echo get_text($row['mb_recommend']); ?></td>
-		<td width="150" align='center'><?php echo Number_format($soodang,2)  ?></td>
-		<td width="150" align='center'><?php echo Number_format($soodang/$v7_cost,2)  ?></td>
-        <td width="500"><?php echo ($row['rec_adm']) ?></td>
+		<td width='150' class="center"><?php echo get_text($row['mb_id']); ?></td>
+		<td width='80' class="center"><?php echo get_text($row['allowance_name']); ?></td>
+		<td width="120" class="num blue"><?php echo Number_format($soodang,2)  ?></td>
+		<td width="120" class="num blue"><?php echo Number_format($soodang/$v7_cost,2)  ?></td>
+        <td width="60" class="center"><?=$row['avatar_no']?></td>
+        <td width="100"><?=$row['avatar_id']?></td>
+        <td width="100" class="num"><?=Number_format($row['saving_target'])?></td>
+        <td width="100" class="num"><?=$row['saving_rate']?>%</td>
+        <td width="100" class="num red"><?=$row['current_saving']?></td>
+        <td width="100" class="center" ><?=timeshift($row['setting_date'])?></td>
+        <td width="100" class="center" ><?=timeshift($row['update_date'])?></td>
+        <td> <? if($row['avatar_no'] > 1){ get_avatar_mem($row['mb_id'],$row['avatar_no']); }?></td>
     </tr>
 
     <?php
@@ -360,9 +392,7 @@ function view_log()
 	var day_point = document.getElementById("to_date").value;
 
 	var url = "/data/log/avatar/avatar_"+str+".html";
-
 	//console.log(url);
-
 	window.open('/data/log/avatar/avatar_'+day_point+'.html');  
 }
 
