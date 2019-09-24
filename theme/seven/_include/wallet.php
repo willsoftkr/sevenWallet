@@ -29,6 +29,7 @@ $exchange_fee = 3;
 $deposit_fee = 5;
 $deposit_cost =  round($btc_cost_num - ($btc_cost_num*($deposit_fee/100)),2);
 
+
 /*전환 수수료 계산*/
 /*
 function exchage_result($val) {

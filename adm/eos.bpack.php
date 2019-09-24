@@ -2,6 +2,8 @@
 $sub_menu = "600600";
 include_once ('./_common.php');
 
+
+ob_start();
 /*
 Q팩 - 추천수당에서 대수와 {직급 계산} + 팩 구매내역 있는사람만 
 B팩 = 바이너리 보너스
@@ -301,7 +303,9 @@ for($i=0; $recommend=sql_fetch_array($result); $i++) {
 								$note='Binary Bonus for member';
 								$no_benefit=1;$binary_firstname=$mbname;$binary_firstid=$mbid;
 
-								iwol_process($to_date, $mbid, $id1, $mbname, 13, $hap1-$hap2, $note_adm);
+								if($member_rate_pack){
+									iwol_process($to_date, $mbid, $id1, $mbname, 13, $hap1-$hap2, $note_adm);
+								}
 								
 						
 						}
@@ -363,8 +367,9 @@ for($i=0; $recommend=sql_fetch_array($result); $i++) {
 								$note='Binary Bonus for member';
 								$no_benefit=1;$binary_firstname=$mbname;$binary_firstid=$mbid;
 								
-								iwol_process($to_date, $mbid, $id1, $mbname, 23, $hap1-$hap2, $note_adm);
-								
+								if($member_rate_pack){
+									iwol_process($to_date, $mbid, $id1, $mbname, 23, $hap1-$hap2, $note_adm);
+								}
 						
 						}
 
@@ -740,4 +745,13 @@ function save_benefit($day, $mbid, $mbname, $recom, $allowance_name, $sales_day,
 		}
 	}
 }
+?>
+
+
+<?
+$html = ob_get_contents();
+//ob_end_flush();
+
+$myfile = fopen(G5_PATH.'/data/log/bpack/bpack_'.$to_date.'.html', "w");
+file_put_contents(G5_PATH.'/data/log/bpack/bpack_'.$to_date.'.html', ob_get_contents());
 ?>

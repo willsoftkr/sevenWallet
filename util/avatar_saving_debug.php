@@ -24,8 +24,15 @@ if($_GET['debug']){
     $mode ='u';
 }
 
+print_r($idx);
+
 $now_date_time = date('Y-m-d H:i:s');
+echo "<br>";
+print_r($now_date_time);
+
 $now_date = date('Y-m-d');
+echo "<br>";
+print_r($now_date);
 //$avatar_id = $mb_id."_BT".$avatar_no;
 
 
@@ -40,7 +47,7 @@ $av = sql_fetch($avatar_sql);
 if($idx != '0'){
     if($av['status'] == '1'){
         $avatar_no = $av['avatar_no'] + 1;
-        $avatar_id = $mb_id.'_'.$av['avatar_character'].$avatar_no;
+        $avatar_id = $mb_id.$av['avatar_character'].$avatar_no;
     }else{
         $mode ='u';
     }
@@ -71,14 +78,15 @@ if($mode == 'w'){
         print_r('신규생성');
         echo "<br>";
         print_R($sql);
+        $rst ='1';
     }else{
         $rst = sql_query($sql, false);
 
         if($rst){
-            echo (json_encode(array("result" => "success",  "code" => "0010", "sql" =>  'Avatar setting change complete')));
+            echo (json_encode(array("result" => "success",  "code" => "0000", "sql" => $sql)));
         }
         else{
-            echo (json_encode(array("result" => "failed",  "code" => "0001", "sql" =>'에러발생')));
+            echo (json_encode(array("result" => "failed",  "code" => "0001", "sql" => $save_hist)));
         }
     }
 }
@@ -91,20 +99,21 @@ else if($mode == 'u'){
             , saving_rate           = '".$avatar_rate."'
             , update_date    = '".$now_date_time."'
             where idx = '{$idx}'";
+        
+        print_r($sql);
 
         $rst = sql_query($sql, false);
-
         $mem_st = avatar_add($idx, $mb_id);
 
         if(!$mem_st){
             if($rst){
-                echo (json_encode(array("result" => "success",  "code" => "0020", "sql" => 'Avatar setting change complete')));
+                echo (json_encode(array("result" => "success",  "code" => "0020", "sql" => 'update complete')));
             }
             else{
                 echo (json_encode(array("result" => "failed",  "code" => "0001", "sql" =>'에러발생')));
             }
         }else{
-            echo (json_encode(array("result" => "success",  "code" => "0030", "sql" => 'Avatar created complete')));
+            echo (json_encode(array("result" => "success",  "code" => "0030", "sql" => 'avatar create')));
         }
 }
 else if($mode == 'c'){
@@ -116,6 +125,7 @@ else if($mode == 'c'){
 
 // 아바타 계정 생성
 function avatar_add($idx, $mb_id){
+
     global $now_date_time;
     global $now_date;
 
@@ -131,7 +141,7 @@ function avatar_add($idx, $mb_id){
 
     if($result['current_saving'] >= $result['saving_target'] && $result['status'] =='0'){
 
-        $depth_sql = "SELECT mb_no as recom_no, depth+1 as mb_depth FROM g5_member WHERE mb_id ='{$mb_id}'" ;
+        $depth_sql = "SELECT mb_no as recom_no, depth+1 as mb_depth FROM g5_member WHERE mb_id ='{$mb_id}'";
         $depth_result = sql_query($depth_sql);
         $depth = $depth_result['mb_depth'];
 
@@ -155,7 +165,9 @@ function avatar_add($idx, $mb_id){
         , nation_number = '".$result['nation_number']."'
         , mb_memo           = '". $result_memo."'";
 
-        $mem_create = sql_query($member_add_sql, false);
+
+        print_R($member_add_sql);
+        $mem_create = 1;
 
         if($mem_create){
             $update_sql = "UPDATE avatar_savings set
@@ -164,8 +176,10 @@ function avatar_add($idx, $mb_id){
             , update_date    = '".$now_date_time."'
             where idx = '{$idx}'";
 
-            $update_avatar = sql_query( $update_sql, false);
-
+            echo "<br>";
+            print_R( $update_sql);
+            $update_avatar = 1;
+            
             if($update_avatar){
                 return true;
                 //echo (json_encode(array("result" => "success",  "code" => "0000", "sql" => $sql)));

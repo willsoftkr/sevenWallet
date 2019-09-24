@@ -8,6 +8,7 @@ $menu['menu600'] = array (
     array('600200', '수당계산 및 수당리스트', ''.G5_ADMIN_URL.'/benefit_list.php','bbs_board'),
     array('600300', '수당분할지급 관리', ''.G5_ADMIN_URL.'/dividend_list.php'),
     array('600400', 'B팩 수당',''.G5_ADMIN_URL.'/binary.php'),
+    array('600500', '아바타 적금',''.G5_ADMIN_URL.'/avatar.php'),
 	/*
     array('600400', '조직도(트리) 보기', ''.G5_ADMIN_URL.'/member_tree.php', 'bbs_board'),
     array('600500', '조직도(박스) 보기', ''.G5_ADMIN_URL.'/member_org.php', 'bbs_board'),

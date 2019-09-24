@@ -6,6 +6,9 @@
 	include_once(G5_THEME_PATH.'/_include/wallet.php'); 
 	include_once(G5_PATH.'/lib/shop.lib.php'); 
 	include_once(G5_THEME_PATH.'/_include/shop.php'); 
+
+	//매출액
+	$mysales = $member['mb_deposit_point'];
 ?>
 
 <!-- bxslider -->
@@ -150,6 +153,12 @@
 					<span>입금한 금액</span>
 				</div>
 				-->
+				<div>
+					<img src="<?=G5_THEME_URL?>/_images/busi4.gif" alt="아이콘">
+					<p><?=shift_doller($mysales)?> $ </p>
+					<span data-i18n="dashboard.나의 매출액">My Sales</span>
+				</div>
+
 				<div>
 					<img src="<?=G5_THEME_URL?>/_images/busi4.gif" alt="아이콘">
 					<p><?=$v7_account?> V7 / $ <?=$v7_rate?></p>

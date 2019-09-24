@@ -11,6 +11,16 @@ include_once(G5_THEME_PATH.'/_include/head.php');
 include_once(G5_THEME_PATH.'/_include/gnb.php'); 
 include_once(G5_THEME_PATH.'/_include/popup.php');
 
+function generateRandomCharString($length = 3) {
+	$characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+	$charactersLength = strlen($characters);
+	$randomString = '';
+	for ($i = 0; $i < $length; $i++) {
+		$randomString .= $characters[rand(0, $charactersLength - 1)];
+	}
+	return $randomString;
+}
+
 // 리퍼러 체크
 referer_check();
 
@@ -324,6 +334,38 @@ if ($w == '') {
 	
 	//print_r($sql);
 	sql_query($sql);
+
+
+
+
+	/////////////////////////////////////////////////////////////////// 아바타 생성 코드
+
+	$now_date_time = date('Y-m-d H:i:s');
+	$avatar_no = 1;
+	$avatar_target ='3000';
+	$avatar_rate ='10';
+	$status = '0';
+
+	$char = generateRandomCharString(2);
+    $avatar_id = $mb_id.$char.$avatar_no;
+
+
+	$avatar_sql = "INSERT avatar_savings set
+	mb_id             = '".$mb_id."'
+	, avatar_no     = '".$avatar_no."'
+	, avatar_id     = '".$avatar_id."'
+	, saving_target = '".$avatar_target."'
+	, saving_rate           = '".$avatar_rate."'
+	, current_saving   = '0'
+	, status         = '{$status}'
+	, setting_date    = '".$now_date_time."'
+	, update_date    = '".$now_date_time."'
+	, avatar_character    = '".$char."' ";
+
+	sql_query($avatar_sql);
+
+	///////////////////////////////////////////////////////////////////
+
 
 	$mb_idx = sql_insert_id();
 

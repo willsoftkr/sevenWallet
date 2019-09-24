@@ -1118,7 +1118,7 @@ div:nth-child(2){color:#ff9b22;}
 .ava_title{font-weight:600; font-size:1.3em;}
 .ava_title img{width:30px; vertical-align:middle; }
 .img_select{
-	width:30%; 
+	width:200px; 
 	margin:20px auto 15px; 
 	background:#0079d3; 
 	max-width:150px; 
@@ -1134,14 +1134,33 @@ div:nth-child(2){color:#ff9b22;}
 .img_select select{margin-top:8px; width:80%;}
 .ava_title{margin-bottom:20px;}
 .ava_history_wrap li{
-	width:100%; 
-	border-bottom:1px solid #808080; 
-	padding-bottom:10px; 
-	margin-bottom:10px;
+	_border-bottom:1px solid #808080; 
+	_padding-bottom:10px; 
+	_margin-bottom:10px;
 }
 .ava_history_wrap li:nth-child(2n-1){padding-right:2%;}
 .ava_select_wrap .btn_basic{width:30%; max-width:150px; margin:auto; padding:6px; display: block; margin-bottom:20px;}
 
+.avatar_card{
+	background:ghostwhite;
+	width:48%;
+	padding:20px 10px;
+	border:1px solid #e1e1e1;
+	border-radius:10px;
+	text-align:center;
+	min-height:200px;
+}
+.avatar_card + .avatar_card{
+	margin-left:2%;
+}
+.avatar_card .av_num{color:black;font-weight:600;border-bottom:1px solid #e1e1e1;padding-bottom:10px}
+.avatar_card .av_id{color:black;font-weight:600;display:block}
+.avatar_card .av_date{color:black;font-weight:600;display:block}
+.avatar_card .av_target{color:red;}
+
+.avatar_card.active{
+	border:2px solid #0079d3;
+}
 /*추천인/후원인 등록 팝업*/
 
 .user {

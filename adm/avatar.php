@@ -6,39 +6,8 @@ include_once('./_common.php');
 
 $v7_cost = number_format(get_coin_cost('v7'),2);
 
-
-
-$benefit = "SELECT allowance_name FROM soodang_pay WHERE (1) GROUP BY allowance_name ";
+$benefit = "SELECT * FROM soodang_pay WHERE allowance_name ='Avatar'";
 $rrr = sql_query($benefit);
-
-$allowcnt=0;
-for ($i=0; $allowance_name=sql_fetch_array($rrr); $i++) {   
-	$nnn="allowance_chk".$i;
-	$html.= "<input type='checkbox' name='".$nnn."' id='".$nnn."'";
-	
-	if($$nnn!=''){
-		$html.=" checked='true' ";
-	}		
-
-	$html.=" value='".$allowance_name['allowance_name']."'>".$allowance_name['allowance_name']."&nbsp;&nbsp;";
-
-
-	if(${"allowance_chk".$i}!=''){
-		if($allowcnt==0){
-			$sql_search .= " and ( (allowance_name='".${"allowance_chk".$i}."')";
-		}else{
-			$sql_search .= "  or ( allowance_name='".${"allowance_chk".$i}."' )";
-		}
-
-		
-			$qstr.='&'.$nnn.'='.$allowance_name['allowance_name'];
-		
-		$allowcnt++;
-
-	}
-}
-
-if ($allowcnt>0) $sql_search .= ")";
 
 
 $token = get_token();
@@ -51,25 +20,13 @@ $qstr.='&diviradio='.$diviradio.'&r='.$r;
 $qstr.='&stx='.$stx.'&sfl='.$sfl;
 $qstr.='&aaa='.$aaa;
 
-$sql_common = " from soodang_pay where (1) ";
+$sql_common = " from soodang_pay where allowance_name ='Avatar'";
 
 if(!$fr_date){
 	$fr_date=date("Y-m-d");
 	$to_date=$fr_date;
 	
 }
-
-if(($allowance_name) ){
-	$sql_search .= " and (";
-		if($chkc){
-		$sql_search .= " allowance_name='".$allowance_name."'";
-		}
- $sql_search .= " )";
- 
-}/*else if($dv_gubun){
-	 $sql_search .= " and dv_gubun='".$dv_gubun."'";
-}
-*/
 
 if($_GET['start_dt']){
 	$sql_search .= " and day >= '".$_GET['start_dt']."'";
@@ -117,14 +74,14 @@ $sql = "select *
         {$sql_order}
         limit {$from_record}, {$rows} ";
 
-
+//echo $sql;
 $result = sql_query($sql);
 
 
 $send_sql = $sql;
 $listall = '<a href="'.$_SERVER['PHP_SELF'].'" class="ov_listall">전체목록</a>';
 
-$g5['title'] = '수당계산 및 수당리스트';
+$g5['title'] = 'B팩 수당';
 include_once ('./admin.head.php');
 include_once(G5_PLUGIN_PATH.'/jquery-ui/datepicker.php');
 
@@ -178,19 +135,18 @@ $colspan = 16;
 		.benefit.black{background:black}
 		.benefit.red{background:red}
 		.benefit.hotpink{background:hotpink}
-		.benefit.avatar{background:sienna}
 		.benefit:hover{background:black;}
 	</style>
 
-	<input type="submit" name="act_button" value=" 업스테어 "  class="frm_input benefit upstair" onclick="go_calc(5);">
-	<input type="submit" name="act_button" value=" 일일 수당 지급 "  class="frm_input benefit day" onclick="go_calc(0);">
-	<input type="submit" name="act_button" value=" 10X10 지급"  class="frm_input benefit recom" onclick="go_calc(1);">
-	<input type="submit" name="act_button" value=" 레벨승급"  class="frm_input benefit level" onclick="go_calc(2);">
-	<input type="submit" name="act_button" value=" 무한 매칭 지급 " class="frm_input benefit bpack" onclick="go_calc(3);">
-	<input type="submit" name="act_button" value=" B팩 수당 지급"  class="frm_input benefit qpack" onclick="go_calc(4);">
-	<input type="submit" name="act_button" value=" 아바타적립실행"  class="frm_input benefit avatar" onclick="go_calc(9);">
-	<input type="submit" name="act_button" value=" 전체수당지급"  class="frm_input benefit black" onclick="go_calc(6);">
-	<input type="submit" name="act_button" value=" 어제까지자동지급"  class="frm_input benefit red" onclick="go_calc(7);">
+	<input type="submit" name="act_button" value=" 1.아바타 적립 기록보기"  class="frm_input benefit red" onclick="view_log();">
+	
+
+    <!--
+	<input type="submit" name="act_button" value=" 1.B팩수당지급 되돌리기"  class="frm_input benefit red" onclick="go_calc(9);">
+	<input type="submit" name="act_button" value=" 2.B팩수당지급 내역삭제"  class="frm_input benefit black" onclick="clear_db('bpack');">
+	<input type="submit" name="act_button" value=" 3.B팩 수당(일일) 지급"  class="frm_input benefit qpack" onclick="go_calc(4);">
+    <input type="submit" name="act_button" value=" 3.어제까지 B팩자동 지급"  class="frm_input benefit hotpink" onclick="go_calc(8);">
+	-->
 
 	<!--
 	<input type="submit" name="act_button" value=" 바이너리 보너스 "  class="frm_input" onclick="go_calc(2);">
@@ -213,11 +169,9 @@ $colspan = 16;
 </style>
 
 <div class="sysbtn">
-	<a href="./member_grade.php" class="btn btn2" >멤버 등급 수동 갱신</a>
-	<a href="#" class="btn btn" onclick="clear_db('balance');">멤버 수당,V7,매출전환,level 초기화(출금,전환 제외)</a>
-	<a href="#" class="btn btn3" onclick="clear_db('amt');">멤버 출금, 전환 내역 초기화</a>
-	<!--<a href="#" class="btn btn3" onclick="clear_db('pack_order');">B팩,Q팩 구매 DB 초기화</a>-->
-	<a href="#" class="btn btn2" onclick="clear_db('soodang');">수당 전체 DB 초기화</a>
+	<!--<a href="./member_grade.php" class="btn btn2" >멤버 등급 수동 갱신</a>-->
+    <a href="#" class="btn btn1" onclick="clear_db('member');">멤버 수당 잔고(전체) 초기화</a>
+	<a href="#" class="btn btn1" onclick="clear_db('pack');">B팩,Q팩 관련 수당 DB 초기화</a>
 </div>
 
 
@@ -387,14 +341,28 @@ function go_calc(n)
 			location.href='eos.auto.php?'+str;         //전체수당지급
 			break;
 		case 8: 
-			location.href='eos.Bpack_auto.php?'+str;         //B팩
-			break;
-		case 9: 
-			location.href='eos.avatar_exc.php?'+str;         //아바타
+			location.href='eos.bpack_auto.php?'+str;         //전체수당지급
+            break;
+        case 9: 
+			location.href='return_binary.php?'+str;         //전체수당지급
 			break;
 	}
 	
 }
+
+
+function view_log()
+{
+	
+	var day_point = document.getElementById("to_date").value;
+
+	var url = "/data/log/avatar/avatar_"+str+".html";
+
+	//console.log(url);
+
+	window.open('/data/log/avatar/avatar_'+day_point+'.html');  
+}
+
 </script>
 <?php
 include_once ('./admin.tail.php');

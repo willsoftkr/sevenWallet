@@ -19,7 +19,7 @@
 						<ul>
 							<li><a href="/page.php?id=structure"><img src="<?=G5_THEME_URL?>/_images/menu05_1.gif" alt="아이콘"><span data-i18n="nav.추천도 보기">Level Structure</span></a></li>
 							<li><a href="/page.php?id=binary"><img src="<?=G5_THEME_URL?>/_images/menu05_2.gif" alt="아이콘"><span data-i18n="nav.후원도 보기">Binary Structure</span></a></li>
-							<li><a href="javascript:serviceModal();"><img src="<?=G5_THEME_URL?>/_images/menu05_3.gif" alt="아이콘"><span data-i18n="nav.아바타 보기">Avatar Account</span></a></li>
+							<li><a href="/page.php?id=avatar"><img src="<?=G5_THEME_URL?>/_images/menu05_3.gif" alt="아이콘"><span data-i18n="nav.아바타 보기">Avatar Account</span></a></li>
 						</ul>
 					</li>
 					<li><a href="/page.php?id=purchase"><img src="<?=G5_THEME_URL?>/_images/menu06.gif" alt="아이콘"><span data-i18n="nav.팩 상품 구매하기">Purchase Packs</span></a></li>
