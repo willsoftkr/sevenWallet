@@ -13,8 +13,6 @@ if ($to_date){
 $now_date_time = date('Y-m-d H:i:s');
 $now_date = date('Y-m-d');
 
-
-$to_date = "2019-07-21";
 $v7_cost = number_format(get_coin_cost('v7'),2);
 
 $avatar_sql = "select * from avatar_savings where status != 1";
