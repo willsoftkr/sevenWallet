@@ -9,7 +9,6 @@ $v7_cost = number_format(get_coin_cost('v7'),2);
 $benefit = "SELECT * FROM soodang_pay WHERE allowance_name ='Avatar'";
 $rrr = sql_query($benefit);
 
-
 $token = get_token();
 
 $fr_date = preg_replace("/([0-9]{4})([0-9]{2})([0-9]{2})/", "\\1-\\2-\\3", $fr_date);
@@ -138,7 +137,10 @@ $colspan = 16;
 		.benefit:hover{background:black;}
 	</style>
 
-	<input type="submit" name="act_button" value=" 1.아바타 적립 기록보기"  class="frm_input benefit red" onclick="view_log();">
+
+    <input type="submit" name="act_button" value=" 1.회원 아바타 기본 생성"  class="frm_input benefit day" onclick="avatar_auto();">
+    <input type="submit" name="act_button" value=" 2.아바타 적립 기록 보기"  class="frm_input benefit recom" onclick="view_log();">
+   
 	
 
     <!--
@@ -168,12 +170,13 @@ $colspan = 16;
 	.sysbtn .btn:hover{background:black;color:white;text-decoration: none;}
 </style>
 
+<!--
 <div class="sysbtn">
-	<!--<a href="./member_grade.php" class="btn btn2" >멤버 등급 수동 갱신</a>-->
+	<a href="./member_grade.php" class="btn btn2" >멤버 등급 수동 갱신</a>
     <a href="#" class="btn btn1" onclick="clear_db('member');">멤버 수당 잔고(전체) 초기화</a>
 	<a href="#" class="btn btn1" onclick="clear_db('pack');">B팩,Q팩 관련 수당 DB 초기화</a>
 </div>
-
+-->
 
 
 
@@ -361,6 +364,33 @@ function view_log()
 	//console.log(url);
 
 	window.open('/data/log/avatar/avatar_'+day_point+'.html');  
+}
+
+function avatar_auto(){
+
+    $.ajax({
+				url: 'eos.avatar_auto.php',
+				type: 'post',
+				async: false,
+				data: {
+					"avatar_target" : 3000,
+					"avatar_rate" : 10
+				},
+                dataType: 'json',
+                
+				success: function(result) {
+					if(result.code != '0001'){
+                        
+						var result = confirm(result.sql);
+                        if(result){
+                            location.reload();
+                        }
+                    }
+				},
+				error: function(e){
+					console.log(e);
+				}
+			});
 }
 
 </script>

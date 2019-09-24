@@ -153,7 +153,7 @@ function avatar_add($idx, $mb_id){
 
         echo "<br>";
         //print_r($mb_avatar_sql);
-        echo "  >>>> 아바타 생성 ::  <span class='blue'>".$result['avatar_id']."</span>";
+        echo "  >>>> 아바타 멤버 자동 생성 ::  <span class='blue'>".$result['avatar_id']."</span>";
         //print_r($member_add_sql);
         
         $mem_create = sql_query($member_add_sql, false);
@@ -165,11 +165,35 @@ function avatar_add($idx, $mb_id){
             , update_date    = '".$now_date_time."'
             where idx = '{$idx}'";
 
-                //echo "<br> 생성기록 ::";
+                echo "<br> >>>>> 아바타적금 업데이트 :: ".$result['avatar_id']." || status = 1";
                 //print_r($update_sql);
 
             sql_query( $update_sql, false);
-        }
+            
+
+            // 다음 아바타 생성
+            $avatar_no = $result['avatar_no'] + 1;
+            $avatar_id = $mb_id.'_'.$result['avatar_character'].$avatar_no;
+
+            $avatar_add_sql = "INSERT avatar_savings set
+            mb_id             = '".$mb_id."'
+            , avatar_no     = '".$avatar_no."'
+            , avatar_id     = '".$avatar_id."'
+            , saving_target = '3000'
+            , saving_rate           = '10'
+            , current_saving   = '0'
+            , status         = '0'
+            , setting_date    = '".$now_date_time."'
+            , update_date    = '".$now_date_time."'
+            , avatar_character    = '{$result['avatar_character']}' ";
+
+                echo "<br> >>>>>>> 신규 아바타적금 생성 :: <span class='blue'>".$avatar_id."</span>";
+                //print_r($avatar_add_sql);
+
+            sql_query($avatar_add_sql);
+    }else{
+        echo "<br><span class='red'> 아바타계정생성 오류 발생</span>";
+    }
 }
 ?>
 

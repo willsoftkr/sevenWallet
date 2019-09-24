@@ -48,7 +48,7 @@ $avatar_info = sql_query($avatar_sql);
 						<?=option_selected(9000, $av_result['saving_target'], '9,000')?>
 						<?=option_selected(10000, $av_result['saving_target'], '10,000')?>
 					</select> USD
-					<p class="f_right"><span data-i18n="avatar.적립금">Total savings</span> : <strong>$ <?=shift_doller($av_result['current_saving'])?></strong></p>
+					<div style="margin:10px 0;"><span data-i18n="avatar.적립금" >Total savings</span> : <span class="font_green"><strong>$ <?=shift_doller($av_result['current_saving'])?></strong></span></div>
 				</div>
 
 				<hr>

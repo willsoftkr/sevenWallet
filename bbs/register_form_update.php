@@ -347,7 +347,7 @@ if ($w == '') {
 	$status = '0';
 
 	$char = generateRandomCharString(2);
-    $avatar_id = $mb_id.$char.$avatar_no;
+    $avatar_id = $mb_id."_".$char.$avatar_no;
 
 
 	$avatar_sql = "INSERT avatar_savings set

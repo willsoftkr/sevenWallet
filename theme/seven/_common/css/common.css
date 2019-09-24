@@ -1113,7 +1113,7 @@ div:nth-child(2){color:#ff9b22;}
 
 /* avatar */
 .avatar_wrap{color:#808080;}
-.ava_1st{padding:20px; font-size:1.1em;}
+.ava_1st{padding:20px 20px 10px; font-size:1.1em;text-align:center}
 .ava_1st select{color: #006df3; font-weight:600;}
 .ava_title{font-weight:600; font-size:1.3em;}
 .ava_title img{width:30px; vertical-align:middle; }

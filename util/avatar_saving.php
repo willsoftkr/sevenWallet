@@ -46,7 +46,7 @@ if($idx != '0'){
     }
 }else{
     $char = generateRandomCharString(2);
-    $avatar_id = $mb_id.$char.$avatar_no;
+    $avatar_id = $mb_id."_".$char.$avatar_no;
 }
 
 
@@ -165,6 +165,8 @@ function avatar_add($idx, $mb_id){
             where idx = '{$idx}'";
 
             $update_avatar = sql_query( $update_sql, false);
+
+            
 
             if($update_avatar){
                 return true;
