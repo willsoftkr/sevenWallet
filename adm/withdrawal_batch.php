@@ -230,20 +230,20 @@ $ord_rev = $ord_array[($ord_key+1)%2]; // 내림차순→오름차순, 오름차
 	<table cellspacing="0" cellpadding="0" border="0" class="regTb">
         
 		<thead>
-			<th style="width:3%;">선택</th>
-			<th style="width:3%;"><a href="?ord=<?php echo $ord_rev; ?>&ord_word=uid">No <?php echo $ord_arrow[$ord_key]; ?></a></th>
-			<th style="width:10%;">아이디 </th>
-			<th style="width:10%;">지갑주소</th>
-			<th  style="width:10%;">출금후잔고</th>
+			<th style="width:2%;">선택</th>
+			<th style="width:2%;"><a href="?ord=<?php echo $ord_rev; ?>&ord_word=uid">No <?php echo $ord_arrow[$ord_key]; ?></a></th>
+			<th style="width:6%;">아이디 </th>
+			<th style="width:14%">지갑주소</th>
+			<th  style="width:6%;">출금후잔고</th>
 			<!--<th>현재 BTC 수당 잔고</th>-->
-			<th style="width:5%;">요청코인</th>
-			<th style="width:10%;">출금요청금액</th>
-			<th style="width:10%;">출금수수료</th>
-			<th style="width:10%;">총출금</th>
-			<th style="width:10%;">적용 코인시세</th>
-			<th style="width:10%;">요청일시</th>
-			<th style="width:6%;">승인여부</th>
-			<th style="width:10%;">승인일시</th>
+			<th style="width:3%;">요청코인</th>
+			<th style="width:6%;">출금요청금액</th>
+			<th style="width:6%;">출금수수료</th>
+			<th style="width:6%;">총출금</th>
+			<th style="width:6%;">적용 코인시세</th>
+			<th style="width:9%;">요청일시</th>
+			<th style="width:3%;">승인여부</th>
+			<th style="width:9%;">승인일시</th>
 		</thead>
 
         <tbody>

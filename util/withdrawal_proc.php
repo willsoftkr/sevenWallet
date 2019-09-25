@@ -64,7 +64,7 @@ if($save < $amount_total){
 		, account     = '".number_format($account,8)."'
 		, amt_usd    = '".$amount_left."'
 		, amt_total     = '".$amount_total."'
-		, amt_left     = '".$account_left*1.01."'
+		, amt_left     = '".round($account_left*1.01,8)."'
 		, fee = '".$fee."'
         , cost           = '".$cost."'
         , coin           = '".$coin."'
