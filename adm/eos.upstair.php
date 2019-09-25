@@ -19,8 +19,27 @@ while( $row = sql_fetch_array($upstair_result) ){
     {
         $memeber_id = $row['mb_id'];
         $mb_upstair = $row['upstair'];
+        
+        $info_sql = "select mb_id, mb_deposit_point from g5_member where mb_id = '{$memeber_id}' ";
+        $info_result = sql_fetch($info_sql);
+        $info_result['mb_deposit_point'];
 
-        $member_sql = "update g5_member set mb_deposit_point = mb_deposit_point + {$mb_upstair}, mb_deposit_acc = mb_deposit_acc + {$mb_upstair} where mb_id = '{$memeber_id}'";
+        $save_p = $mb_upstair + $info_result['mb_deposit_point'];
+
+        if($save_p>=1 && $save_p<500){
+			$grade = 0;
+		}
+		else if($save_p>=500 && $save_p<3000){
+			$grade = 1;
+		}
+		else if($save_p>=3000 && $save_p<10000){
+			$grade = 2;
+		}
+		else if($save_p>=10000){
+			$grade = 3;
+        }
+        
+        $member_sql = "update g5_member set mb_deposit_point = mb_deposit_point + {$mb_upstair}, mb_deposit_acc = '{$save_p}', grade = '{$grade}' where mb_id = '{$memeber_id}'";
         $member_result = sql_query($member_sql);
 
         print_r("<br> * ".$member_sql."<br>");
