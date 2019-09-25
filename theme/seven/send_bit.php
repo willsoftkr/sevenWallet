@@ -168,15 +168,21 @@ if($nw_with == 'Y'){
 				var mb_id = "<?=$member['mb_id']?>";
 				var address = $('#wallet_address').val();;
 
-				//console.log( address + " / "+ amount+ " / "+ btc_account*1.01);
+				console.log( address + " / "+ amount+ " / "+ btc_account*1.01);
 
 				if(address=='' || address == null ){
 					commonModal('check input address','<strong> Please check retry. </strong>',80);
 					return false;
 				}
 
+				
+
 				if(amount > (btc_account*1.01)){
 					commonModal('check input amount','<strong> out of the maximum amount. </strong>',80);
+					return false;
+					
+				}else if(amount < 0.02){
+					commonModal('check input amount','<strong> Require minimum amount 0.02 btc. </strong>',80);
 					return false;
 				}
 
