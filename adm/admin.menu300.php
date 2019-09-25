@@ -1,6 +1,6 @@
 <?php
 $menu['menu300'] = array (
-  
+    /*
     array('300000', '게시판관리', ''.G5_ADMIN_URL.'/board_list.php', 'board'),
     array('300100', '게시판관리', ''.G5_ADMIN_URL.'/board_list.php', 'bbs_board'),
     array('300200', '게시판그룹관리', ''.G5_ADMIN_URL.'/boardgroup_list.php', 'bbs_group'),
@@ -11,6 +11,10 @@ $menu['menu300'] = array (
     array('300700', 'FAQ관리', G5_ADMIN_URL.'/faqmasterlist.php', 'scf_faq', 1),
 	  array('300800', '공지사항관리(notice)', G5_BBS_URL.'/board.php?bo_table=notice','',1),
     array('300820', '글,댓글 현황', G5_ADMIN_URL.'/write_count.php', 'scf_write_count'),
-    
+    */
+    array('300000', '게시판관리', ''.G5_ADMIN_URL.'/board_list.php', 'board'),
+    array('300100', '공지사항관리(Notice)', G5_ADMIN_URL.'/board_notice.php','',1),
+    array('300200', 'V7뉴스관리(News)', G5_ADMIN_URL.'/board_news.php','',1),
+    array('300300', 'V7서포트(Support)', G5_ADMIN_URL.'/board_support.php','',1),
 );
 ?>
