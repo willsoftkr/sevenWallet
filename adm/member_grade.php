@@ -30,7 +30,7 @@ while( $row = sql_fetch_array($result) ){
 		$member_grade3 += 1;
 	}
 
-	$grade_sql = "update g5_member set grade = '".$grade."' where mb_no ='".$row['mb_no']."'";
+	$grade_sql = "update g5_member set grade = '".$grade."' where mb_id != 'coolrunning' and mb_no ='".$row['mb_no']."'";
 	//echo $row['mb_deposit_point']." / ".$grade_sql."<br>";
 	sql_query($grade_sql);
 	
