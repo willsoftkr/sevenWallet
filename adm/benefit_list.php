@@ -161,13 +161,14 @@ $colspan = 16;
        <!-- <input type="text" name="fr_date" value="<?php if($fr_date){echo $fr_date; }else{echo date("Ymd");} ?>" id="fr_date" required class="required frm_input" size="13" maxlength="10">
         ~-->
         <label for="to_date" class="sound_only">기간 종료일</label>
-        <input type="text" name="to_date" value="<?php if($to_date){echo $to_date; }else{echo date("Ymd");} ?>" id="to_date" required class="required frm_input" size="13" maxlength="10"> 
-		&nbsp;
+        <input type="text" name="to_date" value="<?php if($to_date){echo $to_date; }else{echo date("Ymd");} ?>" id="to_date" required class="required frm_input date_input" size="13" maxlength="10"> 
+		
 			<!--<input type="checkbox" name="save_noo_mon" id="save_noo_mon" value="1">매출정산+즉시계산--> 
-			( PV<input type="radio" name="price" id="pv" value='pv' checked='true'><!--&nbsp;|&nbsp; BV<input type="radio" name="price" id="bv" value='bv' >&nbsp;|&nbsp;판매가<input type="radio" name="price" id="receipt" value='receipt'>&nbsp; -->)&nbsp;&nbsp;
+		<input type="radio" name="price" id="pv" value='pv' checked='true' style="display:none;"><!--&nbsp;|&nbsp; BV<input type="radio" name="price" id="bv" value='bv' >&nbsp;|&nbsp;판매가<input type="radio" name="price" id="receipt" value='receipt'>&nbsp; -->
             <!--<input type="checkbox" name="save_noo_mon" id="save_benefit" value="1">정산된 매출로 수당계산만&nbsp;&nbsp;&nbsp; -->
 
 	<style>
+		.date_input{height:16px; min-width:80px;font-size:16px;font-weight:600;padding:12px;color:red}
 		.benefit{color:white;border:0;padding: 5px 15px;height:40px;}
 		.benefit.day{background:cornflowerblue}
 		.benefit.upstair{background:steelblue}
@@ -181,7 +182,7 @@ $colspan = 16;
 		.benefit.avatar{background:sienna}
 		.benefit:hover{background:black;}
 	</style>
-
+	| 
 	<input type="submit" name="act_button" value=" 업스테어 "  class="frm_input benefit upstair" onclick="go_calc(5);">
 	<input type="submit" name="act_button" value=" 일일 수당 지급 "  class="frm_input benefit day" onclick="go_calc(0);">
 	<input type="submit" name="act_button" value=" 10X10 지급"  class="frm_input benefit recom" onclick="go_calc(1);">
@@ -189,8 +190,9 @@ $colspan = 16;
 	<input type="submit" name="act_button" value=" 무한 매칭 지급 " class="frm_input benefit bpack" onclick="go_calc(3);">
 	<input type="submit" name="act_button" value=" B팩 수당 지급"  class="frm_input benefit qpack" onclick="go_calc(4);">
 	<input type="submit" name="act_button" value=" 아바타적립실행"  class="frm_input benefit avatar" onclick="go_calc(9);">
+	|
 	<input type="submit" name="act_button" value=" 전체수당지급"  class="frm_input benefit black" onclick="go_calc(6);">
-	<input type="submit" name="act_button" value=" 어제까지자동지급"  class="frm_input benefit red" onclick="go_calc(7);">
+	<input type="submit" name="act_button" value=" 어제까지자동지급(아바타제외)"  class="frm_input benefit red" onclick="go_calc(7);">
 
 	<!--
 	<input type="submit" name="act_button" value=" 바이너리 보너스 "  class="frm_input" onclick="go_calc(2);">
@@ -205,19 +207,20 @@ $colspan = 16;
 
 <style>
 	.local_ov01{margin-bottom:0;}
-	.sysbtn{background:mintcream;border-bottom:1px solid #ccc;display:block;width:100%;height:20px;top:10px; text-align:right;padding:10px; margin-bottom:15px;padding-top:15px; }
+	.sysbtn{background:mintcream;border-bottom:1px solid #ccc;display:block;width:97%;height:20px;top:10px; text-align:right;padding:10px 30px; margin-bottom:15px;padding-top:15px; }
 	.sysbtn .btn{margin:10px 0;padding:10px 15px;background:orange;font-size:11px;}
-	.sysbtn .btn.btn2{background:orangered}
+	.sysbtn .btn.btn2{background:#e4eaec;}
 	.sysbtn .btn.btn3{background:pink}
 	.sysbtn .btn:hover{background:black;color:white;text-decoration: none;}
 </style>
 
 <div class="sysbtn">
-	<a href="./member_grade.php" class="btn btn2" >멤버 등급 수동 갱신</a>
-	<a href="#" class="btn btn" onclick="clear_db('balance');">멤버 수당,V7,매출전환,level 초기화(출금,전환 제외)</a>
-	<a href="#" class="btn btn3" onclick="clear_db('amt');">멤버 출금, 전환 내역 초기화</a>
+	초기화 수동관리 :: 
+	<a href="./member_grade.php" class="btn btn2" >멤버 등급(grade) 수동 갱신</a>
+	<a href="#" class="btn btn2" onclick="clear_db('balance');">멤버 수당,V7,매출전환,level 초기화(출금,전환 제외)</a>
+	<!--<a href="#" class="btn btn2" onclick="clear_db('amt');">멤버 출금, 전환 내역 초기화</a>-->
 	<!--<a href="#" class="btn btn3" onclick="clear_db('pack_order');">B팩,Q팩 구매 DB 초기화</a>-->
-	<a href="#" class="btn btn2" onclick="clear_db('soodang');">수당 전체 DB 초기화</a>
+	<a href="#" class="btn btn2" onclick="clear_db('soodang');">수당지급 내역 전체 초기화</a>
 </div>
 
 
@@ -390,7 +393,7 @@ function go_calc(n)
 			location.href='eos.Bpack_auto.php?'+str;         //B팩
 			break;
 		case 9: 
-			location.href='eos.avatar_exc.php?'+str;         //아바타
+			location.href='eos.avatar_ex.php?'+str;         //아바타
 			break;
 	}
 	
