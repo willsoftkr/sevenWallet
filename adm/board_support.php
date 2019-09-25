@@ -66,12 +66,12 @@ $colspan = 15;
     <?php echo $listall ?>
     생성된 게시판수 <?php echo number_format($total_count) ?>개
 
-    | <a href="/adm/board_notice.php" class="board_menu">notice</a>
+    | <a href="/adm/board_notice.php" class="board_menu">Notice</a>
     | <a href="/adm/board_news.php" class="board_menu">News</a>
     | <a href="/adm/board_support.php" class="board_menu">Support center</a>
 </div>
 
-<iframe src="/bbs/board.php?bo_table=news" width="100%" height="700px;" scrolling="auto" style="border:0;background:white;"></iframe>
+<iframe src= "<?=G5_THEME_URL?>/support_center.admin.php" width="100%" height="700px;" scrolling="auto" style="border:0;background:white;"></iframe>
 
 <?php
 include_once('./admin.tail.php');

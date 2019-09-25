@@ -9,6 +9,12 @@
 
 	//매출액
 	$mysales = $member['mb_deposit_point'];
+
+	// 공지사항
+	$notice_sql = "select * from g5_write_notice where wr_1 = '1' order by wr_datetime desc";
+	$notice_sql_query = sql_query($notice_sql);
+	$notice_result_num = sql_num_rows($notice_sql_query);
+	
 ?>
 
 <!-- bxslider -->
@@ -17,12 +23,18 @@
 
 		<div class="v_center dash_contents">
 
-			<section class="dash_news">
-				<h5><span data-i18n='dashboard.공지사항' >Notification</span> <img class="close_news f_right" src="<?=G5_THEME_URL?>/_images/close_round.gif" alt="공지사항 닫기"></h5>
-				<div>
-					<span data-i18n='dashboard.서비스 준비중 입니다'>Service is being prepared.</span>
-				</div>
-			</section>
+			
+			<?if($notice_result_num > 0){ ?>
+				<section class="dash_news">
+					<h5><span data-i18n='dashboard.공지사항' >Notification</span> <img class="close_news f_right" src="<?=G5_THEME_URL?>/_images/close_round.gif" alt="공지사항 닫기"></h5>
+					<?while( $row = sql_fetch_array($notice_sql_query) ){ ?>
+					<div>
+						<span><?=$row['wr_content']?></span>
+					</div>
+					<?}?>
+				</section>
+				
+			<?}?>
 
 			<section class="dash_wallet">
 				<h5 data-i18n="dashboard.현재 지갑 잔고 상황">Wallet Balances</h5>

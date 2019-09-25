@@ -461,8 +461,13 @@ a.gray_close{background:#6c757d; color:#fff; text-align: center; padding: 8px 10
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
-	padding: 20px;
+	padding:20px;
 }
+
+.dash_contents section>div>span>p{
+	margin-bottom:0;
+}
+
 .close_news{width:25px;}
 .dash_wallet{color: #5a5a5a;}
 .dash_wallet li{float: left; width: 50%; margin-top:20px;}

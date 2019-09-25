@@ -283,7 +283,9 @@ for($i=0; $recommend=sql_fetch_array($result); $i++) {
 							$no_benefit=1;$binary_firstname=$mbname;$binary_firstid=$mbid;
 
 							if($today_sales>0){
-								save_benefit($to_date, $mbid, $mbname, $recom, "Binary", '', 0, $today_sales, $limit_point, "Binary".' '.$note_adm, $note, $mblevel);
+								if($hap1 >= 10000){
+									save_benefit($to_date, $mbid, $mbname, $recom, "Binary", '', 0, $today_sales, $limit_point, "Binary".' '.$note_adm, $note, $mblevel);
+								}
 								iwol_process($to_date, $mbid, $id2, $mbname, 111, $hap2-$hap1, $note_adm);
 								iwol_process($to_date, $mbid, $id1, $mbname, 112, 0, $note_adm2); //소실적 소멸
 							}
@@ -326,7 +328,9 @@ for($i=0; $recommend=sql_fetch_array($result); $i++) {
 								$no_benefit=1;$binary_firstname=$mbname;$binary_firstid=$mbid;
 
 								if($today_sales>0){
-									save_benefit($to_date, $mbid, $mbname, $recom, "Binary", '', 0, $today_sales, $limit_point, "Binary".' '.$note_adm, $note, $mblevel);
+									if($hap1 >= 10000){
+										save_benefit($to_date, $mbid, $mbname, $recom, "Binary", '', 0, $today_sales, $limit_point, "Binary".' '.$note_adm, $note, $mblevel);
+									}
 									iwol_process($to_date, $mbid, $id2, $mbname, 121, $hap2-$hap1, $note_adm);
 									iwol_process($to_date, $mbid, $id1, $mbname, 122, 0, $note_adm2); //소실적 소멸
 								}
@@ -349,10 +353,12 @@ for($i=0; $recommend=sql_fetch_array($result); $i++) {
 								$no_benefit=1;$binary_firstname=$mbname;$binary_firstid=$mbid;
 
 								if($today_sales>0){
-									save_benefit($to_date, $mbid, $mbname, $recom, "Binary", '', 0, $today_sales,  $hap2, "Binary".' '.$note_adm, $note, $mblevel);
-								}
+									if($hap2 >= 10000){
+										save_benefit($to_date, $mbid, $mbname, $recom, "Binary", '', 0, $today_sales,  $hap2, "Binary".' '.$note_adm, $note, $mblevel);
+									}
 								iwol_process($to_date, $mbid, $id1, $mbname, 211, $hap1-$hap2 , $note_adm);
 								iwol_process($to_date, $mbid, $id2, $mbname, 212, 0, $note_adm2); //소실적 소멸
+								}
 						}
 						else if($hap2 == 0){ //소실적이 0일때
 							
@@ -388,7 +394,9 @@ for($i=0; $recommend=sql_fetch_array($result); $i++) {
 								$no_benefit=1;$binary_firstname=$mbname;$binary_firstid=$mbid;
 
 								if($today_sales>0){
-									save_benefit($to_date, $mbid, $mbname, $recom, "Binary", '', 0, $today_sales, $today_sales, "Binary".' '.$note_adm, $note, $mblevel);
+									if($hap2 >= 10000){
+										save_benefit($to_date, $mbid, $mbname, $recom, "Binary", '', 0, $today_sales, $today_sales, "Binary".' '.$note_adm, $note, $mblevel);
+									}
 									iwol_process($to_date, $mbid, $id1, $mbname, 221, $hap1-$hap2, $note_adm);
 									iwol_process($to_date, $mbid, $id2, $mbname, 222, 0, $note_adm2); //소실적 소멸
 								}
@@ -410,7 +418,9 @@ for($i=0; $recommend=sql_fetch_array($result); $i++) {
 								$no_benefit=1; $binary_firstname=$mbname; $binary_firstid=$mbid;
 
 								if($today_sales>0){
-									save_benefit($to_date, $mbid, $mbname, $recom, "Binary", '', 0, $today_sales, $hap1, "Binary".' '.$note_adm, $note, $mblevel, 100);
+									if($hap1 >= 10000){
+										save_benefit($to_date, $mbid, $mbname, $recom, "Binary", '', 0, $today_sales, $hap1, "Binary".' '.$note_adm, $note, $mblevel, 100);
+									}
 									iwol_process($to_date, $mbid, $id2, $mbname, 311, $hap1 - $hap2 , $note_adm);
 									iwol_process($to_date, $mbid, $id2, $mbname, 312, 0, $note_adm2); //소실적 소멸
 								}
