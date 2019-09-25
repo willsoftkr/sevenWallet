@@ -182,7 +182,7 @@ $colspan = 16;
 		.benefit.avatar{background:sienna}
 		.benefit:hover{background:black;}
 	</style>
-	| 
+	|| 
 	<input type="submit" name="act_button" value=" 업스테어 "  class="frm_input benefit upstair" onclick="go_calc(5);">
 	<input type="submit" name="act_button" value=" 일일 수당 지급 "  class="frm_input benefit day" onclick="go_calc(0);">
 	<input type="submit" name="act_button" value=" 10X10 지급"  class="frm_input benefit recom" onclick="go_calc(1);">
@@ -190,6 +190,7 @@ $colspan = 16;
 	<input type="submit" name="act_button" value=" 무한 매칭 지급 " class="frm_input benefit bpack" onclick="go_calc(3);">
 	<input type="submit" name="act_button" value=" B팩 수당 지급"  class="frm_input benefit qpack" onclick="go_calc(4);">
 	<input type="submit" name="act_button" value=" 아바타적립실행"  class="frm_input benefit avatar" onclick="go_calc(9);">
+	||
 	<input type="submit" name="act_button" value=" 전체수당지급"  class="frm_input benefit rblue" onclick="go_calc(6);">
 	<input type="submit" name="act_button" value=" 어제까지자동지급(아바타제외)"  class="frm_input benefit red" onclick="go_calc(7);">
 
