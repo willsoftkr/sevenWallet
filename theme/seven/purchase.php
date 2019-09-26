@@ -23,27 +23,39 @@
 ?>
 	<script>
 		$(function() {
-			var chb=$('.purchase_wrap input[type=checkbox]');
+			var chb = ('.purchase_wrap input[type=checkbox]');
 
 			$(chb).change(function(){
+
+				var thisname = ($(this).data("name"));
+
+				console.log( $(this).is(":checked") );
+				/*
 				if($(chb).is(":checked")){
 					
-					$(this).closest('table').find('input:checkbox').not(this).prop("checked",false);
-					$(this).closest('table').find('input:radio').not(this).prop("checked",false);
-
-					$(this).closest('tr').find('input:radio').prop("checked",true);
 				}else{
 					$(this).closest('tr').find('input:radio').prop("checked",false);
 				}
+				*/
+
+				if($(this).is(":checked")){
+					
+					$('.'+ thisname + ' .b_check').prop("checked",false);
+					$(this).closest('tr').find('input:radio').prop("checked",true);
+					$(this).prop("checked",true);
+				}else{
+					$(this).prop("checked",false);
+				}
 			});
 
+			// X 취소
 			$('.purchase_wrap table td:last-child').click(function(){
 				$(this).parent().find('input:radio').prop("checked",false);
 				$(this).parent().find('input:checkbox').prop("checked",false);
 			});
 
 			$('.purchase_wrap input:radio').click(function(){
-				$(chb).prop("checked",false);
+				$(this).parent().find('input:checkbox').prop("checked",false);
 			});
 
 });
@@ -52,8 +64,8 @@
 		<section class="v_center purchase_wrap">
 
 		<form id="puchaseBForm" name="puchaseBForm" action="<?=G5_URL?>/page.php?id=purchase_order" onsubmit="return fitemlist_submit(this);" method="post" >
-			<div>
-				<table>
+			<div >
+				<table class="bpack">
 					<tr>
 						<th> <span data-i18n="purchase.B 팩">B Packs</span></th>
 						<th><span data-i18n="purchase.가격">Price</span></th>
@@ -71,13 +83,13 @@
 							<td >&#36;<?=$row['it_price']?></td>
 							<td>
 								<div class="radio_box"> 
-									<input type="radio" id="b_rd<?=$i?>" name="b_it_id" value="<?=$row['it_id']?>"> 
+									<input type="radio" id="b_rd<?=$i?>" data-name="bpack" class="b_radio" name="b_it_id" value="<?=$row['it_id']?>"> 
 									<label for="b_rd<?=$i?>"></label> 
 								</div>
 							</td>
 							<td>
 								<div class="round_chkbox">
-								<input type="checkbox" id="b_chk<?=$i?>" name="b_chk" value="<?=$i?>">
+								<input type="checkbox" id="b_chk<?=$i?>" data-name="bpack" class="b_check" name="b_chk" value="<?=$i?>">
 								<label for="b_chk<?=$i?>"><span></span></label>
 								</div>
 							</td>
@@ -95,7 +107,7 @@
 				<span data-i18n="purchase.B팩 설명4"> Enable Auto Repurchase if you want to activate automatic recurring purchase</span>
 				</p>
 
-				<table>
+				<table class="qpack">
 					<tr>
 						<th> <span data-i18n="purchase.Q 팩">Q Packs</span></th>
 						<th><span data-i18n="purchase.가격">Price</span></th>
@@ -113,13 +125,13 @@
 							<td >&#36;<?=$row['it_price']?></td>
 							<td>
 								<div class="radio_box"> 
-									<input type="radio" id="q_rd<?=$i?>" name="q_it_id" value="<?=$row['it_id']?>"> 
+									<input type="radio" id="q_rd<?=$i?>" data-name="qpack"  class="q_radio" name="q_it_id" value="<?=$row['it_id']?>"> 
 									<label for="q_rd<?=$i?>"></label> 
 								</div>
 							</td>
 							<td>
 								<div class="round_chkbox">
-								<input type="checkbox" id="q_chk<?=$i?>" name="q_chk" value="<?=$i?>">
+								<input type="checkbox" id="q_chk<?=$i?>" data-name="qpack"  class="q_radio" name="q_chk" value="<?=$i?>">
 								<label for="q_chk<?=$i?>"><span></span></label>
 								</div>
 							</td>

@@ -100,10 +100,11 @@ $row = sql_fetch($sql);
 $total_count = $row['cnt'];
 
 //$rows = $config['cf_page_rows'];
-$rows = 51;
+$rows = 50;
 $total_page  = ceil($total_count / $rows);  // 전체 페이지 계산
 if ($page < 1) { $page = 1; } // 페이지가 없으면 첫 페이지 (1 페이지)
 $from_record = ($page - 1) * $rows; // 시작 열을 구함
+
 
 $sql  = " select *
            $sql_common
@@ -111,6 +112,7 @@ $sql  = " select *
            limit $from_record, $rows ";
 //print_r($sql );
 $result = sql_query($sql);
+$result_cnt = sql_num_rows($result);
 
 $qstr1 = "od_status=".urlencode($od_status)."&amp;od_settle_case=".urlencode($od_settle_case)."&amp;od_misu=$od_misu&amp;od_cancel_price=$od_cancel_price&amp;od_refund_price=$od_refund_price&amp;od_receipt_point=$od_receipt_point&amp;od_coupon=$od_coupon&amp;fr_date=$fr_date&amp;to_date=$to_date&amp;sel_field=$sel_field&amp;search=$search&amp;save_search=$search";
 if($default['de_escrow_use'])
@@ -325,7 +327,7 @@ if(!sql_query(" select mb_id from {$g5['g5_shop_order_delete_table']} limit 1 ",
                 $disp_od_id = substr($row['od_id'],0,8).'-'.substr($row['od_id'],8);
                 break;
             default:
-                $disp_od_id = substr($row['od_id'],0,6).'-'.substr($row['od_id'],6);
+                $disp_od_id = substr($row['od_id'],0,8).'-'.substr($row['od_id'],6);
                 break;
         }
 
@@ -435,6 +437,8 @@ if(!sql_query(" select mb_id from {$g5['g5_shop_order_delete_table']} limit 1 ",
 
 
     <?php
+    
+
         $tot_itemcount     += $row['od_cart_count'];
 
         $tot_itemprice    += ($row['io_price']);
@@ -460,17 +464,18 @@ if(!sql_query(" select mb_id from {$g5['g5_shop_order_delete_table']} limit 1 ",
     </tbody>
     <tfoot>
     <tr class="orderlist">
-        <th scope="row" colspan="3">&nbsp;</th>
-        <td>&nbsp;</td>
-        <td  scope="row">합 계</td>
+        <td scope="row"></td>
+        <td><?php echo number_format($tot_odcount) ; ?>명</td>
+        <td></td>
+        <td></td>
+        <td colspan=>합 계</td>
         <td><?=number_format($tot_itemprice)?></td>
         <td></td>
 		<td><?=number_format($tot_orderprice,8)?></td>
         <td>0</td>
 		<td></td>
-        <td><?php echo number_format($tot_odcount); ?>건</td>
+        <td><?=$result_cnt?>건</td>
         <td></td>
-
     </tr>
     </tfoot>
     </table>

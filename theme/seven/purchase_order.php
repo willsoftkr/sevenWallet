@@ -9,6 +9,9 @@
 
 	//print_r($_POST);
 
+	$today = date("Y-m-d", time());
+
+
 	if($_POST['b_it_id']){ // B팩
 		$orderBitem = get_shop_item($_POST['b_it_id']);
 		$b_it_auto = $_POST['b_chk'];
@@ -17,6 +20,7 @@
 		$b_it_price = $orderBitem['it_price']; 
 		$cnt = 1; 
 	}
+
 
 	if($_POST['q_it_id']){	// Q팩
 		$orderQitem = get_shop_item($_POST['q_it_id']);
@@ -31,15 +35,22 @@
 	$order_price = calc_price($b_it_price + $q_it_price, $btc_cost,'btc'); // btc환산가격 
 	
 
-	/*회원구매기록*/
-	if($orderBitem && $member['it_pool1_profit'] > $today){
-		$expire_item_b = $member['it_pool1'];
-		$expire_date_b = $member['it_pool1_profit'];
+	/*회원구매기록 변경*/
+
+	$cart_b_sql = "SELECT * from g5_shop_cart where mb_id ='{$member['mb_id']}' and  DATE(ct_time) <= '{$today}' and  DATE(ct_select_time) > '{$today}' and it_sc_type = 10 order by ct_time desc limit 0,1";
+	$cart_b_list = sql_fetch($cart_b_sql);
+
+	$cart_q_sql = "SELECT * from g5_shop_cart where mb_id ='{$member['mb_id']}' and DATE(ct_time) <= '{$today}' and  DATE(ct_select_time) > '{$today}' and it_sc_type = 20 order by ct_time desc limit 0,1";
+	$cart_q_list = sql_fetch($cart_q_sql);
+
+	if($orderBitem && $cart_b_list){
+		$expire_item_b = $cart_b_list['it_name'];
+		$expire_date_b = $cart_b_list['ct_select_time'];
 	}
 	
-	if($orderQitem && $member['it_pool2_profit'] > $today){
-		$expire_item_q = $member['it_pool2'];
-		$expire_date_q = $member['it_pool2_profit'];
+	if($orderQitem && $cart_q_list){
+		$expire_item_q = $cart_q_list['it_name'];
+		$expire_date_q = $cart_q_list['ct_select_time'];
 	}
 	
 ?>
@@ -80,7 +91,7 @@
 					
 					<tr>
 						<td data-i18n="binary.큐팩">Q Pack</td>
-						<td><?=$q_it_name?> <?if($b_it_auto) echo " (Auto)";?></td>
+						<td><?=$q_it_name?> <?if($q_it_auto) echo " (Auto)";?></td>
 						<td>&#36;<?=shift_doller($q_it_price)?></td>
 						<!--<td>X</td>-->
 					</tr>
@@ -241,7 +252,7 @@
 					have_msg += "<br> Pack Item : " + item_q + "<br> Expire date : "+ expire_q;
 				}
 				
-				purchaseModal("We already have the purchase details.", have_msg + " <br><br>you have still a valid period of time for the product. <br>Do you want to extend period?" , 'confirm');
+				purchaseModal('You already have the purchase history.', have_msg + " <br><br>you have still a valid period of time for the product. <br>Do you want to extend period?" , 'confirm');
 
 				$('#purchaseModal #modal_confirm').on('click', function () {
 					//console.log('ok');

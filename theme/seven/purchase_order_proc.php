@@ -74,7 +74,7 @@
 
     /*주문로그*/
     $cnt= $_POST['cnt'];
-    $orderid = date("YmdHis",time()).$cnt;
+    $orderid = date("YmdHis",time()).$cnt.'1';
     $mb_id = $member['mb_id'];
     $coin = $_POST['coin'];
     
