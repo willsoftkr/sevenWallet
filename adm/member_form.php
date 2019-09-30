@@ -154,6 +154,15 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
 ?>
 <script>
 	$(function() {
+		$('#field_upstair').on('change', function() {
+			//$('#field_upstair').val()
+			var after = $(this).val();
+			var before ="<?=$mb['mb_deposit_point']?>";
+			var calc = after - before;
+			console.log(after +'/'+ before);
+			$('.be_to').val(calc);
+		});
+
 		$('#rwc_save').on('click', function() {
 			var mb_id = "<?echo $mb['mb_id']?>";
 			alert(mb_id);
@@ -205,6 +214,10 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
 			});
 
 		});
+
+		
+		
+
 		$('#btc_pack_save').on('click', function() { //패키지 숫자 설정.
 			var mb_id = "<?echo $mb['mb_id']?>";
 			alert(mb_id);
@@ -436,9 +449,11 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
 				<th scope="row" class="rwd_color"><label for="mb_rwd_account"> rwd 잔고</label></th>
 				<td colspan="1" class="rwd_color"><input type="number" name="mb_rwd_account" value="<?php echo $mb['mb_rwd_account'] ?>" id="field_savepoint" class="required frm_input" size="15" minlength="1" maxlength="10"></td>
 
-				<tr >
-					<th scope="row" class="ups"><label for="mb_deposit_point"> 예치금전환</label></th>
-					<td colspan="7" class="ups"><input type="number" name="mb_deposit_point" value="<?php echo $mb['mb_deposit_point'] ?>" id="field_upstair" class="required frm_input wide" size="15" minlength="1" maxlength="10"></td>
+				<tr>
+					<th scope="row" class="ups"><label for="mb_deposit_point"> 예치금</label></th>
+					<td colspan="7" class="ups"><input type="number" name="mb_deposit_point" value="<?php echo $mb['mb_deposit_point'] ?>" id="field_upstair" class="required frm_input wide" size="15" minlength="1" maxlength="10">
+					<input type="number" class="be_to" name="be_to"  style="font-size:15px;margin-left:10px;border:0;box-shadow:none;background:transparent" value="0" readonly> 
+					
 				</tr>
 			</table>
 			
@@ -679,6 +694,7 @@ this.form.mb_intercept_date.value=this.form.mb_intercept_date.defaultValue; }">
 </form>
 
 <script>
+
 function fmember_submit(f)
 {
 	/*## ##################################*/
@@ -709,8 +725,7 @@ function fmember_submit(f)
 			}
 		});
 	}
-
-
+	
 	if ($break == "break") {
 		alert("추천인 아이디를 다시 한번 확인해주세요!");
 		$('#mb_recommend').focus();
