@@ -397,12 +397,14 @@ function view_log()
 }
 
 function avatar_auto(){
+	var day_point = document.getElementById("to_date").value;
 
     $.ajax({
 				url: 'eos.avatar_auto.php',
 				type: 'post',
 				async: false,
 				data: {
+					"to_date" : day_point,
 					"avatar_target" : 3000,
 					"avatar_rate" : 10
 				},

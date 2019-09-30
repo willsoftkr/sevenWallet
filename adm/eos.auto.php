@@ -27,7 +27,7 @@ document.write(yesterday + " 까지실행<br>");
 document.write("다음날짜 : "+ tomorow+"<br>");
 
 var it = setInterval(function(){
-if(i < 7){
+if(i < 6){
      if(i == 0){
         $.ajax({ 
             type: 'GET',
@@ -80,15 +80,6 @@ if(i < 7){
              url: 'eos.bpack.php?1=1'+stx,
              success: function (result) {
                 document.body.append("B팩지급완료");
-             }
-          })
-    }else if(i == 6){
-        $.ajax({ 
-            type: 'GET',
-            data: { },
-             url: 'eos.avatar_exc.php?1=1'+stx,
-             success: function (result) {
-                document.body.append("아바타적립완료");
              }
           })
     }

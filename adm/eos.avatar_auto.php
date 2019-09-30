@@ -2,7 +2,8 @@
 $sub_menu = "600300";
 include_once('./_common.php');
 
-$now_date_time = date('Y-m-d H:i:s');
+$today = date("Y-m-d H:i:s",strtotime($_REQUEST['to_date']));
+
 $avatar_no = 1;
 $avatar_target ='3000';
 $avatar_rate ='10';
@@ -30,8 +31,8 @@ mb_id             = '".$mb_id."'
 , saving_rate           = '".$avatar_rate."'
 , current_saving   = '0'
 , status         = '{$status}'
-, setting_date    = '".$now_date_time."'
-, update_date    = '".$now_date_time."'
+, setting_date    = '".$today."'
+, update_date    = '".$today."'
 , avatar_character    = '".$char."' ";
 
 //echo "<br>";

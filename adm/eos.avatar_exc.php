@@ -17,7 +17,7 @@ echo "기준일 : ".$now_date." <br><br>";
 
 $v7_cost = number_format(get_coin_cost('v7'),2);
 
-$avatar_sql = "select * from avatar_savings where status != 1";
+$avatar_sql = "select * from avatar_savings where status != 1 ";
 $avatar_result = sql_query($avatar_sql);
 
 while( $row = sql_fetch_array($avatar_result)){
