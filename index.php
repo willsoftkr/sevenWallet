@@ -35,7 +35,7 @@ if($is_member){
 		require_once(G5_THEME_PATH.'/index.php');
 	}
 }else{
-	Header("Location:/bbs/login_pw.php");
+	Header("Location:./bbs/login_pw.php");
 }
 
 include_once(G5_PATH.'/tail.php');

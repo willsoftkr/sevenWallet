@@ -125,13 +125,13 @@
 							<td >&#36;<?=$row['it_price']?></td>
 							<td>
 								<div class="radio_box"> 
-									<input type="radio" id="q_rd<?=$i?>" data-name="qpack"  class="q_radio" name="q_it_id" value="<?=$row['it_id']?>"> 
+									<input type="radio" id="q_rd<?=$i?>" data-name="qpack" class="q_radio" name="q_it_id" value="<?=$row['it_id']?>"> 
 									<label for="q_rd<?=$i?>"></label> 
 								</div>
 							</td>
 							<td>
 								<div class="round_chkbox">
-								<input type="checkbox" id="q_chk<?=$i?>" data-name="qpack"  class="q_radio" name="q_chk" value="<?=$i?>">
+								<input type="checkbox" id="q_chk<?=$i?>" data-name="qpack" class="q_radio" name="q_chk" value="<?=$i?>">
 								<label for="q_chk<?=$i?>"><span></span></label>
 								</div>
 							</td>

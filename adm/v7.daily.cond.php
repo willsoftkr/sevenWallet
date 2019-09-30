@@ -6,7 +6,9 @@ auth_check($auth[$sub_menu], 'r');
 $token = get_token();
 
 $sql = "select * from eos_daily_paid  order by idx";
+
 $list = sql_query($sql);
+
 ?>
 
 <style>
