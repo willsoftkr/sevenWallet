@@ -158,8 +158,9 @@ else if ($w == 'u')
 	//echo "<br> up::".$upstair;
 	if($upstair > 0){
 		$upstair_sql = "insert g5_shop_order set od_id = '{$od_id}', mb_id = '{$mb_id}',  od_cash = '{$upstair}', upstair = '{$upstair}', pv = '{$upstair}', od_cart_price = '{$upstair}', od_time = '{$today}',od_settle_case = 'btc' ";
+		
 		//print_r($upstair_sql);
-		$upstair_result = sql_query($upstiar_sql);
+		$upstair_result = sql_query($upstair_sql);
 	}
 
 	if ($mb_password)
