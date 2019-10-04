@@ -67,7 +67,7 @@ a.btn_basic:hover{background:#0079d3}
 .btn_basic_block{display: block; border-radius:5px; border:none; box-sizing:border-box; line-height:45px; color:#fff; background:#00bff3; font-weight:600; text-align: center;}
 a.btn_basic_block{color: #fff;}
 section div .btn_navy{background:#0e76bc;}
-.btn_block_btm_wrap{position:absolute; bottom:0; width:100%; margin-bottom:20px;}
+.btn_block_btm_wrap{width:100%; margin-bottom:20px;}
 .btn_block_btm_wrap input{width:90%; margin-left:5%;}
 .btn2_btm_wrap{position:absolute; bottom:0; width:100%; margin-bottom:20px;}
 .btn2_btm_wrap:after{content:''; display:block; clear:both;}
@@ -1654,7 +1654,7 @@ div:nth-child(2){color:#ff9b22;}
 	
 	.trans_history li{font-size:12px;}
 
-	.send_con{padding-bottom:82px;}
+	.send_con{padding-bottom:15px;}
 
 	.send_chk_wrap .send_con{font-size:13px; padding-bottom:20px;}
 	.send_chk_wrap>div{padding-bottom:50px;}

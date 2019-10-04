@@ -68,7 +68,7 @@ $order_result = sql_query($order_sql);
 					-->
 				</ul>
 
-				<ul class="send_con" >
+				<ul class="send_con">
 					<li >
 						<span class="send_title" data-i18n="wallet.환전">Exchange</span>
 						<p class="f_right"><span class="font_gray" id="exchange_amount">0</span> BTC</p>
