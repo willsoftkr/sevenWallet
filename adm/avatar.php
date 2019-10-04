@@ -51,11 +51,11 @@ if($_GET['end_dt']){
 
 if ($stx) {
     $sql_search .= " and ( ";
-	if(($sfl=='mb_id') || ($sfl=='mb_id')){
-            $sql_search .= " ({$sfl} = '{$stx}') ";
+	if(($sfl=='mb_id')){
+            $sql_search .= " (A.{$sfl} = '{$stx}') ";
           
 	}else{
-            $sql_search .= " ({$sfl} like '%{$stx}%') ";
+            $sql_search .= " (A.{$sfl} like '%{$stx}%') ";
           
     }
     $sql_search .= " ) ";
@@ -84,7 +84,6 @@ from soodang_pay AS A INNER JOIN avatar_savings AS B ON A.mb_id = B.mb_id
  WHERE A.allowance_name ='Avatar' AND B.status != 1
 
         {$sql_search}
-        GROUP BY A.mb_id
         {$sql_order}
         limit {$from_record}, {$rows} ";
 
@@ -249,9 +248,9 @@ $colspan = 16;
         <th scope="col">아바타아이디</a></th>	
         <th scope="col">적립한도 (USD)</a></th>
         <th scope="col">적립비율 (%)</a></th>	
-        <th scope="col">현재적립금 (USD)</a></th>	
+        <th scope="col">현재누적적립금 (USD)</a></th>	
         <th scope="col">생성일</a></th>	
-        <th scope="col">업데이트</a></th>	
+        <th scope="col">설정업데이트</a></th>	
         <th scope="col">아바타멤버 생성일(last)</a></th>
     </tr>
     </thead>
@@ -266,7 +265,7 @@ $colspan = 16;
 
     <tr class="<?php echo $bg; ?>">
 		<td width='100'><? echo $row['day'];?></td>
-		<td width='150' class="center"><?php echo get_text($row['mb_id']); ?></td>
+		<td width='150' class="center"><a href="./avatar.php?sfl=mb_id&stx='<?=get_text($row['mb_id'])?>' " style="text-decoration:underline;"><?php echo get_text($row['mb_id']); ?></a></td>
 		<td width='80' class="center"><?php echo get_text($row['allowance_name']); ?></td>
 		<td width="120" class="num blue"><?php echo Number_format($soodang,2)  ?></td>
 		<td width="120" class="num blue"><?php echo Number_format($soodang/$v7_cost,2)  ?></td>

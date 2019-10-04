@@ -57,7 +57,7 @@
     if($btc_account > $order_price){
 
         $sql = "UPDATE g5_member set 
-                mb_btc_calc = mb_btc_calc - '$order_price'"; 
+                mb_btc_calc = round((mb_btc_calc - '$order_price'),8)"; 
 
                 if($B_sql){
                     $sql.=   $B_sql;  

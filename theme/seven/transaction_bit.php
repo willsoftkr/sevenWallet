@@ -225,21 +225,23 @@ $pack_result = sql_query($pack_sql); // 팩구매내역
 							<p>보내기</p>
 						</a>
 					</li>
-					<li>
-						<a href="receive_bit.php">
-							<img src="<?=G5_THEME_URL?>/_images/btm_menu_receive.png" alt="아이콘">
-							<p>받기</p>
-						</a>
-					</li>
 				-->
-					<li style="width:50%;">
-						<a href="deposit_bit.php">
-							<img src="<?=G5_THEME_URL?>/_images/btm_menu_deposit.gif" alt="아이콘">
-							<p data-i18n='wallet.입금'>입금</p>
+
+					<li style="width:33%;">
+						<a href="income_bit.php">
+							<img src="<?=G5_THEME_URL?>/_images/btm_menu_receive.png" alt="아이콘">
+							<p data-i18n='wallet.받기'>income</p>
 						</a>
 					</li>
 				
-					<li style="width:50%;">
+					<li style="width:33%;">
+						<a href="deposit_bit.php">
+							<img src="<?=G5_THEME_URL?>/_images/btm_menu_deposit.gif" alt="아이콘">
+							<p data-i18n='wallet.입금'>deposit</p>
+						</a>
+					</li>
+				
+					<li style="width:33%;">
 						<a href="send_bit.php">
 						<img src="<?=G5_THEME_URL?>/_images/btm_menu_send.png"  alt="아이콘">
 							<p data-i18n='wallet.출금'>Withdrawal</p>

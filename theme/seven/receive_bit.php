@@ -21,7 +21,6 @@
 	$ret = sql_query($sql);
 	$sqlwallet = "insert into mb_wallet set mb_id='{$member['mb_id']}', type=0, wlt_ad='$address', wlt_key='$guid', wlt_date='$date';";
 	sql_query($sqlwallet);
-
 }
 else{
 	$sql = "select mb_btcwallet_addr, mb_btcwallet_id from g5_member where mb_id ='{$member['mb_id']}'";
