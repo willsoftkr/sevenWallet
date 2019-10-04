@@ -50,7 +50,7 @@ if($account < $amount){
 		$sum_deposit = "select mb_btc_amt, mb_deposit_point from g5_member where mb_id='".$mb_id."'";
 		$point = sql_fetch($sum_deposit);
 		
-		$save_a = ($point['mb_btc_amt'] - $amount);
+		$save_a = ($point['mb_btc_calc'] - $amount);
 		$save_p = ($point['mb_deposit_point'] + $upstair);
 		
 		if($save_p>=1 && $save_p<500){
@@ -67,7 +67,7 @@ if($account < $amount){
 		}
 		
 
-		$update_point = "update g5_member set mb_btc_amt ='".$save_a."'";
+		$update_point = "update g5_member set mb_btc_calc ='".$save_a."'";
 
 		if($mb_id != 'copy5285m'){
 			$update_point .= ", grade = '".$grade."'";
