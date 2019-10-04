@@ -114,6 +114,11 @@ if($nw_with == 'Y'){
 			$('#amount').on('change',function(){
 				
 				console.log(this.value +" / "+ btc_account);
+				
+				if(btc_cost < 11000){
+					commonModal('service not able','<strong> The exchange is not possible when the BTC price is below $11,000. </strong>',80);
+					return false;
+				}
 
 				if(this.value > btc_account*1.01){
 					commonModal('check input amount','<strong> out of the maximum amount. </strong>',80);
@@ -175,14 +180,12 @@ if($nw_with == 'Y'){
 					return false;
 				}
 
-				
-
 				if(amount > (btc_account*1.01)){
 					commonModal('check input amount','<strong> out of the maximum amount. </strong>',80);
 					return false;
 					
-				}else if(amount < 0.02){
-					commonModal('check input amount','<strong> Require minimum amount 0.02 btc. </strong>',80);
+				}else if(amount < 0.05){
+					commonModal('check input amount','<strong> Require minimum amount 0.05 btc. </strong>',80);
 					return false;
 				}
 

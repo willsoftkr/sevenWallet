@@ -129,6 +129,12 @@ $order_result = sql_query($order_sql);
 			$('#amount').on('change',function(){
 				
 				console.log(this.value + " / " + btc_cost + "/" + btc_cost_plus);
+				
+
+				if(btc_cost < 11000){
+					commonModal('service not able','<strong> The exchange is not possible when the BTC price is below $11,000. </strong>',80);
+					return false;
+				}
 
 				if(this.value > v7_account){
 					commonModal('check input amount','<strong> out of the maximum amount. </strong>',80);

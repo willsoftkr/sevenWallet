@@ -218,8 +218,8 @@ function out_check($val){
 		<th scope="col" id="mb_list_auth"  class="eos_total rwd_color" rowspan="2">RWD </th>
 		-->
 		<th scope="col" id="mb_list_auth"  class="eos_aa" rowspan="2">입금합계</th>
+		<th scope="col" id="mb_list_auth3" class="eos_aa"  rowspan="2">전환합계(매출,팩구매,전환)</th>
 		<th scope="col" id="mb_list_auth3" class="eos_aa"  rowspan="2">출금합계</th>
-		<th scope="col" id="mb_list_auth3" class="eos_aa"  rowspan="2">예치금전환</th>
 
 		<th scope="col" id="mb_list_auth2" class="eos_bb eos_benefit"  rowspan="2"> BENEFIT<br>( 총 발생수당 )</th>
 		<th scope="col" id="mb_list_auth2" class="eos_bb"  rowspan="2">현재 예치금</th>
