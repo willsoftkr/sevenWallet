@@ -19,6 +19,7 @@ if($nw_with == 'Y'){
 	include_once(G5_PATH.'/service_pop.php');
 }
 
+$address  = $member['mb_wallet'];
 ?>
 
 			<section class="con90_wrap">
@@ -69,7 +70,7 @@ if($nw_with == 'Y'){
 					<!-- <input type="text" placeholder="받을 코인 숫자 입력"> -->
 				</div>		
                 <p>Wallet Address </p>
-                <h3 class="wallet_addr"><?=$address?></h3>
+                <h5 class="wallet_addr"><?=$address?></h5>
                 <p style="margin-top:10%;"><input type="button" class="btn primary" onclick="copyToClipboard1('.wallet_addr');" style="width:200px;height:40px;box-shadow:none;" value="Copy Address"/></p>
             </section>
             <?}else{?>

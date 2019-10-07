@@ -29,7 +29,12 @@ $exchange_fee = 3;
 $deposit_fee = 5;
 $deposit_cost =  round($btc_cost_num - ($btc_cost_num*($deposit_fee/100)),2);
 
-
+/*내 지갑 주소*/
+/*
+$wallet_sql = "select mb_wallet from g5_member where mb_id = '".$member['mb_id']."'";
+$wallet_account = sql_fetch($wallet_sql);
+$wallet_addr =  $wallet_account['mb_wallet'];
+*/
 /*전환 수수료 계산*/
 /*
 function exchage_result($val) {
