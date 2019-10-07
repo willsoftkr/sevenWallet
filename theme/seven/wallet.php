@@ -3,6 +3,8 @@ include_once(G5_THEME_PATH.'/_include/head.php');
 include_once(G5_THEME_PATH.'/_include/gnb.php'); 
 
 include_once(G5_THEME_PATH.'/_include/wallet.php'); 
+
+
 ?>
 
 		<div class="v_center dash_contents">
@@ -87,6 +89,51 @@ include_once(G5_THEME_PATH.'/_include/wallet.php');
 		$(function(){
 			$(".top_title h3").html("<img src='<?=G5_THEME_URL?>/_images/top_wallet.png' alt='아이콘'> <span data-i18n='title.크립토 월렛'>Crypto Wallets</span>");
 		});
+	</script>
+
+	<script type='text/javascript'>
+
+		$(document).ready(function(){
+
+			var wallet = '<?=$mb_wallet?>';
+			var mb_id = '<?=$member['mb_id']?>';
+			var mb_email = '<?=$member['mb_email']?>';
+		
+			console.log(wallet);
+
+			if(wallet == ''){
+				console.log('지갑생성');
+
+				$.ajax({
+					type: 'POST',
+					url: g5_url + '/wallet/wallet_create.php',
+					async: true,
+					dataType: 'json',
+					data:  {
+						'mb_id' : mb_id,
+						'mb_email' : mb_email
+					},
+					success: function(data) {
+
+						$('.dim').css("display", "none");
+						$('.dim').empty();
+						$('body').css({
+							"overflow": "auto",
+							"height": "inherit"
+						});
+
+						commonModal('Congratulation! Create Wallet','<strong> Congratulation! Create Wallet BTC.</strong>',80);	
+						$('#closeModal').on('click', function(){
+							location.reload();
+						});
+					},
+					error:function(error){
+						console.log('error : ' + error);
+					}
+				});
+			}
+		});
+		
 	</script>
 
 <? include_once(G5_THEME_PATH.'/_include/tail.php'); ?>

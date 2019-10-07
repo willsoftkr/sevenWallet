@@ -22,7 +22,7 @@ if($nw_with == 'Y'){
 
 			<section class="con90_wrap">
 				<div class="color_block bit_block">
-					<a href="transaction_bit.php">
+					<a href="/wallet/transaction_bit.php">
 						<div class="clear_fix">
 							<strong class="f_left">Bitcoin</strong>
 							<b class="f_right"><?=$btc_account?> BTC</b>
