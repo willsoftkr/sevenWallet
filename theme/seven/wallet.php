@@ -95,15 +95,19 @@ include_once(G5_THEME_PATH.'/_include/wallet.php');
 
 		$(document).ready(function(){
 
-			var wallet = '<?=$mb_wallet?>';
+			var wallet = '<?=$member['mb_wallet']?>';
 			var mb_id = '<?=$member['mb_id']?>';
 			var mb_email = '<?=$member['mb_email']?>';
 		
-			console.log(wallet);
+			console.log(wallet.length);
 
-			if(wallet == ''){
+			if(wallet.length < 30){
 				console.log('지갑생성');
-
+				
+				$('.loader').css("display", "block");
+				$('.loader .comment').html("Generating wallet address.<br>please wait moment.");
+				
+				
 				$.ajax({
 					type: 'POST',
 					url: g5_url + '/wallet/wallet_create.php',
@@ -114,7 +118,7 @@ include_once(G5_THEME_PATH.'/_include/wallet.php');
 						'mb_email' : mb_email
 					},
 					success: function(data) {
-
+						$('.loader').css('display','none');
 						$('.dim').css("display", "none");
 						$('.dim').empty();
 						$('body').css({
@@ -122,15 +126,16 @@ include_once(G5_THEME_PATH.'/_include/wallet.php');
 							"height": "inherit"
 						});
 
-						commonModal('Congratulation! Create Wallet','<strong> Congratulation! Create Wallet BTC.</strong>',80);	
+						commonModal('Congratulation! Created Wallet','<strong> Congratulation! Create Your Wallet Address.</strong>',80);	
 						$('#closeModal').on('click', function(){
-							location.reload();
+							location.href = "/wallet/wallet.php?id=wallet";
 						});
 					},
 					error:function(error){
 						console.log('error : ' + error);
 					}
 				});
+				
 			}
 		});
 		

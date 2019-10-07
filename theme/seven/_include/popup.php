@@ -142,7 +142,10 @@ $(function() {
 
 
 <div class="dim"></div>
-
+<div class="loader">
+	<p><img src="/img/loader.png"></p>
+	<div class="comment"></div>
+</div>
 
 
 
