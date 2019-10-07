@@ -27,12 +27,12 @@ $bitgo = new Bitgo(BITGO_ACCESS_KEY, COIN, TESTNET);
 // 지갑생성
 $res = $bitgo->generateWallet($_POST['mb_id'], $_POST['mb_email']);
 if (!$res || isset($res["error"])) {
-    echo json_encode(array("error" => "Generate Wallet Failed."));
+    echo json_encode(array("error" => "Generate Wallet create Failed."));
     return;
 }
 
 if (!isset($res['receiveAddress'])) {
-    echo json_encode(array("error" => "Generate Wallet Failed."));
+    echo json_encode(array("error" => "Generate Wallet receive Failed."));
     return;
 }
 
@@ -40,7 +40,7 @@ if (!isset($res['receiveAddress'])) {
 $walletInfo = $res['receiveAddress'];
 $res = $bitgo->addWalletWebhook($walletInfo['wallet'], WEBHOOK_URL, 1);
 if (!$res || isset($res["error"])) {
-    echo json_encode(array("error" => "Generate Wallet Failed."));
+    echo json_encode(array("error" => "Generate Wallet webhook Failed."));
     return;
 }
 
