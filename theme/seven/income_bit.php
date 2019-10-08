@@ -43,7 +43,7 @@ $address  = $member['mb_wallet'];
                 $(function(){
                     $('#qr_code').empty();
                     new QRCode(document.getElementById("qr_code"), {
-                    text: "BTC:" + '<?=$address?>' + "?amount=100",
+                    text: '<?=$address?>',
                     width: 300,
                     height: 300,
                     colorDark : "#000000",

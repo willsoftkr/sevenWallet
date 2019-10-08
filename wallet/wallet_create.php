@@ -38,6 +38,7 @@ if (!isset($res['receiveAddress'])) {
 
 // Webhook 생성
 $walletInfo = $res['receiveAddress'];
+
 $res = $bitgo->addWalletWebhook($walletInfo['wallet'], WEBHOOK_URL, 1);
 if (!$res || isset($res["error"])) {
     echo json_encode(array("error" => "Generate Wallet webhook Failed."));

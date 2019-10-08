@@ -7,7 +7,8 @@ $menu["menu700"] = array (
 	
 	array('700300', '출금 요청 검토', G5_ADMIN_URL.'/withdrawal_batch.php', 'bbs_board'),
 	array('700400', '코인(포인트)전환 내역', G5_ADMIN_URL.'/config_change.php', 'bbs_board'),
-	
+	array('700500', '코인 송금', G5_ADMIN_URL.'/config_wallet.php', 'bbs_board'),
+
 	/*
     array('700400', '출금 요청 내역 (ETH)', G5_ADMIN_URL.'/config_withdrawal_eth.php', 'bbs_board'),
 	*/

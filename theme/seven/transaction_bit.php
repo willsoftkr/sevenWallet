@@ -26,6 +26,10 @@ $pack_result = sql_query($pack_sql); // 팩구매내역
 	
 	if (empty($stx)) $stx = 'sales';  // 수당로그 기본값 
 
+	if($stx == "income" ){ 
+		$sql_common ="FROM wallet_income WHERE date(createdAt)";
+		$sql_order_type = "createdAt";
+	}
 	if($stx == "B Pack" ){ 
 		$sql_common ="FROM g5_shop_cart WHERE it_sc_type = '10' AND date(ct_time)";
 		$sql_order_type = "ct_time";
@@ -130,8 +134,8 @@ $pack_result = sql_query($pack_sql); // 팩구매내역
 				<!-- //SEARCH -->
 
 				<!-- 탭 -->
-				<ul class="tabs four">
-					<!--<li class="bonus_tab all <?nav_active('all')?>" data-tab="tab_1" data-category="all"><p data-i18n="wallet.all">ALL</p></li>-->
+				<ul class="tabs five">
+					<li class="bonus_tab <?nav_active('income')?>" data-tab="tab_1" data-category="income"><p data-i18n="wallet.income">Income</p></li>
 					<li class="bonus_tab <?nav_active('Deposit')?>" data-tab="tab_2" data-category="Deposit"><p data-i18n="wallet.입금">Deposit</p></li>
 					<li class="bonus_tab <?nav_active('Withdrawal')?>" data-tab="tab_3" data-category="Withdrawal"><p data-i18n="wallet.출금">Withdrawal</p></li>
 					<li class="bonus_tab <?nav_active('sales')?>" data-tab="tab_3" data-category="sales"><p data-i18n="wallet.매출">Sales</p></li>

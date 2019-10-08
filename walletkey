@@ -1,6 +1,0 @@
-https://test.bitgo.com//api/v2/{coin}/wallet/{walletId}/addresses
-
-https://test.bitgo.com//api/v2/tbtc/wallet/5d3e8227e9c400a003238110b47a8243/addresses
-
-
-http -v get https://test.bitgo.com/api/v2/user/me Authorization:"Bearer v2x81f70886ea9a3062f76e44b9f9c397911658131a0442975033313332800d3cf9"
