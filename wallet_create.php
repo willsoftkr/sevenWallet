@@ -32,7 +32,7 @@ if (!$res || isset($res["error"])) {
 }
 
 if (!isset($res['receiveAddress'])) {
-    echo json_encode(array("error" => "Generate Wallet Failed."));
+    echo json_encode(array("error" => "Generate Wallet Address Failed."));
     return;
 }
 
@@ -40,7 +40,7 @@ if (!isset($res['receiveAddress'])) {
 $walletInfo = $res['receiveAddress'];
 $res = $bitgo->addWalletWebhook($walletInfo['wallet'], WEBHOOK_URL, 1);
 if (!$res || isset($res["error"])) {
-    echo json_encode(array("error" => "Generate Wallet Failed."));
+    echo json_encode(array("error" => "Generate Wallet hook Failed."));
     return;
 }
 

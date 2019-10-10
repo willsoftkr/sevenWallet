@@ -110,7 +110,7 @@ include_once(G5_THEME_PATH.'/_include/wallet.php');
 				
 				$.ajax({
 					type: 'POST',
-					url: g5_url + '/wallet/wallet_create.php',
+					url: g5_url + '/wallet_create.php',
 					async: true,
 					dataType: 'json',
 					data:  {
@@ -125,11 +125,15 @@ include_once(G5_THEME_PATH.'/_include/wallet.php');
 							"overflow": "auto",
 							"height": "inherit"
 						});
-
-						commonModal('Congratulation! Created Wallet','<strong> Congratulation! Create Your Wallet Address.</strong>',80);	
-						$('#closeModal').on('click', function(){
-							location.href = "/wallet/wallet.php?id=wallet";
-						});
+						
+						if(data.error == ''){
+							commonModal('Congratulation! Created Wallet','<strong> Congratulation! Create Your Wallet Address.</strong>',80);	
+							$('#closeModal').on('click', function(){
+								location.href = "/wallet/wallet.php?id=wallet";
+							});
+						}else{
+							commonModal('Generate Wallet Failed.','<strong> Please Retry / If the problem persists, please contact the administrator.</strong>',80);	
+						}
 					},
 					error:function(error){
 						console.log('error : ' + error);
