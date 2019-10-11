@@ -57,6 +57,7 @@ $address  = $member['mb_wallet'];
                 #qr_code img{text-align:center;display:inline !important;}
                 .btn.primary{background:#00bff3;color:white;}
                 .btn.primary:hover{background:royalblue;}
+                .wallet_addr{width:auto; padding:0 20px;font-size:1.1em;}
             </style>
 
             
@@ -66,7 +67,6 @@ $address  = $member['mb_wallet'];
             
 				<div class="qr_wrap mc_bit" id='qr_code' style="text-align:center">
 					<!-- <img src="_images/qr_img.gif" alt="큐알"> -->
-						
 					<!-- <input type="text" placeholder="받을 코인 숫자 입력"> -->
 				</div>		
                 <p>Wallet Address </p>
