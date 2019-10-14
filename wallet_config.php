@@ -4,7 +4,7 @@
  * 테스트넷 사용여부에 따라서 다른 설정이 변경될 수 있습니다.
  * 이를 위해서 다른 설정들은 메인넷과 테스트넷의 설정을 각기 해야합니다.
  */
-define('TESTNET', true);
+define('TESTNET', false);
 
 /*
  * @brief BITGO API AccessKey
@@ -12,7 +12,7 @@ define('TESTNET', true);
  * API Key를 생성할때에 반드시 "Lifetime Spending Limits" 항목에서 BTC, TBTC부분에 값을 넣어야합니다.
  * 최대한 큰 수를 넣어두면 API AccessKey를 변경야해할 시점을 늦출 수 있습니다.
  */
-define('BITGO_MAINNET_ACCESS_KEY', '');
+define('BITGO_MAINNET_ACCESS_KEY', 'v2xcf761ff8dbf69dbd41473a5c9b2ba2bcf93f2230043a1f07728e25d72ce0e47b');
 define('BITGO_TESTNET_ACCESS_KEY', 'v2xb224265b93dafaf8b8eda85c9a72fca7798fc63e2b3838c414e18e75d50c4032');
 define('BITGO_ACCESS_KEY', TESTNET ? BITGO_TESTNET_ACCESS_KEY:BITGO_MAINNET_ACCESS_KEY);
 
@@ -21,7 +21,7 @@ define('BITGO_ACCESS_KEY', TESTNET ? BITGO_TESTNET_ACCESS_KEY:BITGO_MAINNET_ACCE
  * 회사의 Bitcoin Address를 입력해둡니다. 이왕이면 P2SH(주소시작이 3/2로 시작) 주소로 만드는 것이 Transaction 사이즈를 줄일 수가 있습니다.
  * 회사계정에서 외부로 출금기능 역시 Bitgo를 이용하고자 한다면 반드시 Bitgo에서 생성한 계정의 주소여야합니다.
  */
-define('COMPANY_MAINNET_ADDRESS', '');
+define('COMPANY_MAINNET_ADDRESS', '3BVApu4xi9n5HS7UhnT7FG5yXYPb5TGP6p');
 define('COMPANY_TESTNET_ADDRESS', '2NFxxfEbmKsNSzU6yDGdaZJ5ycLrgUp7AKs');
 define('COMPANY_ADDRESS', TESTNET ? COMPANY_TESTNET_ADDRESS:COMPANY_MAINNET_ADDRESS);
 
