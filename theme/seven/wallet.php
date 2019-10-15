@@ -98,10 +98,10 @@ include_once(G5_THEME_PATH.'/_include/wallet.php');
 			var wallet = '<?=$member['mb_wallet']?>';
 			var mb_id = '<?=$member['mb_id']?>';
 			var mb_email = '<?=$member['mb_email']?>';
-		
+			
 			console.log(wallet.length);
 
-			if(wallet.length < 30){
+			if(wallet.length < 20){
 				console.log('지갑생성');
 				
 				$('.loader').css("display", "block");
@@ -126,7 +126,7 @@ include_once(G5_THEME_PATH.'/_include/wallet.php');
 							"height": "inherit"
 						});
 						
-						if(data.error == ''){
+						if(data.error == '' || data.result == 'success' ){
 							commonModal('Congratulation! Created Wallet','<strong> Congratulation! Create Your Wallet Address.</strong>',80);	
 							$('#closeModal').on('click', function(){
 								location.href = "/wallet/wallet.php?id=wallet";

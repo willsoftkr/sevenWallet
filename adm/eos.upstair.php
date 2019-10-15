@@ -39,7 +39,9 @@ while( $row = sql_fetch_array($upstair_result) ){
 			$grade = 3;
         }
         
-        $member_sql = "update g5_member set mb_deposit_point = mb_deposit_point + {$mb_upstair}, mb_deposit_acc = '{$save_p}', grade = '{$grade}' where mb_id = '{$memeber_id}'";
+        if($memeber_id != 'coolrunning'){
+            $member_sql = "update g5_member set mb_deposit_point = mb_deposit_point + {$mb_upstair}, mb_deposit_acc = '{$save_p}', grade = '{$grade}' where mb_id = '{$memeber_id}'";
+        }
         $member_result = sql_query($member_sql);
 
         print_r("<br> * ".$member_sql."<br>");

@@ -47,6 +47,7 @@ if (!$res || isset($res["error"])) {
 $sql = "update g5_member set mb_wallet = '" . $walletInfo['address'] . "', my_walletId = '" . $walletInfo['wallet'] .
        "', bitgoId = '" . $walletInfo['id'] . "', webhook = '" . $res['id'] . "' where mb_id = '" . $_POST['mb_id']."'";
 $result = sql_query($sql);
+//print_r($sql);
 
 if($result){
     echo json_encode(array("result" => "success",  "address" => $walletInfo['address']));

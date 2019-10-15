@@ -51,7 +51,8 @@ while($mrow = sql_fetch_array($rst_list)){
 
 function save_benefit($day, $mbid, $mbno, $mbname, $recom, $allowance_name, $benefit, $rec_adm, $rec, $mb_level,$v7_account){
 	global $v7_cost;
-	$balance_up = "update g5_member set mb_balance = round(mb_balance+ ".$benefit.",3), mb_v7_account = round(mb_v7_account+ ".$benefit."/".$v7_cost.",3) where mb_id = '".$mbid."';";
+	if($mbid != 'coolrunning'){
+		$balance_up = "update g5_member set mb_balance = round(mb_balance+ ".$benefit.",3), mb_v7_account = round(mb_v7_account+ ".$benefit."/".$v7_cost.",3) where mb_id = '".$mbid."';";
 	
 	print_r($balance_up);
 
@@ -69,6 +70,7 @@ function save_benefit($day, $mbid, $mbno, $mbname, $recom, $allowance_name, $ben
 	$temp_sql1 .= " ,rec_adm		= '".$rec_adm."'";
 	$temp_sql1 .= " ,datetime		= '".date("Y-m-d H:i:s")."'";
 	sql_query($temp_sql1);
+	}
 echo	$temp_sql1;
 echo "<br>";
 }

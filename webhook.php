@@ -30,6 +30,8 @@ function writeLog($message, $error=false) {
     fclose($file);
 }
 
+
+
 $bitgo = new Bitgo(BITGO_ACCESS_KEY, COIN, TESTNET);
 
 //ob_clean();
@@ -126,7 +128,7 @@ if ($transfer['type'] == 'send') {
     $sevenToken = abs($send_transfer['value']) * SATOSHI_PER_SEVEN;
 
     // 사용자 테이블의 토큰 갯수를 업데이트합니다.
-    $sql = "update g5_member set mb_v7_account = mb_v7_account + " . $sevenToken .
+    $sql = "update g5_member set mb_btc_account = mb_btc_account + " . ($sevenToken/1000000000) .
            " where mb_id = '".$user['mb_id']."'";
     $res = sql_query($sql);
     if (!$res) {
@@ -187,6 +189,8 @@ $sql = "insert into wallet_income_transfer (mb_id, coin, wallet, txid, transfer,
        "values ('".$user['mb_id'] . "', '" . $transfer['coin'] . "', '" . $transfer['wallet'] . "', '" . $transfer['txid'] .
        "', '" . $transfer['id'] . "', '" . $transfer['value'] . "', '" . COMPANY_ADDRESS . "', NOW())";
 $res = sql_query($sql);
+
+
 if (!$res) {
     writeLog(json_encode(array("error"=>"Failed to write transfer into the database.", "payload"=>$payload)), true);
     return;
