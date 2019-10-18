@@ -127,7 +127,7 @@ include_once(G5_THEME_PATH.'/_include/wallet.php');
 						});
 						
 						if(data.error == '' || data.result == 'success' ){
-							commonModal('Congratulation! Created Wallet','<strong> Congratulation! Create Your Wallet Address.</strong>',80);	
+							commonModal(' New wallet create','<strong> Congratulations! Your wallet has been successfully created.</strong>',80);	
 							$('#closeModal').on('click', function(){
 								location.href = "/wallet/wallet.php?id=wallet";
 							});

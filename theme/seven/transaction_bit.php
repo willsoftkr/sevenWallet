@@ -11,6 +11,7 @@ $withrwal_result = sql_query($withrwal_sql); // 출금내역
 
 $pack_sql = "select * from g5_shop_cart where mb_id = '{ member['mb_id'] }'";
 $pack_result = sql_query($pack_sql); // 팩구매내역
+
 ?>
 
 
@@ -26,11 +27,11 @@ $pack_result = sql_query($pack_sql); // 팩구매내역
 	
 	if (empty($stx)) $stx = 'sales';  // 수당로그 기본값 
 
-	if($stx == "income" ){ 
-		$sql_common ="FROM wallet_income WHERE date(createdAt)";
+	if($stx == "Deposit" ){ 
+		$sql_common ="FROM wallet_income_transfer WHERE date(createdAt)";
 		$sql_order_type = "createdAt";
 	}
-	if($stx == "B Pack" ){ 
+	else if($stx == "B Pack" ){ 
 		$sql_common ="FROM g5_shop_cart WHERE it_sc_type = '10' AND date(ct_time)";
 		$sql_order_type = "ct_time";
 	}else if ($stx == "Q Pack"){
@@ -39,10 +40,6 @@ $pack_result = sql_query($pack_sql); // 팩구매내역
 	}else if($stx == "sales"){
 		$sql_common ="FROM g5_shop_order WHERE date(od_time)";
 		$sql_order_type = "od_time";
-	}else if($stx == "Deposit"){
-		$sql_common ="FROM eos_coin_transfer_hist WHERE date(transfer_date)";
-	
-		$sql_order_type = "transfer_date";
 	}else if($stx == "Withdrawal"){
 		$sql_common ="FROM withdrawal_request WHERE date(create_dt)";
 		$sql_order_type = "create_dt";
@@ -57,9 +54,10 @@ $pack_result = sql_query($pack_sql); // 팩구매내역
 			{$sql_common}
 			{$sql_search} ";
 
+	//print_R($sql);
 	
 	$row = sql_fetch($sql);
-	//print_r($sql);
+	
 	$total_count = $row['cnt']; 
 
 	$rows = 20; //한페이지 목록수
@@ -134,8 +132,7 @@ $pack_result = sql_query($pack_sql); // 팩구매내역
 				<!-- //SEARCH -->
 
 				<!-- 탭 -->
-				<ul class="tabs five">
-					<li class="bonus_tab <?nav_active('income')?>" data-tab="tab_1" data-category="income"><p data-i18n="wallet.income">Income</p></li>
+				<ul class="tabs four">
 					<li class="bonus_tab <?nav_active('Deposit')?>" data-tab="tab_2" data-category="Deposit"><p data-i18n="wallet.입금">Deposit</p></li>
 					<li class="bonus_tab <?nav_active('Withdrawal')?>" data-tab="tab_3" data-category="Withdrawal"><p data-i18n="wallet.출금">Withdrawal</p></li>
 					<li class="bonus_tab <?nav_active('sales')?>" data-tab="tab_3" data-category="sales"><p data-i18n="wallet.매출">Sales</p></li>
@@ -179,8 +176,19 @@ $pack_result = sql_query($pack_sql); // 팩구매내역
 					</li>
 					-->
 
-					<?while( $row = sql_fetch_array($result) ){?>
-					
+					<?while( $row = sql_fetch_array($result)){?>
+						<?if($stx == 'Deposit'){?>	
+						<li>
+							<div>
+								<span><?=timeshift($row['createdAt'])?></span>
+								<span class="f_right font_orange">+ <?=Number_format($row['token']/100000000,8)?> BTC </span>
+							</div>
+							<div>
+								<span class="font_orange" data-i18n='purchase.지갑입금'>Wallet Deposit</span>  
+								<span class="f_right" >$ <?= shift_doller($row['token']/100000000 * $btc_cost_num)?></span>
+							</div>
+						</li>
+						<?}?>
 						<?if($stx == 'Q Pack' || $stx == 'B Pack'){?>	
 						<li>
 							<div>
@@ -193,7 +201,6 @@ $pack_result = sql_query($pack_sql); // 팩구매내역
 							</div>
 						</li>
 						<?}else if($stx == 'sales'){?>
-
 						<li>
 							<div>
 								<span><?=timeshift($row['od_time'])?></span>

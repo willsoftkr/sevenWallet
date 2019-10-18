@@ -301,12 +301,26 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
 		});
 	}); // ready close
 
-
-	$rank_sql = "select * from rank where mb_id = '{$mb['mb_id']}' and rank = '{$mb['mb_level']' ";
-	$rank_result = sql_query($rank_sql);
 	
+	function copyAddress(param){
+		//commonModal("Address copy",'Your Wallet address is copied!',100);
+		
+		console.log($(param).text());
+		var $temp = $("<input>");
+			$("body").append($temp);
+		$temp.val($(param).text()).select();
+			document.execCommand("copy");
+		$temp.remove();
+
+		alert('주소가 복사되었습니다.');
+	}
+
 </script>
 
+<?
+	$rank_sql = "select * from rank where mb_id = '{$mb['mb_id']}' and rank = '{$mb['mb_level']}' ";
+	$rank_result = sql_fetch($rank_sql);
+?>
 <style>
 	.ly_up{background:aliceblue;height:60px;_border-top:2px solid #333;_border-bottom:2px solid #333;}
 	.ly_up .ups{background:linen;}
@@ -406,6 +420,10 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
 		a.btn,
 		span.btn {display:inline-block;*display:inline;*zoom:1;padding:0 10px;height:24px;line-height:24px;background-color:rgba(76,100,127,1);vertical-align:middle;color:#fff;cursor:pointer;}
 		.btn.flexible{height:38px;line-height:38px;width:60px;text-align:center}
+		
+		.wallet_addr{display:inline-block;}
+		.badge{padding:10px 10px;font-weight:700;}
+		.copybutton{margin-left:10px; background:rgba(76,100,127,1);color:white;padding:5px 20px;border:0;box-shadow:0;border-radius:20px;}
 		</style>
 
 			<?//php echo ($mb['mb_recommend'] ? get_text($mb['mb_recommend']) : '없음'); // 081022 : CSRF 보안 결함으로 인한 코드 수정 ?>
@@ -451,7 +469,7 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
 
 				<tr>
 					<th scope="row" class="ups"><label for="mb_deposit_point"> 예치금</label></th>
-					<td colspan="7" class="ups"><input type="number" name="mb_deposit_point" value="<?php echo $mb['mb_deposit_point'] ?>" id="field_upstair" class="required frm_input wide" size="15" minlength="1" maxlength="10">
+					<td colspan="7" class="ups"><input type="text" name="mb_deposit_point" value="<?php echo $mb['mb_deposit_point'] ?>" id="field_upstair" class="required frm_input wide" size="15" >
 					<input type="number" class="be_to" name="be_to"  style="font-size:15px;margin-left:10px;border:0;box-shadow:none;background:transparent" value="0" readonly> 
 					
 				</tr>
@@ -548,6 +566,36 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
 			<label for="mb_adult_no">아니오</label>
 		</td>
 	</tr>
+		<script>
+		funtion copyAddress(param){
+			commonModal("Address copy",'Your Wallet address is copied!',100);
+			var $temp = $("<input>");
+			$("body").append($temp);
+			
+			$temp.val($('#'+param).text()).select();
+				document.execCommand("copy");
+			$temp.remove();
+		}
+	</script>
+	<tr >
+		<th scope="row">지갑주소</th>
+		<td>
+			<div class="wallet_addr">
+				<span class="btc_color badge">BTC ADDRESS</span>
+				<span id="btc_addr"><?=$mb['mb_wallet']?></span>
+				<button type="button" class="copybutton" onclick="copyAddress('#btc_addr')">copyAdress</button>
+			</div>
+		</td>
+		<td>
+			
+		</td>
+		<td>
+			
+		</td>
+	</tr>
+
+	
+
 	<tr class="hidden">
 		<th scope="row">주소</th>
 		<td colspan="3" class="td_addr_line">

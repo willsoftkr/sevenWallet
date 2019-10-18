@@ -6,7 +6,7 @@ include_once(G5_THEME_PATH.'/_include/wallet.php');
 //print_r($member);
 
 
-$sql = " select * from maintenance";
+$sql = " select * from wallet_income";
 $nw = sql_fetch($sql);
 
 if($nw['nw_with'] == 'Y'){
@@ -57,7 +57,7 @@ $address  = $member['mb_wallet'];
                 #qr_code img{text-align:center;display:inline !important;}
                 .btn.primary{background:#00bff3;color:white;}
                 .btn.primary:hover{background:royalblue;}
-                .wallet_addr{width:auto; padding:0 20px;font-size:1.1em;}
+                .wallet_addr{width:auto; padding:0 20px;font-size:1.1em; word-break:break-all;}
             </style>
 
             

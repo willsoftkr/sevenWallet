@@ -33,13 +33,12 @@ $query_string = $qstr ? '?'.$qstr : '';
 </div>
 <input type="submit" value="검색" class="btn_submit">
 </form>
-
+<!--
 <ul class="anchor">
-    <li><a href="./adm.eos.incom.enable.php<?php echo $query_string ?>">멤버 입금 항목</a></li>
-    <li><a href="./adm.eos.incom.php<?php echo $query_string ?>">전체 입금 항목</a></li>
-	<li style="float:right"><a href="https://bloks.io/account/eosblockteam" target="_blank" class="btn black_btn"> bloks.io 사이트확인</a></li>
+    <li><a href="./adm.income.php<?php echo $query_string ?>">입금 항목 보기</a></li>
+    <li><a href="./adm.eios.ncom.php<?php echo $query_string ?>">전체 입금 항목</a></li>
 </ul>
-
+-->
 <script>
 $(function(){
     $("#fr_date, #to_date").datepicker({ changeMonth: true, changeYear: true, dateFormat: "yy-mm-dd", showButtonPanel: true, yearRange: "c-99:c+99", maxDate: "+0d" });

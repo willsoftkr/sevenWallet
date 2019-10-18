@@ -214,8 +214,6 @@ $ord_key = array_search($ord,$ord_array); // 해당 키 찾기 (0, 1)
 $ord_rev = $ord_array[($ord_key+1)%2]; // 내림차순→오름차순, 오름차순→내림차순
 ?>
 
-
-
 <?
 include_once ('./admin.tail.php');
 ?>

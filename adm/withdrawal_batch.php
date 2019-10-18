@@ -253,7 +253,7 @@ $ord_rev = $ord_array[($ord_key+1)%2]; // 내림차순→오름차순, 오름차
 				<td><?=$row['uid']?></td>
 				<td><?=$row['mb_id']?></td>
 				<!--<td><a href="#" onclick="window.open('https://blockchain.info/address/<?=$row['addr']?>','width=800, height=500');"><?=$row['addr']?></a></td>-->
-				<td><a href="https://bloks.io/account/<?=$row['addr']?>" target="_blank"><?=$row['addr']?></a></td>
+				<td><?=$row['addr']?></td>
 				<td><?=$row['amt_left']?></td>
 				
 				<td class="td_amt"><?=$row['coin']?></td>

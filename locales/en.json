@@ -109,7 +109,8 @@
 		 "외부 지갑으로 지불" : "Pay from external wallet" , 
 		 "지불할 코인 갯수" : "Amount to pay" , 
 		 "인보이스 생성" : "Create invoice" , 
-		 "구매 취소" : "Cancel the purchase"
+		 "구매 취소" : "Cancel the purchase",
+		 "입금" : "Deposit"
 	},
 	"structure": {
 		"Level Structure": "Level Structure",
@@ -119,6 +120,10 @@
 		"ct": "/ Contract Term",
 		"hp": "Hash Power",
 		"sp": "SELECT PACKAGE"
+	},
+	"profile": {
+		"Level Structure": "Level Structure"
+		
 	},
 	"binary": {
 		"회원찾기": "Member Search",
@@ -217,6 +222,7 @@
 		"Transaction History" : "Transaction History",
 		"Deposit with Bitcoin" : "Deposit with Bitcoin",
 		"Binary Structure" : "Binary Structure",
+		"개인정보와 보안설정" : "Purchase Packs",
 		"팩상품구매하기" : "Purchase Packs",
 		"비트코인 보내기" : "Send Bitcoin",
 		"뉴스" : "V7 News",
