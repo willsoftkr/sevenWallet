@@ -567,7 +567,7 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
 		</td>
 	</tr>
 		<script>
-		funtion copyAddress(param){
+		function copyAddress(param){
 			commonModal("Address copy",'Your Wallet address is copied!',100);
 			var $temp = $("<input>");
 			$("body").append($temp);
