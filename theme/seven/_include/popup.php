@@ -569,7 +569,7 @@ $(function() {
 		$(function() {
 
 			var sendcode = false;
-			console.log(email_sendcode);
+			//console.log(email_sendcode);
 
 			$('.email_pop_open').click(function(){
 				$('.chage_email_pop').css("display","block");
@@ -583,7 +583,7 @@ $(function() {
 
 			/*인증코드 발송*/
 			$('.code_btn_em').click(function(){
-				console.log('인증코드발송' + email_sendcode);
+				//console.log('인증코드발송' + email_sendcode);
 				/*
 				$.ajax({
 						type: "POST",
