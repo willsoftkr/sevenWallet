@@ -456,21 +456,21 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
 			
 			<table class="account_box" style="border:0;">
 				<th scope="row" class="v7_color"><label for="mb_v7_account"> V7 잔고</label></th>
-				<td colspan="1" class="v7_color"><input type="number" name="mb_v7_account" value="<?php echo $mb['mb_v7_account'] ?>" id="field_savepoint" class="required frm_input " size="15" minlength="1" maxlength="10"></td>
+				<td colspan="1" class="v7_color"><input type="text" name="mb_v7_account" value="<?php echo $mb['mb_v7_account'] ?>" id="field_savepoint" class="required frm_input " size="15" minlength="1" maxlength="10"></td>
 
 				<th scope="row" class="btc_color"><label for="mb_btc_account">btc 잔고</label></th>
-				<td colspan="1" class="btc_color"><input type="number" name="mb_btc_account" value="<?php echo $mb['mb_btc_account'] ?>" id="field_savepoint" class="required frm_input" size="15" minlength="1" maxlength="10"></td>
+				<td colspan="1" class="btc_color"><input type="text" name="mb_btc_account" value="<?php echo $mb['mb_btc_account'] ?>" id="field_savepoint" class="required frm_input" size="15" minlength="1" maxlength="10"></td>
 
 				<th scope="row" class="eth_color"><label for="mb_eth_account"> eth 잔고</label></th>
-				<td colspan="1" class="eth_color"><input type="number" name="mb_eth_account" value="<?php echo $mb['mb_eth_account'] ?>" id="field_savepoint" class="required frm_input" size="15" minlength="1" maxlength="10"></td>
+				<td colspan="1" class="eth_color"><input type="text" name="mb_eth_account" value="<?php echo $mb['mb_eth_account'] ?>" id="field_savepoint" class="required frm_input" size="15" minlength="1" maxlength="10"></td>
 
 				<th scope="row" class="rwd_color"><label for="mb_rwd_account"> rwd 잔고</label></th>
-				<td colspan="1" class="rwd_color"><input type="number" name="mb_rwd_account" value="<?php echo $mb['mb_rwd_account'] ?>" id="field_savepoint" class="required frm_input" size="15" minlength="1" maxlength="10"></td>
+				<td colspan="1" class="rwd_color"><input type="text" name="mb_rwd_account" value="<?php echo $mb['mb_rwd_account'] ?>" id="field_savepoint" class="required frm_input" size="15" minlength="1" maxlength="10"></td>
 
 				<tr>
 					<th scope="row" class="ups"><label for="mb_deposit_point"> 예치금</label></th>
 					<td colspan="7" class="ups"><input type="text" name="mb_deposit_point" value="<?php echo $mb['mb_deposit_point'] ?>" id="field_upstair" class="required frm_input wide" size="15" >
-					<input type="number" class="be_to" name="be_to"  style="font-size:15px;margin-left:10px;border:0;box-shadow:none;background:transparent" value="0" readonly> 
+					<input type="text" class="be_to" name="be_to"  style="font-size:15px;margin-left:10px;border:0;box-shadow:none;background:transparent" value="0" readonly> 
 					
 				</tr>
 			</table>
