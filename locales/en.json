@@ -75,7 +75,10 @@
 		"수수료" : "Fee" ,
 		"인출 합계" : "Total withdrawal" ,
 		"전송하기" : "Send" ,
-		"취소" : "Cancel" 
+		"취소" : "Cancel",
+		"출금완료" : "Processed",
+		"불가/거부" : "Rejected",
+		"보류(대기)" : "Pending"
 	},
 	"purchase": {
 		  "구매" : "Purchase",
@@ -122,8 +125,98 @@
 		"sp": "SELECT PACKAGE"
 	},
 	"profile": {
-		"Level Structure": "Level Structure"
-		
+		"Level Structure": "Level Structure",
+		"개인정보과 보안 설정" : "Profile & Settings",
+		"개인정보" : "Profile",
+		"유저네임" : "Username",
+		"이름" : "Name",
+		"KYC 승인 안됨" : "KYC Rejected",
+		"KYC 승인 완료" : "KYC Approved",
+		"신분증을 든 사진 업로드" : "Upload photo with ID",
+		"파일 업로드" : "File upload",
+		"업로드 성공" : "Upload successful",
+		"업로드 실패" : "Upload failed",
+		"이메일" : "Email",
+		"전화번호" : "Phone numner",
+		"바이너리 팩 (B 팩) 자동 재구매" : "B Pack auto-repurchase",
+		"수당 팩 (Q 팩) 자동 재구매" : "Q Pack auto-repurchase",
+		"변경" : "Change",
+		"사용중인 이메일 주소" : "Current Email",
+		"새로운 이메일 주소" : "New Email",
+		"새로운 이메일 주소 확인" : "Confirm New Email",
+		"보안설정" : "Security setting",
+		"보안코드 입력" : "Enter the security code",
+		"보안코드 요청하기" : "Request code",
+		"저장" : "Save",
+		"취소" : "Cancel",
+		"이메일 주소 인증" : "Email verification",
+		"인증번호가 이메일로 전송되었습니다" : "Security code sent to your email",
+		"창닫기" : "Close",
+		"이메일 변경" : "Change Email address",
+		"변경이 성공적으로 저장되었습니다" : "Change successfully saved",
+		"등록된 전화번호" : "Current phone number",
+		"다음으로" : "Proceed",
+		"새로운 전화번호" : "New phone number",
+		"국가번호" : "Country",
+		"전화번호" : "Phone number",
+		"완료" : "OK",
+		"전화번호 인증" : "Phone number verification",
+		"인증번호가 문자로 전송되었습니다" : "Security code sent to your phone",
+		"전화번호 변경" : "Change Phone Number",
+		"변경이 성공적으로 완료되었습니다" : "Change successfully completed",
+		"로그인 비밀번호 변경" : "Change login password",
+		"트랜잭션 비밀번호 변경" : "Change transaction password",
+		"지문으로 지갑열기" : "Fingerprint Unlock",
+		"이중 보안 (2-Factor)" : "2-Step Verification",
+		"이중보안을 설정하여 지갑을 외부로부터 보다 안전하게 지킬 수 있습니다." : "Protect your wallet from unauthorized access by enabling 2-Step Verification.",
+		"1. Authy App으로 QR 코드를 스캔합니다." : "1. Scan this QR code with Authy app.",
+		"2. 화면에 나오는 6자리 숫자를 아래에 입력합니다." : "2. Enter the 6 random numbers presented below.",
+		"코드 확인" : "Verify Code",
+		"앱이 없으시다면? " : "No Authenticator app installed?",
+		"여기서 다운 받으세요." : "Download here",
+		"사용중인 로그인 비밀번호" : "Current login password",
+		"새로운 로그인 비밀번호" : "New login password",
+		"새로운 로그인 비밀번호 확인" : "Confirm new login password",
+		"인증코드 입력" : "Enter the security code",
+		"인증코드 요청하기" : "Request code",
+		"보안코드 전송" : "Security code sent",
+		"보안코드가 이메일로 전송되었습니다" : "Security code sent to your email",
+		"비밀번호 변경" : "Change Password",
+		"비밀번호가 성공적으로 변경되었습니다" : "Password successfully changed",
+		"사용중인 트랜잭션 비밀번호" : "Current Transaction Password",
+		"새로운 트랜잭션 비밀번호" : "New Transaction Password",
+		"새로운 트랜잭션 비밀번호 확인" : "Confirm New Transaction Password",
+		"보안코드 입력" : "Enter the security code",
+		"보안코드 요청하기" : "Request code",
+		"보안코드가 이메일로 전송되었습니다" : "Security code sent to your email",
+		"트랜잭션 비밀번호 변경" : "Change Transaction Password",
+		"트랜잭션 비밀번호가 성공적으로 변경되었습니다" : "Transaction password successfully changed",
+		"지문으로 로그인하기" : "Login with fingerprint",
+		"지문으로 더 빠르고 안전하게 지갑을 열 수 있습니다. 지문 센서에 손가락을 대십시오." : "Use your fingerprint for faster, easier access to your wallet. Confirm fingerprint to continue",
+		"센서를 터치하세요" : "Touch sensor",
+		"지문 승인 완료" : "Fingerprint recognized",
+		"지문 승인 실패" : "Fingerprint not recognized",
+		"취소" : "Cancel",
+		"지문인식 해제 경고" : "Fingerprint login disable warning",
+		"지문인식 기능을 해제하시겠습니까?" : "Are you sure you want to disable fingerprint login?",
+		"취소" : "Cancel",
+		"네" : "Yes",
+		"이중보안 (2-Factor) 해제 경고" : "Disable Two-Step Warning",
+		"이중보안 기능을 해제 하시겠습니까?" : "Are you sure you wish to disable the 2-Factor?",
+		"취소" : "Cancel",
+		"네" : "Yes",
+		"이중보안 (2-Factor) 인증번호" : "2-Factor Authentication",
+		"인증 번호가 틀렸습니다." : "Failed to verify authenticator code",
+		"OK" : "OK",
+		"이중보안 (2-Factor) 활성화" : "2-Factor Activated",
+		"이중보안이 성공적으로 활성화되었습니다." : "2-Factor successfully activated",
+		"추천인 링크" : "Referral",
+		"나의 추천 링크" : "My Referral Link",
+		"추천 링크 QR 코드" : "My QR Code",
+		"복사" : "Copy",
+		"공유" : "Share",
+		"추천링크" : "Referral link",
+		"추천링크가 복사되었습니다." : "Referral link copied to clipboard"
 	},
 	"binary": {
 		"회원찾기": "Member Search",
@@ -222,7 +315,7 @@
 		"Transaction History" : "Transaction History",
 		"Deposit with Bitcoin" : "Deposit with Bitcoin",
 		"Binary Structure" : "Binary Structure",
-		"개인정보와 보안설정" : "Purchase Packs",
+		"개인정보와 보안설정" : "Profile & Settings",
 		"팩상품구매하기" : "Purchase Packs",
 		"비트코인 보내기" : "Send Bitcoin",
 		"뉴스" : "V7 News",
@@ -265,24 +358,18 @@
 		"로그아웃 하시겠습니까?" : "Are you sure to log out?",
 		"취소": "Cancel",
 		"네": "Yes",
-
 		"환전 성공":"Exchange completed",
 		"환전이 완료되었습니다.":"Exchange completed successfully",
 		"환전 실패":"Exchange failed",
 		"환전에 실패했습니다. 다시 시도하세요":"Exchange failed. Try again.",
-
 		"지갑잔고 부족":"Insufficient Funds",
 		"지갑에 잔고가 부족합니다.":"Not enough balance",
-
 		"트랜젝션 승인":"Confirm the transaction",
 		"트랜잭션 비밀번호를 입력하여 송금을 확인합니다.":"Please enter the transaction password to verify the transaction",
 		"지갑 잔고 부족":"Insufficient Funds",
 		"지갑에 개스비가 부족합니다.":"Insufficient funds to pay gas",
-
-
 		"이메일이 전송되었습니다":"Security code sent to your email",
 		"비밀번호 재설정":"Change Password",
-
 		"지문으로 로그인 하기":"Login with fingerprint",
 		"지문으로 더 빠르고 안전하게 지갑을 열 수 있습니다.":"Use your fingerprint for faster, easier access to your wallet.",
 		"지문 `센`서에 손가락을 대십시오.":"Confirm fingerprint to continue",
@@ -290,52 +377,30 @@
 		"지문 승인 실패":"Fingerprint not recognized",
 		"지문 인식 해제 경고":"Fingerprint login disable warning",
 		"지문 인식 기능을 해제합니다":"Are you sure you want to disable fingerprint login?",
-
-
 		"사용중인 트랜잭션 비밀번호":"Current Transaction Password",
 		"새로운 트랜잭션 비밀번호":"New Transaction Password",
 		"새로운 트랜잭션 비밀번호 확인":"Confirm New Transaction Password",
 		"보안코드 입력":"Enter the security code",
 		"코드요청":"Request code",
-
 		"트랜잭션 비밀번호 변경":"Change transaction password",
-		    "변경이 성공적으로 완료되었습니다" : "Change successfully completed",
-
-
-		    "사용중인 비밀번호":"Current login password",
-		    "새로운 비밀번호":"New login password",
-		    "새로운 비밀번호 확인":"Confirm new login password",
-		    
-
-		    "추천 링크":"Referral link",
-		    "추천 링크가 복사되었습니다.":"Referral link copied to clipboard.",
-
-
-		    "전화번호 변경":"Change Phone Number",
-
-
-		    "전화번호 인증":"Phone number verification",
-		    "인증번호가 전송되었습니다.":"Security code sent to your phone",
-
-
-		    "사용중인 이메일 주소":"Current Email",
-		    "새로운 이메일 주소":"New Email",
-		    "새로운 이메일 주소 확인":"Confirm New Email",
-		   
-
-
-		    "사용중인 전화번호":"Current phone number",
-		   
-
-
-		    "새로운 전화번호":"New phone number",
-		   
-
-
-		    "이메일 주소 인증":"Email verification",
-		    "인증번호가 이메일로 전송되었습니다.":"Security code sent to your email",
-		    "이메일 변경":"Change Email address",
-		    "변경이 성공적으로 완료되었습니다.":"Change successfully saved"
+		"변경이 성공적으로 완료되었습니다" : "Change successfully completed",
+		"사용중인 비밀번호":"Current login password",
+		"새로운 비밀번호":"New login password",
+		"새로운 비밀번호 확인":"Confirm new login password",
+		"추천 링크":"Referral link",
+		"추천 링크가 복사되었습니다.":"Referral link copied to clipboard.",
+		"전화번호 변경":"Change Phone Number",
+		"전화번호 인증":"Phone number verification",
+		"인증번호가 전송되었습니다.":"Security code sent to your phone",
+		"사용중인 이메일 주소":"Current Email",
+		"새로운 이메일 주소":"New Email",
+		"새로운 이메일 주소 확인":"Confirm New Email",
+		"사용중인 전화번호":"Current phone number",
+		"새로운 전화번호":"New phone number",
+		"이메일 주소 인증":"Email verification",
+		"인증번호가 이메일로 전송되었습니다.":"Security code sent to your email",
+		"이메일 변경":"Change Email address",
+		"변경이 성공적으로 완료되었습니다.":"Change successfully saved"
 	},
 
 	"username": "LOG IN1",

@@ -247,7 +247,8 @@ a.gray_close{background:#6c757d; color:#fff; text-align: center; padding: 8px 10
 .input_pop_css .btn2_btm_wrap .cancel{margin-right:8%; background:#f5f7f9; border:1px solid #00bff3;}
 .input_pop_css .btn2_btm_wrap .save {background:#00bff3;  border:1px solid #00bff3; color:#fff}
 .input_pop_css form div{position: relative;}
-.code_btn{position:absolute; right:0; top:0; color: #006df3; cursor:pointer; bottom: 3px;} 
+
+.code_btn{text-align:right; right:0; top:0; color: #006df3; cursor:pointer; bottom: 3px;} 
 .code_btn img{width:20px; vertical-align:middle;} 
 
 .send_tran_pop div p{margin-bottom:15px;}
@@ -746,7 +747,7 @@ a.all_send{color:#ed2424; padding-left:5px; font-size:0.8em;}
 .opt_wrap input{max-width:200px; display: block; margin: 10px auto;}
 .opt_wrap input[type=button]{line-height:33px;}
 .opt_wrap a{color:#00aeef; }
-.profile_wrap>div:last-child img{width:23%; margin:0 auto; display:block;}
+.profile_wrap>div:last-child img{width:30%; margin:0 auto; display:block;}
 .profile_wrap>div:last-child{padding-bottom:50px;}
 
 /* binary */
@@ -1214,7 +1215,12 @@ div:nth-child(2){color:#ff9b22;}
     display: block;
     width: 100%;
     height: 20px;
-    margin: 10px 0;}
+	margin: 10px 0;}
+	
+#dialogModal .modal-dialog{    transform: translate(0,50%);}
+#dialogModal .modal-body{text-align:center;}
+#dialogModal .modal-body img{width:60px;margin-bottom:20px;}
+
 
 /*UTIL*/
 .upper{text-transform: uppercase;}

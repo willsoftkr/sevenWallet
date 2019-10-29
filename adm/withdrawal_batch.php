@@ -129,8 +129,6 @@ $(function(){
 					send_cnt++;
 				}
 			}
-			
-			
 
 			$.ajax({
 				type: "POST",
@@ -207,7 +205,6 @@ $(function(){
 
 	<input type="text" name="create_dt" id="create_dt" placeholder="요청일시" class="frm_input" value="<?=$_GET['create_dt']?>" />
 	<input type="text" name="update_dt" id="update_dt" placeholder="승인일시" class="frm_input" value="<?=$_GET['update_dt']?>" />
-
 	<input type="submit" class="btn_submit" value="검색" />
 </form>
 <br><br>

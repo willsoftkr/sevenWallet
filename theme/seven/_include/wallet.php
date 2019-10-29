@@ -3,10 +3,12 @@ $math_sql = "select  sum(mb_btc_account + mb_btc_calc + mb_btc_amt) as btc_total
 $math_total = sql_fetch($math_sql);
 
 /* 지갑잔고 */
-$btc_account = number_format($math_total['btc_total'],8);
 $btc_account_num = $math_total['btc_total'];
-$v7_account = number_format($math_total['v7_total'],2);
+$btc_account = number_format($btc_account_num,8);
+
 $v7_account_num = $math_total['v7_total'];
+$v7_account = number_format($v7_account_num,2);
+
 $balance_account = number_format($math_total['v7_total']/2,2);
 
 /* 코인시세 */
@@ -16,8 +18,11 @@ $v7_cost = number_format(get_coin_cost('v7'),2);
 $v7_cost_num = get_coin_cost('v7');
 
 /* 시세반영잔고 */
-$btc_rate = number_format( $math_total['btc_total'] * get_coin_cost('btc'),2);
-$v7_rate = number_format( $math_total['v7_total'] * get_coin_cost('v7'),2);
+$btc_rate_num = $math_total['btc_total'] * get_coin_cost('btc');
+$btc_rate = number_format( $btc_rate_num,2);
+
+$v7_rate_num = $math_total['v7_total'] * get_coin_cost('v7');
+$v7_rate = number_format($v7_rate_num,2);
 
 /* 전체지갑잔고 */
 $total_rate = number_format(($math_total['btc_total'] * get_coin_cost('btc')) + ($math_total['v7_total'] * get_coin_cost('v7')),2);
@@ -43,12 +48,14 @@ function exchage_result($val) {
 }*/
 
 function exchage_result($val) {
+	
 	$exchage_cost = 100 + (100*3/100);
 	return Number_format($exchage_cost*$val, 2);
 }
 
 /*업스테어*/ 
 function deposit_result($val){
+	global $btc_cost;
 	$deposit_cost =  $btc_cost - ($btc_cost*0.05);
 	return Number_format($deposit_cost*$val, 2);
 }

@@ -34,15 +34,23 @@ $pack_result = sql_query($pack_sql); // 팩구매내역
 	else if($stx == "B Pack" ){ 
 		$sql_common ="FROM g5_shop_cart WHERE it_sc_type = '10' AND date(ct_time)";
 		$sql_order_type = "ct_time";
+
 	}else if ($stx == "Q Pack"){
 		$sql_common ="FROM g5_shop_cart WHERE it_sc_type = '20' AND date(ct_time)";
 		$sql_order_type = "ct_time";
+
 	}else if($stx == "sales"){
 		$sql_common ="FROM g5_shop_order WHERE date(od_time)";
 		$sql_order_type = "od_time";
+		
 	}else if($stx == "Withdrawal"){
 		$sql_common ="FROM withdrawal_request WHERE date(create_dt)";
 		$sql_order_type = "create_dt";
+
+	}else if ($stx == "earnings"){
+		$sql_common ="FROM g5_shop_cart WHERE it_sc_type = '20' AND date(ct_time)";
+		$sql_order_type = "ct_time";
+
 	}else{
 
 	}
@@ -72,8 +80,9 @@ $pack_result = sql_query($pack_sql); // 팩구매내역
 			limit {$from_record}, {$rows} ";
 			
 	$result = sql_query($sql);
-	
 	//print_R($sql );
+
+	//
 ?>
 
 	
@@ -177,6 +186,8 @@ $pack_result = sql_query($pack_sql); // 팩구매내역
 					-->
 
 					<?while( $row = sql_fetch_array($result)){?>
+
+						<!-- 입금 -->
 						<?if($stx == 'Deposit'){?>	
 						<li>
 							<div>
@@ -200,6 +211,8 @@ $pack_result = sql_query($pack_sql); // 팩구매내역
 								<span class="f_right" data-i18n='purchase.구매'>Purchase</span>
 							</div>
 						</li>
+
+						<!-- 매출 -->
 						<?}else if($stx == 'sales'){?>
 						<li>
 							<div>
@@ -210,14 +223,46 @@ $pack_result = sql_query($pack_sql); // 팩구매내역
 								<span class="font_orange" data-i18n='wallet.Deposited'>입금</span>
 							</div>
 						</li>
-						<?}else if($stx == 'Withdrawal'){?>
+
+						<!-- 출금 -->
+						<?}else if($stx == 'Withdrawal'){
+						
+								switch($row['status']){
+									case "N" :
+										$status_txt = '불가/거부';
+									case "S" :
+										$status_txt = '불가/거부';
+									case "Y" :
+										$status_txt = '출금완료';
+									case "R" :
+										$status_txt = '보류(대기)';
+									default	:
+										$status_txt = '보류(대기)';
+								}
+						
+							?>
+							
 							<li>
 							<div>
 								<span><?=timeshift($row['update_dt'])?></span>
 								<span class="f_right font_orange">- <?=Number_format($row['amt'],8)?> BTC &#47;- $<?=Number_format($row['amt_usd'],2)?></span>
 							</div>
+							
 							<div>
-								<span class="font_orange" data-i18n='wallet.출금'>출금</span>
+								<span class="font_orange" data-i18n='wallet.출금'>processed</span>
+							</div>
+						</li>
+
+						<!-- 수당 -->
+						<?}else if($stx == 'earnings'){?>
+							<li>
+							<div>
+								<span><?=timeshift($row['create_dt'])?></span>
+								<span class="f_right font_orange">- <?=Number_format($row['amt'],8)?> BTC &#47;- $<?=Number_format($row['amt_usd'],2)?></span>
+							</div>
+							
+							<div>
+								<span class="font_orange" data-i18n='wallet.<?=$status_txt?>'>processed</span>
 							</div>
 						</li>
 

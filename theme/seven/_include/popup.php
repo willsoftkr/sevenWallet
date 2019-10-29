@@ -510,32 +510,48 @@ $(function() {
 			</div>
 
 
-			<!-- 이메일 주소 변경 -->
+
+
+
+
+
+
+
+
+
+<!-- 이메일 주소 변경 -->
+
+
 			<div class="pop_wrap chage_email_pop input_pop_css">
-				<form action="">
-					<label for="" data-i18n='popup.사용중인 이메일 주소'>Current Email</label>
-					<input type="password">
-					<label for="" data-i18n='popup.새로운 이메일 주소'>New Email</label>
-					<input type="password">
-					<label for="" data-i18n='popup.새로운 이메일 주소 확인'>Confirm New Email</label>
-					<input type="password">
-					<div>
-						<label for="" data-i18n='popup.보안코드 입력'>Enter the security code</label>
-						<p class="code_btn code_btn_em"><img src="<?=G5_THEME_URL?>/_images/email_send_icon.gif" alt="이미지" data-i18n='popup.코드요청'>Request code</p>
-					</div>
-					<input type="text" style="margin-bottom:25px;">
-					<div class="btn2_btm_wrap">
-						<input type="button" value="Cancle" class="cancel pop_close" >
-						<input type="button" value="Save" class="save go_ch_em1">
-					</div>
+				<form>
+				<label for="" data-i18n='popup.사용중인 이메일 주소'>Current Email</label>
+				<input type="text"  name="current_email" id="current_email" value="">
+				<label for="" data-i18n='popup.새로운 이메일 주소'>New Email</label>
+				<input type="text"  name="email_new" id="email_new" value="">
+				<label for="" data-i18n='popup.새로운 이메일 주소 확인'>Confirm New Email</label>
+				<input type="text"  name="email_new_re" id="email_new_re" value="">
+				<div>
+					<label for="" data-i18n='popup.보안코드 입력'>Enter the security code</label>
+					<p class="code_btn code_btn_em"><img src="<?=G5_THEME_URL?>/_images/email_send_icon.gif" alt="이미지" data-i18n='popup.코드요청' >Request code</p>
+				</div>
+				<input type="text"   name="email_vaild_code" id="email_vaild_code" style="margin-bottom:25px;">
+				
+				
+				<div class="btn2_btm_wrap">
+					<input type="button" value="Cancle" class="cancel pop_close" >
+					<input type="button" value="Save" class="save">
+				</div>
 				</form>
 			</div>
+			
+			
 			<div class="pop_wrap chage_email_pop2 notice_img_pop">
 				<p class="pop_title" data-i18n='popup.이메일 주소 인증'>Email verification</p>
 				<img src="<?=G5_THEME_URL?>/_images/comform_chk.gif" alt="체크">
 				<div data-i18n='popup.인증번호가 이메일로 전송되었습니다.'>Security code sent to your email</div>
 				<a href="javascript:void(0);" class="back_em1 gray_close f_right" data-i18n='popup.창닫기'>Close</a>
 			</div>
+
 			<div class="pop_wrap chage_email_pop1 notice_img_pop">
 				<p class="pop_title" data-i18n='popup.이메일 변경'>Change Email address</p>	
 				<div>
@@ -543,33 +559,204 @@ $(function() {
 				<p data-i18n='popup.변경이 성공적으로 완료되었습니다.'>	Change successfully saved</p>
 				</div>
 				<div class="pop_close_wrap">
-					<a href="javascript:void(0);" class="pop_close" data-i18n='popup.창닫기'>Close</a>
+					<a href="javascript:parent.location.reload();" class="pop_close" data-i18n='popup.창닫기'>Close</a>
 				</div>
 			</div>
 
-			
+	
+	
 	<script>
 		$(function() {
 
-			//이메일 변경
+			var sendcode = false;
+			console.log(email_sendcode);
+
 			$('.email_pop_open').click(function(){
 				$('.chage_email_pop').css("display","block");
 			});
+			
 			$('.go_ch_em1').click(function(){
 				$('.chage_email_pop').css("display","none");
 				$('.chage_email_pop1').css("display","block");
 			});
-				$('.code_btn_em').click(function(){
-					$('.chage_email_pop2').css("display","block");
-				});
-				$('.back_em1').click(function(){
-					$('.chage_email_pop2').css("display","none");
-				});
-			$('.chage_email_pop .save').click(function(){
-				$('.chage_email_pop2').css("display","none");
-				$('.chage_email_pop1').css("display","block");
+			
+
+			/*인증코드 발송*/
+			$('.code_btn_em').click(function(){
+				console.log('인증코드발송' + email_sendcode);
+				/*
+				$.ajax({
+						type: "POST",
+						url: "",
+						dataType: "json",
+						data:  {
+							"email" : $('.chage_email_pop #email_new').val(),
+							"key" : email_sendcode,
+							
+						},
+						success: function(data) {
+							if(data.result =='success'){
+								$('.back_em1').click(function(){
+									$('.chage_email_pop2').css("display","none");
+								});
+							sendcode = true;
+							}
+						},
+						error:function(e){
+							dialogModal('Error!','<strong> Please check retry.</strong>','failed');	
+						}
+					});
+				*/
 			});
 
+				
+			
+			$('.chage_email_pop .save').click(function(){
+				//$('.chage_email_pop2').css("display","none");
+				// ;
+				//console.log( $('.chage_email_pop #current_email').val() );
+				var email2 = $('.chage_email_pop #email_new').val();
+				var email3 = $('.chage_email_pop #email_new_re').val();	
+				var email_vaild_code = $('.chage_email_pop #email_vaild_code').val();	
+				
+
+				if(email_vaild_code != email_sendcode){
+					console.log('인증키 확인 필요' + sendcode);
+					return false;
+					//dialogModal('Please check','<strong> sercurity code does not matched.</strong>','failed');	
+				}
+
+
+				if( email2 != email3){
+					dialogModal('Please check','<strong> new email does not matched confirm new mail.</strong>','failed');	
+					return false;	
+				}
+
+				$.ajax({
+						type: "POST",
+						url: "/util/profile_proc.php",
+						dataType: "json",
+						data:  {
+							"email1" : $('.chage_email_pop #current_email').val(),
+							"email2" : email2,
+							"email3" : email3,
+							"confirm" : email_vaild_code,
+							"category" : "email"
+						},
+						success: function(data) {
+							if(data.result =='success'){
+								$('.chage_email_pop2').css("display","none");
+								$('.chage_email_pop1').css("display","block");
+							}
+						},
+						error:function(e){
+							dialogModal('Error!','<strong> Please check retry.</strong>','failed');	
+						}
+					});
+
+			});
+		});
+		
+		</script>
+<!-- 이메일 주소 변경 -->	
+
+
+
+
+
+<!-- 전화번호 변경 -->
+	<div class="pop_wrap num_pop_wrap input_pop_css">
+			<form action="">
+				<label for="" data-i18n="popup.사용중인 전화번호">Current phone number</label>
+				<div class="num_pop_div clear_fix">
+					<input type="input">
+					<input type="input">
+				</div>
+				<div>
+					<label for="" data-i18n="popup.보안코드 입력">Enter the security code</label>
+					<p class="code_btn go_num1"><img src="<?=G5_THEME_URL?>/_images/email_send_icon.gif" alt="이미지" data-i18n="popup.코드요청">Request code</p>
+				</div>
+				<input type="text" style="margin-bottom:25px;">
+				<div class="btn2_btm_wrap">
+					<input type="button" value="Cancle" class="cancel pop_close" >
+					<input type="button" value="Proceed" class="save go_num3">
+				</div>
+			</form>
+		</div>
+
+		<div class="pop_wrap num1_pop_wrap notice_img_pop">
+			<p class="pop_title" data-i18n="popup.전화번호 인증">Phone number verification</p>	
+			<div>
+				<img src="<?=G5_THEME_URL?>/_images/comform_chk.gif" alt="이미지">
+			<p data-i18n="popup.인증번호가 전송되었습니다.">Security code sent to your phone</p>
+			</div>
+			<div class="pop_close_wrap">
+				<a href="javascript:void(0);" class="num1_pop_close" data-i18n="popup.창닫기">Close</a>
+			</div>
+		</div>
+
+		<div class="pop_wrap num3_pop_wrap input_pop_css">
+			<form action="">
+				<label for="" data-i18n="popup.새로운 전화번호">New phone number</label>
+				<div class="num_pop_div clear_fix">
+					<input type="input" placeholder="Country">
+					<input type="input" placeholder="Phone Number">
+				</div>
+				<div>
+					<label for="" data-i18n="popup.보안코드 입력">Enter the security code</label>
+					<p class="code_btn go_num2"><img src="<?=G5_THEME_URL?>/_images/email_send_icon.gif" alt="이미지" data-i18n="popup.코드요청">Request code</p>
+				</div>
+				<input type="text" style="margin-bottom:25px;">
+				<div class="btn2_btm_wrap">
+					<input type="button" value="Cancle" class="cancel pop_close" >
+					<input type="button" value="Proceed" class="save go_num2">
+				</div>
+			</form>
+		</div>
+
+		<div class="pop_wrap num2_pop_wrap notice_img_pop">
+			<p class="pop_title" data-i18n="popup.전화번호 변경">Change Phone Number</p>	
+			<div>
+				<img src="<?=G5_THEME_URL?>/_images/comform_chk.gif" alt="이미지">
+			<p data-i18n="popup.변경이 성공적으로 완료되었습니다.">Change successfully completed</p>
+			</div>
+			<div class="pop_close_wrap">
+				<a href="javascript:void(0);" class="pop_close" data-i18n="popup.창닫기">Close</a>
+			</div>
+		</div>
+
+	<script>
+		$(function() {
+
+			$('.num_pop_open').click(function(){
+				$('.num_pop_wrap').css("display","block");
+			});
+			$('.go_num1').click(function(){
+				$('.num_pop_wrap').css("display","none");
+				$('.num1_pop_wrap').css("display","block");
+			});
+			$('.num1_pop_close').click(function(){
+				$('.num_pop_wrap').css("display","block");
+				$('.num1_pop_wrap').css("display","none");
+			});
+			$('.go_num2').click(function(){
+				$('.num_pop_wrap').css("display","none");
+				$('.num2_pop_wrap').css("display","block");
+			});
+			$('.go_num3').click(function(){
+				$('.num_pop_wrap').css("display","none");
+				$('.num3_pop_wrap').css("display","block");
+			});
+		});
+		//전화번호 변경
+	</script>
+
+
+
+
+
+		<script>
+			$(function() {
 			//  비밀번호변경 
 			  $('.ch_pw_open').click(function(){
 					//$('.chage_pw_pop').css("display","block");
@@ -634,96 +821,12 @@ $(function() {
 	</script>
 
 
-		<!-- 전화번호 변경 -->
-			<div class="pop_wrap num_pop_wrap input_pop_css">
-				<form action="">
-					<label for="" data-i18n="popup.사용중인 전화번호">Current phone number</label>
-					<div class="num_pop_div clear_fix">
-						<input type="input">
-						<input type="input">
-					</div>
-					<div>
-						<label for="" data-i18n="popup.보안코드 입력">Enter the security code</label>
-						<p class="code_btn go_num1"><img src="<?=G5_THEME_URL?>/_images/email_send_icon.gif" alt="이미지" data-i18n="popup.코드요청">Request code</p>
-					</div>
-					<input type="text" style="margin-bottom:25px;">
-					<div class="btn2_btm_wrap">
-						<input type="button" value="Cancle" class="cancel pop_close" >
-						<input type="button" value="Proceed" class="save go_num3">
-					</div>
-				</form>
-			</div>
-
-			<div class="pop_wrap num1_pop_wrap notice_img_pop">
-				<p class="pop_title" data-i18n="popup.전화번호 인증">Phone number verification</p>	
-				<div>
-					<img src="<?=G5_THEME_URL?>/_images/comform_chk.gif" alt="이미지">
-				<p data-i18n="popup.인증번호가 전송되었습니다.">Security code sent to your phone</p>
-				</div>
-				<div class="pop_close_wrap">
-					<a href="javascript:void(0);" class="num1_pop_close" data-i18n="popup.창닫기">Close</a>
-				</div>
-			</div>
-
-			<div class="pop_wrap num3_pop_wrap input_pop_css">
-				<form action="">
-					<label for="" data-i18n="popup.새로운 전화번호">New phone number</label>
-					<div class="num_pop_div clear_fix">
-						<input type="input" placeholder="Country">
-						<input type="input" placeholder="Phone Number">
-					</div>
-					<div>
-						<label for="" data-i18n="popup.보안코드 입력">Enter the security code</label>
-						<p class="code_btn go_num2"><img src="<?=G5_THEME_URL?>/_images/email_send_icon.gif" alt="이미지" data-i18n="popup.코드요청">Request code</p>
-					</div>
-					<input type="text" style="margin-bottom:25px;">
-					<div class="btn2_btm_wrap">
-						<input type="button" value="Cancle" class="cancel pop_close" >
-						<input type="button" value="Proceed" class="save go_num2">
-					</div>
-				</form>
-			</div>
-
-			<div class="pop_wrap num2_pop_wrap notice_img_pop">
-				<p class="pop_title" data-i18n="popup.전화번호 변경">Change Phone Number</p>	
-				<div>
-					<img src="<?=G5_THEME_URL?>/_images/comform_chk.gif" alt="이미지">
-				<p data-i18n="popup.변경이 성공적으로 완료되었습니다.">Change successfully completed</p>
-				</div>
-				<div class="pop_close_wrap">
-					<a href="javascript:void(0);" class="pop_close" data-i18n="popup.창닫기">Close</a>
-				</div>
-			</div>
 
 
-<script>
-		$(function() {
 
-			//이메일 변경
-			$('.num_pop_open').click(function(){
-				$('.num_pop_wrap').css("display","block");
-			});
-			$('.go_num1').click(function(){
-				$('.num_pop_wrap').css("display","none");
-				$('.num1_pop_wrap').css("display","block");
-			});
-			$('.num1_pop_close').click(function(){
-				$('.num_pop_wrap').css("display","block");
-				$('.num1_pop_wrap').css("display","none");
-			});
-			$('.go_num2').click(function(){
-				$('.num_pop_wrap').css("display","none");
-				$('.num2_pop_wrap').css("display","block");
-			});
-			$('.go_num3').click(function(){
-				$('.num_pop_wrap').css("display","none");
-				$('.num3_pop_wrap').css("display","block");
-			});
-			
-		});
-	</script>
 
 <!-- 추천인 링크 -->
+<!--
 <div class="pop_wrap notice_img_pop link_pop">
 	<p class="pop_title"  data-i18n="popup.추천 링크">Referral link</p>
 	<div>
@@ -734,6 +837,7 @@ $(function() {
 		<a href="javascript:void(0);" class="pop_close gray_close"  data-i18n="popup.창닫기">Close</a>
 	</div>
 </div>
+-->
 
 <script>
 		$(function() {
@@ -743,6 +847,15 @@ $(function() {
 		});
 	});
 </script>
+
+
+
+
+
+
+
+
+
 
 
 

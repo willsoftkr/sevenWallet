@@ -231,8 +231,8 @@
 	<script>
 	
 
-		var btc_total = "<?=shift_number($btc_rate)?>";
-		var v7_total = "<?=shift_number($v7_rate)?>";
+		var btc_total = "<?=$btc_rate_num?>";
+		var v7_total = "<?=$v7_rate_num?>";
 
 		window.onload = function() {
 			var ctx = document.getElementById("myChart");
@@ -285,52 +285,6 @@
 			});
 		});
 	</script>
-
-	
-<script type='text/javascript'>
-/*
-	$(document).ready(function(){
-
-		var wallet = '<?=$mb_wallet?>';
-		var mb_id = '<?=$member[mb_id]?>';
-		var mb_email = '<?=$member[mb_email]?>';
-	
-		console.log(wallet);
-
-		if(wallet == ''){
-			console.log('지갑생성');
-
-			$.ajax({
-				type: 'POST',
-				url: g5_url + '/wallet_create.php',
-				async: true,
-				dataType: 'json',
-				data:  {
-					'mb_id' : mb_id,
-					'mb_email' : mb_email
-				},
-				success: function(data) {
-
-					$('.dim').css("display", "none");
-					$('.dim').empty();
-					$('body').css({
-						"overflow": "auto",
-						"height": "inherit"
-					});
-
-					commonModal('Congratulation! Create Wallet','<strong> Congratulation! Create Wallet BTC.</strong>',80);	
-					$('#closeModal').on('click', function(){
-						location.reload();
-					});
-				},
-				error:function(error){
-					console.log('error : ' + error);
-				}
-			});
-		}
-	});
-	*/
-</script>
 
 
 

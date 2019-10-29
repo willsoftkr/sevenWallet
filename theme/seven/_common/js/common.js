@@ -71,3 +71,23 @@ function purchaseModal(title, htmlBody, category){
 	
 }
 
+function dialogModal(title, htmlBody, category){
+	
+	$('#dialogModal').modal('show');
+	$('#dialogModal .modal-header .modal-title').html(title);
+
+	if(category == 'success'){
+		$('#dialogModal .modal-body').html("<div class=chkimg><img src='"+g5_url+"/img/comform_chk.gif'></div>" + htmlBody);
+		$('#dialogModal .modal-footer').html("<button type='button' class='btn btn-secondary' data-dismiss='modal' id='modal_return_url' onclick='dimHide();'>Close</button>");
+	}
+	else if(category == 'confirm'){
+		$('#dialogModal .modal-body').html("<div class=chkimg><img src='"+g5_url+"/img/notice.png'></div>" + htmlBody);
+		$('#dialogModal .modal-footer').html("<button type='button' class='btn btn-secondary' data-dismiss='modal' onclick='dimHide();'>Cancle</button> <button type='button' class='btn btn-secondary' id='modal_confirm' >OK</button>");
+	}
+	else if(category == 'failed'){
+		$('#dialogModal .modal-body').html("<div class=chkimg><img src='"+g5_url+"/img/notice_pop.gif'></div>" + htmlBody);
+		$('#dialogModal .modal-footer').html("<button type='button' class='btn btn-secondary' data-dismiss='modal' id='modal_return_back' onclick='dimHide();'>Close</button>");
+	}
+	$('#dialogModal').focus();
+	
+}

@@ -101,9 +101,6 @@ curl_close($ch);
 			$temp.remove();
 		}
 
- 
-
-
 		$(window).load(function(){
 			var url = "<?=$short_URL_p?>";
 
