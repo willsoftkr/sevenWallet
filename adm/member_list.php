@@ -429,7 +429,7 @@ function out_check($val){
 			?>
 		-->
 			
-			<div><?php echo get_grade_select("grade[$i]", 0, $member['grade'], $row['grade']) ?></div>
+			<div ><?php echo get_grade_select("grade[$i]", 0, $member['grade'], $row['grade']) ?></div>
 			
 		</td>
 		<td headers="mb_list_member" class="td_mbgrade" rowspan="2">

@@ -3391,6 +3391,35 @@ function get_coin_cost($coin_category){
 			$coin_cost = $coin_result['v7_manual_cost'];
 		}
 		return  $coin_cost;
+	}else if($coin_category == 'eth'){
+		/*
+		if($coin_result['eth_manual_use'] != 'Y'){
+			$coin_cost = $coin_result['eth_cost'];
+		}else{
+			$coin_cost = $coin_result['eth_manual_cost'];
+		}
+		*/
+		$coin_cost = 1;
+		return  $coin_cost;
+	}else if($coin_category == 'rwd'){
+		/*
+		if($coin_result['rwd_manual_use'] != 'Y'){
+			$coin_cost = $coin_result['rwd_cost'];
+		}else{
+			$coin_cost = $coin_result['rwd_manual_cost'];
+		}
+		*/
+		$coin_cost = 1;
+		return  $coin_cost;
+	}else if($coin_category == 'rwd'){
+		/*
+		if($coin_result['rwd_manual_use'] != 'Y'){
+			$coin_cost = $coin_result['rwd_cost'];
+		}else{
+			$coin_cost = $coin_result['rwd_manual_cost'];
+		}
+		*/
+		return  $coin_cost;
 	}
 	
 }

@@ -331,6 +331,7 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
 	.btc_color{background:#ff9b22 url(../../_images/bit_w.png) !important; opacity:0.9}
 	.eth_color{background:#3edc89 url(../../_images/ether_w.png) !important; opacity:0.9}
 	.rwd_color{background:#a172c8 url(../../_images/rock_w.png) !important; opacity:0.9}
+	.lok_color{background:#fd8def url(../../_images/rock_w.png) !important; opacity:0.9}
 	.v7_color{background:#07b5e5 url(../../_images/v7_w.png) !important; opacity:0.9}
 	
 	.hidden{display:none;}
@@ -380,15 +381,15 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
   </tr>
 
 	<tr>
-		<th scope="row"><label for="grade">회원명 (First Name) </label></th>
+		<th scope="row"><label for="first_name">회원명 (First Name) </label></th>
 		<td><input type="text" name="first_name" value="<?php echo $mb['first_name'] ?>" id="first_name" maxlength="100" required class="required frm_input wide" size="30"></td>
-		<th scope="row"><label for="grade">회원명 (Last Name)</label></th>
+		<th scope="row"><label for="last_name">회원명 (Last Name)</label></th>
 		<td><input type="text" name="last_name" value="<?php echo $mb['last_name'] ?>" id="last_name" maxlength="100" required class="required frm_input wide" size="30"></td>
 	</tr>
 
   	<tr>
 		<th scope="row"><label for="grade">회원 등급</label></th>
-		<td><?php echo get_grade_select('grade', 0, $member['grade'], $mb['grade']) ?></td>
+		<td ><?php echo get_grade_select('grade', 0, $member['grade'], $mb['grade']) ?></td>
 		
 		
 		<th scope="row"><label for="mb_level">회원 직급</label></th>
@@ -467,9 +468,13 @@ add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
 				<th scope="row" class="rwd_color"><label for="mb_rwd_account"> rwd 잔고</label></th>
 				<td colspan="1" class="rwd_color"><input type="text" name="mb_rwd_account" value="<?php echo $mb['mb_rwd_account'] ?>" id="field_savepoint" class="required frm_input" size="15" minlength="1" maxlength="10"></td>
 
+				<th scope="row" class="lok_color"><label for="mb_rwd_account"> Lukiu 잔고</label></th>
+				<td colspan="1" class="lok_color"><input type="text" name="mb_lok_account" value="<?php echo $mb['mb_lok_account'] ?>" id="field_savepoint" class="required frm_input" size="15" minlength="1" maxlength="10"></td>
+
+
 				<tr>
 					<th scope="row" class="ups"><label for="mb_deposit_point"> 예치금</label></th>
-					<td colspan="7" class="ups"><input type="text" name="mb_deposit_point" value="<?php echo $mb['mb_deposit_point'] ?>" id="field_upstair" class="required frm_input wide" size="15" >
+					<td colspan="9" class="ups"><input type="text" name="mb_deposit_point" value="<?php echo $mb['mb_deposit_point'] ?>" id="field_upstair" class="required frm_input wide" size="15" >
 					<input type="text" class="be_to" name="be_to"  style="font-size:15px;margin-left:10px;border:0;box-shadow:none;background:transparent" value="0" readonly> 
 					
 				</tr>

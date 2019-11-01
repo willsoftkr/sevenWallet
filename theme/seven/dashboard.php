@@ -72,10 +72,10 @@
 						<li class="look">
 							<!--<a href="<?=G5_THEME_URL?>/transaction_look.php">-->
 							<a href="javascript:serviceModal();">
-								<strong>Lookei</strong>
+								<strong>Lukiu</strong>
 								<!--<p>&#36;<?=$lok_rate?></p>-->
 								<p>&nbsp</p>
-								<div class="Balance"><?=$rwd_account?> <span class="currency">LEKI</span></div>
+								<div class="Balance"><?=$rwd_account?> <span class="currency">LKU</span></div>
 							</a>
 						</li>
 						
@@ -132,7 +132,7 @@
 				<div class="mystatus">
 					<p><?=$member['mb_id']?></p>
 					<div class='gradelevel'>
-						<li><span><img src="/img/package-<?=$member['grade']?>.png"></span> <span class="right"> <?=$member['grade']?> grade </span></li>
+						<!--<li><span><img src="/img/package-<?=$member['grade']?>.png"></span> <span class="right"> <?=$member['grade']?> grade </span></li>-->
 						<li><span><img src="/img/<?=$member['mb_level']?>star.png"></span> <span class="right"> V<?=$member['mb_level']?> level</span></li>
 					</div>
 					<hr>
@@ -179,7 +179,7 @@
 
 				<div>
 					<img src="<?=G5_THEME_URL?>/_images/busi4.gif" alt="아이콘">
-					<p><?=$v7_account?> V7 / $ <?=$v7_rate?></p>
+					<p><?=$v7_account?> V7 / <br> $ <?=$v7_rate?></p>
 					<span data-i18n="dashboard.나의 소득">My Earnings</span>
 				</div>
 
@@ -234,22 +234,24 @@
 
 	<!-- 차트	-->
 	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-	<script>
-	
 
+	<script>
 		var btc_total = "<?=$btc_rate_num?>";
 		var v7_total = "<?=$v7_rate_num?>";
+		var eth_total = "<?=$eth_rate_num?>";
+		var rwd_total = "<?=$rwd_rate_num?>";
+		var lok_total = "<?=$lok_rate_num?>";
 
 		window.onload = function() {
 			var ctx = document.getElementById("myChart");
 			var doughnutChart = new Chart(ctx, {
 				type: 'doughnut',
 				data: {
-					labels: ["Bitcoin", "V7"],
+					labels: ["Bitcoin", "V7", "Ethereum", "Rockwood","Lukiu"],
 					//labels: ["Bitcoin", "Ethereum", "Rockwood", "Lookie","V7"],
 					datasets: [{
-						backgroundColor: ["#ff9b22","#07b5e5"],
-						data: [btc_total, v7_total]
+						backgroundColor: ["#ff9b22","#07b5e5","#473bcb","#3edc89","#fd8def"],
+						data: [btc_total, v7_total, eth_total, rwd_total, lok_total]
 						//backgroundColor: ["#ff9b22", "#473bcb", "#3edc89", "#fd8def", "#07b5e5"],
 						//data: [95, 2, 5, 1, 3]
 					}]

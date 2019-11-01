@@ -185,7 +185,7 @@ $pack_result = sql_query($pack_sql); // 팩구매내역
 						<li>
 							<div>
 								<span><?=timeshift($row['od_time'])?></span>
-								<span class="f_right font_orange">- <?=Number_format($row['od_cart_price'],8)?> BTC &#47;- $<?=Number_format($row['upstair'],2)?></span>
+								<span class="f_right font_orange">- <?=Number_format($row['od_cart_price'],8)?> BTC</span>
 							</div>
 							<div>
 								<span class="font_orange" data-i18n='wallet.Deposited'>입금</span>

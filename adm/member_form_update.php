@@ -56,6 +56,7 @@ $sql_common = "  mb_name = '{$_POST['mb_name']}',
 				 mb_sms = '{$_POST['mb_sms']}',
 				 mb_open = '{$_POST['mb_open']}',
 				 mb_profile = '{$_POST['mb_profile']}',
+				 grade = '{$_POST['grade']}',
 				 mb_level = '{$_POST['mb_level']}',
 				 mb_recommend = '{$_POST['mb_recommend']}',
 			  	 first_name = '{$_POST['first_name']}',
@@ -73,7 +74,8 @@ $sql_common = "  mb_name = '{$_POST['mb_name']}',
 				 mb_v7_account = '{$_POST['mb_v7_account']}',
 				  mb_btc_account = '{$_POST['mb_btc_account']}',
 				   mb_eth_account = '{$_POST['mb_eth_account']}',
-				    mb_rwd_account = '{$_POST['mb_rwd_account']}',
+					mb_rwd_account = '{$_POST['mb_rwd_account']}',
+					 mb_lok_account = '{$_POST['mb_lok_account']}',
 				 mb_block = '{$_POST['mb_block']}' ";
 
 if ($w == '')

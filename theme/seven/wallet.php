@@ -61,7 +61,7 @@ include_once(G5_THEME_PATH.'/_include/wallet.php');
 							</div>
 							<div class="clear_fix">
 								<!--<span class="f_left">=<?=$rwd_cost?> USD</span>-->
-								<p class="f_right"><?=$rwd_rate?> BTC</p>
+								<p class="f_right"><?=$rwd_rate?> USD</p>
 							</div>
 						</a>
 					</div>
@@ -69,12 +69,12 @@ include_once(G5_THEME_PATH.'/_include/wallet.php');
 						<!--<a href="transaction_look.php">-->
 						<a href="javascript:serviceModal();">
 							<div class="clear_fix">
-								<strong class="f_left">Lookei</strong>
-								<b class="f_right"><?=$lok_account?> LEKI</b>
+								<strong class="f_left">Lukiu</strong>
+								<b class="f_right"><?=$lok_account?> LKU</b>
 							</div>
 							<div class="clear_fix">
 								<!--<span class="f_left">=<?=$lok_cost?> USD</span>-->
-								<p class="f_right"><?=$lok_rate?> BTC</p>
+								<p class="f_right"><?=$lok_rate?> USD</p>
 							</div>
 						</a>
 					</div>
