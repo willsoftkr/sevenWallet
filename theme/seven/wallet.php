@@ -47,7 +47,7 @@ include_once(G5_THEME_PATH.'/_include/wallet.php');
 								<b class="f_right"><?=$eth_account?> ETH</b>
 							</div>
 							<div class="clear_fix">
-								<span class="f_left">=<?=$eth_cost?> USD</span>
+								<!--<span class="f_left">=<?=$eth_cost?> USD</span>-->
 								<p class="f_right"><?=$eth_rate?> USD</p>
 							</div>
 						</a>
@@ -60,7 +60,7 @@ include_once(G5_THEME_PATH.'/_include/wallet.php');
 								<b class="f_right"><?=$rwd_account?> RWD</b>
 							</div>
 							<div class="clear_fix">
-								<span class="f_left">=<?=$rwd_cost?> USD</span>
+								<!--<span class="f_left">=<?=$rwd_cost?> USD</span>-->
 								<p class="f_right"><?=$rwd_rate?> BTC</p>
 							</div>
 						</a>
@@ -73,7 +73,7 @@ include_once(G5_THEME_PATH.'/_include/wallet.php');
 								<b class="f_right"><?=$lok_account?> LEKI</b>
 							</div>
 							<div class="clear_fix">
-								<span class="f_left">=<?=$lok_cost?> USD</span>
+								<!--<span class="f_left">=<?=$lok_cost?> USD</span>-->
 								<p class="f_right"><?=$lok_rate?> BTC</p>
 							</div>
 						</a>

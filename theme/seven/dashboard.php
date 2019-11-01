@@ -55,7 +55,8 @@
 							<!--<a href="<?=G5_THEME_URL?>/transaction_eth.php">-->
 							<a href="javascript:serviceModal();">
 								<strong>Ether</strong>
-								<p>&#36;<?=$eth_rate?></p>
+								<!--<p>&nbsp&#36;<?=$eth_rate?></p>-->
+								<p>&nbsp</p>
 								<div class="Balance"><?=$eth_account?> <span class="currency">ETH</span></div>
 							</a>
 						</li>
@@ -63,7 +64,8 @@
 							<!--<a href="<?=G5_THEME_URL?>/transaction_rock.php">-->
 							<a href="javascript:serviceModal();">
 								<strong>Rockwood</strong>
-								<p>&#36;<?=$rwd_rate?></p>
+								<!--<p>&#36;<?=$rwd_rate?></p>-->
+								<p>&nbsp</p>
 								<div class="Balance"><?=$rwd_account?> <span class="currency">RWD</span></div>
 							</a>
 						</li>
@@ -71,7 +73,8 @@
 							<!--<a href="<?=G5_THEME_URL?>/transaction_look.php">-->
 							<a href="javascript:serviceModal();">
 								<strong>Lookei</strong>
-								<p>&#36;<?=$lok_rate?></p>
+								<!--<p>&#36;<?=$lok_rate?></p>-->
+								<p>&nbsp</p>
 								<div class="Balance"><?=$rwd_account?> <span class="currency">LEKI</span></div>
 							</a>
 						</li>
