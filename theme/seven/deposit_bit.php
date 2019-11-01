@@ -42,7 +42,7 @@ function deposit_result($val){
 				<div class="color_block bit_block">
 					<div class="clear_fix">
 						<strong class="f_left">Bitcoin Account</strong>
-						<b class="f_right">1 btc per <?=$btc_cost?> USD</b>
+						<b class="f_right">$<?=$btc_cost?> / BTC</b>
 					</div>
 
 					<div class="clear_fix">
@@ -60,18 +60,19 @@ function deposit_result($val){
 								</li>
 								<li>=</li>
 								<li>
-									<p class="font_red" data-i18n="wallet.All deposit">모두 입금하기</p>
-									<input type="number" id="upstair" placeholder="<?=deposit_result($btc_account_num);?>" disabled >
+									<a  id ="all_account_deposit"><p class="font_red"  data-i18n="wallet.All deposit">모두 입금하기</p></a>
+									<input type="number" id="upstair" placeholder="0" disabled >
 									<span>USD</span>
 								</li>
 							</ul>
 						</div>
 
-						
+						<!--
 						<div class="total">
 							<span class="send_title" data-i18n="wallet.인출합계">Total Deposit</span>
 							<p class="f_right"><span class="font_gray" id="amount_total">0</span> Sales/Point</p>
 						</div>
+						-->
 						
 	
 </div>
@@ -93,14 +94,22 @@ function deposit_result($val){
 			var btc_account = "<?=$btc_account_num?>";
 			var btc_cost = "<?=$btc_cost_num?>";
 			var deposit_cost = "<?=$deposit_cost?>";
-
+			console.log(deposit_cost);
+			
 			function deposit_result(val){
+				
 				return Number(deposit_cost*val).toFixed(2);
 			}
 			
 			function btc_result(val){
 				return Number(btc_cost*val).toFixed(2);
 			}
+
+			$('#all_account_deposit').on('click', function(){
+				console.log("max ::"+btc_account);
+				$('#amount').val(btc_account);
+				$('#upstair').val(deposit_result(btc_account));
+			});
 
 			$('#amount').on('change',function(){
 				//console.log(this.value +" / "+ btc_account);
@@ -110,14 +119,17 @@ function deposit_result($val){
 					return false;
 				}
 				var rate = this.value;
-				$('#upstair').val(btc_result(rate));
-				$('#amount_total').text(deposit_result(rate));
+				//$('#upstair').val(btc_result(rate));
+				$('#upstair').val(deposit_result(rate));
+				//$('#amount_total').text(deposit_result(rate));
 			});
 
 			
 			$('#exchange').on('click', function(){
 				var amount = $('#amount').val();
-				var upstair = $('#amount_total').text();
+				//var upstair = $('#amount_total').text();
+
+				var upstair = $('#upstair').val();
 				var mb_id = "<?=$member['mb_id']?>";
 
 				console.log(amount +" / "+ btc_account);
@@ -162,7 +174,7 @@ function deposit_result($val){
 
 
 		$(function() {
-			$(".top_title h3").html("<img src='<?=G5_THEME_URL?>/_images/top_deposit.png' alt='아이콘'><span data-i18n='title.Deposit with Bitcoin'> 비트코인 입금</span>");
+			$(".top_title h3").html("<img src='<?=G5_THEME_URL?>/_images/top_deposit.png' alt='아이콘'><span data-i18n='title.Deposit with Bitcoin' style='margin-left:5px;'> 비트코인 입금</span>");
 			$('#wrapper').css("background","#fff");
 		});
 	</script>

@@ -141,8 +141,6 @@ if($nw_with == 'Y'){
 
 
 			$('#all_account_send').on('click', function(){
-				
-				
 				var maxbtc = btc_account*0.99;
 				var btcusd = (maxbtc*0.99) * btc_cost; //달러 환산
 
@@ -170,12 +168,13 @@ if($nw_with == 'Y'){
 				var address = $('#wallet_address').val();;
 
 				console.log( address + " / "+ amount+ " / "+ btc_account*1.01 + " / "+ btc_cost);
-
+				
+				/* 시세미달로 제한
 				if(btc_cost < 11000){
 					commonModal('Service not able','<strong> The exchange is not possible when the BTC price is below $11,000. </strong>',80);
 					return false;
 				}
-
+				*/
 
 				if(address=='' || address == null ){
 					commonModal('check input address','<strong> Please check retry. </strong>',80);
@@ -186,10 +185,14 @@ if($nw_with == 'Y'){
 					commonModal('check input amount','<strong> out of the maximum amount. </strong>',80);
 					return false;
 					
-				}else if(amount < 0.05){
-					commonModal('check input amount','<strong> Require minimum amount 0.05 btc. </strong>',80);
+				}else if(amount < 0.04){
+					commonModal('check input amount','<strong> The minimum possible quantity is 0.04 btc or more. </strong>',80);
+					return false;
+				}else if(amount > 0.5){
+					commonModal('check input amount','<strong> The maximum possible quantity is 0.5 btc. </strong>',80);
 					return false;
 				}
+
 
 				if(!valid){
 					commonModal('check input amount','<strong> input amount. </strong>',80);
@@ -231,6 +234,7 @@ if($nw_with == 'Y'){
 						error:function(e){
 							commonModal('Error!','<strong> Please check retry.</strong>',80);	
 						}
+						
 					});
 					
 				}

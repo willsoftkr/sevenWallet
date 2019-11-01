@@ -14,7 +14,7 @@ var stx = "<?=$stx?>";
 document.write(today + " 날짜 수당지급 실행 중<br>");
 
 var it = setInterval(function(){
-if(i < 7){
+if(i < 6){
     if(i == 0){
         $.ajax({ 
             type: 'GET',
@@ -60,6 +60,7 @@ if(i < 7){
                  document.body.append("Q팩지급완료");
              }
           })
+          /*
     }else if(i == 5){
         $.ajax({ 
             type: 'GET',
@@ -69,7 +70,8 @@ if(i < 7){
                 document.body.append("B팩지급완료");
              }
           })
-    }else if(i == 6){
+          */
+    }else if(i == 5){
         $.ajax({ 
             type: 'GET',
             data: { },

@@ -50,29 +50,32 @@
 								<div class="Balance"><?=$btc_account?> <span class="currency">BTC</span></div>
 							</a>
 						</li>
-						<!--
+						
 						<li class="eth">
-							<a href="<?=G5_THEME_URL?>/transaction_eth.php">
+							<!--<a href="<?=G5_THEME_URL?>/transaction_eth.php">-->
+							<a href="javascript:serviceModal();">
 								<strong>Ether</strong>
-								<p>&#36;0.00</p>
-								<span>0 ETH</span>
+								<p>&#36;<?=$eth_rate?></p>
+								<div class="Balance"><?=$eth_account?> <span class="currency">ETH</span></div>
 							</a>
 						</li>
 						<li class="roc">
-							<a href="<?=G5_THEME_URL?>/transaction_rock.php">
+							<!--<a href="<?=G5_THEME_URL?>/transaction_rock.php">-->
+							<a href="javascript:serviceModal();">
 								<strong>Rockwood</strong>
-								<p>&#36;0.00</p>
-								<span>0 RWD</span>
+								<p>&#36;<?=$rwd_rate?></p>
+								<div class="Balance"><?=$rwd_account?> <span class="currency">RWD</span></div>
 							</a>
 						</li>
 						<li class="look">
-							<a href="<?=G5_THEME_URL?>/transaction_look.php">
+							<!--<a href="<?=G5_THEME_URL?>/transaction_look.php">-->
+							<a href="javascript:serviceModal();">
 								<strong>Lookei</strong>
-								<p>&#36;0.00</p>
-								<span>0 LEKI</span>
+								<p>&#36;<?=$lok_rate?></p>
+								<div class="Balance"><?=$rwd_account?> <span class="currency">LEKI</span></div>
 							</a>
 						</li>
-						-->
+						
 						<li class="v7">
 							<a href="<?=G5_WALLET_PATH?>/transaction_v7.php">
 								<strong>V7</strong>
@@ -152,13 +155,13 @@
 					<p><?=$member['mb_recommend']?></p>
 					<span data-i18n="dashboard.나의 추천인">My Sponsor</span>
 				</div>
-				
+				<!--
 				<div>
 					<img src="<?=G5_THEME_URL?>/_images/busi2.gif" alt="아이콘">
 					<p><?=$member['mb_brecommend']?></p>
 					<span data-i18n="dashboard.후원인">Binary Placement</span>
 				</div>
-				<!--
+				
 				<div>
 					<img src="<?=G5_THEME_URL?>/_images/busi3.gif" alt="아이콘">
 					<p>100BTC / 100ETH</p>

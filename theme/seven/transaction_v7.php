@@ -294,7 +294,7 @@ $order_result = sql_query($order_sql);
 
 	<script>
 		$(function() {
-			$(".top_title h3").html("<img src='<?=G5_THEME_URL?>/_images/top_transaction.png' alt='아이콘'> <span data-i18n='title.Transaction History'>코인 거래 내역</span>");
+			$(".top_title h3").html("<img src='<?=G5_THEME_URL?>/_images/top_transaction.png' alt='아이콘'> <span data-i18n='title.코인 거래 내역'>Transaction History</span>");
 
 			$(".pop_open").click(function(){
 				$(".exc_pop_wrap").css("display","block");

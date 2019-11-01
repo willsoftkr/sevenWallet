@@ -74,6 +74,7 @@
 			<input type="hidden" name="cnt" value="<?=$cnt?>">
 
 			<h5 data-i18n="purchase.구매하는 팩 상품">Packs to purchase</h5>
+			
 			<table>
 				<tbody>
 				  <colgroup>
@@ -82,18 +83,19 @@
 					<col style="width: 30%;">
 					<col style="width: 10%;">
 				  </colgroup>
+				  <!--
 					<tr>
 						<td data-i18n="binary.바이너리 팩">B Pack</td>
 						<td><?=$b_it_name?><?if($b_it_auto) echo " (Auto)";?></td>
 						<td>&#36;<?=shift_doller($b_it_price)?></td>
-						<!--<td>X</td>-->
+						
 					</tr>
-					
+				  -->
 					<tr>
 						<td data-i18n="binary.큐팩">Q Pack</td>
 						<td><?=$q_it_name?> <?if($q_it_auto) echo " (Auto)";?></td>
 						<td>&#36;<?=shift_doller($q_it_price)?></td>
-						<!--<td>X</td>-->
+						
 					</tr>
 					
 				</tbody>

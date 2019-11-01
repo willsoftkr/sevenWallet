@@ -19,6 +19,9 @@ if($nw_change == 'Y'){
 }
 $btc_cost_num = get_coin_cost('btc');
 
+$mb_rate = $member['mb_rate'];
+//echo "회원 시세 : ".$mb_rate." || btc_시세 : ". $btc_cost;
+
 /*
 $order_sql = "select * from g5_shop_order where mb_id = '".$member['mb_id']."'";
 $order_result = sql_query($order_sql);
@@ -109,10 +112,18 @@ $order_result = sql_query($order_sql);
 	
 <script>
 			
+			
+			
 			var v7_account = Number("<?=$v7_account_num?>");
 			var v7_cost = "<?=$v7_cost_num?>";
 
 			var btc_cost = Number("<?=$btc_cost_num?>");
+			var mb_rate = "<?=$mb_rate?>";
+
+			if(btc_cost < mb_rate){
+					var btc_cost = mb_rate;
+			}
+
 			var btc_cost_plus = Number(btc_cost) + Number(btc_cost * 0.03) ;
 			var valid = false;
 			
@@ -130,11 +141,12 @@ $order_result = sql_query($order_sql);
 				
 				console.log(this.value + " / " + btc_cost + "/" + btc_cost_plus);
 				
-
+				/*
 				if(btc_cost < 11000){
 					commonModal('service not able','<strong> The exchange is not possible when the BTC price is below $11,000. </strong>',80);
 					return false;
 				}
+				*/
 
 				if(this.value > v7_account){
 					commonModal('check input amount','<strong> out of the maximum amount. </strong>',80);
@@ -149,7 +161,7 @@ $order_result = sql_query($order_sql);
 				var shift_fee = Number( (v7usd / btc_cost_plus)*0.01).toFixed(8); // fee
 				
 				
-				console.log( "<br>" + v7usd+ " | "+ btc_cost + " | "  + btc_cost_plus + "::  "+ shifted + " | "+ shift_left + " | " + shift_fee);
+				console.log( "\n" + v7usd+ " | "+ btc_cost + " | "  + btc_cost_plus + "::  "+ shifted + " | "+ shift_left + " | " + shift_fee);
 
 				//$('#exchange_amount').val(shift_left );
 				$('#exchange_amount').html(shifted);

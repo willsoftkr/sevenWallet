@@ -25,9 +25,9 @@ $pack_result = sql_query($pack_sql); // 팩구매내역
 	$qstr = "stx=".$stx."&fr_date=".$fr_date."&amp;to_date=".$to_date;
 	$query_string = $qstr ? '?'.$qstr : '';
 	
-	if (empty($stx)) $stx = 'sales';  // 수당로그 기본값 
+	if (empty($stx)) $stx = 'Deposited';  // 수당로그 기본값 
 
-	if($stx == "Deposit" ){ 
+	if($stx == "Received" ){ 
 		$sql_common ="FROM wallet_income_transfer WHERE date(createdAt)";
 		$sql_order_type = "createdAt";
 	}
@@ -35,11 +35,11 @@ $pack_result = sql_query($pack_sql); // 팩구매내역
 		$sql_common ="FROM g5_shop_cart WHERE it_sc_type = '10' AND date(ct_time)";
 		$sql_order_type = "ct_time";
 
-	}else if ($stx == "Q Pack"){
-		$sql_common ="FROM g5_shop_cart WHERE it_sc_type = '20' AND date(ct_time)";
+	}else if ($stx == "Purchase"){
+		$sql_common ="FROM g5_shop_cart WHERE date(ct_time)";
 		$sql_order_type = "ct_time";
 
-	}else if($stx == "sales"){
+	}else if($stx == "Deposited"){
 		$sql_common ="FROM g5_shop_order WHERE date(od_time)";
 		$sql_order_type = "od_time";
 		
@@ -47,8 +47,8 @@ $pack_result = sql_query($pack_sql); // 팩구매내역
 		$sql_common ="FROM withdrawal_request WHERE date(create_dt)";
 		$sql_order_type = "create_dt";
 
-	}else if ($stx == "earnings"){
-		$sql_common ="FROM g5_shop_cart WHERE it_sc_type = '20' AND date(ct_time)";
+	}else if ($stx == "Bonus"){
+		$sql_common ="FROM soodang_pay WHERE date(day)";
 		$sql_order_type = "ct_time";
 
 	}else{
@@ -82,7 +82,21 @@ $pack_result = sql_query($pack_sql); // 팩구매내역
 	$result = sql_query($sql);
 	//print_R($sql );
 
-	//
+	
+	function shift_txt($st){
+		switch($st){
+			case "N" :
+				return '불가/거부';
+			case "S" :
+				return '불가/거부';
+			case "Y" :
+				return '출금완료';
+			case "R" :
+				return '보류(대기)';
+			default	:
+				return '보류(대기)';
+		}
+	}
 ?>
 
 	
@@ -142,53 +156,19 @@ $pack_result = sql_query($pack_sql); // 팩구매내역
 
 				<!-- 탭 -->
 				<ul class="tabs four">
-					<li class="bonus_tab <?nav_active('Deposit')?>" data-tab="tab_2" data-category="Deposit"><p data-i18n="wallet.입금">Deposit</p></li>
+					<li class="bonus_tab <?nav_active('Received')?>" data-tab="tab_1" data-category="Received"><p data-i18n="wallet.입금">Received</p></li>
+					<li class="bonus_tab <?nav_active('Deposited')?>" data-tab="tab_2" data-category="Deposited"><p data-i18n="wallet.매출">Deposited</p></li>
 					<li class="bonus_tab <?nav_active('Withdrawal')?>" data-tab="tab_3" data-category="Withdrawal"><p data-i18n="wallet.출금">Withdrawal</p></li>
-					<li class="bonus_tab <?nav_active('sales')?>" data-tab="tab_3" data-category="sales"><p data-i18n="wallet.매출">Sales</p></li>
-					<li class="bonus_tab <?nav_active('earnings')?>" data-tab="tab_4" data-category="earnings"><p data-i18n="wallet.earnings">earnings</p></li>
+					<li class="bonus_tab <?nav_active('Purchase')?>" data-tab="tab_4" data-category="Purchase"><p data-i18n="wallet.구매">Purchase</p></li>
 					
 				</ul>
 				<!-- //탭 -->
 				
 				<ul class="trans_history">
-
-					<!--
-					<li>
-						<div>
-							<span>5/30/2019 &#64; 24:15</span>
-							<span class="f_right">01.23456789 BTC &#47; $29.950.00</span>
-						</div>
-						<div class="font_red">
-							<span>전송:</span>
-							<span class="f_right">3Pitg1drUTj6DQTqdQXCz9H2bevXh7tiMi</span>
-						</div>
-					</li>
-					<li>
-						<div>
-							<span>5/30/2019 &#64; 24:15</span>
-							<span class="f_right">01.23456789 BTC &#47; $29.950.00</span>
-						</div>
-						<div class="font_red">
-							<span>전송:</span>
-							<span class="f_right">3Pitg1drUTj6DQTqdQXCz9H2bevXh7tiMi</span>
-						</div>
-					</li>
-					<li>
-						<div>
-							<span>5/30/2019 &#64; 24:15</span>
-							<span class="f_right">01.23456789 BTC &#47; $29.950.00</span>
-						</div>
-						<div class="font_blue">
-							<span>수신:</span>
-							<span class="f_right">3Pitg1drUTj6DQTqdQXCz9H2bevXh7tiMi</span>
-						</div>
-					</li>
-					-->
-
 					<?while( $row = sql_fetch_array($result)){?>
 
 						<!-- 입금 -->
-						<?if($stx == 'Deposit'){?>	
+						<?if($stx == 'Received'){?>	
 						<li>
 							<div>
 								<span><?=timeshift($row['createdAt'])?></span>
@@ -199,21 +179,9 @@ $pack_result = sql_query($pack_sql); // 팩구매내역
 								<span class="f_right" >$ <?= shift_doller($row['token']/100000000 * $btc_cost_num)?></span>
 							</div>
 						</li>
-						<?}?>
-						<?if($stx == 'Q Pack' || $stx == 'B Pack'){?>	
-						<li>
-							<div>
-								<span><?=timeshift($row['ct_time'])?></span>
-								<span class="f_right font_orange">- <?=Number_format($row['cp_price'],8)?> BTC &#47; -  $<?=Number_format($row['io_price'],2)?></span>
-							</div>
-							<div>
-								<span class="font_orange" data-i18n='purchase.Q 팩'>Q Pack</span>  <span> [ <?=$row['it_name']?> ]</span>
-								<span class="f_right" data-i18n='purchase.구매'>Purchase</span>
-							</div>
-						</li>
-
+						
 						<!-- 매출 -->
-						<?}else if($stx == 'sales'){?>
+						<?}else if($stx == 'Deposited'){?>
 						<li>
 							<div>
 								<span><?=timeshift($row['od_time'])?></span>
@@ -225,44 +193,30 @@ $pack_result = sql_query($pack_sql); // 팩구매내역
 						</li>
 
 						<!-- 출금 -->
-						<?}else if($stx == 'Withdrawal'){
-						
-								switch($row['status']){
-									case "N" :
-										$status_txt = '불가/거부';
-									case "S" :
-										$status_txt = '불가/거부';
-									case "Y" :
-										$status_txt = '출금완료';
-									case "R" :
-										$status_txt = '보류(대기)';
-									default	:
-										$status_txt = '보류(대기)';
-								}
-						
-							?>
+						<?}else if($stx == 'Withdrawal'){?>
 							
 							<li>
 							<div>
 								<span><?=timeshift($row['update_dt'])?></span>
 								<span class="f_right font_orange">- <?=Number_format($row['amt'],8)?> BTC &#47;- $<?=Number_format($row['amt_usd'],2)?></span>
+								
 							</div>
 							
 							<div>
-								<span class="font_orange" data-i18n='wallet.출금'>processed</span>
+								<span class="font_orange" data-i18n='wallet.<?=shift_txt($row['status'])?>'> / processed</span>
 							</div>
 						</li>
 
 						<!-- 수당 -->
-						<?}else if($stx == 'earnings'){?>
+						<?}else if($stx == 'Purchase'){?>
 							<li>
 							<div>
-								<span><?=timeshift($row['create_dt'])?></span>
-								<span class="f_right font_orange">- <?=Number_format($row['amt'],8)?> BTC &#47;- $<?=Number_format($row['amt_usd'],2)?></span>
+								<span><?=timeshift($row['ct_time'])?></span>
+								<span class="f_right font_orange">- <?=Number_format($row['cp_price'],8)?> BTC </span>
 							</div>
 							
 							<div>
-								<span class="font_orange" data-i18n='wallet.<?=$status_txt?>'>processed</span>
+								<span class="font_orange"><?=$row['it_name']?> Purchase</span>
 							</div>
 						</li>
 
@@ -286,14 +240,14 @@ $pack_result = sql_query($pack_sql); // 팩구매내역
 					<li style="width:33%;">
 						<a href="income_bit.php">
 							<img src="<?=G5_THEME_URL?>/_images/btm_menu_receive.png" alt="아이콘">
-							<p data-i18n='wallet.받기'>income</p>
+							<p data-i18n='wallet.입금'>Received</p>
 						</a>
 					</li>
 				
 					<li style="width:33%;">
 						<a href="deposit_bit.php">
 							<img src="<?=G5_THEME_URL?>/_images/btm_menu_deposit.gif" alt="아이콘">
-							<p data-i18n='wallet.입금'>deposit</p>
+							<p data-i18n='wallet.매출'>Deposited</p>
 						</a>
 					</li>
 				
@@ -315,7 +269,7 @@ $pack_result = sql_query($pack_sql); // 팩구매내역
 
 	<script>
 		$(function() {
-			$(".top_title h3").html("<img src='<?=G5_THEME_URL?>/_images/top_transaction.png' alt='아이콘'> <span data-i18n='title.Transaction History'>코인 거래 내역</span>");
+			$(".top_title h3").html("<img src='<?=G5_THEME_URL?>/_images/top_transaction.png' alt='아이콘'> <span data-i18n='title.코인 거래 내역'>Transaction History</span>");
 		});
 	</script>
 

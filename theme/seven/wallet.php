@@ -25,44 +25,6 @@ include_once(G5_THEME_PATH.'/_include/wallet.php');
 						</a>
 					</div>
 
-					<!--
-					<div class="color_block eth_block">
-						<a href="transaction_eth.php">
-							<div class="clear_fix">
-								<strong class="f_left">Ethereum</strong>
-								<b class="f_right">12,234.52 USD</b>
-							</div>
-							<div class="clear_fix">
-								<span class="f_left">=7885.52 USD</span>
-								<p class="f_right">1.85521485 BTC</p>
-							</div>
-						</a>
-					</div>
-					<div class="color_block rock_block">
-						<a href="transaction_rock.php">
-							<div class="clear_fix">
-								<strong class="f_left">Rockwood</strong>
-								<b class="f_right">12,234.52 USD</b>
-							</div>
-							<div class="clear_fix">
-								<span class="f_left">=7885.52 USD</span>
-								<p class="f_right">1.85521485 BTC</p>
-							</div>
-						</a>
-					</div>
-					<div class="color_block look_block">
-						<a href="transaction_look.php">
-							<div class="clear_fix">
-								<strong class="f_left">Lookei</strong>
-								<b class="f_right">12,234.52 USD</b>
-							</div>
-							<div class="clear_fix">
-								<span class="f_left">=7885.52 USD</span>
-								<p class="f_right">1.85521485 BTC</p>
-							</div>
-						</a>
-					</div>
-					-->
 					<div class="color_block v7_block">
 						<a href="transaction_v7.php">
 							<div class="clear_fix">
@@ -75,6 +37,48 @@ include_once(G5_THEME_PATH.'/_include/wallet.php');
 							</div>
 						</a>
 					</div>
+
+					
+					<div class="color_block eth_block">
+						<!--<a href="transaction_eth.php">-->
+						<a href="javascript:serviceModal();">
+							<div class="clear_fix">
+								<strong class="f_left">Ethereum</strong>
+								<b class="f_right"><?=$eth_account?> ETH</b>
+							</div>
+							<div class="clear_fix">
+								<span class="f_left">=<?=$eth_cost?> USD</span>
+								<p class="f_right"><?=$eth_rate?> USD</p>
+							</div>
+						</a>
+					</div>
+					<div class="color_block rock_block">
+						<!--<a href="transaction_rock.php">-->
+						<a href="javascript:serviceModal();">
+							<div class="clear_fix">
+								<strong class="f_left">Rockwood</strong>
+								<b class="f_right"><?=$rwd_account?> RWD</b>
+							</div>
+							<div class="clear_fix">
+								<span class="f_left">=<?=$rwd_cost?> USD</span>
+								<p class="f_right"><?=$rwd_rate?> BTC</p>
+							</div>
+						</a>
+					</div>
+					<div class="color_block look_block">
+						<!--<a href="transaction_look.php">-->
+						<a href="javascript:serviceModal();">
+							<div class="clear_fix">
+								<strong class="f_left">Lookei</strong>
+								<b class="f_right"><?=$lok_account?> LEKI</b>
+							</div>
+							<div class="clear_fix">
+								<span class="f_left">=<?=$lok_cost?> USD</span>
+								<p class="f_right"><?=$lok_rate?> BTC</p>
+							</div>
+						</a>
+					</div>
+					
 							
 				</div>
 			</section>

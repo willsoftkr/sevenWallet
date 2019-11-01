@@ -11,7 +11,7 @@ $ref_url = G5_URL."/go/".$refferal_result['short_code'];
 //echo $ref_url;
 
 // 임의의수까지 숫자 랜덤
-/*
+
 function generate_code($length = 6) {   
 	$numbers  = "0123456789";   
 	//$svcTxSeqno = date("YmdHis");   
@@ -21,7 +21,7 @@ function generate_code($length = 6) {
 	}   
 	return $svcTxSeqno;   
 }
-*/
+
 
 //길이만큼 영문숫자 랜덤코드 /lib/common.php
 /*
@@ -37,13 +37,22 @@ function generateRandomString($length = 10) {
 }
 */
 $security_code= generateRandomString(6);
-echo $security_code;
+$security_code2= generateRandomString(6);
+//$security_code3= generateRandomString(6);
+//$security_code4= generateRandomString(6);
+//echo $security_code;
+
+$security_num_code = generate_code(8);
+//$security_num_code2 = generate_code(8);
+//echo "<br>";
+//echo $security_num_code
 ?>
 
 
 	<script src="<?=G5_THEME_URL?>/_common/js/qrcode.js"></script>
 	<script>
 		const email_sendcode = "<?=$security_code?>";
+		const phone_sendcode = "<?=$security_num_code?>";
 		/* 링크카피 */
 		
 		function copyToClipboard(element) {

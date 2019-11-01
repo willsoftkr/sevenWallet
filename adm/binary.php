@@ -145,7 +145,7 @@ $colspan = 16;
 	<input type="submit" name="act_button" value=" 1.B팩수당지급 되돌리기"  class="frm_input benefit red" onclick="go_calc(9);">
 	<input type="submit" name="act_button" value=" 2.B팩수당지급 내역삭제"  class="frm_input benefit black" onclick="clear_db('bpack');">
 	-->
-	<input type="submit" name="act_button" value=" 2.B팩 수당(일일) 지급"  class="frm_input benefit qpack" onclick="go_calc(4);">
+	<!--<input type="submit" name="act_button" value=" 2.B팩 수당(일일) 지급"  class="frm_input benefit qpack" onclick="go_calc(4);">-->
 
     <!--
 	<input type="submit" name="act_button" value=" 1.B팩수당지급 되돌리기"  class="frm_input benefit red" onclick="go_calc(9);">

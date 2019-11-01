@@ -65,6 +65,7 @@
 
 		<form id="puchaseBForm" name="puchaseBForm" action="<?=G5_URL?>/page.php?id=purchase_order" onsubmit="return fitemlist_submit(this);" method="post" >
 			<div >
+				<!--
 				<table class="bpack">
 					<tr>
 						<th> <span data-i18n="purchase.B 팩">B Packs</span></th>
@@ -106,6 +107,7 @@
 				<span data-i18n="purchase.B팩 설명3"> Only one pack is to select at a time. </span><br>
 				<span data-i18n="purchase.B팩 설명4"> Enable Auto Repurchase if you want to activate automatic recurring purchase</span>
 				</p>
+				-->
 
 				<table class="qpack">
 					<tr>

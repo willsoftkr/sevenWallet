@@ -27,7 +27,7 @@ document.write(yesterday + " 까지실행<br>");
 document.write("다음날짜 : "+ tomorow+"<br>");
 
 var it = setInterval(function(){
-if(i < 6){
+if(i < 5){
      if(i == 0){
         $.ajax({ 
             type: 'GET',
@@ -73,6 +73,7 @@ if(i < 6){
                  document.body.append("Q팩지급완료");
              }
           })
+          /*
     }else if(i == 5){
         $.ajax({ 
             type: 'GET',
@@ -82,6 +83,9 @@ if(i < 6){
                 document.body.append("B팩지급완료");
              }
           })
+          */
+        }
+          
     }
     ++i;
   }else{

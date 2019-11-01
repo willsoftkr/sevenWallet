@@ -613,7 +613,6 @@ $(function() {
 			
 			$('.chage_email_pop .save').click(function(){
 				//$('.chage_email_pop2').css("display","none");
-				// ;
 				//console.log( $('.chage_email_pop #current_email').val() );
 				var email2 = $('.chage_email_pop #email_new').val();
 				var email3 = $('.chage_email_pop #email_new_re').val();	
@@ -668,52 +667,26 @@ $(function() {
 	<div class="pop_wrap num_pop_wrap input_pop_css">
 			<form action="">
 				<label for="" data-i18n="popup.사용중인 전화번호">Current phone number</label>
-				<div class="num_pop_div clear_fix">
-					<input type="input">
-					<input type="input">
+				<div class="num_pop_div clear_fix" style="margin-bottom:20px;">
+					<input type="input" id="nation_num" value="" placeholder="Country" maxlength="3">
+					<input type="input" id="hp_num" value="" placeholder="Phone Number(Number only)" >
 				</div>
-				<div>
-					<label for="" data-i18n="popup.보안코드 입력">Enter the security code</label>
-					<p class="code_btn go_num1"><img src="<?=G5_THEME_URL?>/_images/email_send_icon.gif" alt="이미지" data-i18n="popup.코드요청">Request code</p>
-				</div>
-				<input type="text" style="margin-bottom:25px;">
-				<div class="btn2_btm_wrap">
-					<input type="button" value="Cancle" class="cancel pop_close" >
-					<input type="button" value="Proceed" class="save go_num3">
-				</div>
-			</form>
-		</div>
 
-		<div class="pop_wrap num1_pop_wrap notice_img_pop">
-			<p class="pop_title" data-i18n="popup.전화번호 인증">Phone number verification</p>	
-			<div>
-				<img src="<?=G5_THEME_URL?>/_images/comform_chk.gif" alt="이미지">
-			<p data-i18n="popup.인증번호가 전송되었습니다.">Security code sent to your phone</p>
-			</div>
-			<div class="pop_close_wrap">
-				<a href="javascript:void(0);" class="num1_pop_close" data-i18n="popup.창닫기">Close</a>
-			</div>
-		</div>
-
-		<div class="pop_wrap num3_pop_wrap input_pop_css">
-			<form action="">
 				<label for="" data-i18n="popup.새로운 전화번호">New phone number</label>
 				<div class="num_pop_div clear_fix">
-					<input type="input" placeholder="Country">
-					<input type="input" placeholder="Phone Number">
+					<input type="input" id="new_nation_num" value="" placeholder="Country" maxlength="3">
+					<input type="input" id="new_hp_num" value="" placeholder="Phone Number(Number only)">
 				</div>
-				<div>
-					<label for="" data-i18n="popup.보안코드 입력">Enter the security code</label>
-					<p class="code_btn go_num2"><img src="<?=G5_THEME_URL?>/_images/email_send_icon.gif" alt="이미지" data-i18n="popup.코드요청">Request code</p>
-				</div>
-				<input type="text" style="margin-bottom:25px;">
-				<div class="btn2_btm_wrap">
+				
+				<div class="btn2_btm_wrap" style="margin-top:40px;">
 					<input type="button" value="Cancle" class="cancel pop_close" >
-					<input type="button" value="Proceed" class="save go_num2">
+					<input type="button" value="Proceed" class="save proceed">
 				</div>
+				
 			</form>
 		</div>
 
+		<!-- 변경완료 -->
 		<div class="pop_wrap num2_pop_wrap notice_img_pop">
 			<p class="pop_title" data-i18n="popup.전화번호 변경">Change Phone Number</p>	
 			<div>
@@ -727,14 +700,12 @@ $(function() {
 
 	<script>
 		$(function() {
-
+			var sendnumcode = false;
+			
 			$('.num_pop_open').click(function(){
 				$('.num_pop_wrap').css("display","block");
 			});
-			$('.go_num1').click(function(){
-				$('.num_pop_wrap').css("display","none");
-				$('.num1_pop_wrap').css("display","block");
-			});
+
 			$('.num1_pop_close').click(function(){
 				$('.num_pop_wrap').css("display","block");
 				$('.num1_pop_wrap').css("display","none");
@@ -743,9 +714,51 @@ $(function() {
 				$('.num_pop_wrap').css("display","none");
 				$('.num2_pop_wrap').css("display","block");
 			});
-			$('.go_num3').click(function(){
-				$('.num_pop_wrap').css("display","none");
-				$('.num3_pop_wrap').css("display","block");
+			$('.proceed').click(function(){
+				
+				var hp_num = $('.num_pop_wrap #hp_num').val();
+				var new_nation_num = $('.num_pop_wrap #new_nation_num').val();
+				var new_hp_num = $('.num_pop_wrap #hp_num').val();
+				//console.log( hp_num );
+
+				/*
+				if(phone_vaild_code != phone_sendcode){
+					console.log('인증키 확인 필요' + sendcode);
+					return false;
+					//dialogModal('Please check','<strong> sercurity code does not matched.</strong>','failed');	
+				}
+
+
+				if( email2 != email3){
+					dialogModal('Please check','<strong> new email does not matched confirm new mail.</strong>','failed');	
+					return false;	
+				}
+				*/
+
+				$.ajax({
+						type: "POST",
+						url: "/util/profile_proc.php",
+						dataType: "json",
+						data:  {
+							"hp_num" : hp_num,
+							"new_nation_num" : new_nation_num,
+							"new_hp_num" : new_hp_num,
+							"category" : "phone"
+
+						},
+						success: function(data) {
+							if(data.result =='success'){
+								$('.num_pop_wrap').css("display","none");
+								$('.num3_pop_wrap').css("display","block");
+							}else{
+								dialogModal('Please check','<strong>'+data.sql+'</strong>','failed');	
+							}
+						},
+						error:function(e){
+							dialogModal('Error!','<strong> Please check retry.</strong>','failed');	
+						}
+					});
+
 			});
 		});
 		//전화번호 변경
