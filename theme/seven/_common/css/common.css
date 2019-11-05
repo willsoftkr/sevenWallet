@@ -768,6 +768,7 @@ a.all_send{color:#ed2424; padding-left:5px; font-size:0.8em;}
 }
 .btn_input_wrap a{width:160px;border:none; border-radius:2px; background: #0079d3;}
 .bin_top{text-align:center; background:#f5f7f9; border:1px solid #757575; padding:10px; margin:20px 0px;}
+.leg-view-container{background:#f5f7f9; }
 .bin_wrap{margin:20px;}
 .bin_wrap table{width:100%;}
 .bin_wrap td{
@@ -958,6 +959,7 @@ a.all_send{color:#ed2424; padding-left:5px; font-size:0.8em;}
 .accordion_wrap dd>div{float:left; width:50%;}
 .accordion_wrap dd span{color:#7b7b7b;}
 .accordion_wrap dd strong{font-weight:500; color:#0079d3;}
+.accordion_wrap dd .st{font-weight:500; color:#0079d3;}
 .accordion_wrap dd a{position:absolute; right:3%; top:10px; font-weight:600; color:#0098ff;}
 
 

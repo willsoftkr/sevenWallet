@@ -11,10 +11,10 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.min.js"></script>
 <script>
-/* ETBC
-	var depthMap = {
-		0 : 'lvl-one dl_1depth',
-		1 : 'lvl-two dl_2depth',
+
+	var levelMap = {
+		0 : '10',
+		1 : '',
 		2 : 'lvl-three dl_3depth',
 		3 : 'lvl-four dl_4depth',
 		4 : 'lvl-five dl_5depth',
@@ -24,7 +24,7 @@
 		8 : 'lvl-nine dl_9depth',
 		9 : 'lvl-ten dl_10depth'
 	};
-*/
+
 
 var depthMap = {
 		0 : 'dl_1depth',
@@ -89,7 +89,7 @@ var gradeMap = {
 			//e.stopPropagation();
 
 			getList($(this).text(), 'name');
-			//getLeg('<?=$member['mb_id']?>', $(this).text());
+			getLeg('<?=$member['mb_id']?>', $(this).text());
 			$('.search_container').removeClass("active");
 
 		 });
@@ -112,7 +112,7 @@ var gradeMap = {
 		$(document).on('click','.go' ,function(e) {
 			var search_mb_id = $(this).parent().parent().find('.lvl-username').text();
 			getList(search_mb_id, 'name');
-			//getLeg('<?=$member['mb_id']?>', $(this).attr('mb_id'));
+			getLeg('<?=$member['mb_id']?>', $(this).attr('mb_id'));
 			e.stopPropagation();
 		});
 		
@@ -134,6 +134,7 @@ var gradeMap = {
 
 		// 조직도 데이터 가져오기
 		getList(Number(mb_no),'num');
+		getLeg('<?=$member['mb_id']?>', "<?=$member['mb_id']?>");
 
 	});
 
@@ -190,13 +191,20 @@ var gradeMap = {
 
 	// 검색하는 부분
 	function getMember(){
+		console.log('get_member');
 		var findemb_id = $("#now_id").val();
 
 		getList( findemb_id, 'name' );
-		//getLeg('<?=$member['mb_id']?>', mb_id);
+		getLeg('<?=$member['mb_id']?>', mb_id);
 	}
-	
+
+	function numberWithCommas(x) {
+    	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	}
+
+
 	function member_search(){
+		console.log('member_search');
 			if($("#now_id").val() == ""){
 				//alert("Please enter a keyword.");
 				commonModal('Notice','Please enter a keyword.',80);
@@ -239,7 +247,7 @@ var gradeMap = {
 			type : type
 		}).done(function( data ) {
 			//tt = data;
-			//console.log(data );
+			console.log(data );
 			var minObj = _.minBy(data, function(o) { return Number(o.depth); });
 			
 			_.forEach(data, function(member) {
@@ -256,14 +264,34 @@ var gradeMap = {
 				
 				var row = $('#dup .lvl-container').clone();
 				
+				if(member.mb_block == '0'){
+					var status = "Active";
+				}else{
+					var status = "Block";
+				}
+
 				row.addClass(depthMap[member.treelvl]);
 				row.addClass(gradeMap[member.gradelvl]);
 
 				row.find('.lvl-username').text(member.mb_id);
+
+				row.find('.lv').addClass('s_v'+member.mb_level);
+				row.find('.lv').text('V'+ member.mb_level);
+
+				row.find('.recommend_num').text(member.cnt);
+				row.find('.Blevel_num').text(member.treelvl);
+
+				row.find('.deposit_num').text(member.mb_deposit_point);
+				row.find('.name').text(member.mb_name);
+				row.find('.mb_level').text('V'+ member.mb_level);
+				row.find('.recommend_name').text(member.mb_recommend);
+				row.find('.email').text(member.mb_email);
+
+				row.find('.legsale_num').text( numberWithCommas(member.stacks));
+				row.find('.sales_day').text(member.sales_day);
 				
-				//row.find('dt p').addClass('s_v'+(member.treelvl));
-				//row.find('dt p').text("V"+ (member.treelvl));
-				
+				row.find('.block').text(status);
+
 				//row.find('dt p').addClass('s_v'+(7 -member.treelvl));
 				//row.find('dt p').text("V"+ (7 -member.treelvl));
 
@@ -300,31 +328,34 @@ var gradeMap = {
 			/*상세보기*/
 			$('.accordion_wrap dl dd').css("display", "none");
 			
-			/*
+			
 			$('.accordion_wrap dt').click(function() {
 				$(this).next().stop().slideToggle();
 			});
-			*/
+			
 
 		}).fail(function(e) {
 			console.log( e );
 		})
 	}
 
+
 	// 찾는 아이디에서 조상까지의 경로를 표시
 	function getLeg(lastParent, findId){
-		$.get("level_structure.leg.php", {
+		
+		$.get("/util/level_structure.leg.php", {
 			lastParent : lastParent,
 			findId : findId
 		}).done(function( data ) {
 			var reversed = data.reverse(); 
 			//console.log(reversed);
+
 			var vHtml = $('<div>');
 			$.each(reversed, function( index, str ) {
 				if(vHtml.html() == ''){
 					vHtml.append($('<span>').addClass('mbId').text(str));
 				}else{
-					vHtml.append(" -> ").append($('<span>').addClass('mbId').text(str));
+					vHtml.append(" >> ").append($('<span>').addClass('mbId').text(str));
 				}
 			});
 			$('.leg-view-container .gray').html(vHtml.html());
@@ -332,12 +363,8 @@ var gradeMap = {
 			console.log( e );
 		});
 	}
-
-		
-
-		
-		
 	</script>
+
 
 		<section class="v_center structure_wrap">
 			<p data-i18n='structure.데이터 크기로 인해 한번에 5대씩 화면에 나타납니다'>Due to the amount of data, only 5 steps are shown</p>
@@ -352,7 +379,13 @@ var gradeMap = {
 					</div>
 					<div class="result_btn">Close</div>
 				</div>
-			<div class="bin_top" data-i18n="structure.추천 계보" onclick="getList(<?=$member['mb_no']?>,'no');">Member Stack</div>
+			<div class="bin_top" data-i18n="structure.추천 계보" >
+				Member Stack
+			</div>
+
+			<div class="leg-view-container">
+				<div class="gray"></div>
+			</div>
 			
 			<div class="main-container">
 				<div id="levelStructure" class="accordion_wrap" ></div>
@@ -361,50 +394,49 @@ var gradeMap = {
 			<div style="display:none;" id="dup">
 				<dl class="lvl-container" >
 					<dt class="_lvl">
-						<p class=""></p>
+						<p class="lv"></p>
 							<span  class="lvl-username">Dream123</span>
-							<!--
 							<div>
-								<b>추천</b> : 4 &#47;
-								<b>단계</b> : 0 &#47; level
-								<b>입금</b> : &#36;100,000 &#47;
-								<b>산하매출</b> : &#36;20,000,000
+								<b>Recommend</b> : <span class="recommend_num">4</span> &#47;
+								<b>Tree level</b> : <span class="Blevel_num">0</span> &#47;
+								<b>deposit</b> : &#36;<span class="deposit_num">0</span> &#47;
+								<b>leg sales</b> : &#36;<span class="legsale_num">20,000,000</span>
 							</div>
-							-->
+							
 					</dt>
 					<dd>
-					<!--
+					
 						<div>
 								<p>
-									<span>이름 : </span>
-									<strong></strong>
+									<span>NAME : </span>
+									<span class="st name"></span>
 								</p>
 								<p>
-									<span>매출일 : </span>
-									<strong>2018-05-09</strong>
+									<span>Sale_date : </span>
+									<span class="st sales_day"></span>
 								</p>
 								<p>
-									<span>추천인 : </span>
-									<strong>moll123456</strong>
+									<span>Recommender : </span>
+									<span class="st recommend_name"></span>
 								</p>
 							</div>
 							<div>
 								<p>
-									<span>직급 : </span>
-									<strong>V5</strong>
+									<span>level : </span>
+									<span class="st mb_level"></span>
 								</p>
 								<p>
-									<span>상태 : </span>
-									<strong>Active</strong>
+									<span>Status : </span>
+									<span class="st block"></span>
 								</p>
 								<p>
-									<span>이메일 : </span>
-									<strong>qwer123@gmail.com</strong>
+									<span>E-Mail : </span>
+									<span class="st email"></span>
 								</p>
 							</div>
 							<a href="#" class="go">go</a>
 					</dd>
-					-->
+					
 					</div>			
 				</dl>
 		  </div>

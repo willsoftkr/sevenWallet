@@ -192,8 +192,8 @@ $colspan = 16;
 	<!--<input type="submit" name="act_button" value=" B팩 수당 지급"  class="frm_input benefit qpack" onclick="go_calc(4);">-->
 	<input type="submit" name="act_button" value=" 아바타적립실행"  class="frm_input benefit avatar" onclick="go_calc(9);">
 	||
-	<input type="submit" name="act_button" value=" 전체수당지급"  class="frm_input benefit rblue" onclick="go_calc(6);">
-	<input type="submit" name="act_button" value=" 어제까지자동(아바타제외)"  class="frm_input benefit red" onclick="go_calc(7);">
+	<input type="submit" name="act_button" value=" 전체수당지급 (업스테어제외)"  class="frm_input benefit rblue" onclick="go_calc(6);">
+	<input type="submit" name="act_button" value=" 어제까지자동 (아바타제외)"  class="frm_input benefit red" onclick="go_calc(7);">
 	
 	<!--<input type="submit" name="act_button" value=" 어제까지자동..(아바타포함)"  class="frm_input benefit pink" onclick="go_calc(10);">-->
 	<!--

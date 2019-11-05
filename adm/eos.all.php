@@ -14,17 +14,8 @@ var stx = "<?=$stx?>";
 document.write(today + " 날짜 수당지급 실행 중<br>");
 
 var it = setInterval(function(){
-if(i < 6){
+if(i < 5){
     if(i == 0){
-        $.ajax({ 
-            type: 'GET',
-            data: {  },
-             url: 'eos.upstair.php?1=1'+stx,
-             success: function (result) {
-                document.body.append("매출 실행완료");
-             }
-          })
-     }else if(i == 1){
         $.ajax({ 
             type: 'GET',
             data: { },
@@ -33,7 +24,7 @@ if(i < 6){
                  document.body.append("일수당지급완료");
              }
           })
-     }else if(i == 2){
+     }else if(i == 1){
         $.ajax({ 
             type: 'GET',
             data: { },
@@ -42,7 +33,7 @@ if(i < 6){
                  document.body.append("10x10수당지급완료");
              }
           })
-    }else if(i == 3){
+    }else if(i == 2){
         $.ajax({ 
             type: 'GET',
             data: { },
@@ -51,7 +42,7 @@ if(i < 6){
                  document.body.append("승급진행");
              }
           })
-    }else if(i == 4){
+    }else if(i == 3){
         $.ajax({ 
             type: 'GET',
             data: { },
@@ -71,7 +62,7 @@ if(i < 6){
              }
           })
           */
-    }else if(i == 5){
+    }else if(i == 4){
         $.ajax({ 
             type: 'GET',
             data: { },

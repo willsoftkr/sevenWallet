@@ -583,16 +583,18 @@ $(function() {
 
 			/*인증코드 발송*/
 			$('.code_btn_em').click(function(){
-				//console.log('인증코드발송' + email_sendcode);
-				/*
+				console.log('인증코드발송' + email_sendcode);
+				
+
+				
+				
 				$.ajax({
 						type: "POST",
-						url: "",
+						url: "/util/mailer.php",
 						dataType: "json",
 						data:  {
 							"email" : $('.chage_email_pop #email_new').val(),
 							"key" : email_sendcode,
-							
 						},
 						success: function(data) {
 							if(data.result =='success'){
@@ -606,7 +608,7 @@ $(function() {
 							dialogModal('Error!','<strong> Please check retry.</strong>','failed');	
 						}
 					});
-				*/
+				
 			});
 
 				

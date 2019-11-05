@@ -9,6 +9,7 @@ $mb_id = $_POST['mb_id'];
 $coin_symbol = $_POST['coin_symbol'];
 
 $now_date = date('Y-m-d H:i:s');
+$now_day = date('Y-m-d');
 
 $cnt='01';
 $orderid = date("YmdHis",time()).$cnt;
@@ -73,6 +74,7 @@ if($account < $amount){
 			$update_point .= ", grade = '".$grade."'";
 		}
 		$update_point .= ", mb_deposit_point = '".$save_p."'";
+		$update_point .= ", sales_day = '".$now_day."'";
 		$update_point .= " where mb_id ='".$mb_id."'";
 		
 		//print_r($update_point);

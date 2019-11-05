@@ -159,7 +159,7 @@ else if ($w == 'u')
 	$upstair = $_REQUEST['be_to'];
 	//echo "<br> up::".$upstair;
 	if($upstair > 0){
-		$upstair_sql = "insert g5_shop_order set od_id = '{$od_id}', mb_id = '{$mb_id}',  od_cash = '{$upstair}', upstair = '{$upstair}', pv = '{$upstair}', od_cart_price = '{$upstair}', od_time = '{$today}',od_settle_case = 'btc' ";
+		$upstair_sql = "insert g5_shop_order set od_id = '{$od_id}', mb_id = '{$mb_id}',  od_cash = '{$upstair}', upstair = '{$upstair}', pv = '{$upstair}', od_cart_price = '{$upstair}', od_time = '{$today}',od_settle_case = 'btc',od_memo = 'admin' ";
 		
 		//print_r($upstair_sql);
 		$upstair_result = sql_query($upstair_sql);

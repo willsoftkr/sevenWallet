@@ -221,15 +221,19 @@ if($nw_with == 'Y'){
 							"address" : address
 						},
 						success: function(data) {
-							purchaseModal('Complete send request','<strong> Complete Send/withdrawal.</strong>','success');
-							//succsessModal('Complete send request','<strong> Complete Send/withdrawal.</strong>',80);	
-							$('#modal_return_url').on('click', function(){
-								location.reload();
-							});
+							if(data.result == 'success'){
+								purchaseModal('Complete send request','<strong> Complete Send/withdrawal.</strong>','success');
+								//succsessModal('Complete send request','<strong> Complete Send/withdrawal.</strong>',80);	
+								$('#modal_return_url').on('click', function(){
+									location.reload();
+								});
 
-							$('#purchaseModal').on('click', function(){
-								location.reload();
-							});
+								$('#purchaseModal').on('click', function(){
+									location.reload();
+								});
+							}else{
+								commonModal('Error!','<strong> Please check retry.</strong>',80);	
+							}
 						},
 						error:function(e){
 							commonModal('Error!','<strong> Please check retry.</strong>',80);	

@@ -235,7 +235,7 @@ $ord_rev = $ord_array[($ord_key+1)%2]; // 내림차순→오름차순, 오름차
 			<th style="width:3%;">선택</th>
 			<th style="width:3%;"><a href="?ord=<?php echo $ord_rev; ?>&ord_word=uid">No <?php echo $ord_arrow[$ord_key]; ?></a></th>
 			<th style="width:10%;">아이디 </th>
-			<th  style="width:10%;">출금후잔고(V7)</th>
+			<th  style="width:10%;">출금전잔고(V7)</th>
 			<!--<th>현재 BTC 수당 잔고</th>-->
 			<th style="width:5%;">요청코인</th>
 			<th style="width:5%;">전환코인</th>

@@ -21,7 +21,8 @@ select DISTINCT * from (
 	select a.*, 
 		ifnull(d.cnt, 0) as cnt,
 		ifnull(rk.is_rise, '-') as is_rise,
-		rk.rday
+		rk.rday,
+		ifnull(noo.noo,0) AS stacks
 	from (
 		select  
 			mb_no,
@@ -30,6 +31,11 @@ select DISTINCT * from (
 			mb_recommend,
 			depth,
 			grade,
+			mb_email,
+			mb_block,
+			sales_day,
+			mb_deposit_point,
+			CONCAT(last_name,first_name) as mb_name,
 			mb_open_date as enrolled,
 				mb_brecommend as sponsor,
 			substring(mb_bre_time,1,10) as sponsor_binary,
@@ -39,7 +45,7 @@ select DISTINCT * from (
 		select mb_recommend, count(*) as cnt from g5_member  group by mb_recommend
 	) d on a.mb_id = d.mb_recommend and d.cnt > 0
 	left outer join (
-		select * from noo2 where day = (select max(day) from noo2)
+		select * from bnoo2 where day = (select max(day) from bnoo2)
 	) noo on a.mb_id = noo.mb_id
 	left outer join (
 		select * from thirty2 where day = (select max(day) from thirty2)
@@ -53,7 +59,8 @@ select DISTINCT * from (
 	select a.*, 
 		ifnull(d.cnt, 0) as cnt,
 		ifnull(rk.is_rise, '-') as is_rise,
-		rk.rday
+		rk.rday,
+		ifnull(noo.noo,0) AS stacks
 	from (
 		select  
 			mb_no,
@@ -62,6 +69,11 @@ select DISTINCT * from (
 			mb_recommend,
 			depth,
 			grade,
+			mb_email,
+			mb_block,
+			sales_day,
+			mb_deposit_point,
+			CONCAT(last_name,first_name) as mb_name,
 			mb_open_date as enrolled,
 				mb_brecommend as sponsor,
 			substring(mb_bre_time,1,10) as sponsor_binary,
@@ -76,7 +88,7 @@ select DISTINCT * from (
 		select mb_recommend, count(*) as cnt from g5_member  group by mb_recommend
 	) d on a.mb_id = d.mb_recommend and d.cnt > 0
 	left outer join (
-		select * from noo2 where day = (select max(day) from noo2)
+		select * from bnoo2 where day = (select max(day) from bnoo2)
 	) noo on a.mb_id = noo.mb_id
 	left outer join (
 		select * from thirty2 where day = (select max(day) from thirty2)

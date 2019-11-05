@@ -121,6 +121,7 @@ $security_num_code = generate_code(8);
 						<li><span data-i18n="profile.전화번호">Phone number</span>: <?=$member['mb_hp']?> <img src="<?=G5_THEME_URL?>/_images/x_icon.gif" alt="인증안됨" style="width:15px;"></li>
 						<li><input type="button" value="Change"" class="num_pop_open pop_open" data-i18n="[value]profile.변경"></li>
 					</ul>
+					<!--
 					<hr>
 					<ul>
 						<li><span data-i18n="profile.바이너리 팩 (B 팩) 자동 재구매">B Pack auto-repurchase</span></li>
@@ -131,6 +132,8 @@ $security_num_code = generate_code(8);
 							</div>
 						</li>
 					</ul>
+					-->
+					
 					<hr>
 					<ul>
 						<li><span data-i18n="profile.수당 팩 (Q 팩) 자동 재구매">Q Pack auto-repurchase</span></li>

@@ -42,7 +42,7 @@ $math_total = sql_fetch($math_sql);
 $EOS_TOTAL =  number_format($math_total['total'],3);  //합계잔고  //합계잔고
 */
 
-$sum_deposit = "select sum(mb_v7_account + mb_v7_calc) as hap from g5_member where mb_id='".$mb_id."'";
+$sum_deposit = "select sum(mb_v7_account + mb_v7_calc ) as hap from g5_member where mb_id='".$mb_id."'";
 $sum_deposit_result= sql_fetch($sum_deposit);
 
 $save = $sum_deposit_result['hap'];
@@ -89,10 +89,9 @@ if($save < $amount){
 		else if($save_p>=10000){
 			$grade = 3;
         }
-        */
-		
+		*/
 
-        $update_point = "update g5_member set {$where_calc} = $where_calc - $amount , $to_calc = $to_calc + $exchange_total ";
+        $update_point = "update g5_member set $where_calc = Round(($where_calc - $amount), 8) , $to_calc = Round(($to_calc + $exchange_total),8) ";
         
         /*
 		if($mb_id != 'copy5285m'){
