@@ -19,13 +19,13 @@ if ($to_date){
 
 
 $rate_array = array(
-    array("11","23","0.153"),
-    array("24","36","0.192"),
-    array("37","49","0.153"),
-    array("50","62","0.115"),
-    array("63","75","0.076"),
-    array("76","88","0.057"),
-    array("89","101","0.057")
+    array("11","23","0.077"),
+    array("24","36","0.077"),
+    array("37","49","0.077"),
+    array("50","62","0.077"),
+    array("63","75","0.077"),
+    array("76","88","0.077"),
+    array("89","101","0.077")
 );
 
 echo "<strong>Q팩 수당 현황</strong><br>";
@@ -163,19 +163,19 @@ function habu_sales_calc($recom, $deep, $count, $cond, $qpak_num){
        
         /* 수당적용*/
 		if($deep > 10 && $deep < 24 &&$qpak_num > 0){
-		    $percent_hist = 0.153;
+		    $percent_hist = 0.077;
         }else if($deep > 23 && $deep < 37 && $qpak_num > 1){
-		    $percent_hist = 0.192;
+		    $percent_hist = 0.077;
         }else if($deep > 36 && $deep < 48 && $qpak_num > 2){
-		    $percent_hist = 0.153;
+		    $percent_hist = 0.077;
         }else if($deep > 49 && $deep < 61 && $qpak_num > 3){
-		    $percent_hist = 0.115;
+		    $percent_hist = 0.077;
         }else if($deep > 62 && $deep < 74 && $qpak_num > 4){
-		    $percent_hist = 0.076;
+		    $percent_hist = 0.077;
         }else if($deep > 75 && $deep < 87 && $qpak_num > 5){
-		    $percent_hist = 0.057;
+		    $percent_hist = 0.077;
         }else if($deep > 88 && $deep < 102 && $qpak_num > 6){
-		    $percent_hist = 0.057;
+		    $percent_hist = 0.077;
         }else{
             $percent_hist = 0;
         }

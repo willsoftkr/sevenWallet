@@ -584,13 +584,10 @@ $(function() {
 			/*인증코드 발송*/
 			$('.code_btn_em').click(function(){
 				console.log('인증코드발송' + email_sendcode);
-				
 
-				
-				
 				$.ajax({
-						type: "POST",
-						url: "/util/mailer.php",
+						type: "GET",
+						url: '/bbs/register.mail.verify.php',
 						dataType: "json",
 						data:  {
 							"email" : $('.chage_email_pop #email_new').val(),
@@ -598,10 +595,10 @@ $(function() {
 						},
 						success: function(data) {
 							if(data.result =='success'){
-								$('.back_em1').click(function(){
-									$('.chage_email_pop2').css("display","none");
-								});
-							sendcode = true;
+								console.log(result);
+								key = result.key;
+								dialogModal('Mail authentication','<p>Sent a authentication code to your mail.</p>','success');
+								sendcode = true;
 							}
 						},
 						error:function(e){

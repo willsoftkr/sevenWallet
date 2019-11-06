@@ -385,19 +385,74 @@ $(document).on('click','#agree',function(e) {
 					<p class="check_appear_title" data-i18n='register.개인 정보와 인증 (KYC 요령)'>Personal Information & Authentication <!--<small class="f_right font_red kyc_pop_btn pop_open">KYC 요령</small>--></p>
 					<input type="text" name="first_name" placeholder="First Name (Must match the legal name on file)" data-i18n='[placeholder]register.이름 (신분증에 기록된 이름과 동일해야 함)'/>
 					<input type="text" name="last_name" placeholder="Last Name (Must match the legal name on file)" data-i18n='[placeholder]register.성 (신분증에 기록된 이름과 동일해야 함)'/>
-					<!--
+					
+					<style>
+						.file_wr{
+							_border: 1px solid #ccc;
+							_background: #fff;
+							border: 1px solid #757575;
+    						background: #f5f7f9;
+							color: #000;
+							display:inline-block;
+							vertical-align: middle;
+							border-radius: 3px;
+							padding: 5px;
+							height: 40px;
+							margin: 0;
+							width:70%;
+						}
+						.lb_icon {
+							position: relative;
+							top: 0px;
+							left: 0px;
+							border-radius: 3px 0 0 3px;
+							height: 34px;
+							line-height: 34px;
+							width: 36px;
+							background: #eee;
+							text-align: center;
+							color: #888;
+						}
+						.frm_file{width:70%;}
+						.frm_confirm{
+							float:left;
+							display: inline-block;
+							color: #006df3;
+							font-size: inherit;
+							line-height: normal;
+							vertical-align: middle;
+							cursor: pointer;
+							border-radius: .25em;
+							background: url(<?=G5_THEME_URL?>/_images/upload_icon.gif) no-repeat left center;
+							background-size: 25px;
+							padding-left: 30px;
+							line-height: 38px;
+							border:0;
+							float: right;
+						}
+						
+					</style>
 					<div class="clear_fix id_file_wrap">
-						<span>신분증을 든 사진 업로드</span>
+						<p data-i18n="신분증을 든 사진 업로드">Upload photo with ID</p>
+						
+						<div class="file_wr write_div">
+							<!--<label for="bf_file_<?php echo $i+1 ?>" class="lb_icon"><i class="fa fa-download" aria-hidden="true"></i></label>-->
+							<input type="file" name="bf_file" id="ex_filename"  class="frm_file ">
+						</div>
+						<button type="button" class="frm_confirm" id="frm_confirm"  data-i18n="파일업로드">File upload</button>
+						
+						<!--
 						<div class="filebox"> 
 							<input class="upload-name" value="파일선택" disabled="disabled">
 							<label for="ex_filename">파일업로드</label>
 							<input type="file" id="ex_filename" class="upload-hidden">
 						</div>
+						-->
 					</div>
 						
-					<p class="text_right font_green mb20">업로드 성공</p>
-					-->
- 					<p class="text_right font_red mb20"></p> 
+					<p class="text_right font_green mb20" data-i18n="업로드 성공">Upload successful</p>
+					
+ 					<!--<p class="text_right font_red mb20" data-i18n="업로드 실패">Upload failed</p> -->
 						
 				
 					<input type="email" name="mb_email" id="reg_mb_email" onChange="validateEmail(this.value);" placeholder="Email address" data-i18n='[placeholder]register.이메일 주소'/>
@@ -488,7 +543,37 @@ $(document).on('click','#agree',function(e) {
 		$(function() {
 			$(".top_title h3").html("<img src='<?=G5_THEME_URL?>/_images/top_enroll.png' alt='아이콘'> <span data-i18n='title.신규 회원등록'>Create a new account</span>");
 			$('#wrapper').css("background","#fff");
+
+			$('#frm_confirm').on('click',function(){
+				console.log('file_upload')	;
+				var file_data = $('#ex_filename').prop('files');
+				var form_data = new FormData();  
+				form_data.append('file', file_data);
+				alert(form_data);
+
+				$.ajax({
+						type: "POST",
+						url: '/util/file_upload.php',
+						dataType: "json",
+						data:  {
+							"wr_subject" : $('#reg_mb_id').val(),
+							"file" : form_data
+						},
+						success: function(data) {
+							if(data.result =='success'){
+								console.log('success');
+							}
+						},
+						error:function(e){
+							dialogModal('Error!','<strong> Please check retry.</strong>','failed');	
+						}
+					});
+				
+
+			});
 		});
+
+
 	</script>
 
 

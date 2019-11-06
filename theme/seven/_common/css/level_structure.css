@@ -248,7 +248,11 @@
 .lvl-container .go {
 	cursor: pointer;
 }
-.mbId {cursor:pointer; }
+.mbId {cursor:pointer; 
+    border: 1px solid #666;
+    padding: 2px 5px; line-height: 36px; }
+
+.mbId:hover{background:#0079d3; border: 1px solid #0079d3;color:white;}
 
 /* search_layout */
 .binary-tree-header-right {

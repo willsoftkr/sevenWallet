@@ -230,8 +230,8 @@ function get_grade_select($name, $start_id=0, $end_id=4, $selected="", $event=""
     global $g5;
     //$level_name=array("Freshman","Miner","0Star","1Star","2Star","3Star","4Star","5Star","6Star","manager","admin");
     
-	$level_name=array("Black","Red","Yellow","Green");
-    $str = "\n<select id=\"{$name}\" name=\"{$name}\"";
+	$level_name=array("Black","Red","Yellow","Green","Green2");
+    $str = "\n<select id=\"{$name}\"  name=\"{$name}\"";
     if ($event) $str .= " $event";
     $str .= ">\n";
     for ($i=$start_id; $i<=$end_id; $i++) {

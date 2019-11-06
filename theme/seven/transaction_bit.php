@@ -198,7 +198,7 @@ $pack_result = sql_query($pack_sql); // 팩구매내역
 							<li>
 							<div>
 								<span><?=timeshift($row['update_dt'])?></span>
-								<span class="f_right font_orange">- <?=Number_format($row['amt'],8)?> BTC &#47;- $<?=Number_format($row['amt_usd'],2)?></span>
+								<span class="f_right font_orange">- <?=Number_format($row['amt'],8)?> BTC </span>
 								
 							</div>
 							

@@ -184,6 +184,12 @@ function out_check($val){
 	
 	.td_mbstat{text-align:right;padding-right:10px !important;font-size:12px;}
 	.td_acount{min-width:100px;text-align:right;padding-right:3px;}
+
+	.sel_0 select{background:darkgray}
+	.sel_1 select{background:lavenderblush}
+	.sel_2 select{background:lemonchiffon}
+	.sel_3 select{background:paleturquoise}
+	.sel_4 select{background:greenyellow}
 </style>
 
 <form name="fmemberlist" id="fmemberlist" action="./member_list_update.php" onsubmit="return fmemberlist_submit(this);" method="post">
@@ -230,7 +236,7 @@ function out_check($val){
 		-->
 
 
-		<th scope="col" id="mb_list_authcheck" rowspan="2"><?php echo subject_sort_link('grade', '', 'desc') ?>회원등급/직급</a></th>
+		<th scope="col" id="mb_list_authcheck" rowspan="2"><?php echo subject_sort_link('grade', '', 'desc') ?>회원등급</a></th>
 		<th scope="col" id="mb_list_levelcheck" rowspan="2"><?php echo subject_sort_link('mb_level', '', 'desc') ?>회원등급/직급</a></th>
 		
 		<th scope="col" id="mb_list_member"><?php echo subject_sort_link('mb_today_login', '', 'desc') ?>최종접속</a></th>
@@ -421,7 +427,7 @@ function out_check($val){
 		<!--<td headers="mb_list_auth" class="td_mbstat" rowspan="2" ><?= $EOS_UPSTAIR_ACC ?></td>-->
 
 
-		<td headers="mb_list_member" class="td_mbgrade" rowspan="2">
+		<td headers="mb_list_member" class="td_mbgrade sel_<?=$row['grade']?>" rowspan="2">
 		<!--
 			<?php
 			if ($leave_msg || $intercept_msg) echo $leave_msg.' '.$intercept_msg;
