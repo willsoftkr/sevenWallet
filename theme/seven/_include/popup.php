@@ -527,7 +527,7 @@ $(function() {
 				<label for="" data-i18n='popup.사용중인 이메일 주소'>Current Email</label>
 				<input type="text"  name="current_email" id="current_email" value="">
 				<label for="" data-i18n='popup.새로운 이메일 주소'>New Email</label>
-				<input type="text"  name="email_new" id="email_new" value="">
+				<input type="text"  name="email_new" id="email_new" value="" onChange="validateEmail(this.value);">
 				<label for="" data-i18n='popup.새로운 이메일 주소 확인'>Confirm New Email</label>
 				<input type="text"  name="email_new_re" id="email_new_re" value="">
 				<div>
@@ -566,9 +566,21 @@ $(function() {
 	
 	
 	<script>
+		validateEmail = function (email) {
+			var email = email;
+			var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+
+			if (email == '' || !re.test(email)) {
+				alert("올바른 이메일 주소를 입력하세요")
+				return false;
+			}
+		}
+
 		$(function() {
 
 			var sendcode = false;
+			var emailkey = '';
+				
 			//console.log(email_sendcode);
 
 			$('.email_pop_open').click(function(){
@@ -583,20 +595,47 @@ $(function() {
 
 			/*인증코드 발송*/
 			$('.code_btn_em').click(function(){
+<<<<<<< HEAD
+				//console.log('인증코드발송' + email_sendcode);
+				var email2 = $('.chage_email_pop #email_new').val().trim();
+				var email3 = $('.chage_email_pop #email_new_re').val().trim();	
+
+				console.log(email2 + "/" + email3);
+
+				if( email2 != email3){
+					dialogModal('Please check','<strong> new email does not matched confirm new mail.</strong>','failed');	
+					return false;	
+				}
+
+				if( email3 == ''){
+					dialogModal('Please check','<strong> new email does not matched confirm new mail.</strong>','failed');	
+					return false;	
+				}
+				
+				
+=======
 				console.log('인증코드발송' + email_sendcode);
 
+>>>>>>> aaeb91a841360ece085337408cb41efcda38f121
 				$.ajax({
 						type: "GET",
 						url: '/bbs/register.mail.verify.php',
 						dataType: "json",
 						data:  {
-							"email" : $('.chage_email_pop #email_new').val(),
-							"key" : email_sendcode,
+							"mb_email" : $('.chage_email_pop #email_new').val(),
+							//"key" : email_sendcode,
 						},
 						success: function(data) {
+							
 							if(data.result =='success'){
+<<<<<<< HEAD
+								
+								emailkey = data.key;
+								console.log(data.raw +'//'+ data.key);	
+=======
 								console.log(result);
 								key = result.key;
+>>>>>>> aaeb91a841360ece085337408cb41efcda38f121
 								dialogModal('Mail authentication','<p>Sent a authentication code to your mail.</p>','success');
 								sendcode = true;
 							}
@@ -611,17 +650,22 @@ $(function() {
 				
 			
 			$('.chage_email_pop .save').click(function(){
-				//$('.chage_email_pop2').css("display","none");
-				//console.log( $('.chage_email_pop #current_email').val() );
 				var email2 = $('.chage_email_pop #email_new').val();
 				var email3 = $('.chage_email_pop #email_new_re').val();	
-				var email_vaild_code = $('.chage_email_pop #email_vaild_code').val();	
+				var email_vaild_code = $('.chage_email_pop #email_vaild_code').val();
+				//$('.chage_email_pop2').css("display","none");
+				//console.log( $('.chage_email_pop #current_email').val() );
 				
+				console.log(sha256(email_vaild_code).trim() +" \n "+ emailkey.trim());
+				
+				if(!sendcode){
+					dialogModal('Please check','<strong> sercurity code does not matched.</strong>','failed');	
+				}
 
-				if(email_vaild_code != email_sendcode){
-					console.log('인증키 확인 필요' + sendcode);
+
+				if(sha256(email_vaild_code).trim() != emailkey.trim()){	
+					dialogModal('Please check','<strong> sercurity code does not matched.</strong>','failed');	
 					return false;
-					//dialogModal('Please check','<strong> sercurity code does not matched.</strong>','failed');	
 				}
 
 

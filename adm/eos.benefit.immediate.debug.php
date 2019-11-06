@@ -43,7 +43,6 @@ while($m_row = sql_fetch_array($mem_list)){
 	echo '<br><br><br><br>계산 대상 '.$m_row[mb_id]." | ". $gradetxt[$grade]."<br>";
 
 	$result_hap = 0;
-	
 	$benefit_rate = $rate[ $m_row['grade'] ]; //회원등급별 수당률
 
 
