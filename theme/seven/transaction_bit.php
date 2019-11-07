@@ -17,7 +17,8 @@ $pack_result = sql_query($pack_sql); // 팩구매내역
 
 <?
 	/*날짜선택 기본값 지정*/
-	if (empty($fr_date)) {$fr_date = date("Y-m-d", strtotime(date("Y-m-d")."-3 month"));}
+	//if (empty($fr_date)) {$fr_date = date("Y-m-d", strtotime(date("Y-m-d")."-3 month"));}
+	if (empty($fr_date)) $fr_date = '2019-07-21';
 	if (empty($to_date)) $to_date = G5_TIME_YMD;
 
 
@@ -240,21 +241,21 @@ $pack_result = sql_query($pack_sql); // 팩구매내역
 					<li style="width:33%;">
 						<a href="income_bit.php">
 							<img src="<?=G5_THEME_URL?>/_images/btm_menu_receive.png" alt="아이콘">
-							<p data-i18n='wallet.입금'>Received</p>
+							<p data-i18n='wallet.버튼.입금'>Receive</p>
 						</a>
 					</li>
 				
 					<li style="width:33%;">
 						<a href="deposit_bit.php">
 							<img src="<?=G5_THEME_URL?>/_images/btm_menu_deposit.gif" alt="아이콘">
-							<p data-i18n='wallet.매출'>Deposited</p>
+							<p data-i18n='wallet.버튼.매출'>Deposit</p>
 						</a>
 					</li>
 				
 					<li style="width:33%;">
 						<a href="send_bit.php">
 						<img src="<?=G5_THEME_URL?>/_images/btm_menu_send.png"  alt="아이콘">
-							<p data-i18n='wallet.출금'>Withdrawal</p>
+							<p data-i18n='wallet.버튼.출금'>Withdrawal</p>
 						</a>
 					</li>
 				</ul>

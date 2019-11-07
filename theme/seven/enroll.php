@@ -20,7 +20,7 @@ if($_GET['recom_referral'])
 	if(recommned){
 		recommend_search = true;
 	}
-	console.log(recommend_search);
+	//console.log(recommend_search);
 
 $(function(){
 
@@ -382,7 +382,7 @@ $(document).on('click','#agree',function(e) {
 				
 				
 				<div class="check_appear">
-					<p class="check_appear_title" data-i18n='register.개인 정보와 인증 (KYC 요령)'>Personal Information & Authentication <!--<small class="f_right font_red kyc_pop_btn pop_open">KYC 요령</small>--></p>
+					<p class="check_appear_title"><span data-i18n='register.개인 정보와 인증 (KYC 요령)'>Personal Information & Authentication </span><small class="f_right font_red kyc_pop_btn pop_open">KYC 요령</small></p>
 					<input type="text" name="first_name" placeholder="First Name (Must match the legal name on file)" data-i18n='[placeholder]register.이름 (신분증에 기록된 이름과 동일해야 함)'/>
 					<input type="text" name="last_name" placeholder="Last Name (Must match the legal name on file)" data-i18n='[placeholder]register.성 (신분증에 기록된 이름과 동일해야 함)'/>
 					
@@ -433,11 +433,12 @@ $(document).on('click','#agree',function(e) {
 						
 					</style>
 					<div class="clear_fix id_file_wrap">
+						
 						<p data-i18n="신분증을 든 사진 업로드">Upload photo with ID</p>
 						
 						<div class="file_wr write_div">
 							<!--<label for="bf_file_<?php echo $i+1 ?>" class="lb_icon"><i class="fa fa-download" aria-hidden="true"></i></label>-->
-							<input type="file" name="bf_file" id="ex_filename"  class="frm_file ">
+							<input type="file" name="bf_file[]" id="ex_filename"  class="frm_file ">
 						</div>
 						<button type="button" class="frm_confirm" id="frm_confirm"  data-i18n="파일업로드">File upload</button>
 						
@@ -537,7 +538,7 @@ $(document).on('click','#agree',function(e) {
 	
 	
 	<div class="gnb_dim"></div>
-	<?php include '_include/popup.php'; ?>
+	
 
 	<script>
 		$(function() {
@@ -545,23 +546,30 @@ $(document).on('click','#agree',function(e) {
 			$('#wrapper').css("background","#fff");
 
 			$('#frm_confirm').on('click',function(){
-				console.log('file_upload')	;
-				var file_data = $('#ex_filename').prop('files');
-				var form_data = new FormData();  
-				form_data.append('file', file_data);
-				alert(form_data);
+				
+				var file_data = $('#ex_filename').prop('files')[0];
+				var form_data = new FormData();
+				
+				form_data.append('w', '');
+				form_data.append('wr_subject', $('#reg_mb_id').val());
+				form_data.append('bf_file', file_data);
+				console.log(form_data);
 
 				$.ajax({
-						type: "POST",
+						
 						url: '/util/file_upload.php',
-						dataType: "json",
-						data:  {
-							"wr_subject" : $('#reg_mb_id').val(),
-							"file" : form_data
-						},
+						dataType: 'json',
+						cache: false,
+						contentType: false,
+						processData: false,
+						type: "POST",
+						data:form_data,
 						success: function(data) {
 							if(data.result =='success'){
 								console.log('success');
+							}
+							else{
+								dialogModal('Error!','<strong>'+ data.sql +'</strong>','failed');	
 							}
 						},
 						error:function(e){

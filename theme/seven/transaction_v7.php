@@ -12,7 +12,8 @@ $order_result = sql_query($order_sql);
 
 <?
 	/*날짜선택 기본값 지정*/
-	if (empty($fr_date)) {$fr_date = date("Y-m-d", strtotime(date("Y-m-d")."-3 month"));}
+	//if (empty($fr_date)) {$fr_date = date("Y-m-d", strtotime(date("Y-m-d")."-3 month"));}
+	if (empty($fr_date)) $fr_date = '2019-07-21';
 	if (empty($to_date)) $to_date = G5_TIME_YMD;
 
 
@@ -120,8 +121,8 @@ $order_result = sql_query($order_sql);
 
 					
 					<li class="bonus_tab <?nav_active('daily payout')?>" data-tab="tab_2" data-category="daily payout"><p data-i18n="wallet.daily payout">Daily payout</p></li>
-					<li class="bonus_tab <?nav_active('10x10 Matching')?>" data-tab="tab_3" data-category="10x10 Matching"><p data-i18n="wallet.10x10 Matching">10x10 M</p></li>
-					<li class="bonus_tab <?nav_active('Infinite matching')?>" data-tab="tab_4" data-category="Infinite matching"><p data-i18n="wallet.Infinite matching">Infinite M</p></li>
+					<li class="bonus_tab <?nav_active('10x10 Matching')?>" data-tab="tab_3" data-category="10x10 Matching"><p data-i18n="wallet.10x10 Matching">10x10</p></li>
+					<li class="bonus_tab <?nav_active('Infinite matching')?>" data-tab="tab_4" data-category="Infinite matching"><p data-i18n="wallet.Infinite matching">Infinite</p></li>
 					<li class="bonus_tab <?nav_active('Binary')?>" data-tab="tab_5" data-category="Binary"><p data-i18n="wallet.Binary">Binary</p></li>
 				
 				</ul>

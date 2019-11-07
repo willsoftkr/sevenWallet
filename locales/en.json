@@ -51,8 +51,8 @@
 		"all" : "ALL",
 		"income" : "INCOME",
 		"daily payout" : "Daily payout",
-		"10x10 Matching" : "10x10 M",
-		"Infinite matching" : "Infinite M",
+		"10x10 Matching" : "10x10",
+		"Infinite matching" : "Infinite",
 		"Binary" : "Binary",
 		"warning":{
 			"A" : "Warning: This order can't be undone."
@@ -60,6 +60,11 @@
 		"입금" : "Received",
 		"출금" : "Withdrawal",
 		"매출" : "Deposited",
+		"버튼":{
+			"입금" : "Receive",
+			"출금" : "Withdrawal",
+			"매출" : "Deposit"
+		},
 		"보너스" : "Bonus",
 		"구매" : "Purchase",
 		"환전할 코인" : "Select coin to exchange",

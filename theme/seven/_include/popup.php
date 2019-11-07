@@ -595,7 +595,6 @@ $(function() {
 
 			/*인증코드 발송*/
 			$('.code_btn_em').click(function(){
-<<<<<<< HEAD
 				//console.log('인증코드발송' + email_sendcode);
 				var email2 = $('.chage_email_pop #email_new').val().trim();
 				var email3 = $('.chage_email_pop #email_new_re').val().trim();	
@@ -611,12 +610,7 @@ $(function() {
 					dialogModal('Please check','<strong> new email does not matched confirm new mail.</strong>','failed');	
 					return false;	
 				}
-				
-				
-=======
 				console.log('인증코드발송' + email_sendcode);
-
->>>>>>> aaeb91a841360ece085337408cb41efcda38f121
 				$.ajax({
 						type: "GET",
 						url: '/bbs/register.mail.verify.php',
@@ -628,14 +622,9 @@ $(function() {
 						success: function(data) {
 							
 							if(data.result =='success'){
-<<<<<<< HEAD
-								
 								emailkey = data.key;
 								console.log(data.raw +'//'+ data.key);	
-=======
-								console.log(result);
 								key = result.key;
->>>>>>> aaeb91a841360ece085337408cb41efcda38f121
 								dialogModal('Mail authentication','<p>Sent a authentication code to your mail.</p>','success');
 								sendcode = true;
 							}
