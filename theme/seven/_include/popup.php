@@ -709,6 +709,8 @@ $(function() {
 					<input type="input" id="new_nation_num" value="" placeholder="Country" maxlength="3">
 					<input type="input" id="new_hp_num" value="" placeholder="Phone Number(Number only)">
 				</div>
+
+				
 				
 				<div class="btn2_btm_wrap" style="margin-top:40px;">
 					<input type="button" value="Cancle" class="cancel pop_close" >

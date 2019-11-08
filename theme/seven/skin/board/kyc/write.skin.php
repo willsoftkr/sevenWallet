@@ -38,7 +38,7 @@ input[type="text"], input[type="number"], input[type="password"], input[type="em
     <input type="hidden" name="sst" value="<?php echo $sst ?>">
     <input type="hidden" name="sod" value="<?php echo $sod ?>">
     <input type="hidden" name="page" value="<?php echo $page ?>">
-    <input type="hidden" name="wr_2" value="1">
+    <input type="hidden" name="wr_2" value="">
     <?php
     $option = '';
     $option_hidden = '';
@@ -181,9 +181,90 @@ input[type="text"], input[type="number"], input[type="password"], input[type="em
     </div>
     <?php } ?>
     
-    <div>
-        <input type="checkbox" name="wr_2" class="kyc_confirm" value="" <?=$confirm_check?> >
-        <label for="wr_2"> KYC 인증 승인</label>
+    <style>
+            
+        .holder {
+            width: 100%;
+            text-align: center;
+            margin: 0px auto;
+        }
+
+        input[type="checkbox"] {
+            display: none;
+        }
+
+
+        input[id^="checkbox-2-"] + label {
+            text-align:left;
+            background-color: dodgerblue;
+            padding: 18px 20px 18px 23px;
+            box-shadow: inset 0 50px 37px -30px rgba(255, 222, 197, 0.3);
+            border-radius: 1000px;
+            display: inline-block;
+            position: relative;
+            border-top: 1px solid dodgerblue;
+            margin-right: 30px;
+            font-size:14px;
+            font-weight: 500;
+            letter-spacing: 0px;
+            color: #FFF;
+            width: 213px;
+            text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid dodgerblue;
+        }
+
+        [id^="checkbox-2-"] + label:hover  {
+            border-top: 1px solid royalblue;
+            background: royalblue;
+            box-shadow: inset 0 -50px 37px -30px rgba(255, 222, 197, 0.07);
+        }
+
+        [id^="checkbox-2-"] + label:active  {
+            border-top: none;
+            background: royalblue;
+            padding: 19px 20px 18px 23px;
+            box-shadow: inset 0 3px 8px rgba(129, 69, 13, 0.3), inset 0 -50px 37px -30px rgba(255, 222, 197, 0.07)	
+        }
+
+        [id^="checkbox-2-"] + label:after {
+            content: ' ';
+            border-radius: 100px;
+            width: 32px;
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            box-shadow: inset 0px 16px 40px rgba(0, 0, 0, 0.4);
+            height: 32px;
+        }
+
+        [id^="checkbox-2-"] + label:before {
+            content: ' ';
+            border-radius: 100px;
+            width: 20px;
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            z-index: 999;
+            box-shadow: inset 0px 16px 40px #FFF;
+            height: 20px;
+            display: none;
+        }
+
+        [id^="checkbox-2-"]:checked + label{
+            border-top: 1px solid #28a745;
+            background: #28a745;
+            box-shadow: inset 0 -50px 37px -30px rgba(255, 222, 197, 0.07);
+        }
+
+        [id^="checkbox-2-"]:checked + label:before {
+            display: block;
+        }
+
+
+    </style>
+
+    <div class="holder" >
+		<input type="checkbox" id="checkbox-2-1" class="kyc_confirm" <?=$confirm_check?>/><label for="checkbox-2-1">KYC 인증 승인</label>
     </div>
      
 
@@ -241,6 +322,14 @@ input[type="text"], input[type="number"], input[type="password"], input[type="em
                 content = data.content;
             }
         });
+
+        if($('.kyc_confirm').is(":checked")){
+            f.wr_2.value = '1';
+        }else{
+            f.wr_2.value = '';
+        }
+
+        console.log( "kyc인증" + $('.kyc_confirm').is(":checked"));
 
         if (subject) {
             alert("제목에 금지단어('"+subject+"')가 포함되어있습니다");

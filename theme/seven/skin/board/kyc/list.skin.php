@@ -72,7 +72,7 @@ if ($is_nogood) $colspan++;
             <?php } ?>
             <th scope="col">번호</th>
             <th scope="col">제목</th>
-            <th scope="col">글쓴이</th>
+            <th scope="col" style="width:150px;">인증여부</th>
             <th scope="col"><?php echo subject_sort_link('wr_hit', $qstr2, 1) ?>조회 <i class="fa fa-sort" aria-hidden="true"></i></a></th>
             <?php if ($is_good) { ?><th scope="col"><?php echo subject_sort_link('wr_good', $qstr2, 1) ?>추천 <i class="fa fa-sort" aria-hidden="true"></i></a></th><?php } ?>
             <?php if ($is_nogood) { ?><th scope="col"><?php echo subject_sort_link('wr_nogood', $qstr2, 1) ?>비추천 <i class="fa fa-sort" aria-hidden="true"></i></a></th><?php } ?>
@@ -114,7 +114,7 @@ if ($is_nogood) $colspan++;
                         <?php
                             if (isset($list[$i]['icon_secret'])) echo rtrim($list[$i]['icon_secret']);
                          ?>
-                        <?php echo $list[$i]['subject'] ?>
+                        <?php echo $list[$i]['subject']. '  _  KYC' ?>
                        
                     </a>
                     <?php
@@ -128,7 +128,13 @@ if ($is_nogood) $colspan++;
                 </div>
 
             </td>
-            <td class="td_name sv_use"><?php echo $list[$i]['name'] ?></td>
+
+            <td class="td_name sv_use" style="text-align:center">
+                <?if($list[$i]['wr_2']){?>
+                    <img src="<?=G5_THEME_URL?>/skin/board/kyc/img/check.jpg" style="width:30px"/>
+                <? } ?>
+            </td>
+
             <td class="td_num"><?php echo $list[$i]['wr_hit'] ?></td>
             <?php if ($is_good) { ?><td class="td_num"><?php echo $list[$i]['wr_good'] ?></td><?php } ?>
             <?php if ($is_nogood) { ?><td class="td_num"><?php echo $list[$i]['wr_nogood'] ?></td><?php } ?>
@@ -147,7 +153,7 @@ if ($is_nogood) $colspan++;
         <ul class="btn_bo_user">
             <?php if ($is_checkbox) { ?>
             <li><button type="submit" name="btn_submit" value="선택삭제" onclick="document.pressed=this.value" class="btn btn_admin"><i class="fa fa-trash-o" aria-hidden="true"></i> 선택삭제</button></li>
-            <li><button type="submit" name="btn_submit" value="선택복사" onclick="document.pressed=this.value" class="btn btn_admin"><i class="fa fa-files-o" aria-hidden="true"></i> 선택복사</button></li>
+           <!-- <li><button type="submit" name="btn_submit" value="선택복사" onclick="document.pressed=this.value" class="btn btn_admin"><i class="fa fa-files-o" aria-hidden="true"></i> 선택복사</button></li>-->
             <li><button type="submit" name="btn_submit" value="선택이동" onclick="document.pressed=this.value" class="btn btn_admin"><i class="fa fa-arrows" aria-hidden="true"></i> 선택이동</button></li>
             <?php } ?>
             <?php if ($list_href) { ?><li><a href="<?php echo $list_href ?>" class="btn_b01 btn"><i class="fa fa-list" aria-hidden="true"></i> 목록</a></li><?php } ?>
