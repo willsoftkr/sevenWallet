@@ -27,6 +27,33 @@ update_level('5');
 update_level('6');
 update_level('7');
 
+update_grade();
+
+function update_grade(){
+    echo "<br><span class='title'> 등급 업데이트 - GRADE ====================================== </span><br>";
+
+    $mem_sql = "select mb_id, grade, mb_recommend from g5_member order by mb_no";
+    $mem_list = sql_query($mem_sql);
+
+    while($m_row = sql_fetch_array($mem_list)){
+
+        $grade = $m_row['grade'];
+
+        echo "<br>**<br><strong>".$m_row['mb_id']."  |  현재등급 ".$m_row['grade']."</strong><br>";
+
+        //회원의 직 추천인 수를 구한다. 
+        $recom_cont = sql_fetch( "select count(mb_id) as r_count from g5_member where  mb_recommend = '".$m_row['mb_id']."' AND grade >= 3 ");
+        $recom_cnt=$recom_cont['r_count'];
+
+        if($grade == 3 &&  $recom_cnt >= 3){
+            echo "<br> <span class='blue'>▶ 직추천 그린 등급 이상 : ".$recom_cnt."명 </span>";
+            echo "<br> <span class='red'>▶▶ GREEN2 등급 업데이트 대상</span>";
+            $update_grade_sql = "update g5_member set grade = 4 where mb_id = '{$m_row['mb_id']}'";
+            sql_query($update_grade_sql);
+        }
+    
+    }
+}
 
 function update_level($val){
     

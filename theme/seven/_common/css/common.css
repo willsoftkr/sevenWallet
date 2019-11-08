@@ -481,6 +481,38 @@ a.gray_close{background:#6c757d; color:#fff; text-align: center; padding: 8px 10
 	margin-bottom:0;
 }
 
+.dash_contents  h5 .close_today{
+	font-size:16px;
+	letter-spacing:0;
+	font-weight:400;
+	padding:2px 8px 2px 5px; 
+	border:1px solid #333;
+	border-radius:15px;
+	background:#333;
+	margin-right:10px;
+	color:white;
+}
+
+.notice_open{
+	font-size:16px;
+	letter-spacing:0;
+	font-weight:400;
+	padding:2px 8px 3px 5px; 
+	border:1px solid #004a7c;
+	border-radius:15px;
+	line-height:20px;
+	background:#004a7c;
+	color:white;
+}
+/*
+.dash_contents  h5 .close_today:hover{
+	background:#07b5e5;
+	color:white;
+}
+*/
+
+.dash_news{display:none;}
+
 .close_news{width:25px;}
 .dash_wallet{color: #5a5a5a;}
 .dash_wallet li{float: left; width: 50%; margin-top:20px;}
@@ -1650,9 +1682,10 @@ div:nth-child(2){color:#ff9b22;}
 
 	.logo_login_div img {width: 64%;}
 	#u_name{margin-bottom:5px;}
-	.logo_login_div {margin-bottom: 0px; width:80%; margin:auto;}
+	.logo_login_div {margin-bottom: 0px; width:80%; margin:auto;margin-bottom:20px;}
 	.login_wrap a.btn_basic_block{margin-top:20px;}
-	.login_btn_bottom{position:absolute; bottom:50px; width:70%; left: 15%;}
+	/*.login_btn_bottom{position:absolute; bottom:50px; width:70%; left: 15%;}*/
+	.login_btn_bottom{margin-top:100px;}
 	
 	.enroll_wrap{font-size:14px;}
 	input[type="password"]{font-size: 12px;}
@@ -1737,7 +1770,7 @@ div:nth-child(2){color:#ff9b22;}
 /* 안드 아이폰5 */
 @media screen and (max-width:360px){
     .login_wrap{padding-top: 7vh;}
-	.login_btn_bottom{bottom:10px;}
+	/*.login_btn_bottom{bottom:10px;}*/
 	.login_wrap a.btn_basic_block{margin-bottom: 0;}
 	.support_a {margin-top: 0;}
 

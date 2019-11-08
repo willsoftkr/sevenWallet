@@ -3,6 +3,12 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
 // add_stylesheet('css 구문', 출력순서); 숫자가 작을 수록 먼저 출력됨
 //add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0);
+
+//승인체크
+$confirm_check = '';
+if (strstr($write['wr_2'], '1')) {
+    $confirm_check = 'checked';
+}
 ?>
 
 <style>
@@ -32,6 +38,7 @@ input[type="text"], input[type="number"], input[type="password"], input[type="em
     <input type="hidden" name="sst" value="<?php echo $sst ?>">
     <input type="hidden" name="sod" value="<?php echo $sod ?>">
     <input type="hidden" name="page" value="<?php echo $page ?>">
+    <input type="hidden" name="wr_2" value="1">
     <?php
     $option = '';
     $option_hidden = '';
@@ -160,7 +167,7 @@ input[type="text"], input[type="number"], input[type="password"], input[type="em
 
         <?php if($w == 'u' && $file[$i]['file']) { ?>
         <span class="file_del">
-            <input type="checkbox" id="bf_file_del<?php echo $i ?>" name="bf_file_del[<?php echo $i;  ?>]" value="1"> <label for="bf_file_del<?php echo $i ?>"><?php echo $file[$i]['source'].'('.$file[$i]['size'].')';  ?> 파일 삭제</label>
+            <input type="checkbox" id="bf_file_del<?php echo $i ?>" name="bf_file_del[<?php echo $i;  ?>]" value="1" style="width:30px;"> <label for="bf_file_del<?php echo $i ?>"><?php echo $file[$i]['source'].'('.$file[$i]['size'].')';  ?> 파일 삭제</label>
         </span>
         <?php } ?>
         
@@ -173,7 +180,12 @@ input[type="text"], input[type="number"], input[type="password"], input[type="em
         <?php echo $captcha_html ?>
     </div>
     <?php } ?>
-
+    
+    <div>
+        <input type="checkbox" name="wr_2" class="kyc_confirm" value="" <?=$confirm_check?> >
+        <label for="wr_2"> KYC 인증 승인</label>
+    </div>
+     
 
     <div class="btn_confirm write_div">
         <a href="./board.php?bo_table=<?php echo $bo_table ?>" class="btn_cancel btn">취소</a>
@@ -245,6 +257,7 @@ input[type="text"], input[type="number"], input[type="password"], input[type="em
             return false;
         }
 
+        
         if (document.getElementById("char_count")) {
             if (char_min > 0 || char_max > 0) {
                 var cnt = parseInt(check_byte("wr_content", "char_count"));

@@ -69,6 +69,7 @@ $colspan = 15;
     | <a href="/adm/board_notice.php" class="board_menu">Notice</a>
     | <a href="/adm/board_news.php" class="board_menu">News</a>
     | <a href="/adm/board_support.php" class="board_menu">Support center</a>
+    | <a href="/adm/board_kyc.php" class="board_menu">KYC 회원인증</a>
 </div>
 
 <iframe src="/bbs/board.php?bo_table=notice" width="100%" height="700px;" scrolling="auto" style="border:0;background:white;"></iframe>

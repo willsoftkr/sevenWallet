@@ -72,7 +72,7 @@ $colspan = 15;
     | <a href="/adm/board_kyc.php" class="board_menu">KYC 회원인증</a>
 </div>
 
-<iframe src="/bbs/board.php?bo_table=news" width="100%" height="700px;" scrolling="auto" style="border:0;background:white;"></iframe>
+<iframe src="/bbs/board.php?bo_table=kyc" width="100%" height="700px;" scrolling="auto" style="border:0;background:white;"></iframe>
 
 <?php
 include_once('./admin.tail.php');

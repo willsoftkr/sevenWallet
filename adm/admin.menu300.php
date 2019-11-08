@@ -16,5 +16,6 @@ $menu['menu300'] = array (
     array('300100', '공지사항관리(Notice)', G5_ADMIN_URL.'/board_notice.php','',1),
     array('300200', 'V7뉴스관리(News)', G5_ADMIN_URL.'/board_news.php','',1),
     array('300300', 'V7서포트(Support)', G5_ADMIN_URL.'/board_support.php','',1),
+    array('300400', 'KYC 회원인증', G5_ADMIN_URL.'/board_kyc.php','',1),
 );
 ?>

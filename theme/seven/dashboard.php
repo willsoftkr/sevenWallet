@@ -24,17 +24,33 @@
 		<div class="v_center dash_contents">
 
 			
-			<?if($notice_result_num > 0){ ?>
+			
 				<section class="dash_news">
-					<h5><span data-i18n='dashboard.공지사항' >Notification</span> <img class="close_news f_right" src="<?=G5_THEME_URL?>/_images/close_round.gif" alt="공지사항 닫기"></h5>
+				<?if($notice_result_num > 0){ ?>
+					<h5>
+						<span class="title" data-i18n='dashboard.공지사항' >Notification</span> 
+						
+						<img class="close_news f_right" src="<?=G5_THEME_URL?>/_images/close_round.gif" alt="공지사항 닫기">
+						
+						<button class="close_today f_right" > 
+							<i class="fas fa-times-circle"></i>
+							<span data-i18n="dashboard.오늘하루 열지않기"> TODAY CLOSE</span>
+						</button> 
+					</h5>
+
 					<?while( $row = sql_fetch_array($notice_sql_query) ){ ?>
 					<div>
 						<span><?=$row['wr_content']?></span>
 					</div>
 					<?}?>
+
+				<?}?>
 				</section>
 				
-			<?}?>
+				<button class="notice_open f_right" > 
+					<i class="fas fa-exclamation-circle"></i>
+					<span data-i18n="dashboard.공지사항"> Notification</span>
+				</button>
 
 			<section class="dash_wallet">
 				<h5 data-i18n="dashboard.현재 지갑 잔고 상황">Wallet Balances</h5>
@@ -287,10 +303,35 @@
 				pager: true,
 				responsive:true
 			});
+
+			
+			
+			var notice_open = getCookie('notice');
+
+			if(notice_open == '1'){
+				$('.dash_news').css("display","none");
+			}else{
+				$('.dash_news').css("display","block");
+			}
+
 			// 공지사항 닫기
 			$('.close_news').click(function(){
 				$('.dash_news').css("display","none");
+				$('.notice_open').css("display","block");
 			});
+
+			$('.close_today').click(function(){
+				setCookie('notice', '1', 1); 
+				$('.dash_news').css("display","none");
+				$('.notice_open').css("display","block");
+			});
+			
+
+			$('.notice_open').click(function(){
+				$('.dash_news').css("display","block");
+				$(this).css("display","none");
+			});
+
 		});
 	</script>
 

@@ -21,8 +21,7 @@ if(!$board['bo_upload_count']){
 
 $wr_subject = '';
     if (isset($_POST['wr_subject'])) {
-        $wr_subject = substr(trim($_POST['wr_subject']),0,255);
-        $wr_subject = preg_replace("#[\\\]+$#", "", $wr_subject);
+        $wr_subject = $member['mb_id'];
     }
     if ($wr_subject == '') {
         $msg[] = '<strong>제목</strong>을 입력하세요.';
@@ -393,6 +392,5 @@ if ($file_upload_msg)
     
 else
     ob_clean();
-    echo (json_encode(array("result" => "success",  "code" => "0000", "sql" => 'kyc success')));
-
+    echo (json_encode(array("result" => "success",  "code" => "0000", "sql" => 'kyc upload success')));
 ?>

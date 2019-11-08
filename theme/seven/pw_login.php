@@ -27,7 +27,7 @@
 					</div>
 					<div>
 						<label for="u_pw"><span data-i18n="login.비밀번호">Password</span></label>
-						<input type="password" name="mb_password" id="u_pw" />
+						<input type="password" name="mb_password" id="u_pw" style="line-height:22px;" />
 					</div>
 
 				

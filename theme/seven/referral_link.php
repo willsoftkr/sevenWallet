@@ -40,7 +40,7 @@ curl_close($ch);
 					<p><?=$member['mb_id']?></p>
 					<div class="google-auth-top-qr" id="qrcode"></div>
 					<p id="short_URL"><a href="<?=$short_URL_p?>"><?=$short_URL?></a></p>
-					<input class="btn_basic_block" type="button" onclick="copyToClipboard(short_URL);" value="Share link" data-i18n='=[value]referral.링크 공유하기' >
+					<input class="btn_basic_block" type="button" onclick="copyToClipboard(short_URL);" value="Copy link" data-i18n='=[value]referral.링크 공유하기' >
 				</div>		
 			</section>
 		</div>

@@ -12,7 +12,7 @@
 				<ul class="left_gnb">
 					<li><a href="/" ><img src="<?=G5_THEME_URL?>/_images/menu01.gif" alt="아이콘" ><span data-i18n="nav.대시보드">dashboard</span></a></li>
 					<li><a href="/page.php?id=profile"><img src="<?=G5_THEME_URL?>/_images/menu02.gif" alt="아이콘" ><span data-i18n="nav.개인정보와 보안설정">Profile & Settings</span></a></li>
-					<!--<li><a href="javascript:serviceModal();"><img src="<?=G5_THEME_URL?>/_images/menu02.gif" alt="아이콘" ><span data-i18n="nav.개인정보와 보안설정">Profile & Settings</span></a></li>-->
+					<li><a href="javascript:serviceModal();"><img src="<?=G5_THEME_URL?>/_images/menu02.gif" alt="아이콘" ><span data-i18n="nav.개인정보와 보안설정">Profile & Settings</span></a></li>
 					<!-- <li><a href="#0"><img src="_images/menu03.gif" alt="아이콘">백업과 복구</a></li> -->
 					<li><a href="/wallet/wallet.php?id=wallet"><img src="<?=G5_THEME_URL?>/_images/menu04.gif" alt="아이콘"><span data-i18n="nav.클립토 월렛">Crypto Wallets</span></a></li>
 					<li>
