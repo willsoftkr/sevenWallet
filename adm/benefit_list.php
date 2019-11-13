@@ -12,13 +12,13 @@ $benefit = "SELECT allowance_name FROM soodang_pay WHERE (1) GROUP BY allowance_
 $rrr = sql_query($benefit);
 
 $allowcnt=0;
-for ($i=0; $allowance_name=sql_fetch_array($rrr); $i++) {   
+for ($i=0; $allowance_name=sql_fetch_array($rrr); $i++) {
 	$nnn="allowance_chk".$i;
 	$html.= "<input type='checkbox' name='".$nnn."' id='".$nnn."'";
-	
+
 	if($$nnn!=''){
 		$html.=" checked='true' ";
-	}		
+	}
 
 	$html.=" value='".$allowance_name['allowance_name']."'>".$allowance_name['allowance_name']."&nbsp;&nbsp;";
 
@@ -30,9 +30,9 @@ for ($i=0; $allowance_name=sql_fetch_array($rrr); $i++) {
 			$sql_search .= "  or ( allowance_name='".${"allowance_chk".$i}."' )";
 		}
 
-		
+
 			$qstr.='&'.$nnn.'='.$allowance_name['allowance_name'];
-		
+
 		$allowcnt++;
 
 	}
@@ -56,7 +56,7 @@ $sql_common = " from soodang_pay where (1) ";
 if(!$fr_date){
 	$fr_date=date("Y-m-d");
 	$to_date=$fr_date;
-	
+
 }
 
 if(($allowance_name) ){
@@ -65,7 +65,7 @@ if(($allowance_name) ){
 		$sql_search .= " allowance_name='".$allowance_name."'";
 		}
  $sql_search .= " )";
- 
+
 }/*else if($dv_gubun){
 	 $sql_search .= " and dv_gubun='".$dv_gubun."'";
 }
@@ -84,10 +84,10 @@ if ($stx) {
     $sql_search .= " and ( ";
 	if(($sfl=='mb_id') || ($sfl=='mb_id')){
             $sql_search .= " ({$sfl} = '{$stx}') ";
-          
+
 	}else{
             $sql_search .= " ({$sfl} like '%{$stx}%') ";
-          
+
     }
     $sql_search .= " ) ";
 }
@@ -111,7 +111,7 @@ $from_record = ($page - 1) * $rows; // 시작 열을 구함
 $sql_order='order by day desc';
 
 
-$sql = "select * 
+$sql = "select *
 		{$sql_common}
         {$sql_search}
         {$sql_order}
@@ -131,8 +131,8 @@ include_once(G5_PLUGIN_PATH.'/jquery-ui/datepicker.php');
 $colspan = 16;
 
 
- ?>   
- 
+ ?>
+
 
 
 <div class="local_ov01 local_ov">
@@ -144,7 +144,7 @@ $colspan = 16;
          echo '&nbsp;전체 합계:  총액('.number_format($row2['sum_dividend_money']).'원)  / 세금('.number_format($row2['sum_dividend_tax']).'원)  / 실 지급금('.number_format($row2['sum_dividend']).'원)';
     } else {
         $row2 = sql_fetch(" select sum(dv_money) as sum_dividend_money,  sum(dv_tax) as sum_dividend_tax,  sum(dv_money-dv_tax) as sum_dividend from dividend where dv_paid<>'R' and dv_paid<>'S' {$sql_search}");
-        
+
         echo '&nbsp;전체 합계:  총액('.number_format($row2['sum_dividend_money']).'원)  / 세금('.number_format($row2['sum_dividend_tax']).'원)  / 실 지급금('.number_format($row2['sum_dividend']).'원)';
     }*/
 
@@ -161,9 +161,9 @@ $colspan = 16;
        <!-- <input type="text" name="fr_date" value="<?php if($fr_date){echo $fr_date; }else{echo date("Ymd");} ?>" id="fr_date" required class="required frm_input" size="13" maxlength="10">
         ~-->
         <label for="to_date" class="sound_only">기간 종료일</label>
-        <input type="text" name="to_date" value="<?php if($to_date){echo $to_date; }else{echo date("Ymd");} ?>" id="to_date" required class="required frm_input date_input" size="13" maxlength="10"> 
-		
-			<!--<input type="checkbox" name="save_noo_mon" id="save_noo_mon" value="1">매출정산+즉시계산--> 
+        <input type="text" name="to_date" value="<?php if($to_date){echo $to_date; }else{echo date("Ymd");} ?>" id="to_date" required class="required frm_input date_input" size="13" maxlength="10">
+
+			<!--<input type="checkbox" name="save_noo_mon" id="save_noo_mon" value="1">매출정산+즉시계산-->
 		<input type="radio" name="price" id="pv" value='pv' checked='true' style="display:none;"><!--&nbsp;|&nbsp; BV<input type="radio" name="price" id="bv" value='bv' >&nbsp;|&nbsp;판매가<input type="radio" name="price" id="receipt" value='receipt'>&nbsp; -->
             <!--<input type="checkbox" name="save_noo_mon" id="save_benefit" value="1">정산된 매출로 수당계산만&nbsp;&nbsp;&nbsp; -->
 
@@ -183,7 +183,7 @@ $colspan = 16;
 		.benefit.avatar{background:sienna}
 		.benefit:hover{background:black;}
 	</style>
-	|| 
+	||
 	<input type="submit" name="act_button" value=" 업스테어 "  class="frm_input benefit upstair" onclick="go_calc(5);">
 	<input type="submit" name="act_button" value=" 일일 수당 지급 "  class="frm_input benefit day" onclick="go_calc(0);">
 	<input type="submit" name="act_button" value=" 10X10 지급"  class="frm_input benefit recom" onclick="go_calc(1);">
@@ -192,9 +192,10 @@ $colspan = 16;
 	<!--<input type="submit" name="act_button" value=" B팩 수당 지급"  class="frm_input benefit qpack" onclick="go_calc(4);">-->
 	<input type="submit" name="act_button" value=" 아바타적립실행"  class="frm_input benefit avatar" onclick="go_calc(9);">
 	||
+	<input type="submit" name="act_button" value=" 자동 팩 구매 "  class="frm_input benefit upstair" onclick="go_calc(10);">
 	<input type="submit" name="act_button" value=" 전체수당지급 (업스테어제외)"  class="frm_input benefit rblue" onclick="go_calc(6);">
 	<input type="submit" name="act_button" value=" 어제까지자동 (아바타제외)"  class="frm_input benefit red" onclick="go_calc(7);">
-	
+
 	<!--<input type="submit" name="act_button" value=" 어제까지자동..(아바타포함)"  class="frm_input benefit pink" onclick="go_calc(10);">-->
 	<!--
 	<input type="submit" name="act_button" value=" 바이너리 보너스 "  class="frm_input" onclick="go_calc(2);">
@@ -217,7 +218,7 @@ $colspan = 16;
 </style>
 
 <div class="sysbtn">
-	초기화 수동관리 :: 
+	초기화 수동관리 ::
 	<a href="./member_grade.php" class="btn btn2" >멤버 등급(grade) 수동 갱신</a>
 	<a href="#" class="btn btn2" onclick="clear_db('balance');">멤버 수당,V7,매출전환,level 초기화(출금,전환 제외)</a>
 	<!--<a href="#" class="btn btn2" onclick="clear_db('amt');">멤버 출금, 전환 내역 초기화</a>-->
@@ -237,15 +238,15 @@ $colspan = 16;
 
 	<label for="stx" class="sound_only">검색어<strong class="sound_only"> 필수</strong></label>
 	<input type="text" name="stx" value="<?php echo $stx ?>" id="stx" class="frm_input">
-	검색 기간 : <input type="text" name="start_dt" id="start_dt" placeholder="From" class="frm_input" value="<?=$_GET['start_dt']?>" /> 
+	검색 기간 : <input type="text" name="start_dt" id="start_dt" placeholder="From" class="frm_input" value="<?=$_GET['start_dt']?>" />
 	~ <input type="text" name="end_dt" id="end_dt" placeholder="To" class="frm_input" value="<?=$_GET['end_dt']?>"/>
-	
+
 	<?
 	echo $html;
 	?>
 
 	<input type="submit" class="btn_submit" value="검색"/>
-	<input type="button" class="btn_submit" value="엑셀" onclick="document.location.href='benefit_list_excel_out.php?<?echo $qstr?>'" />	
+	<input type="button" class="btn_submit" value="엑셀" onclick="document.location.href='benefit_list_excel_out.php?<?echo $qstr?>'" />
 	<br/>
 </form>
 
@@ -258,7 +259,7 @@ $colspan = 16;
 <input type="hidden" name="token" value="<?php echo $token ?>">
 <div class="local_ov01 local_ov">
     <?php echo $listall ?>
-    전체 <?php echo number_format($total_count) ?> 건 
+    전체 <?php echo number_format($total_count) ?> 건
 </div>
 <div class="tbl_head01 tbl_wrap">
     <table>
@@ -269,11 +270,11 @@ $colspan = 16;
 		<th scope="col">회원아이디</a></th>
 		<th scope="col">회원레벨</a></th>
         <th scope="col">수당이름</th>
-        <th scope="col">추천인</th>     
+        <th scope="col">추천인</th>
 
-        <th scope="col">발생수당 (USD)</a></th>	
-		 <th scope="col">발생수당V7 </a></th>	
-        <th scope="col">수당근거</a></th>				
+        <th scope="col">발생수당 (USD)</a></th>
+		 <th scope="col">발생수당V7 </a></th>
+        <th scope="col">수당근거</a></th>
     </tr>
     </thead>
     <tbody>
@@ -327,7 +328,7 @@ $colspan = 16;
 
 
 <script>
-	
+
 $(function(){
     $("#fr_date, #to_date").datepicker({ changeMonth: true, changeYear: true, dateFormat: "yy-mm-dd", showButtonPanel: true, yearRange: "c-99:c+99", maxDate: "+0d" });
 	$("#start_dt, #end_dt").datepicker({ changeMonth: true, changeYear: true, dateFormat: "yy-mm-dd", showButtonPanel: true, yearRange: "c-99:c+99", maxDate: "+0d" });
@@ -341,7 +342,7 @@ function go_calc(n)
 	if(document.getElementById("pv").checked==true){
 
 		str=str+'&price=pv';
-			
+
 	}else if(document.getElementById("bv").checked==true){
 		str=str+'&price=bv';
 	}else{
@@ -363,43 +364,45 @@ function go_calc(n)
 		str=str+'&iwol_yn_chk=1';
 	}
 */
-	
-	
+
+
 	switch(n){
-		case 0: 
+		case 0:
 			location.href='eos.daily.pay.php?'+str;         //일일수당
 			break;
-		case 1: 
+		case 1:
 			location.href='eos.benefit.immediate.php?'+str;// 추천수당
 			break;
-		case 2: 
+		case 2:
 			location.href='eos.member.level.php?'+str;// 멤버승급
 			break;
 
-		case 3: 
+		case 3:
 			location.href='eos.qpack.php?'+str;// Q팩
 			break;
 		case 4:
 			location.href='eos.bpack.php?'+str;// B팩
 			break;
-		case 5: 
+		case 5:
 			location.href='eos.upstair.php?'+str;         //임시 해당일 업스테어
 			break;
-		case 6: 
+		case 6:
 			location.href='eos.all.php?'+str;         //전체수당지급
 			break;
-		case 7: 
+		case 7:
 			location.href='eos.auto.php?'+str;         //전체수당지급
 			break;
-		case 8: 
+		case 8:
 			location.href='eos.Bpack_auto.php?'+str;         //B팩
 			break;
-		case 9: 
+		case 9:
 			location.href='eos.avatar_ex.php?'+str;         //아바타
 			break;
-		
+		case 10:
+			location.href='eos.qpack_auto_buy.php?'+str;         //자동 팩 구매
+			break;
 	}
-	
+
 }
 </script>
 <?php
